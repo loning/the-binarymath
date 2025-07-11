@@ -27,3 +27,4 @@ source/thetheory.md
 claude_config.json
 translation-status-report.json
 build_output.txt
+*.pyc
