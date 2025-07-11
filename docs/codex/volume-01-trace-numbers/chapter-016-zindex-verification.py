@@ -48,9 +48,10 @@ class ZeckendorfDecomposition:
         if sum(self.fibonacci_terms) != self.number:
             return False
         
-        # Check no consecutive Fibonacci numbers
-        for i in range(len(self.fibonacci_indices) - 1):
-            if self.fibonacci_indices[i+1] - self.fibonacci_indices[i] <= 1:
+        # Check no consecutive Fibonacci numbers (indices should differ by >1)
+        sorted_indices = sorted(self.fibonacci_indices, reverse=True)
+        for i in range(len(sorted_indices) - 1):
+            if sorted_indices[i] - sorted_indices[i+1] <= 1:
                 return False
         
         # Check binary representation has no consecutive 1s
@@ -77,7 +78,7 @@ class FibonacciGenerator:
         self.fibonacci_lookup = {fib: i for i, fib in enumerate(self.fibonacci_sequence)}
     
     def _generate_fibonacci(self, n: int) -> List[int]:
-        """Generate Fibonacci sequence up to n terms"""
+        """Generate Fibonacci sequence: 1, 1, 2, 3, 5, 8, 13, ..."""
         if n <= 0:
             return []
         elif n == 1:
@@ -115,11 +116,12 @@ class FibonacciGenerator:
         return n in self.fibonacci_lookup
     
     def largest_fibonacci_leq(self, n: int) -> Tuple[int, int]:
-        """Find largest Fibonacci number ≤ n, return (value, index)"""
-        for i in range(len(self.fibonacci_sequence) - 1, -1, -1):
+        """Find largest Fibonacci number ≤ n for Zeckendorf (skip F_1=1), return (value, index)"""
+        # Start from index 1 to skip the first F_1=1 in standard sequence
+        for i in range(len(self.fibonacci_sequence) - 1, 0, -1):  # Skip index 0
             if self.fibonacci_sequence[i] <= n:
                 return self.fibonacci_sequence[i], i
-        return 1, 0
+        return 1, 1  # Return F_2=1 as minimum
 
 
 class ZeckendorfDecomposer:
@@ -483,18 +485,19 @@ class ZeckendorfTests(unittest.TestCase):
         self.analyzer = ZeckendorfAnalyzer()
         self.fib_gen = FibonacciGenerator()
         
-        # Test numbers with known decompositions
+        # Test numbers with known decompositions (using standard Fibonacci: 1,1,2,3,5,8,13,...)
+        # Note: For Zeckendorf, we use F_2=1, F_3=2, F_4=3, F_5=5, etc. (skip first F_1=1)
         self.test_cases = [
-            (1, [1], [0]),
-            (2, [2], [2]),
-            (3, [2, 1], [2, 0]),
-            (4, [3, 1], [3, 0]),
-            (5, [5], [4]),
-            (6, [5, 1], [4, 0]),
-            (7, [5, 2], [4, 2]),
-            (8, [8], [5]),
-            (9, [8, 1], [5, 0]),
-            (10, [8, 2], [5, 2])
+            (1, [1], [1]),      # F_2 = 1
+            (2, [2], [2]),      # F_3 = 2  
+            (3, [2, 1], [2, 1]), # F_3 + F_2 = 2 + 1
+            (4, [3, 1], [3, 1]), # F_4 + F_2 = 3 + 1
+            (5, [5], [4]),      # F_5 = 5
+            (6, [5, 1], [4, 1]), # F_5 + F_2 = 5 + 1
+            (7, [5, 2], [4, 2]), # F_5 + F_3 = 5 + 2
+            (8, [8], [5]),      # F_6 = 8
+            (9, [8, 1], [5, 1]), # F_6 + F_2 = 8 + 1
+            (10, [8, 2], [5, 2]) # F_6 + F_3 = 8 + 2
         ]
     
     def test_fibonacci_generation(self):
