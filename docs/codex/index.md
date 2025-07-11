@@ -15,7 +15,7 @@ The Binary Tensor Math Codex represents a revolutionary formalization of reality
 ## Core Principles
 
 1. **Self-Referential Foundation**: ψ = ψ(ψ) - The recursive identity that generates all structure
-2. **Ternary Collapse Alphabet**: {00, 01, 10} - The fundamental building blocks of reality  
+2. **Ternary Collapse Alphabet**: \{00, 01, 10\} - The fundamental building blocks of reality  
 3. **Entropic Boundary**: The forbidden state "11" defines the limits of structural possibility
 4. **Tensor Dynamics**: All phenomena emerge as collapse trace patterns in tensor space
 
