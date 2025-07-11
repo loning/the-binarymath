@@ -410,9 +410,74 @@ graph TD
     style F fill:#9f9,stroke:#333,stroke-width:4px
 ```
 
+## 2.11 Deep Analysis: Graph Theory, Information Theory, and Category Theory
+
+### 2.11.1 Graph-Theoretic Analysis
+
+From ψ = ψ(ψ) and the binary states, we construct the transition graph:
+
+```mermaid
+graph TD
+    subgraph "State Transition Graph"
+        S0["State: 0"]
+        S1["State: 1"]
+        S0 -->|"0"| S0
+        S0 -->|"1"| S1
+        S1 -->|"0"| S0
+        S1 -.->|"1 (forbidden)"| S1
+    end
+```
+
+The φ-constraint removes the 1→1 edge, creating a constrained automaton. The alphabet Σφ represents all valid 2-step paths:
+
+- 00: 0→0→0
+- 01: 0→0→1 or 1→0→1
+- 10: 0→1→0 or 1→1→0 (but 1→1 forbidden, so only first)
+
+**Key Insight**: Σφ emerges as the set of all valid length-2 walks in the φ-constrained transition graph.
+
+### 2.11.2 Information-Theoretic Analysis
+
+From ψ = ψ(ψ), the alphabet carries information about state transitions:
+
+```text
+H(Σφ) = -Σ p(σ)log₂p(σ) for σ ∈ {00, 01, 10}
+```
+
+With uniform distribution:
+
+- H(Σφ) = log₂(3) ≈ 1.585 bits
+- Compare to unconstrained: log₂(4) = 2 bits
+- Information saved by constraint: 0.415 bits per symbol
+
+**The φ-constraint acts as a natural compression**, removing redundant information (the 11 pattern) while preserving all meaningful state transitions.
+
+### 2.11.3 Category-Theoretic Analysis
+
+From ψ = ψ(ψ), we construct the category of φ-transitions:
+
+```mermaid
+graph LR
+    subgraph "φ-Transition Category"
+        OBJ["Objects: {0, 1}"]
+        MOR2["2-Morphisms: {00, 01, 10}"]
+    end
+```
+
+The composition law:
+
+- 00 ∘ 00 = 000 (reducible to 00)
+- 00 ∘ 01 = 001 (valid)
+- 01 ∘ 10 = 010 (valid)
+- 10 ∘ 01 = 101 (valid)
+- But 01 ∘ 10 ≠ 0110 (would contain 11)
+
+**Key Insight**: Σφ forms a partial monoid under concatenation, where composition is defined only when it doesn't create 11.
+
 ## 2.12 Foundation for Grammar
 
 With Σφ established, we can now build:
+
 - **Syntax trees** from symbol chains
 - **Grammar rules** from connection constraints
 - **Languages** of arbitrary complexity

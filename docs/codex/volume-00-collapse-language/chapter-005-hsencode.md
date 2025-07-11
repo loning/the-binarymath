@@ -420,7 +420,77 @@ graph TD
     style F fill:#faa,stroke:#333,stroke-width:2px
 ```
 
-## 5.11 Practical Implications
+## 5.11 Deep Analysis: Graph Theory, Information Theory, and Category Theory
+
+### 5.11.1 Graph-Theoretic Analysis
+
+From ψ = ψ(ψ) and the φ-constraint, error correction creates a constrained code graph:
+
+```mermaid
+graph TD
+    subgraph "Code Graph Structure"
+        VALID["Valid codewords"]
+        ERROR["Error sphere"]
+        CORRECTABLE["Correctable to valid"]
+        UNCORRECTABLE["Creates 11"]
+        
+        VALID -->|"noise"| ERROR
+        ERROR -->|"decode"| CORRECTABLE
+        ERROR -->|"blocked"| UNCORRECTABLE
+        CORRECTABLE --> VALID
+    end
+```
+
+**Key Insight**: The φ-constraint partitions the error sphere:
+- Some errors can be corrected (path exists to valid codeword)
+- Others cannot (correction would create 11)
+- This creates a non-uniform error correction capability
+
+### 5.11.2 Information-Theoretic Analysis
+
+From ψ = ψ(ψ), the channel capacity is fundamentally altered:
+
+```text
+Standard BSC capacity: C = 1 - H(p)
+φ-constrained capacity: C_φ = log₂(φ) × (1 - H(p))
+                           ≈ 0.694 × (1 - H(p))
+```
+
+Information-theoretic properties:
+- **Rate loss**: Exactly log₂(φ) factor
+- **Optimal codes**: Must avoid 11 in all codewords
+- **Mutual information**: I(X;Y) ≤ C_φ < C
+
+**Theorem**: The φ-constraint creates an effective channel with reduced alphabet size, equivalent to transmitting over a channel with alphabet size φ instead of 2.
+
+### 5.11.3 Category-Theoretic Analysis
+
+From ψ = ψ(ψ), error correction forms a functor between categories:
+
+```mermaid
+graph LR
+    subgraph "Message Category"
+        MSG["φ-valid messages"]
+        MSG_MORPH["Message maps"]
+    end
+    
+    subgraph "Code Category"
+        CODE["φ-valid codewords"]
+        CODE_MORPH["Error corrections"]
+    end
+    
+    MSG -->|"Encode functor"| CODE
+    CODE -->|"Decode functor"| MSG
+```
+
+The encode/decode functors must:
+- Preserve φ-constraint (functorial)
+- Form an adjoint pair (encode ⊣ decode)
+- But NOT be inverse (due to errors)
+
+**Key Insight**: Error correction in φ-space is a non-invertible endofunctor on the category of φ-valid strings.
+
+## 5.12 Practical Implications
 
 The verification reveals practical considerations for φ-constrained communication:
 

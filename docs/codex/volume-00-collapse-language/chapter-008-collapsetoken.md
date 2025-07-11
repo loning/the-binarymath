@@ -418,7 +418,96 @@ graph TD
     style A fill:#faf,stroke:#333,stroke-width:3px
 ```
 
-## 8.11 Sequence Modeling and Generation
+## 8.11 Deep Analysis: Graph Theory, Information Theory, and Category Theory
+
+### 8.11.1 Graph-Theoretic Analysis
+
+From ψ = ψ(ψ) and tokenization, we construct a token transition graph:
+
+```mermaid
+graph TD
+    subgraph "Token Graph"
+        T0["Token '0'"]
+        T1["Token '1'"]
+        T01["Token '01'"]
+        T10["Token '10'"]
+        T00["Token '00'"]
+        
+        T0 --> T0
+        T0 --> T1
+        T1 --> T0
+        T01 --> T0
+        T01 --> T00
+        T10 --> T0
+        T10 --> T01
+        T00 --> T1
+        T00 --> T00
+    end
+```
+
+**Key Insight**: The token graph reveals:
+
+- Strongly connected components (token clusters)
+- Forbidden transitions (respecting φ-constraint)
+- Hub tokens (high degree nodes)
+- Path redundancy (multiple tokenizations)
+
+The graph diameter is bounded by the maximum trace length divided by minimum token length.
+
+### 8.11.2 Information-Theoretic Analysis
+
+From ψ = ψ(ψ), tokens optimize information encoding:
+
+```text
+Token Information Content:
+I(token) = -log₂(P(token))
+
+Mutual Information between adjacent tokens:
+I(T₁; T₂) = H(T₂) - H(T₂|T₁)
+
+Channel capacity with token alphabet:
+C = max I(X; Y) = log₂(|V|) × (1 - H(error))
+```
+
+**Theorem**: The optimal token vocabulary minimizes the expected description length:
+$$\min_V \sum_{t \in \text{trace}} [-\log_2 P(t|V)]$$
+
+This explains why certain patterns become tokens:
+
+- High frequency → low information content → efficient encoding
+- Contextual predictability → reduced conditional entropy
+- φ-constraint creates non-uniform distribution
+
+### 8.11.3 Category-Theoretic Analysis
+
+From ψ = ψ(ψ), tokenization forms a functor:
+
+```mermaid
+graph LR
+    subgraph "Trace Category"
+        TRACES["φ-valid traces"]
+        CONCAT["Concatenation"]
+    end
+    
+    subgraph "Token Category"
+        TOKENS["Token sequences"]
+        COMPOSE["Composition"]
+    end
+    
+    TRACES -->|"Tokenize"| TOKENS
+    CONCAT -->|"Preserves"| COMPOSE
+```
+
+The tokenization functor T has properties:
+
+- T: Trace-Cat → Token-Cat
+- T(t₁ · t₂) ≈ T(t₁) ⊗ T(t₂) (approximate homomorphism)
+- Multiple tokenizations = natural transformations
+- Optimal tokenization = universal property
+
+**Key Insight**: Different tokenization strategies are natural transformations between functors, with MDL being the universal one.
+
+## 8.12 Sequence Modeling and Generation
 
 Token sequences can be modeled and generated:
 
@@ -455,7 +544,7 @@ graph TD
     style F fill:#afa,stroke:#333,stroke-width:2px
 ```
 
-## 8.12 Theoretical Implications
+## 8.13 Theoretical Implications
 
 The emergence of tokens reveals deep structure:
 

@@ -418,7 +418,81 @@ graph TD
     style F fill:#9f9,stroke:#333,stroke-width:4px
 ```
 
-## 4.11 Information Theoretic View
+## 4.11 Deep Analysis: Graph Theory, Information Theory, and Category Theory
+
+### 4.11.1 Graph-Theoretic Analysis
+
+From ψ = ψ(ψ) and the φ-constraint, Zeckendorf decomposition emerges as a tree traversal:
+
+```mermaid
+graph TD
+    subgraph "Zeckendorf Decision Tree"
+        ROOT["n"]
+        L1["Use F_k"]
+        R1["Skip F_k"]
+        L2["n - F_k"]
+        R2["Try F_{k-1}"]
+        
+        ROOT -->|"F_k ≤ n"| L1
+        ROOT -->|"F_k > n"| R1
+        L1 --> L2
+        R1 --> R2
+        L2 -->|"Skip F_{k-1}"| NEXT["F_{k-2}"]
+    end
+```
+
+**Key Insight**: The greedy algorithm creates a unique path through this tree:
+
+- Each node represents a remainder
+- Left edge = include Fibonacci number
+- Forced skip after inclusion ensures no consecutive
+- This creates a deterministic path (unique decomposition)
+
+### 4.11.2 Information-Theoretic Analysis
+
+From ψ = ψ(ψ), Zeckendorf form optimizes information encoding:
+
+```text
+Standard binary: H(n) = log₂(n) bits
+Zeckendorf: H_Z(n) ≈ log_φ(n) × log₂(φ) ≈ 0.694 × log_φ(n) bits
+```
+
+Information properties:
+
+- **Compression ratio**: log₂(φ) ≈ 0.694
+- **Redundancy**: 0 (unique representation)
+- **Error detection**: Built-in (11 pattern invalid)
+
+**Theorem**: The Zeckendorf representation achieves the theoretical minimum entropy for φ-constrained encodings.
+
+### 4.11.3 Category-Theoretic Analysis
+
+From ψ = ψ(ψ), Zeckendorf decomposition forms a functor:
+
+```mermaid
+graph LR
+    subgraph "Natural Numbers"
+        NAT["(ℕ, +)"]
+    end
+    
+    subgraph "Zeckendorf Category"
+        ZECK["Z-representations"]
+        ZPLUS["⊕ (Z-addition)"]
+    end
+    
+    NAT -->|"Z functor"| ZECK
+```
+
+The Zeckendorf functor Z has properties:
+
+- Z: ℕ → Binary strings with no 11
+- Z is injective (unique representation)
+- Z(Fₙ) = 10...0 (n-2 zeros) - Fibonacci numbers are "prime"
+- Z is NOT a homomorphism: Z(a+b) ≠ Z(a) ⊕ Z(b)
+
+**Key Insight**: Zeckendorf forms a faithful representation of ℕ in the φ-constrained binary monoid.
+
+## 4.12 Information Theoretic View
 
 Zeckendorf form is optimal in a deep sense:
 

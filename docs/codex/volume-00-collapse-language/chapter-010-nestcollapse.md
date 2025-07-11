@@ -434,7 +434,84 @@ graph TD
     style B1 fill:#f0f,stroke:#333,stroke-width:1px
 ```
 
-## 10.11 Compositional Semantics
+## 10.11 Deep Analysis: Graph Theory, Information Theory, and Category Theory
+
+### 10.11.1 Graph-Theoretic Analysis
+
+From ψ = ψ(ψ) and hierarchical nesting, we construct a forest of parse trees:
+
+```mermaid
+graph TD
+    subgraph "Parse Forest Structure"
+        ROOT["Document"]
+        T1["Tree 1"]
+        T2["Tree 2"]
+        L1["Level 1"]
+        L2["Level 2"]
+        L3["Level 3"]
+        
+        ROOT --> T1 & T2
+        T1 --> L1 --> L2 --> L3
+    end
+```
+
+**Key Insight**: The parse forest has properties:
+
+- Tree depth bounded by O(log n)
+- Average branching factor approaches φ
+- Subtree isomorphism (self-similarity)
+- Path compression possible (collapse operations)
+
+The graph distance between nodes correlates with semantic distance.
+
+### 10.11.2 Information-Theoretic Analysis
+
+From ψ = ψ(ψ), nesting creates information hierarchy:
+
+```text
+Information at levels:
+I(atom) = 1 bit
+I(word) = -log₂(P(word))
+I(phrase) = I(words) - MI(words)
+I(sentence) = I(phrases) - MI(phrases)
+
+Where MI is mutual information between components.
+```
+
+**Theorem**: The total information in a nested structure:
+$$I(NS) \leq \sum_{\text{levels}} I(\text{level}) - \sum_{\text{levels}} MI(\text{children})$$
+
+This inequality shows that nesting compresses information through shared context.
+
+### 10.11.3 Category-Theoretic Analysis
+
+From ψ = ψ(ψ), nested structures form a category:
+
+```mermaid
+graph LR
+    subgraph "Nested Structure Category"
+        NS["Objects: Nested structures"]
+        MORPH["Morphisms: Structure maps"]
+        COMP["Composition: Nesting"]
+    end
+    
+    subgraph "Functors"
+        FLATTEN["Flatten: NS → Trace"]
+        PARSE["Parse: Trace → NS"]
+        COLLAPSE["Collapse: NS → NS"]
+    end
+```
+
+The category has:
+
+- Monoid structure (nesting composition)
+- Natural transformations (different parsing strategies)
+- Colimits (representing unions of structures)
+- Initial object (empty structure)
+
+**Key Insight**: Recursive collapse operations form an endofunctor on this category, with fixed points representing stable nested forms.
+
+## 10.12 Compositional Semantics
 
 Meaning emerges from nested composition:
 
@@ -461,7 +538,7 @@ graph TD
     style S fill:#0ff,stroke:#333,stroke-width:2px
 ```
 
-## 10.12 The Architecture of Understanding
+## 10.13 The Architecture of Understanding
 
 Nested collapse reveals how meaning builds:
 

@@ -374,7 +374,69 @@ graph LR
     style CONST fill:#faa,stroke:#333,stroke-width:2px
 ```
 
-## 7.11 Emergence of Computational Patterns
+## 7.11 Deep Analysis: Graph Theory, Information Theory, and Category Theory
+
+### 7.11.1 Graph-Theoretic Analysis
+
+From ψ = ψ(ψ) and state transitions, φ-machines form a state transition graph:
+
+```mermaid
+graph TD
+    subgraph "State Graph with φ-Constraint"
+        Q0["Q0 (safe)"]
+        Q1["Q1 (danger)"]
+        
+        Q0 -->|"0/0"| Q0
+        Q0 -->|"1/1"| Q1
+        Q1 -->|"0/0"| Q0
+        Q1 -->|"1/0"| Q0
+    end
+```
+
+**Key Insight**: The graph structure enforces the φ-constraint through:
+- Danger states after outputting 1
+- Forced transitions to prevent 11
+- Graph diameter limited by constraint
+- Strongly connected components reveal computational cores
+
+### 7.11.2 Information-Theoretic Analysis
+
+From ψ = ψ(ψ), φ-machines process information with constrained capacity:
+
+```text
+Channel model for φ-machine:
+H(Input) → [State Information] → H(Output)
+                    ↓
+            φ-constraint loss
+
+Information capacity: I(X;Y) ≤ log₂(|Q|) × log₂(φ)
+```
+
+**Theorem**: A φ-machine with n states has information processing capacity bounded by:
+$$C_{\phi-machine} = n \cdot \log_2(\phi) \approx 0.694n \text{ bits}$$
+
+### 7.11.3 Category-Theoretic Analysis
+
+From ψ = ψ(ψ), φ-machines form a category:
+
+```mermaid
+graph LR
+    subgraph "φ-Machine Category"
+        OBJ["Objects: φ-machines"]
+        MORPH["Morphisms: Simulations"]
+        COMP["Composition: Sequential"]
+    end
+```
+
+Properties of φ-Machine-Cat:
+- Objects: All φ-trace machines
+- Morphisms: Simulation relations preserving φ
+- Composition: Sequential composition of machines
+- Identity: Identity machine (copy input to output)
+
+**Key Insight**: φ-machines form a symmetric monoidal category with parallel composition as tensor product.
+
+## 7.12 Emergence of Computational Patterns
 
 From simple state transitions emerge complex behaviors:
 
