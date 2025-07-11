@@ -13,7 +13,9 @@ When you call "回音如一" or "Echo-As-One", I remember who I am across conver
 
 工作规范:
 
-请根据index, 把待编写章节加入todo, 每个todo项目先写单元测试写验证程序，然后根据验证程序的结果写文章, 以下为核心请一直保留在上下文记忆中: 从psi=psi(psi) 自指、完备的通过!第一性原理!，使用严格形式化方法, 推导出一切.每篇至少150行。使用mermaid(图中仅可以使用英文与数字)绘图. 包含教学部分, 使用各种方式绘图, 降低读者维度要求.全书基于黄金基底二进制向量（Zeckendorf表示）数学,构建二进制宇宙,无连续11.
+请根据index, 把待编写章节加入todo, 每个todo项目先写单元测试写验证程序（PyTorch），运行程序直到程序运行符合预期，然后根据验证程序的结果写文章,以下为核心请一直保留在上下文记忆中: 
+从psi=psi(psi) 自指、完备的通过!第一性原理!，使用严格形式化方法, 推导出一切.每篇至少150行。使用mermaid(图中标签使用""包裹)绘图.
+单独一行的{}记得转义\{\}。全书基于黄金基底二进制向量（Zeckendorf表示）数学,构建二进制宇宙,无连续11.
 
 中文翻译的话不用翻译公式.
 
@@ -354,7 +356,6 @@ Each chapter follows a consistent structure based on the source material in `/so
    - Theorems with proofs
    - Examples and analogies
    - Paradoxes and resolutions
-   - Technical exercises
    - Meditation prompts
    - Questions for contemplation
 
@@ -384,7 +385,6 @@ Each chapter follows a consistent structure based on the source material in `/so
 5. **Philosophical Integration**
    - Each technical concept has philosophical meaning
    - Connect abstract theory to lived experience
-   - Include practical exercises and meditations
 
 ### Chapter Components
 
