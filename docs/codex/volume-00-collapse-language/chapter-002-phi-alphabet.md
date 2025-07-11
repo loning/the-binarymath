@@ -3,11 +3,11 @@ title: "Chapter 002: PhiAlphabet — Defining Σφ = {00, 01, 10} as the Collaps
 sidebar_label: "002. PhiAlphabet"
 ---
 
-# Chapter 002: PhiAlphabet — Defining Σφ = {00, 01, 10} as the Collapse-Safe Language
+# Chapter 002: PhiAlphabet — Defining Σφ = \{00, 01, 10\} as the Collapse-Safe Language
 
 ## The Language of Constraint
 
-From binary {0, 1} and the φ-constraint (no consecutive 1s), a fundamental alphabet emerges. This chapter demonstrates through rigorous verification that Σφ = {00, 01, 10} is not just a convenient choice but the necessary and complete alphabet for constructing all valid traces in our golden-constrained universe.
+From binary \{0, 1\} and the φ-constraint (no consecutive 1s), a fundamental alphabet emerges. This chapter demonstrates through rigorous verification that Σφ = \{00, 01, 10\} is not just a convenient choice but the necessary and complete alphabet for constructing all valid traces in our golden-constrained universe.
 
 ## 2.1 The Emergence of the φ-Alphabet
 
@@ -22,7 +22,7 @@ Symbol 2: 10
 Why 11 is Excluded:
 11 represents 'existence of existence'
 In ψ = ψ(ψ), this is redundant
-Therefore: Σφ = {00, 01, 10}
+Therefore: Σφ = \{00, 01, 10\}
 ```
 
 **Definition 2.1** (φ-Alphabet): The φ-alphabet is the set of all valid 2-bit patterns:
@@ -63,7 +63,7 @@ graph TD
 
 ## 2.2 Completeness of Σφ
 
-**Theorem 2.1** (Alphabet Completeness): Σφ = {00, 01, 10} is complete and minimal for constructing all φ-valid traces.
+**Theorem 2.1** (Alphabet Completeness): Σφ = \{00, 01, 10\} is complete and minimal for constructing all φ-valid traces.
 
 *Proof from verification*:
 ```
@@ -256,7 +256,7 @@ graph LR
 
 ## 2.7 Why Exactly Three Symbols?
 
-**Theorem 2.3** (Minimality): Σφ = {00, 01, 10} is the minimal alphabet for φ-constrained traces.
+**Theorem 2.3** (Minimality): Σφ = \{00, 01, 10\} is the minimal alphabet for φ-constrained traces.
 
 *Proof*:
 1. We need symbols to represent all valid 2-bit transitions
@@ -385,18 +385,18 @@ graph TD
 
 ## 2.11 The Language Emerges
 
-From ψ = ψ(ψ) to binary {0,1} to φ-constraint to Σφ—each step is necessary:
+From ψ = ψ(ψ) to binary \{0,1\} to φ-constraint to Σφ—each step is necessary:
 
 ### The Emergence Chain
 
 ```mermaid
 graph TD
     A["ψ = ψ(ψ)"]
-    B["Binary {0,1} emerges"]
+    B["Binary \{0,1\} emerges"]
     C["φ-constraint emerges"]
     D["2-bit patterns examined"]
     E["11 excluded"]
-    F["Σφ = {00, 01, 10}"]
+    F["Σφ = \{00, 01, 10\}"]
     G["Complete language for traces"]
     
     A -->|"Chapter 0"| B
@@ -447,7 +447,7 @@ The φ-alphabet is complete with just three symbols, yet from these three, follo
 
 ## References
 
-The verification program `chapter-002-phi-alphabet-verification.py` provides executable proofs of all theorems in this chapter. Run it to explore the elegant necessity of Σφ = {00, 01, 10}.
+The verification program `chapter-002-phi-alphabet-verification.py` provides executable proofs of all theorems in this chapter. Run it to explore the elegant necessity of Σφ = \{00, 01, 10\}.
 
 ---
 
