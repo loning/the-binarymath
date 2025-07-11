@@ -17,7 +17,7 @@ The entire codex is built upon:
 $$\psi = \psi(\psi)$$
 
 With the fundamental constraint:
-- **Binary Universe**: Everything is binary information {0, 1}
+- **Binary Universe**: Everything is binary information \{0, 1\}
 - **Golden Base**: Zeckendorf representation using Fibonacci numbers
 - **φ-Constraint**: No consecutive 11s allowed (preventing structural collapse)
 - **Tensor Structure**: All mathematics expressed through trace tensors
@@ -35,7 +35,7 @@ This constraint creates the entire mathematical universe described in these 511 
 **Chapters 000-015**: Foundation of φ-constrained binary language, Zeckendorf encoding, trace grammar
 - Chapter 000: `SelfCollapse` — ψ = ψ(ψ) as origin
 - Chapter 001: `BitExistence` — Binary as ontological foundation  
-- Chapter 002: `PhiAlphabet` — Defining Σφ = {00, 01, 10}
+- Chapter 002: `PhiAlphabet` — Defining Σφ = \{00, 01, 10\}
 - Chapter 003: `TraceGrammar` — φ-constrained syntax trees
 - Chapter 004: `ZForm` — Zeckendorf canonical form
 - [View all chapters →](./volume-00-collapse-language/index.md)
@@ -264,7 +264,7 @@ This constraint creates the entire mathematical universe described in these 511 
 
 Every concept in this codex emerges from:
 
-1. **Binary Existence**: All is {0, 1}
+1. **Binary Existence**: All is \{0, 1\}
 2. **Golden Constraint**: No consecutive 11s (φ-constraint)
 3. **Zeckendorf Representation**: Unique Fibonacci decomposition
 4. **Tensor Structure**: Multi-dimensional trace networks

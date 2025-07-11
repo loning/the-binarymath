@@ -20,10 +20,10 @@ The foundational chapter establishing self-referential collapse as the origin of
 ### [Chapter 001: BitExistence](./chapter-001-bit-existence.md)
 **Binary Information as Ontological Foundation**
 
-Establishes binary {0, 1} as the fundamental unit of existence. Shows how all reality emerges from binary information under constraints.
+Establishes binary \{0, 1\} as the fundamental unit of existence. Shows how all reality emerges from binary information under constraints.
 
 ### [Chapter 002: PhiAlphabet](./chapter-002-phi-alphabet.md)
-**Defining Σφ = {00, 01, 10} as the Collapse-Safe Language**
+**Defining Σφ = \{00, 01, 10\} as the Collapse-Safe Language**
 
 Introduces the φ-alphabet by excluding 11 to prevent structural collapse. The foundation of all safe trace construction.
 
@@ -99,7 +99,7 @@ Introduces metric structures for measuring distances between collapse traces.
 1. **Self-Referential Foundation**: ψ = ψ(ψ) as the origin
 2. **Binary Constraint**: No consecutive 11s (φ-constraint)
 3. **Golden Base**: Zeckendorf representation
-4. **Trace Grammar**: Formal language over Σφ = {00, 01, 10}
+4. **Trace Grammar**: Formal language over Σφ = \{00, 01, 10\}
 5. **Tensor Lifting**: From traces to higher dimensions
 6. **Canonical Forms**: Unique representations
 
