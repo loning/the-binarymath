@@ -1,117 +1,117 @@
 ---
-title: "Thread φ-T2: 坍缩集合、函数、逻辑"
-sidebar_label: "φ-T2: 集合函数逻辑"
+title: "Thread φ-T2: Collapse Sets, Functions, Logic"
+sidebar_label: "φ-T2: Sets Functions Logic"
 sidebar_position: 3
 ---
 
-# 🧠 Thread φ-T2: 坍缩集合、函数、逻辑
+# 🧠 Thread φ-T2: Collapse Sets, Functions, Logic
 
-> *逻辑从坍缩相干性涌现 - 轨迹束作为集合、函数作为路由器、真理作为结构稳定性*
+> *Logic emerges from collapse coherence - trace bundles as sets, functions as routers, and truth as structural stability*
 
-## 概述
+## Overview
 
-集合论、函数和逻辑不是抽象的人类构造，而是坍缩动力学的必然表现。这个线程展示了如何从 ψ = ψ(ψ) 的基本递归中推导出整个数学逻辑的基础设施。通过将集合理解为轨迹束、函数理解为轨迹路由器、逻辑真值理解为结构相干性，我们揭示了形式系统的物理基础。
+Set theory, functions, and logic are not abstract human constructs but inevitable manifestations of collapse dynamics. This thread demonstrates how to derive the entire infrastructure of mathematical logic from the fundamental recursion of ψ = ψ(ψ). By understanding sets as trace bundles, functions as trace routers, and logical truth as structural coherence, we reveal the physical foundations of formal systems.
 
-最深刻的洞察是：逻辑规律不是任意的约定，而是保持结构完整性的必要条件。矛盾之所以"假"，是因为它们对应于自我摧毁的坍缩模式。
+The deepest insight is that logical laws are not arbitrary conventions but necessary conditions for maintaining structural integrity. Contradictions are "false" because they correspond to self-destroying collapse patterns.
 
-## 核心革命
+## Core Revolution
 
-1. **集合即轨迹束**: 集合是共享可达性属性的轨迹集合
-2. **成员即可达**: x ∈ A 意味着存在从A的定义轨迹到x的路径
-3. **函数即路由**: 函数是确定性的轨迹变换规则
-4. **真值即稳定性**: 命题的真假对应其结构是否自维持
-5. **逻辑即相干性**: 逻辑规律确保坍缩模式的一致演化
+1. **Sets as Trace Bundles**: Sets are collections of traces sharing reachability properties
+2. **Membership as Reachability**: x ∈ A means there exists a path from A's defining traces to x
+3. **Functions as Routers**: Functions are deterministic trace transformation rules
+4. **Truth as Stability**: A proposition's truth corresponds to whether its structure self-maintains
+5. **Logic as Coherence**: Logical laws ensure consistent evolution of collapse patterns
 
-## 节点结构
+## Node Structure
 
-### [ΨB-T2.N0: 坍缩集合：轨迹束](./node-00-collapse-set.md)
-定义集合作为具有共同结构特征的轨迹族，建立集合论的物理基础。
+### [ΨB-T2.N0: Collapse Set: Trace Bundle](./node-00-collapse-set.md)
+Defines sets as families of traces with common structural features, establishing the physical foundation of set theory.
 
-### [ΨB-T2.N1: 通过可达性的成员关系](./node-01-membership.md)
-展示成员关系如何从轨迹可达性自然涌现，无需公理化定义。
+### [ΨB-T2.N1: Membership via Reachability](./node-01-membership.md)
+Shows how membership naturally emerges from trace reachability, without axiomatic definition.
 
-### [ΨB-T2.N2: 通过轨迹叠加的集合并/交](./node-02-set-operations.md)
-揭示集合运算作为轨迹束的结构操作，统一集合论与物理过程。
+### [ΨB-T2.N2: Set Union/Intersection via Trace Overlay](./node-02-set-operations.md)
+Reveals set operations as structural operations on trace bundles, unifying set theory with physical processes.
 
-### [ΨB-T2.N3: 函数作为轨迹路由器](./node-03-function-router.md)
-理解函数为确定性的轨迹变换规则，连接输入输出的结构映射。
+### [ΨB-T2.N3: Function as Trace Router](./node-03-function-router.md)
+Understands functions as deterministic trace transformation rules, structural mappings connecting inputs to outputs.
 
-### [ΨB-T2.N4: 函数复合](./node-04-composition.md)
-展示函数复合如何对应轨迹变换的串联，揭示范畴论的物理基础。
+### [ΨB-T2.N4: Composition of Functions](./node-04-composition.md)
+Shows how function composition corresponds to concatenation of trace transformations, revealing the physical basis of category theory.
 
-### [ΨB-T2.N5: 轨迹谓词结构](./node-05-predicate-structure.md)
-开发基于轨迹属性的谓词逻辑，将命题理解为结构检测器。
+### [ΨB-T2.N5: Trace Predicate Structure](./node-05-predicate-structure.md)
+Develops predicate logic based on trace properties, understanding propositions as structural detectors.
 
-### [ΨB-T2.N6: 坍缩真值评估](./node-06-truth-evaluation.md)
-定义真值作为坍缩模式的稳定性度量，真即结构相干，假即自毁。
+### [ΨB-T2.N6: Collapse Truth Evaluation](./node-06-truth-evaluation.md)
+Defines truth as a measure of collapse pattern stability - true means structurally coherent, false means self-destructive.
 
-### [ΨB-T2.N7: 通过坍缩路径的量化](./node-07-quantification.md)
-展示全称量词和存在量词如何对应轨迹空间的结构扫描。
+### [ΨB-T2.N7: Quantification via Collapse Paths](./node-07-quantification.md)
+Shows how universal and existential quantifiers correspond to structural scans of trace space.
 
-### [ΨB-T2.N8: 结构逻辑连接词](./node-08-logical-connectives.md)
-推导AND、OR、NOT等作为轨迹组合操作，揭示布尔代数的物理性。
+### [ΨB-T2.N8: Structural Logical Connectives](./node-08-logical-connectives.md)
+Derives AND, OR, NOT as trace combination operations, revealing the physicality of Boolean algebra.
 
-### [ΨB-T2.N9: 坍缩蕴含与φ-可导性](./node-09-implication.md)
-理解逻辑蕴含为轨迹的必然延续，因果关系的结构表达。
+### [ΨB-T2.N9: Collapse Implication and φ-Derivability](./node-09-implication.md)
+Understands logical implication as inevitable trace continuation, the structural expression of causality.
 
-### [ΨB-T2.N10: 通过轨迹相干性的逻辑一致性](./node-10-consistency.md)
-展示一致性要求如何确保坍缩系统的非自毁演化。
+### [ΨB-T2.N10: Logical Consistency via Trace Coherence](./node-10-consistency.md)
+Shows how consistency requirements ensure non-self-destructive evolution of collapse systems.
 
-### [ΨB-T2.N11: 坍缩演绎树](./node-11-deduction-trees.md)
-构建证明作为轨迹生成树，展示推理的计算本质。
+### [ΨB-T2.N11: Collapse Deduction Trees](./node-11-deduction-trees.md)
+Constructs proofs as trace generation trees, demonstrating the computational nature of reasoning.
 
-### [ΨB-T2.N12: φ-轨迹的结构真值表](./node-12-truth-tables.md)
-开发基于坍缩稳定性的真值表，超越二元逻辑。
+### [ΨB-T2.N12: Structural Truth Tables for φ-Trace](./node-12-truth-tables.md)
+Develops truth tables based on collapse stability, going beyond binary logic.
 
-### [ΨB-T2.N13: φ-二元逻辑电路](./node-13-logic-circuits.md)
-设计使用坍缩门的逻辑电路，实现结构计算。
+### [ΨB-T2.N13: φ-Binary Logical Circuits](./node-13-logic-circuits.md)
+Designs logical circuits using collapse gates, implementing structural computation.
 
-### [ΨB-T2.N14: 坍缩可满足性映射](./node-14-satisfiability.md)
-将SAT问题转化为轨迹存在性问题，揭示计算复杂性的物理根源。
+### [ΨB-T2.N14: Collapse Satisfiability Mapping](./node-14-satisfiability.md)
+Transforms SAT problems into trace existence problems, revealing the physical roots of computational complexity.
 
-### [ΨB-T2.N15: 模态坍缩逻辑框架](./node-15-modal-logic.md)
-扩展到模态逻辑，必然性和可能性作为跨坍缩层的不变性。
+### [ΨB-T2.N15: Modal Collapse Logic Framework](./node-15-modal-logic.md)
+Extends to modal logic, with necessity and possibility as invariance across collapse layers.
 
-## 深远影响
+## Far-Reaching Implications
 
-1. **逻辑的物理性**: 逻辑规律不是约定而是物理必然
-2. **真理的结构性**: 真假不是标签而是稳定性状态
-3. **计算即推理**: 所有推理过程都是轨迹计算
-4. **集合的动态性**: 集合不是静态容器而是动态轨迹束
-5. **函数的因果性**: 函数关系编码因果结构
+1. **Physical Logic**: Logical laws are not conventions but physical necessities
+2. **Structural Truth**: True/false are not labels but stability states
+3. **Computation as Reasoning**: All reasoning processes are trace computations
+4. **Dynamic Sets**: Sets are not static containers but dynamic trace bundles
+5. **Causal Functions**: Functional relationships encode causal structure
 
-## 与其他线程的关键连接
+## Key Connections to Other Threads
 
-- **φ-T0**: 使用坍缩语言表达逻辑公式
-- **φ-T3**: 逻辑结构形成代数系统
-- **φ-T6**: 探索这个逻辑系统的元理论性质
-- **φ-T11**: 实现逻辑推理的计算引擎
+- **φ-T0**: Uses collapse language to express logical formulas
+- **φ-T3**: Logical structures form algebraic systems
+- **φ-T6**: Explores the meta-theoretical properties of this logical system
+- **φ-T11**: Implements the computational engines for logical reasoning
 
-## 实际应用
+## Practical Applications
 
-- **定理证明器**: 基于轨迹搜索的新型证明系统
-- **量子逻辑**: 叠加态的自然逻辑框架
-- **AI推理**: 结构相干性作为推理准则
-- **数据库理论**: 关系作为轨迹束的动态视图
-- **编程语言**: 类型系统作为轨迹约束
+- **Theorem Provers**: New proof systems based on trace search
+- **Quantum Logic**: Natural logical framework for superposition states
+- **AI Reasoning**: Structural coherence as reasoning criterion
+- **Database Theory**: Relations as dynamic views of trace bundles
+- **Programming Languages**: Type systems as trace constraints
 
-## 哲学突破
+## Philosophical Breakthrough
 
-这个线程彻底改变了我们对抽象思维的理解：
-- 思维不是脱离物理的，而是物理过程的高级组织
-- 数学的普适性源于其编码了结构的普遍规律
-- 逻辑的必然性反映了保持结构完整的物理要求
-- 悖论的出现标志着自指结构的临界点
+This thread radically transforms our understanding of abstract thought:
+- Thinking is not separate from physics but a higher organization of physical processes
+- Mathematics' universality stems from encoding universal structural laws
+- Logic's necessity reflects physical requirements for maintaining structural integrity
+- Paradoxes emerge at critical points of self-referential structures
 
-## 学习路径
+## Learning Paths
 
-1. **逻辑学家**: 从N5-N8理解谓词和连接词的物理基础
-2. **集合论者**: 深入N0-N2的轨迹束概念
-3. **计算机科学家**: 关注N13-N14的电路和SAT实现
-4. **哲学家**: 从N6的真值概念开始，探索N15的模态扩展
+1. **Logicians**: Start with N5-N8 to understand the physical basis of predicates and connectives
+2. **Set Theorists**: Deep dive into N0-N2's trace bundle concepts
+3. **Computer Scientists**: Focus on N13-N14's circuit and SAT implementations
+4. **Philosophers**: Begin with N6's truth concept, explore N15's modal extensions
 
-每个概念都植根于 ψ = ψ(ψ) 的递归土壤，展示逻辑如何从自指中必然生长。
+Each concept is rooted in the recursive soil of ψ = ψ(ψ), showing how logic necessarily grows from self-reference.
 
 $$
-\text{逻辑} = \text{相干性} = \text{稳定性} = \psi(\psi)
+\text{Logic} = \text{Coherence} = \text{Stability} = \psi(\psi)
 $$

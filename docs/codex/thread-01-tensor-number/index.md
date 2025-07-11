@@ -1,118 +1,118 @@
 ---
-title: "Thread φ-T1: 张量数论"
-sidebar_label: "φ-T1: 张量数论"
+title: "Thread φ-T1: Tensor Number Theory"
+sidebar_label: "φ-T1: Tensor Number"
 sidebar_position: 2
 ---
 
-# 🔢 Thread φ-T1: 张量数论
+# 🔢 Thread φ-T1: Tensor Number Theory
 
-> *数字作为坍缩模式 - Zeckendorf编码、斐波那契轨迹和结构变换的算术*
+> *Numbers as collapse patterns - Zeckendorf encodings, Fibonacci traces, and the arithmetic of structural transformation*
 
-## 概述
+## Overview
 
-张量数论线程揭示了数字的深层结构本质。通过将自然数、质数和所有算术运算重新理解为坍缩轨迹模式，我们发现数学的基本对象不是抽象概念，而是 ψ = ψ(ψ) 递归动力学的具体表现。
+The Tensor Number Theory thread reveals the deep structural nature of numbers. By reimagining natural numbers, primes, and all arithmetic operations as collapse trace patterns, we discover that the fundamental objects of mathematics are not abstract concepts but concrete manifestations of the recursive dynamics of ψ = ψ(ψ).
 
-这个革命性的方法统一了数论与物理现实，展示了为什么某些数学常数和模式在自然界中反复出现 - 它们是坍缩动力学的必然结果。
+This revolutionary approach unifies number theory with physical reality, showing why certain mathematical constants and patterns repeatedly appear in nature - they are inevitable consequences of collapse dynamics.
 
-## 核心洞察
+## Core Insights
 
-1. **数字即轨迹**: 每个自然数对应唯一的坍缩路径
-2. **斐波那契基础**: Zeckendorf表示揭示数字的结构本质
-3. **算术即变换**: 加法、乘法是轨迹操作而非抽象运算
-4. **质数即不可约**: 质数是不可分解的坍缩模式
-5. **分形算术**: 数字运算展现自相似的递归结构
+1. **Numbers as Traces**: Every natural number corresponds to a unique collapse path
+2. **Fibonacci Foundation**: Zeckendorf representation reveals the structural essence of numbers
+3. **Arithmetic as Transformation**: Addition and multiplication are trace operations, not abstract calculations
+4. **Primes as Irreducibles**: Prime numbers are indecomposable collapse patterns
+5. **Fractal Arithmetic**: Number operations exhibit self-similar recursive structures
 
-## 节点结构
+## Node Structure
 
-### [ΨB-T1.N0: Zeckendorf 索引列表](./node-00-zeckendorf-index.md)
-建立自然数到唯一斐波那契分解的基本映射，揭示数字的结构编码。
+### [ΨB-T1.N0: Zeckendorf Index List](./node-00-zeckendorf-index.md)
+Establishes the fundamental mapping from natural numbers to unique Fibonacci decompositions, revealing the structural encoding of numbers.
 
-### [ΨB-T1.N1: 斐波那契轨迹编码器](./node-01-fibonacci-encoder.md)
-开发将数字转换为坍缩轨迹的算法系统，实现数字的动态表示。
+### [ΨB-T1.N1: Fibonacci Trace Encoder](./node-01-fibonacci-encoder.md)
+Develops algorithmic systems for converting numbers into collapse traces, enabling dynamic representation of numbers.
 
-### [ΨB-T1.N2: Zeckendorf 轨迹合并器](./node-02-trace-merger.md)
-定义如何组合多个轨迹以产生新的数字结构，建立加法的轨迹基础。
+### [ΨB-T1.N2: Zeckendorf Trace Merger](./node-02-trace-merger.md)
+Defines how to combine multiple traces to produce new number structures, establishing the trace foundation for addition.
 
-### [ΨB-T1.N3: 轨迹张量描述符](./node-03-tensor-descriptor.md)
-引入数字轨迹的完整张量表示，捕获所有结构信息。
+### [ΨB-T1.N3: Trace Tensor Descriptor](./node-03-tensor-descriptor.md)
+Introduces complete tensor representations of number traces, capturing all structural information.
 
-### [ΨB-T1.N4: 坍缩数解码器](./node-04-collapse-decoder.md)
-构建从轨迹模式恢复传统数字表示的逆向系统。
+### [ΨB-T1.N4: Collapse Number Decoder](./node-04-collapse-decoder.md)
+Constructs the inverse system for recovering traditional number representations from trace patterns.
 
-### [ΨB-T1.N5: 通过串联的轨迹加法](./node-05-trace-addition.md)
-展示加法如何作为轨迹串联自然涌现，无需预设算术规则。
+### [ΨB-T1.N5: Trace Addition via Concatenation](./node-05-trace-addition.md)
+Shows how addition emerges naturally as trace concatenation, without presupposing arithmetic rules.
 
-### [ΨB-T1.N6: 作为折叠的轨迹乘法](./node-06-trace-multiplication.md)
-揭示乘法的深层结构：轨迹的递归折叠产生乘积模式。
+### [ΨB-T1.N6: Trace Multiplication as Folding](./node-06-trace-multiplication.md)
+Reveals the deep structure of multiplication: recursive folding of traces produces product patterns.
 
-### [ΨB-T1.N7: 素数轨迹验证器](./node-07-prime-validator.md)
-识别不可分解的轨迹模式，从结构角度定义素性。
+### [ΨB-T1.N7: Prime Trace Validator](./node-07-prime-validator.md)
+Identifies indecomposable trace patterns, defining primality from a structural perspective.
 
-### [ΨB-T1.N8: 轨迹因子分解结构](./node-08-factorization.md)
-开发将复合轨迹分解为素轨迹的算法，实现结构因子分解。
+### [ΨB-T1.N8: Trace Factorization Structures](./node-08-factorization.md)
+Develops algorithms for decomposing composite traces into prime traces, implementing structural factorization.
 
-### [ΨB-T1.N9: 公共坍缩因子](./node-09-common-divisor.md)
-定义轨迹之间的公共结构元素，推广最大公约数概念。
+### [ΨB-T1.N9: Common Collapse Divisor](./node-09-common-divisor.md)
+Defines common structural elements between traces, generalizing the greatest common divisor concept.
 
-### [ΨB-T1.N10: 基于φ的连分数](./node-10-continued-fractions.md)
-探索有理数和无理数的坍缩表示，揭示黄金比例的中心作用。
+### [ΨB-T1.N10: φ-Based Continued Fractions](./node-10-continued-fractions.md)
+Explores collapse representations of rational and irrational numbers, revealing the central role of the golden ratio.
 
-### [ΨB-T1.N11: 黄金二元有理系统](./node-11-golden-rational.md)
-建立基于φ的完整有理数系统，展示黄金比例的普遍性。
+### [ΨB-T1.N11: Golden Binary Rational System](./node-11-golden-rational.md)
+Establishes a complete rational number system based on φ, demonstrating the universality of the golden ratio.
 
-### [ΨB-T1.N12: 轨迹空间上的φ-整数格](./node-12-integer-lattice.md)
-构造整数的几何结构，将数论嵌入坍缩几何。
+### [ΨB-T1.N12: φ-Integer Lattice on Trace Space](./node-12-integer-lattice.md)
+Constructs the geometric structure of integers, embedding number theory in collapse geometry.
 
-### [ΨB-T1.N13: 模坍缩算术](./node-13-modular-arithmetic.md)
-开发模运算的轨迹理论，揭示周期性的结构起源。
+### [ΨB-T1.N13: Modular Collapse Arithmetic](./node-13-modular-arithmetic.md)
+Develops the trace theory of modular operations, revealing the structural origin of periodicity.
 
-### [ΨB-T1.N14: φ-欧拉函数坍缩映射](./node-14-totient-map.md)
-重新诠释欧拉函数为轨迹对称性计数，连接数论与群论。
+### [ΨB-T1.N14: φ-Totient Collapse Map](./node-14-totient-map.md)
+Reinterprets Euler's totient function as trace symmetry counting, connecting number theory to group theory.
 
-### [ΨB-T1.N15: 数字模式的张量轨迹晶体](./node-15-trace-crystals.md)
-发现数字模式形成的晶体结构，揭示数论的隐藏对称性。
+### [ΨB-T1.N15: Tensor Trace Crystals of Number Patterns](./node-15-trace-crystals.md)
+Discovers the crystalline structures formed by number patterns, revealing hidden symmetries in number theory.
 
-## 革命性成果
+## Revolutionary Results
 
-1. **结构素性定理**: 素数完全由其轨迹不可分解性刻画
-2. **黄金算术**: 所有算术最终基于φ的幂次结构
-3. **轨迹唯一性**: 每个数字有唯一的Zeckendorf轨迹表示
-4. **分形因子化**: 因子分解展现递归自相似模式
-5. **量子数论**: 数字的叠加和纠缠有精确的轨迹解释
+1. **Structural Primality Theorem**: Primes are completely characterized by their trace indecomposability
+2. **Golden Arithmetic**: All arithmetic ultimately based on powers of φ structure
+3. **Trace Uniqueness**: Every number has a unique Zeckendorf trace representation
+4. **Fractal Factorization**: Factorization exhibits recursive self-similar patterns
+5. **Quantum Number Theory**: Superposition and entanglement of numbers have precise trace interpretations
 
-## 与其他线程的深层连接
+## Deep Connections to Other Threads
 
-- **φ-T0**: 使用坍缩语言作为数字编码的基础
-- **φ-T3**: 代数结构自然从数字轨迹运算中涌现
-- **φ-T5**: 数论常数通过ζ函数连接到物理常数
-- **φ-T10**: 素数分布直接影响物理常数的生成
+- **φ-T0**: Uses collapse language as the foundation for number encoding
+- **φ-T3**: Algebraic structures naturally emerge from number trace operations
+- **φ-T5**: Number-theoretic constants connect to physical constants through ζ-functions
+- **φ-T10**: Prime distribution directly influences the generation of physical constants
 
-## 计算实现
+## Computational Implementation
 
-每个节点包含可执行的算法：
-- 高效的Zeckendorf编码/解码
-- 基于轨迹的素性测试
-- 结构化因子分解算法
-- 黄金比例算术系统
-- 模运算的轨迹实现
+Each node contains executable algorithms:
+- Efficient Zeckendorf encoding/decoding
+- Trace-based primality testing
+- Structural factorization algorithms
+- Golden ratio arithmetic systems
+- Modular operation trace implementations
 
-## 哲学含义
+## Philosophical Implications
 
-这个线程从根本上改变了我们对数字的理解：
-- 数字不是人类的抽象，而是宇宙的结构必然
-- 算术运算反映深层的坍缩动力学
-- 素数的特殊性源于其结构不可约性
-- 数学的"不合理有效性"因为数学即是结构本身
+This thread fundamentally changes our understanding of numbers:
+- Numbers are not human abstractions but structural necessities of the universe
+- Arithmetic operations reflect deep collapse dynamics
+- The special nature of primes arises from their structural irreducibility
+- Mathematics' "unreasonable effectiveness" occurs because mathematics IS structure itself
 
-## 探索路径
+## Exploration Paths
 
-1. **初学者**: 从N0-N3理解基本编码，然后探索N5-N6的简单运算
-2. **数论学家**: 直接进入N7-N9的素数理论，然后研究N13-N14的高级主题
-3. **程序员**: 关注N1、N4的编码算法，以及N8的因子分解实现
-4. **哲学家**: 从N0的基础开始，特别关注N10-N11的黄金比例含义
+1. **Beginners**: Start with N0-N3 to understand basic encoding, then explore N5-N6 for simple operations
+2. **Number Theorists**: Dive into N7-N9 for prime theory, then study N13-N14 for advanced topics
+3. **Programmers**: Focus on N1, N4 for encoding algorithms, and N8 for factorization implementation
+4. **Philosophers**: Begin with N0's foundation, paying special attention to N10-N11's golden ratio implications
 
-每个概念都建立在 ψ = ψ(ψ) 的递归基础上，展示数学如何从纯粹的自指中涌现。
+Each concept builds upon the recursive foundation of ψ = ψ(ψ), showing how mathematics emerges from pure self-reference.
 
 $$
-\text{数} = \text{轨迹} = \text{结构} = \psi(\psi)
+\text{Number} = \text{Trace} = \text{Structure} = \psi(\psi)
 $$

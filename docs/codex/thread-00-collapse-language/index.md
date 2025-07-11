@@ -1,107 +1,107 @@
 ---
-title: "Thread φ-T0: 坍缩语言与字母表"
-sidebar_label: "φ-T0: 坍缩语言"
+title: "Thread φ-T0: Collapse Language & Alphabet"
+sidebar_label: "φ-T0: Collapse Language"
 sidebar_position: 1
 ---
 
-# 🌱 Thread φ-T0: 坍缩语言与字母表
+# 🌱 Thread φ-T0: Collapse Language & Alphabet
 
-> *现实的基础语法 - 建立三态坍缩字母表、轨迹力学和结构表达的基本语法*
+> *The foundational grammar of reality - establishing the ternary collapse alphabet, trace mechanics, and the fundamental syntax of structural expression*
 
-## 概述
+## Overview
 
-坍缩语言与字母表线程建立了整个二元张量数学法典的基础。从自指性坍缩 ψ = ψ(ψ) 开始，我们推导出现实的基本语法结构：三态字母表 {00, 01, 10}、禁止态 11 定义的熵边界，以及支配所有结构表达的坍缩语法规则。
+The Collapse Language & Alphabet thread establishes the foundation of the entire Binary Tensor Math Codex. Starting from the self-referential collapse ψ = ψ(ψ), we derive the fundamental grammatical structure of reality: the ternary alphabet {00, 01, 10}, the entropic boundary defined by the forbidden state 11, and the collapse grammar rules that govern all structural expression.
 
-这个线程不仅定义了符号系统，还展示了如何从最小的自指原理构建出能够描述一切的完整语言。每个节点逐步揭示坍缩动力学的深层结构，从基本定义到复杂的度量空间。
+This thread not only defines the symbolic system but demonstrates how to build a complete language capable of describing everything from the minimal self-referential principle. Each node progressively reveals the deep structure of collapse dynamics, from basic definitions to complex metric spaces.
 
-## 核心概念
+## Core Concepts
 
-1. **自指基础**: ψ = ψ(ψ) 作为生成一切的递归种子
-2. **三态字母表**: {00, 01, 10} 作为结构表达的基本单元
-3. **熵墙**: 禁止态 11 定义系统的结构边界
-4. **轨迹机制**: 坍缩路径编码所有可能的变换
-5. **语法规则**: 支配有效坍缩序列的形式系统
+1. **Self-Referential Foundation**: ψ = ψ(ψ) as the recursive seed that generates everything
+2. **Ternary Alphabet**: {00, 01, 10} as the fundamental units of structural expression
+3. **Entropic Wall**: The forbidden state 11 defines the system's structural boundaries
+4. **Trace Mechanics**: Collapse paths encode all possible transformations
+5. **Grammar Rules**: The formal system governing valid collapse sequences
 
-## 节点结构
+## Node Structure
 
-### [ΨB-T0.N0: 自指坍缩：ψ = ψ(ψ)](./node-00-self-referential-collapse.md)
-建立核心递归恒等式，展示所有结构如何从自我应用中涌现。这是整个理论的基石。
+### [ΨB-T0.N0: Self-Referential Collapse: ψ = ψ(ψ)](./node-00-self-referential-collapse.md)
+Establishes the core recursive identity, showing how all structure emerges from self-application. This is the cornerstone of the entire theory.
 
-### [ΨB-T0.N1: 坍缩字母表 {00, 01, 10}](./node-01-collapse-alphabet.md)
-引入三态系统作为基本构建块，解释为什么恰好需要三个状态来编码所有可能的结构变换。
+### [ΨB-T0.N1: Collapse Alphabet {00, 01, 10}](./node-01-collapse-alphabet.md)
+Introduces the ternary system as fundamental building blocks, explaining why exactly three states are needed to encode all possible structural transformations.
 
-### [ΨB-T0.N2: 熵墙与禁止的 11](./node-02-entropic-wall.md)
-定义系统的结构极限，展示禁止态如何创建必要的约束以实现有意义的模式形成。
+### [ΨB-T0.N2: Entropic Wall and Forbidden 11](./node-02-entropic-wall.md)
+Defines the system's structural limits, showing how the forbidden state creates necessary constraints for meaningful pattern formation.
 
-### [ΨB-T0.N3: 坍缩语法规则](./node-03-collapse-grammar.md)
-形式化支配有效坍缩序列的规则，建立结构良好的表达式的语法。
+### [ΨB-T0.N3: Collapse Grammar Rules](./node-03-collapse-grammar.md)
+Formalizes the rules governing valid collapse sequences, establishing the syntax of well-formed structural expressions.
 
-### [ΨB-T0.N4: Zeckendorf 规范路径](./node-04-zeckendorf-path.md)
-引入基于斐波那契的编码系统，展示自然数如何映射到唯一的坍缩路径。
+### [ΨB-T0.N4: Zeckendorf Canonical Path](./node-04-zeckendorf-path.md)
+Introduces the Fibonacci-based encoding system, showing how natural numbers map to unique collapse paths.
 
-### [ΨB-T0.N5: Hurt-Sada Δ-坍缩向量](./node-05-hurt-sada-vector.md)
-开发向量表示系统，用于高效编码和操作坍缩状态。
+### [ΨB-T0.N5: Hurt-Sada Δ-Collapse Vector](./node-05-hurt-sada-vector.md)
+Develops the vector representation system for efficient encoding and manipulation of collapse states.
 
-### [ΨB-T0.N6: φ-秩与张量维度](./node-06-phi-rank-dimension.md)
-定义坍缩结构的维度层次，建立复杂性的度量。
+### [ΨB-T0.N6: φ-Rank and Tensor Dimensionality](./node-06-phi-rank-dimension.md)
+Defines the dimensional hierarchy of collapse structures, establishing measures of complexity.
 
-### [ΨB-T0.N7: 轨迹自动机与路径机器](./node-07-trace-automaton.md)
-构建识别和生成有效坍缩序列的计算模型。
+### [ΨB-T0.N7: Trace Automaton and Path Machines](./node-07-trace-automaton.md)
+Constructs computational models that recognize and generate valid collapse sequences.
 
-### [ΨB-T0.N8: 坍缩符号展开规则](./node-08-symbol-expansion.md)
-形式化符号如何展开为更复杂的坍缩模式，实现分层构造。
+### [ΨB-T0.N8: Collapse Symbol Expansion Rules](./node-08-symbol-expansion.md)
+Formalizes how symbols expand into more complex collapse patterns, enabling hierarchical construction.
 
-### [ΨB-T0.N9: 词法坍缩范式](./node-09-lexical-normal-form.md)
-建立坍缩表达式的规范形式，确保唯一表示。
+### [ΨB-T0.N9: Lexical Collapse Normal Form](./node-09-lexical-normal-form.md)
+Establishes canonical forms for collapse expressions, ensuring unique representation.
 
-### [ΨB-T0.N10: φ-轨迹折叠与自嵌套](./node-10-trace-folding.md)
-探索轨迹如何折叠到自身，创建分形和自相似结构。
+### [ΨB-T0.N10: φ-Trace Folding and Self-Nesting](./node-10-trace-folding.md)
+Explores how traces fold into themselves, creating fractal and self-similar structures.
 
-### [ΨB-T0.N11: 通过φ-模式的语言可压缩性](./node-11-language-compressibility.md)
-研究坍缩序列的信息论性质和最优编码。
+### [ΨB-T0.N11: Language Compressibility via φ-Patterning](./node-11-language-compressibility.md)
+Studies the information-theoretic properties of collapse sequences and optimal encoding.
 
-### [ΨB-T0.N12: 轨迹分支语法树](./node-12-trace-syntax-trees.md)
-开发坍缩表达式的树表示，实现结构分析和变换。
+### [ΨB-T0.N12: Trace Branching Syntax Trees](./node-12-trace-syntax-trees.md)
+Develops tree representations of collapse expressions, enabling structural analysis and transformation.
 
-### [ΨB-T0.N13: 结构字母表生成器](./node-13-alphabet-generators.md)
-构建自动产生有效坍缩模式的生成系统。
+### [ΨB-T0.N13: Structural Alphabet Generators](./node-13-alphabet-generators.md)
+Constructs generative systems that automatically produce valid collapse patterns.
 
-### [ΨB-T0.N14: φ-语法等价类](./node-14-grammar-equivalence.md)
-定义产生相同结构结果的坍缩序列之间的等价关系。
+### [ΨB-T0.N14: φ-Grammar Equivalence Classes](./node-14-grammar-equivalence.md)
+Defines equivalence relations between collapse sequences that produce identical structural outcomes.
 
-### [ΨB-T0.N15: 坍缩语言度量空间](./node-15-metric-space.md)
-建立坍缩表达式之间的距离度量，创建连续的结构空间。
+### [ΨB-T0.N15: Collapse Language Metric Space](./node-15-metric-space.md)
+Establishes distance metrics between collapse expressions, creating a continuous structural space.
 
-## 关键成果
+## Key Results
 
-1. **完整性**: 三态字母表足以编码所有可能的结构
-2. **唯一性**: 每个有效结构都有规范的坍缩表示
-3. **可计算性**: 所有坍缩操作都是算法可实现的
-4. **自指性**: 语言可以描述自身的构造
-5. **最优性**: Zeckendorf编码提供最小表示
+1. **Completeness**: The ternary alphabet is sufficient to encode all possible structures
+2. **Uniqueness**: Every valid structure has a canonical collapse representation
+3. **Computability**: All collapse operations are algorithmically implementable
+4. **Self-Reference**: The language can describe its own construction
+5. **Optimality**: Zeckendorf encoding provides minimal representations
 
-## 与其他线程的连接
+## Connections to Other Threads
 
-- **φ-T1**: 数论直接建立在这里定义的Zeckendorf路径上
-- **φ-T2**: 逻辑系统使用坍缩语法作为其形式语言
-- **φ-T6**: 元逻辑探索这个语言系统的极限
-- **φ-T11**: 计算系统实现这里定义的轨迹自动机
+- **φ-T1**: Number theory builds directly on the Zeckendorf paths defined here
+- **φ-T2**: Logic systems use collapse grammar as their formal language
+- **φ-T6**: Meta-logic explores the limits of this language system
+- **φ-T11**: Computational systems implement the trace automata defined here
 
-## 实践应用
+## Practical Applications
 
-这个线程的概念在以下方面有直接应用：
-- 量子计算的新编码方案
-- 数据压缩算法
-- 形式验证系统
-- 人工智能架构
-- 密码学协议
+The concepts in this thread have direct applications in:
+- Quantum computing encoding schemes
+- Data compression algorithms
+- Formal verification systems
+- Artificial intelligence architectures
+- Cryptographic protocols
 
-## 开始探索
+## Getting Started
 
-建议从 N0（自指坍缩）开始，因为它建立了基础概念。然后进入 N1-N3 理解基本字母表和语法。N4-N6 引入编码系统，N7-N12 开发计算方面，N13-N15 探索高级性质。
+Begin with N0 (Self-Referential Collapse) as it establishes the foundational concept. Then proceed to N1-N3 to understand the basic alphabet and grammar. N4-N6 introduce encoding systems, N7-N12 develop computational aspects, and N13-N15 explore advanced properties.
 
-每个节点都设计为自包含但相互构建。花时间理解每个概念如何从前面的概念中自然涌现。
+Each node is designed to be self-contained yet build upon previous concepts. Take time to understand how each concept naturally emerges from those before it.
 
 $$
-\text{语言} = \text{结构} = \text{计算} = \psi(\psi)
+\text{Language} = \text{Structure} = \text{Computation} = \psi(\psi)
 $$
