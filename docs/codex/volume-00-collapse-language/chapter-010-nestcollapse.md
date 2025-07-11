@@ -129,8 +129,8 @@ Level 3:  [((0)(1))((0)(1))][((0(1)0))((1)(0)(1))]
 **Definition 10.2** (Bracket Encoding): For nested structure NS, the bracket encoding BE(NS) uses:
 - () for phrases
 - [] for sentences  
-- {} for paragraphs
-- <> for documents
+- \{\} for paragraphs
+- \<\> for documents
 
 ### Encoding Rules
 
@@ -140,7 +140,7 @@ graph LR
         W["Words: no brackets"]
         P["Phrases: ( )"]
         S["Sentences: [ ]"]
-        PA["Paragraphs: { }"]
+        PA["Paragraphs: \{ \}"]
         D["Documents: < >"]
     end
     
@@ -198,7 +198,7 @@ Well-formed structures exhibit balance:
 Tree balance: 0.667
 ```
 
-**Definition 10.3** (Tree Balance): For structure NS with children having depths {d₁, ..., dₖ}:
+**Definition 10.3** (Tree Balance): For structure NS with children having depths \{d₁, ..., dₖ\}:
 $$\text{balance}(NS) = 1 - \frac{\max_i d_i - \min_i d_i}{\max_i d_i}$$
 
 ### Balance Visualization
@@ -478,7 +478,7 @@ Nested collapse reveals how meaning builds:
 graph TD
     subgraph "Emergence of Understanding"
         PSI["ψ = ψ(ψ)"]
-        BIN["Binary {0,1}"]
+        BIN["Binary \{0,1\}"]
         PHI["φ-constraint"]
         TRACE["Traces"]
         TOKEN["Tokens"]
