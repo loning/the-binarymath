@@ -450,7 +450,7 @@ graph TD
 
 **Key Insight**: The grammar graph is a directed multigraph where:
 
-- Vertices = Non-terminals {T, T₀, T₁}
+- Vertices = Non-terminals \{T, T₀, T₁\}
 - Edges = Production rules
 - The graph has cycles (allowing infinite traces)
 - But no cycle can generate "11" due to structure

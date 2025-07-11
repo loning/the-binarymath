@@ -428,8 +428,8 @@ graph LR
 
 The collapse functor F: ψ-Cat → Bin-Cat preserves structure:
 
-- F(ψ) = {0, 1}
-- F(ψ→ψ) = {0→1, 1→0}
+- F(ψ) = \{0, 1\}
+- F(ψ→ψ) = \{0→1, 1→0\}
 - F preserves composition: collapse is functorial
 
 **Key Insight**: The binary category is the free category on one self-loop, modulo the relation that makes the loop involutive.

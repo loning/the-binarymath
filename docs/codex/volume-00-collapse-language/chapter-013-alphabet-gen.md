@@ -26,7 +26,7 @@ Length 8: 55 valid paths
 
 **Definition 13.1** (φ-Generation Space): The space G_n of valid traces of length n is defined as:
 $$G_n = \{σ \in \{0,1\}^n : \text{"11"} \not\subseteq σ\}$$
-with cardinality |G_n| = F_{n+2} where F_k is the kth Fibonacci number.
+with cardinality |G_n| = F_\{n+2\} where F_k is the kth Fibonacci number.
 
 ### The Fibonacci Connection
 
@@ -204,7 +204,7 @@ This generates exactly the φ-constrained language:
 - A: state where we can only append 0
 ```
 
-**Property 13.1** (Grammar Correctness): L(G_φ) = {σ ∈ {0,1}* : "11" ∉ σ}
+**Property 13.1** (Grammar Correctness): L(G_φ) = \{σ ∈ \{0,1\}* : "11" ∉ σ\}
 
 ### Grammar Derivation Tree
 
@@ -247,7 +247,7 @@ Transition frequencies:
 
 **Definition 13.3** (Generation Entropy): The entropy of φ-generation is:
 $$H_φ = -\sum_{σ \in Σ_φ} P(σ) \log_2 P(σ)$$
-where Σ_φ = {00, 01, 10} and P(σ) is the transition probability.
+where Σ_φ = \{00, 01, 10\} and P(σ) is the transition probability.
 
 ### Entropy Evolution
 
@@ -314,16 +314,16 @@ graph TD
 
 Generation forms a free object:
 
-**Definition 13.4** (Free φ-Monoid): The collection of φ-valid traces forms the free monoid on {0,1} subject to the relation 11 = ⊥.
+**Definition 13.4** (Free φ-Monoid): The collection of φ-valid traces forms the free monoid on \{0,1\} subject to the relation 11 = ⊥.
 
-**Theorem 13.3** (Universal Property): For any monoid M and map f: {0,1} → M where f(1)² = 0, there exists a unique monoid homomorphism F: G_φ → M extending f.
+**Theorem 13.3** (Universal Property): For any monoid M and map f: \{0,1\} → M where f(1)² = 0, there exists a unique monoid homomorphism F: G_φ → M extending f.
 
 ### Categorical Diagram
 
 ```mermaid
 graph LR
     subgraph "Free Object Construction"
-        GEN["Generators: {0,1}"]
+        GEN["Generators: (0,1)"]
         FREE["Free monoid"]
         QUOT["Quotient by 11=⊥"]
         PHI["φ-monoid G_φ"]
@@ -409,7 +409,7 @@ graph TD
         TREE["Tree structure"]
         BRANCH["Branching: 1 or 2"]
         DEPTH["Depth = trace length"]
-        LEAVES["Leaves = F_{n+2}"]
+        LEAVES["Leaves = F_(n+2)"]
     end
 ```
 
