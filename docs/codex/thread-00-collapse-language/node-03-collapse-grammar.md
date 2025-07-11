@@ -133,42 +133,58 @@ C → 10A | 10B | 10C | 10 | ε
 
 ```mermaid
 graph TD
-    S["S (Start)"] --> T["T (Trace)"]
-    T --> 00T["00 + T"]
-    T --> 01R["01 + R"]
-    T --> 10I["10 + I"]
+    S["S (Start)"] --> eps1["ε"]
+    S --> A["A"]
+    S --> B["B"] 
+    S --> C["C"]
     
-    01R --> 10I1["10 + I"]
+    A --> 00A["00 + A"]
+    A --> 00B["00 + B"]
+    A --> 00C["00 + C"]
+    A --> 00_["00"]
+    A --> eps2["ε"]
     
-    10I --> E1["ε"]
-    10I --> 00T1["00 + T"]
-    10I --> 01R1["01 + R"]
+    B --> 01A["01 + A"]
+    B --> 01B["01 + B"]
+    B --> 01_["01"]
+    B --> eps3["ε"]
+    
+    C --> 10A["10 + A"]
+    C --> 10B["10 + B"]
+    C --> 10C["10 + C"]
+    C --> 10_["10"]
+    C --> eps4["ε"]
     
     style S fill:#f9f,stroke:#333,stroke-width:4px
-    style E1 fill:#9f9,stroke:#333,stroke-width:2px
+    style eps1 fill:#9f9,stroke:#333,stroke-width:2px
+    style eps2 fill:#9f9,stroke:#333,stroke-width:2px
+    style eps3 fill:#9f9,stroke:#333,stroke-width:2px
+    style eps4 fill:#9f9,stroke:#333,stroke-width:2px
 ```
 
 ## Derivation Examples
 
 **Example 3.1** (Valid Derivation):
 ```
-S ⟹ T
-  ⟹ 01R
-  ⟹ 01(10I)
-  ⟹ 01 10(ε)
-  ⟹ 01 10
+S ⟹ B
+  ⟹ 01B
+  ⟹ 01(01A)
+  ⟹ 01 01(00)
+  ⟹ 01 01 00
 ```
 
-This represents: transform → return (valid cycle)
+This creates "010100" - no "11" appears.
 
-**Example 3.2** (Invalid Attempt):
+**Example 3.2** (Invalid Sequence Avoided):
 ```
-S ⟹ T
-  ⟹ 01R
-  ⟹ 01(01...) ✗ No such rule!
+What we CANNOT derive:
+S ⟹ B
+  ⟹ 01C  ✗ No such rule!
+  
+This prevents creating "01 10" which would give "0110" containing "11"
 ```
 
-Cannot have consecutive transforms.
+The grammar structure ensures we never generate forbidden patterns.
 
 ## Algebraic Properties of Grammar
 

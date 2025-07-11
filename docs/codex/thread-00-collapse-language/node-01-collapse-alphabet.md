@@ -93,10 +93,10 @@ stateDiagram-v2
     S01 --> S10: "Return"
     S10 --> S00: "Complete cycle"
     
-    S01 --> S11: "Attempt double transform"
-    S11 --> [X]: "Forbidden!"
+    S01 --> Forbidden: "Attempt double transform"
+    Forbidden --> [X]: "Invalid!"
     
-    note right of S11: "11 would mean ψ→ψ' and ψ'→ψ' simultaneously"
+    note right of Forbidden: "Would create 11: ψ→ψ' and ψ'→ψ'' simultaneously"
 ```
 
 **Theorem 1.3** (Entropic Exclusion): The state "11" is forbidden by the self-consistency of ψ = ψ(ψ).

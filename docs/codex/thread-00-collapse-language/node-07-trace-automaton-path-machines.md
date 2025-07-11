@@ -125,9 +125,9 @@ The grammar constraints don't limit computational power. ∎
 graph TD
     subgraph "Execution Trace"
         T0["t=0: 00"] --> T1["t=1: 00 01"]
-        T1 --> T2["t=2: 00 01 10"]
-        T2 --> T3["t=3: 00 01 10 00"]
-        T3 --> T4["t=4: 00 01 10 00 01"]
+        T1 --> T2["t=2: 00 01 00"]
+        T2 --> T3["t=3: 00 01 00 10"]
+        T3 --> T4["t=4: 00 01 00 10 00"]
     end
     
     subgraph "State Evolution"

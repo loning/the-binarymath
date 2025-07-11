@@ -50,10 +50,10 @@ Expansion reveals the implicit self-application. ∎
 **Theorem 8.2** (Core Expansion Rules): The fundamental expansions are:
 
 ```
-Ω → 00           (identity expansion)
-Δ → 01 10        (cycle expansion)
-Φ → 00 01 10     (complete trace)
-Ξ → Φ Φ          (double trace)
+Ω → 00              (identity expansion)
+Δ → 01 00 10        (cycle expansion with separator)
+Φ → 00 01 00 10     (complete trace)
+Ξ → Φ 00 Φ          (double trace with separator)
 ```
 
 *Proof*:
@@ -70,9 +70,9 @@ graph TD
     
     subgraph "Expansions"
         E1["00"]
-        E2["01 10"]
-        E3["00 01 10"]
-        E4["00 01 10 00 01 10"]
+        E2["01 00 10"]
+        E3["00 01 00 10"]
+        E4["00 01 00 10 00 00 01 00 10"]
     end
     
     M1 --> E1
@@ -106,8 +106,8 @@ Each expansion increases sequence length by finite amount. No infinite loops pos
 ```
 F₁ → 00
 F₂ → 00 01
-F₃ → 00 01 10 00
-F₅ → 00 01 10 00 01 00 01 10
+F₃ → 00 01 00 10
+F₅ → 00 01 00 10 00 01 00 10
 ```
 
 ```mermaid
@@ -133,11 +133,11 @@ Consider expansion in different contexts:
 ```mermaid
 graph TD
     subgraph "Context A"
-        A1["00 Δ 00"] --> A2["00 01 10 00"]
+        A1["00 Δ 00"] --> A2["00 01 00 10 00"]
     end
     
     subgraph "Context B"
-        B1["01 Δ"] --> B2["01 (forbidden)"]
+        B1["01 Δ"] --> B2["01 01 00 10"]
     end
     
     A2 --> VALID["Valid expansion"]
