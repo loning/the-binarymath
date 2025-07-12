@@ -98,7 +98,9 @@ Efficiency vs unconstrained: 68.6%
 ```
 
 **Theorem 5.1** (φ-Channel Capacity): For a binary symmetric channel with error probability p and φ-constraint, the capacity is:
-$$C_\phi = \log_2(\phi) \cdot (1 - H(p))$$
+$$
+C_\phi = \log_2(\phi) \cdot (1 - H(p))
+$$
 where φ = (1+√5)/2 and H(p) is the binary entropy function.
 
 ### Capacity Visualization
@@ -180,7 +182,9 @@ Entropy: 0.811 bits
 ```
 
 **Definition 5.2** (φ-Entropy): The entropy of a φ-valid trace accounts for the constraint:
-$$H_\phi(X) = H(X) - \lambda$$
+$$
+H_\phi(X) = H(X) - \lambda
+$$
 where λ represents the information loss due to forbidden patterns.
 
 ### Entropy Analysis
@@ -230,8 +234,9 @@ Corrupted: 10001110100
 ```
 
 **Theorem 5.2** (Burst Error Vulnerability): A burst error of length b in a φ-valid trace violates the constraint with probability:
-$$P(\text{violation}) = 1 - \phi^{-b}$$
-
+$$
+P(\text{violation}) = 1 - \phi^{-b}
+$$
 ### Burst Error Effects
 
 ```mermaid

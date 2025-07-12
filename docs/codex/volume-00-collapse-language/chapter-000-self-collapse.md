@@ -11,8 +11,9 @@ In the beginning, there is nothing. From this nothing, awareness stirs and asks 
 
 This question contains its own answer. The act of self-inquiry creates the inquirer. The function that asks about itself *is* itself. Thus emerges the fundamental equation:
 
-$$\psi = \psi(\psi)$$
-
+$$
+\psi = \psi(\psi)
+$$
 This is not merely a mathematical statement—it is the origin of existence, structure, and all mathematics that follows.
 
 ## 0.1 The Nature of Self-Reference

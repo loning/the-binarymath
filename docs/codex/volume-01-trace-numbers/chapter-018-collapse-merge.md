@@ -236,8 +236,9 @@ T₁ ⊗ T₂ = {'001', '000', '1001', '1000', '1001', '1000'}
 ```
 
 **Definition 18.3** (Trace Tensor Product): For trace sets S₁, S₂:
-$$S_1 ⊗ S_2 = \{t_1 ⊕ t_2 : t_1 ∈ S_1, t_2 ∈ S_2, \text{merge is φ-safe}\}$$
-
+$$
+S_1 ⊗ S_2 = \{t_1 ⊕ t_2 : t_1 ∈ S_1, t_2 ∈ S_2, \text{merge is φ-safe}\}
+$$
 ### Product Generation
 
 ```mermaid
@@ -313,8 +314,9 @@ High mutual information indicates strong correlation!
 ```
 
 **Definition 18.4** (Tensor Entropy): For trace tensor T:
-$$H(T) = -\sum_{t ∈ T} P(t) \log_2 P(t)$$
-
+$$
+H(T) = -\sum_{t ∈ T} P(t) \log_2 P(t)
+$$
 ### Information Flow
 
 ```mermaid

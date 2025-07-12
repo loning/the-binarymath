@@ -25,7 +25,9 @@ F_n → rank-1 tensor with single 1 at position n-1
 ```
 
 **Definition 17.1** (Fibonacci Tensor Component): For Fibonacci number F_n, its tensor encoding is:
-$$\mathbf{E}(F_n) = \mathbf{e}_n ∈ T¹_φ$$
+$$
+\mathbf{E}(F_n) = \mathbf{e}_n ∈ T¹_φ
+$$
 where **e**_n is the n-th standard basis vector in the φ-constrained tensor space, with single 1 at position n-1.
 
 ### Component Structure
@@ -204,7 +206,9 @@ Higher entropy indicates uniform Fibonacci usage
 ```
 
 **Definition 17.2** (Encoding Density): For value n with trace T:
-$$\rho(n) = \frac{\log_2(n)}{|T|}$$
+$$
+\rho(n) = \frac{\log_2(n)}{|T|}
+$$
 where |T| is the effective trace length.
 
 ### Density Distribution
@@ -306,8 +310,9 @@ graph LR
 Safe combination enables arithmetic:
 
 **Definition 17.3** (Trace Addition): For traces T₁, T₂ representing Zeckendorf decompositions:
-$$T_1 \oplus T_2 = \text{FibEncode}(\text{FibDecode}(T_1) + \text{FibDecode}(T_2))$$
-
+$$
+T_1 \oplus T_2 = \text{FibEncode}(\text{FibDecode}(T_1) + \text{FibDecode}(T_2))
+$$
 This requires:
 1. Decode to Fibonacci indices
 2. Add corresponding values
@@ -382,8 +387,9 @@ Component Usage Analysis:
 ```
 
 **Theorem 17.2** (Component Distribution): In Zeckendorf decompositions up to n, Fibonacci F_k appears with frequency:
-$$P(F_k) \approx \frac{1}{\phi^k} \cdot \text{correction}(n)$$
-
+$$
+P(F_k) \approx \frac{1}{\phi^k} \cdot \text{correction}(n)
+$$
 ## 17.11 Category Theory: Natural Transformations
 
 From ψ = ψ(ψ), encoding transformations emerge:

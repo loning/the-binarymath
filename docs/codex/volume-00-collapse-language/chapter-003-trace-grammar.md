@@ -276,7 +276,9 @@ complexity: 5.826
 ```
 
 **Definition 3.3** (Trace Entropy): The entropy H of a trace is:
-$$H = -\sum_{s \in \Sigma_\phi} p_s \log_2(p_s)$$
+$$
+H = -\sum_{s \in \Sigma_\phi} p_s \log_2(p_s)
+$$
 where p_s is the probability of symbol s in the trace.
 
 ### Complexity Visualization

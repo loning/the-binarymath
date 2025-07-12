@@ -136,8 +136,9 @@ Structural features:
 ```
 
 **Definition 15.3** (Structural Distance): For traces σ, τ with feature vectors f(σ), f(τ):
-$$d_s(σ, τ) = ||f(σ) - f(τ)||_2$$
-
+$$
+d_s(σ, τ) = ||f(σ) - f(τ)||_2
+$$
 ### Feature Space Embedding
 
 ```mermaid
@@ -170,7 +171,9 @@ Information distance examples:
 ```
 
 **Definition 15.4** (Normalized Information Distance): 
-$$d_I(σ, τ) = \frac{K(σ, τ) - \min(K(σ), K(τ))}{\max(K(σ), K(τ))}$$
+$$
+d_I(σ, τ) = \frac{K(σ, τ) - \min(K(σ), K(τ))}{\max(K(σ), K(τ))}
+$$
 where K(·) denotes Kolmogorov complexity.
 
 ### Entropy-Based Distance
@@ -337,8 +340,9 @@ Metric entropy: 1.387 bits
 ```
 
 **Theorem 15.3** (Metric Entropy Bound): For n traces of length ≤ L:
-$$H_d ≤ \log_2\binom{n}{2} + \log_2(L)$$
-
+$$
+H_d ≤ \log_2\binom{n}{2} + \log_2(L)
+$$
 ## 15.11 Metric Space Functors
 
 From ψ = ψ(ψ), metrics relate functorially:

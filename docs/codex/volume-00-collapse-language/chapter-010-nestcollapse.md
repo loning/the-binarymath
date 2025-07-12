@@ -199,8 +199,9 @@ Tree balance: 0.667
 ```
 
 **Definition 10.3** (Tree Balance): For structure NS with children having depths \{d₁, ..., dₖ\}:
-$$\text{balance}(NS) = 1 - \frac{\max_i d_i - \min_i d_i}{\max_i d_i}$$
-
+$$
+\text{balance}(NS) = 1 - \frac{\max_i d_i - \min_i d_i}{\max_i d_i}
+$$
 ### Balance Visualization
 
 ```mermaid
@@ -399,8 +400,9 @@ graph TD
 Nested structures exhibit self-similarity:
 
 **Theorem 10.2** (Fractal Dimension): The fractal dimension of nested φ-structures approaches:
-$$D_f = \frac{\log(\text{nodes per level})}{\log(\text{branching factor})} \approx 1.618$$
-
+$$
+D_f = \frac{\log(\text{nodes per level})}{\log(\text{branching factor})} \approx 1.618
+$$
 This connects to φ itself!
 
 ### Fractal Nature
@@ -479,8 +481,9 @@ Where MI is mutual information between components.
 ```
 
 **Theorem**: The total information in a nested structure:
-$$I(NS) \leq \sum_{\text{levels}} I(\text{level}) - \sum_{\text{levels}} MI(\text{children})$$
-
+$$
+I(NS) \leq \sum_{\text{levels}} I(\text{level}) - \sum_{\text{levels}} MI(\text{children})
+$$
 This inequality shows that nesting compresses information through shared context.
 
 ### 10.11.3 Category-Theoretic Analysis
@@ -516,7 +519,9 @@ The category has:
 Meaning emerges from nested composition:
 
 **Property 10.2** (Compositional Meaning): The meaning M of a structure:
-$$M(NS) = f(M(child_1), ..., M(child_n))$$
+$$
+M(NS) = f(M(child_1), ..., M(child_n))
+$$
 where f is the composition function for that level.
 
 ### Meaning Construction

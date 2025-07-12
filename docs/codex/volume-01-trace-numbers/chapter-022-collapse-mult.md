@@ -110,7 +110,9 @@ Network Folding Examples:
 ```
 
 **Definition 22.1** (Network Folding Multiplication): For trace tensors **t₁**, **t₂** ∈ T¹_φ, the folding multiplication ⊗: T¹_φ × T¹_φ → T¹_φ is:
-$$\mathbf{t_1} \otimes \mathbf{t_2} = Z\left(\sum_{i \in I_1, j \in I_2} F_i \cdot F_j\right)$$
+$$
+\mathbf{t_1} \otimes \mathbf{t_2} = Z\left(\sum_{i \in I_1, j \in I_2} F_i \cdot F_j\right)
+$$
 where I₁, I₂ are Fibonacci index sets from t₁, t₂, and Z re-encodes maintaining φ-constraint.
 
 ### Multiplicative Folding Process
@@ -150,8 +152,9 @@ graph TD
 The core of folding multiplication lies in distributive expansion:
 
 **Theorem 22.1** (Distributive Folding): For traces with Fibonacci decompositions:
-$$\left(\sum_{i \in I_1} F_i\right) \times \left(\sum_{j \in I_2} F_j\right) = \sum_{i \in I_1, j \in I_2} F_i \times F_j$$
-
+$$
+\left(\sum_{i \in I_1} F_i\right) \times \left(\sum_{j \in I_2} F_j\right) = \sum_{i \in I_1, j \in I_2} F_i \times F_j
+$$
 ```text
 Distributive Expansion Results:
 '101' × '101': (F₁+F₃) × (F₁+F₃)

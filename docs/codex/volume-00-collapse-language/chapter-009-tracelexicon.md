@@ -76,7 +76,9 @@ Pattern | Frequency | Category    | Fib Value
 ```
 
 **Theorem 9.1** (Zipf's Law for Traces): The frequency f(r) of the r-th most common word follows:
-$$f(r) \propto r^{-\alpha}$$
+$$
+f(r) \propto r^{-\alpha}
+$$
 where α ≈ 0.97 for φ-constrained traces.
 
 ### Frequency Analysis
@@ -212,11 +214,12 @@ Category distribution:
 ```
 
 **Definition 9.3** (Optimal Segmentation): The optimal word segmentation minimizes:
-$$\text{cost}(S) = \sum_{w \in S} \begin{cases} 
+$$
+\text{cost}(S) = \sum_{w \in S} \begin{cases} 
 1 & \text{if } w \in \text{Lexicon} \\
 |w| & \text{otherwise}
-\end{cases}$$
-
+\end{cases}
+$$
 ### Segmentation Process
 
 ```mermaid
@@ -346,7 +349,9 @@ Semantic coherence: 0.456
 ```
 
 **Definition 9.4** (Category Coherence): For category C with words {w₁, ..., wₙ}:
-$$\text{coherence}(C) = \frac{1}{1 + \text{avg}_{i,j} d(v_i, v_j)}$$
+$$
+\text{coherence}(C) = \frac{1}{1 + \operatorname{avg}_{k,m} d(v_k, v_m)}
+$$
 where d is semantic distance.
 
 ### Coherence Visualization
@@ -417,7 +422,9 @@ graph TD
 The vocabulary grows with corpus size following predictable patterns:
 
 **Theorem 9.2** (Vocabulary Growth): For a corpus of n traces, the vocabulary size V(n) follows:
-$$V(n) \sim n^\beta$$
+$$
+V(n) \sim n^\beta
+$$
 where β ≈ 0.5 for natural φ-constrained text.
 
 ### Growth Dynamics
@@ -493,8 +500,9 @@ I(C₁; C₂) = semantic overlap between categories
 ```
 
 **Theorem**: The lexicon minimizes the description length of trace corpora:
-$$\min_L \sum_{t \in \text{corpus}} |\text{encode}_L(t)|$$
-
+$$
+\min_L \sum_{t \in \text{corpus}} |\text{encode}_L(t)|
+$$
 This explains:
 
 - Why certain patterns become words (high information content)

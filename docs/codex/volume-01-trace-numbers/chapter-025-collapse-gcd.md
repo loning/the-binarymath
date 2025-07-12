@@ -196,7 +196,9 @@ Key insight: CGCD = intersection of Fibonacci index sets!
 ```
 
 **Definition 25.1** (CollapseGCD): For traces **t₁**, **t₂** ∈ T¹_φ, the collapse greatest common divisor CGCD: T¹_φ × T¹_φ → T¹_φ is:
-$$\text{CGCD}(\mathbf{t_1}, \mathbf{t_2}) = \text{trace}(\text{indices}(\mathbf{t_1}) \cap \text{indices}(\mathbf{t_2}))$$
+$$
+\text{CGCD}(\mathbf{t_1}, \mathbf{t_2}) = \text{trace}(\text{indices}(\mathbf{t_1}) \cap \text{indices}(\mathbf{t_2}))
+$$
 where indices extracts Fibonacci component positions and trace reconstructs from common indices.
 
 ### CollapseGCD Architecture
@@ -293,8 +295,9 @@ Structural similarity = |common indices| / |union indices|
 ```
 
 **Theorem 25.1** (Similarity Metric): The structural similarity S(**t₁**, **t₂**) forms a metric on trace space with:
-$$S(\mathbf{t_1}, \mathbf{t_2}) = \frac{|\text{indices}(\mathbf{t_1}) \cap \text{indices}(\mathbf{t_2})|}{|\text{indices}(\mathbf{t_1}) \cup \text{indices}(\mathbf{t_2})|}$$
-
+$$
+S(\mathbf{t_1}, \mathbf{t_2}) = \frac{|\text{indices}(\mathbf{t_1}) \cap \text{indices}(\mathbf{t_2})|}{|\text{indices}(\mathbf{t_1}) \cup \text{indices}(\mathbf{t_2})|}
+$$
 ### Alignment Spectrum
 
 ```mermaid
@@ -377,7 +380,9 @@ graph TD
 The dual operation reveals constraint complexity:
 
 **Definition 25.3** (Structural CLCM): The collapse least common multiple attempts to form:
-$$\text{CLCM}(\mathbf{t_1}, \mathbf{t_2}) = \text{trace}(\text{indices}(\mathbf{t_1}) \cup \text{indices}(\mathbf{t_2}))$$
+$$
+\text{CLCM}(\mathbf{t_1}, \mathbf{t_2}) = \text{trace}(\text{indices}(\mathbf{t_1}) \cup \text{indices}(\mathbf{t_2}))
+$$
 but must adjust for φ-constraint violations.
 
 ```text
@@ -560,8 +565,9 @@ graph LR
 The classical Bezout identity takes new form:
 
 **Theorem 25.3** (Structural Bezout): For structural CGCD, the identity becomes:
-$$\text{indices}(\text{CGCD}(\mathbf{t_1}, \mathbf{t_2})) = \text{indices}(\mathbf{t_1}) \cap \text{indices}(\mathbf{t_2})$$
-
+$$
+\text{indices}(\text{CGCD}(\mathbf{t_1}, \mathbf{t_2})) = \text{indices}(\mathbf{t_1}) \cap \text{indices}(\mathbf{t_2})
+$$
 ```text
 Bezout Verification:
 '100100' and '100010':
@@ -599,8 +605,9 @@ graph TD
 A new perspective on divisibility emerges:
 
 **Property 25.2** (Structural Divisibility): In trace space, **t₁** divides **t₂** if and only if:
-$$\text{indices}(\mathbf{t_1}) \subseteq \text{indices}(\mathbf{t_2})$$
-
+$$
+\text{indices}(\mathbf{t_1}) \subseteq \text{indices}(\mathbf{t_2})
+$$
 This creates a natural partial order on traces through index inclusion.
 
 ```text

@@ -14,8 +14,9 @@ Welcome to the Ψhē Binary Tensor Math Codex — a comprehensive 511-chapter re
 
 The entire codex is built upon:
 
-$$\psi = \psi(\psi)$$
-
+$$
+\psi = \psi(\psi)
+$$
 With the fundamental constraint:
 - **Binary Universe**: Everything is binary information \{0, 1\}
 - **Golden Base**: Zeckendorf representation using Fibonacci numbers
@@ -23,8 +24,9 @@ With the fundamental constraint:
 - **Tensor Structure**: All mathematics expressed through trace tensors
 
 ### The φ-Alphabet
-$$\Sigma_\phi = \{00, 01, 10\}$$
-
+$$
+\Sigma_\phi = \{00, 01, 10\}
+$$
 This constraint creates the entire mathematical universe described in these 511 chapters.
 
 ---

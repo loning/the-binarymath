@@ -25,7 +25,9 @@ n=100: 100 = F₃ + F₅ + F₁₀      → trace: "1000010100"
 ```
 
 **Theorem 16.1** (Zeckendorf's Theorem): Every positive integer n has a unique representation as a sum of non-consecutive Fibonacci numbers:
-$$n = \sum_{\{i \in I\}} F_i$$
+$$
+n = \sum_{\{i \in I\}} F_i
+$$
 where I is a set of indices with no two consecutive integers.
 
 *Proof*: Existence follows from the greedy algorithm. For uniqueness, suppose two representations exist. The difference would be a signed sum of Fibonacci numbers summing to 0, which is impossible without consecutive terms canceling. ∎
@@ -66,7 +68,9 @@ def to_binary_trace(indices: List[int]) -> str:
 ```
 
 **Definition 16.1** (Z-Index Tensor Mapping): The Z-index function Z: ℕ → T¹_φ maps each natural number to its rank-1 trace tensor:
-$$Z(n) = \mathbf{t} = [b_{k-1}, b_{k-2}, ..., b_1, b_0]^T$$
+$$
+Z(n) = \mathbf{t} = [b_{k-1}, b_{k-2}, ..., b_1, b_0]^T
+$$
 where b_i = 1 if F_\{i+1\} appears in the Zeckendorf decomposition of n, and T¹_φ is the space of rank-1 φ-valid tensors.
 
 ### Trace Construction Visualization
@@ -97,8 +101,9 @@ graph LR
 Every trace is fundamentally a rank-1 tensor in the φ-constrained space:
 
 **Definition 16.2** (Trace Tensor Space): The space T¹_φ of rank-1 trace tensors is:
-$$T¹_φ = \{\mathbf{t} ∈ \{0,1\}^n : \text{no consecutive 1s in } \mathbf{t}\}$$
-
+$$
+T¹_φ = \{\mathbf{t} ∈ \{0,1\}^n : \text{no consecutive 1s in } \mathbf{t}\}
+$$
 Each natural number n maps to a unique tensor **t** = Z(n) ∈ T¹_φ.
 
 ### Tensor Properties from First Principles
@@ -198,8 +203,9 @@ Encoding Analysis (n ≤ 100):
 ```
 
 **Definition 16.2** (Zeckendorf Entropy): The entropy of Z-traces is:
-$$H_Z = -\sum_{p \in \\{0,1\\}} P(p) \log_2 P(p)$$
-
+$$
+H_Z = -\sum_{p \in \\{0,1\\}} P(p) \log_2 P(p)
+$$
 ### Information Density
 
 ```mermaid
@@ -270,8 +276,9 @@ Round-trip testing (n < 1000):
 ```
 
 **Property 16.2** (Inverse Mapping): The inverse Z⁻¹: φ-Traces → ℕ is:
-$$Z^{-1}(b_{k-1}...b_0) = \sum_{\{i: b_i = 1\}} F_{k-i}$$
-
+$$
+Z^{-1}(b_{k-1}...b_0) = \sum_{\{i: b_i = 1\}} F_{k-i}
+$$
 ### Bijection Visualization
 
 ```mermaid
@@ -333,8 +340,9 @@ graph TD
 Trace length grows logarithmically with n:
 
 **Theorem 16.4** (Growth Rate): For Z(n) with effective length L(n):
-$$L(n) \sim \log_\phi(n) \approx 1.44 \log_2(n)$$
-
+$$
+L(n) \sim \log_\phi(n) \approx 1.44 \log_2(n)
+$$
 ### Growth Visualization
 
 ```mermaid

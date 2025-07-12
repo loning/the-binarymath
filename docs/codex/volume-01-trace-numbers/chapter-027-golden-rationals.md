@@ -118,8 +118,9 @@ Key insight: Every rational emerges from trace tensor pairs!
 ```
 
 **Definition 27.1** (Rational Trace): A rational trace R ∈ Q_φ is a pair of φ-compliant traces (n, d) where:
-$$R = \frac{\mathbf{n}}{\mathbf{d}}, \quad \mathbf{n}, \mathbf{d} \in T^1_\varphi, \quad \mathbf{d} \neq \mathbf{0}$$
-
+$$
+R = \frac{\mathbf{n}}{\mathbf{d}}, \quad \mathbf{n}, \mathbf{d} \in T^1_\varphi, \quad \mathbf{d} \neq \mathbf{0}
+$$
 ### Rational Tensor Architecture
 
 ```mermaid
@@ -220,8 +221,9 @@ Farey neighbors satisfy: |ad - bc| = 1
 ```
 
 **Definition 27.2** (Farey Neighbors): Two rationals a/b and c/d are Farey neighbors if:
-$$|ad - bc| = 1$$
-
+$$
+|ad - bc| = 1
+$$
 ### Farey Graph Visualization
 
 ```mermaid
@@ -270,8 +272,9 @@ The mediant operation generates new rationals:
 
 **Algorithm 27.1** (Mediant Construction):
 For rationals a/b and c/d, the mediant is:
-$$\text{mediant}(a/b, c/d) = \frac{a+c}{b+d}$$
-
+$$
+\text{mediant}(a/b, c/d) = \frac{a+c}{b+d}
+$$
 ```text
 Mediant Tree Results:
 Starting with 0/1 and 1/1
@@ -374,8 +377,9 @@ graph LR
 Each rational has a natural tensor encoding:
 
 **Definition 27.3** (Rational Tensor): For rational n/d with traces **n** and **d**, the tensor representation is:
-$$T_R = \begin{bmatrix} \mathbf{n} \\ \mathbf{d} \end{bmatrix} \in T^2_\varphi$$
-
+$$
+T_R = \begin{bmatrix} \mathbf{n} \\ \mathbf{d} \end{bmatrix} \in T^2_\varphi
+$$
 ```text
 Tensor Example: 5/3
 Numerator trace: '10000'

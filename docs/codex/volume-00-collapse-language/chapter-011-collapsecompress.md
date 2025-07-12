@@ -62,7 +62,9 @@ Trace: 0101010101010101
 ```
 
 **Definition 11.2** (Compression Potential): For trace T, the compression potential CP(T) is:
-$$CP(T) = \frac{H(T)}{H_{max}(T)}$$
+$$
+CP(T) = \frac{H(T)}{H_{max}(T)}
+$$
 where H(T) is the normalized entropy and H_max is the maximum possible entropy for φ-constrained sequences.
 
 ### Golden Ratio Features
@@ -156,8 +158,9 @@ def compress_fibonacci(trace):
 ```
 
 **Theorem 11.1** (Fibonacci Compression Bound): For traces with high Fibonacci segment density, the compression ratio approaches:
-$$\rho_{fib} \leq \frac{\log_2(\phi)}{\phi} \approx 0.387$$
-
+$$
+\rho_{fib} \leq \frac{\log_2(\phi)}{\phi} \approx 0.387
+$$
 ### Zeckendorf Encoding Strategy
 
 ```mermaid
@@ -295,7 +298,9 @@ def choose_compression_method(analysis):
 ```
 
 **Theorem 11.2** (Hybrid Optimality): The hybrid compressor H achieves:
-$$\rho_H(T) \leq \min\{\rho_{huff}(T), \rho_{fib}(T), \rho_{gram}(T)\} + \epsilon$$
+$$
+\rho_H(T) \leq \min\{\rho_{huff}(T), \rho_{fib}(T), \rho_{gram}(T)\} + \epsilon
+$$
 where ε is the method selection overhead.
 
 ### Method Selection Logic
@@ -341,8 +346,9 @@ Theoretical Bounds:
 ```
 
 **Property 11.1** (φ-Entropy Bound): The entropy of φ-constrained sequences is bounded by:
-$$H_\phi \leq \log_2(\phi) \approx 0.694 \text{ bits/symbol}$$
-
+$$
+H_\phi \leq \log_2(\phi) \approx 0.694 \text{ bits/symbol}
+$$
 ### Performance Visualization
 
 ```mermaid
@@ -385,7 +391,9 @@ def verify_lossless(compressor, traces):
 ```
 
 **Property 11.2** (Lossless Guarantee): For any φ-valid trace T and φ-aware compressor C:
-$$C^{-1}(C(T)) = T$$
+$$
+C^{-1}(C(T)) = T
+$$
 with probability 1.
 
 ### Reconstruction Verification
@@ -506,8 +514,9 @@ Best observed: ρ = 0.38 (Fibonacci method)
 ```
 
 **Theorem**: The φ-constraint creates exploitable redundancy of at least 30.6%, with optimal compression achieving:
-$$\rho_{optimal} = \frac{1}{\phi} \approx 0.618$$
-
+$$
+\rho_{optimal} = \frac{1}{\phi} \approx 0.618
+$$
 This matches the golden ratio's conjugate!
 
 ### 11.11.3 Category-Theoretic Analysis

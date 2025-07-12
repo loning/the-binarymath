@@ -114,7 +114,9 @@ graph LR
 The optimal tokenization minimizes the total number of tokens:
 
 **Definition 8.2** (Optimal Tokenization): For trace T, the optimal tokenization is:
-$$\text{OPT}(T) = \arg\min_{S} |S|$$
+$$
+\text{OPT}(T) = \arg\min_{S} |S|
+$$
 where S is a valid segmentation of T into tokens.
 
 ### Dynamic Programming Solution
@@ -188,7 +190,9 @@ graph TD
 MDL balances token cost with encoding efficiency:
 
 **Definition 8.3** (MDL Cost): The MDL cost of tokenization S is:
-$$\text{MDL}(S) = \sum_{t \in S} [1 - \log_2(f(t))]$$
+$$
+\text{MDL}(S) = \sum_{t \in S} [1 - \log_2(f(t))]
+$$
 where f(t) is the frequency of token t.
 
 ### MDL Optimization
@@ -360,7 +364,9 @@ Compression Efficiency:
 The compression ratio depends on vocabulary coverage and token encoding:
 
 **Theorem 8.1** (Compression Bound): For a trace T with optimal tokenization OPT(T), the compressed size is bounded by:
-$$|C(T)| \leq |OPT(T)| \cdot \lceil\log_2(|V|)\rceil$$
+$$
+|C(T)| \leq |OPT(T)| \cdot \lceil\log_2(|V|)\rceil
+$$
 where V is the vocabulary.
 
 ### Compression Strategy
@@ -470,8 +476,9 @@ C = max I(X; Y) = log₂(|V|) × (1 - H(error))
 ```
 
 **Theorem**: The optimal token vocabulary minimizes the expected description length:
-$$\min_V \sum_{t \in \text{trace}} [-\log_2 P(t|V)]$$
-
+$$
+\min_V \sum_{t \in \text{trace}} [-\log_2 P(t|V)]
+$$
 This explains why certain patterns become tokens:
 
 - High frequency → low information content → efficient encoding

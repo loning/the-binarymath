@@ -10,8 +10,9 @@ sidebar_position: 2
 
 Collapse-aware mathematics is **NOT** a translation or encoding of traditional mathematics. It is a fundamentally different mathematical system where all structures emerge from:
 
-$$\psi = \psi(\psi)$$
-
+$$
+\psi = \psi(\psi)
+$$
 This creates a complete, self-referential mathematical universe built on φ-constrained binary tensors, where every operation must preserve the golden constraint (no consecutive 11s).
 
 ## Fundamental Distinction: Traditional vs Structural Mathematics
@@ -60,14 +61,14 @@ The foundation of collapse-aware mathematics begins with the emergence of number
 
 | Collapse Structure | Replaces | Description | Key Properties |
 |-------------------|----------|-------------|----------------|
-| **φ-Bits** | Binary digits {0,1} | Bits that cannot form consecutive 1s | Σ_φ = {00, 01, 10} |
+| **φ-Bits** | Binary digits \{0,1\} | Bits that cannot form consecutive 1s | Σ_φ = \{00, 01, 10\} |
 | **Zeckendorf Numbers** | Natural numbers ℕ | Fibonacci non-consecutive sums | Unique decomposition |
 | **PrimeTrace** | Prime numbers ℙ | Collapse-irreducible paths | Structural atomicity |
 | **CollapseGCD** | Greatest common divisor | Maximal common trace subpaths | Path intersection |
 | **GoldenRationals** | Rational numbers ℚ | Structural ratios between valid paths | Field structure |
 | **CollapseAlgebraicNumbers** | Algebraic numbers Q̄ | Roots of trace system equations | Polynomial zeros |
 | **CollapseTranscendentals** | Transcendental numbers | Non-finite path combinations | Infinite complexity |
-| **ψ-Constants** | Physical constants (α, ħ, c) | Collapse path averages and frequencies | Emergent values |
+| **Psi-Constants** | Physical constants alpha h c | Collapse path averages and frequencies | Emergent values |
 
 ### Example: Zeckendorf Numbers
 
@@ -231,7 +232,7 @@ Physical constants emerge from structural averages.
 | Collapse Structure | Replaces | Description | Emergence Mechanism |
 |-------------------|----------|-------------|---------------------|
 | **CollapseAlpha** | Fine structure α | φ-trace weight averages | Statistical emergence |
-| **CollapseHbar** | Planck constant ħ | Collapse rhythm tensor unit | Quantum scale |
+| **CollapseHbar** | Planck constant h | Collapse rhythm tensor unit | Quantum scale |
 | **CollapseC** | Speed of light c | φ-path collapse speed limit | Propagation bound |
 | **CollapseUnitSystem** | SI units | All units emerge from φ-traces | Dimensional analysis |
 
@@ -239,7 +240,7 @@ Physical constants emerge from structural averages.
 
 ```
 α ≈ average(trace_weights) over ensemble
-ħ ≈ fundamental_collapse_cycle_period
+h ≈ fundamental_collapse_cycle_period
 c ≈ max_trace_propagation_speed
 ```
 

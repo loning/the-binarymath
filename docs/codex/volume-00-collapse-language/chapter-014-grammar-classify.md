@@ -186,7 +186,9 @@ Custom          1.522 bits      3.054 bits       9
 ```
 
 **Definition 14.4** (Production Entropy): For grammar G with productions P:
-$$H_P(G) = -\sum_{\{A \in N\}} \frac{|P_A|}{|P|} \log_2 \frac{|P_A|}{|P|}$$
+$$
+H_P(G) = -\sum_{\{A \in N\}} \frac{|P_A|}{|P|} \log_2 \frac{|P_A|}{|P|}
+$$
 where P_A are productions with LHS A.
 
 ### Entropy Relationships
@@ -298,7 +300,9 @@ Generative Analysis:
 ```
 
 **Property 14.2** (Generative Hierarchy): For φ-grammars:
-$$\text{Custom} \subset \text{Minimal} = \text{Standard} \subset \text{Alternative} \subset \text{Right-linear}$$
+$$
+\text{Custom} \subset \text{Minimal} = \text{Standard} \subset \text{Alternative} \subset \text{Right-linear}
+$$
 in terms of traces generated up to length 8.
 
 ### Generative Power Visualization
@@ -366,7 +370,9 @@ Grammar efficiency:
 ```
 
 **Theorem 14.3** (Grammar Efficiency): For φ-grammars generating traces up to length n:
-$$\eta(G) = \frac{|L(G) \cap \Sigma^{\leq n}|}{F_{\{n+2\}}}$$
+$$
+\eta(G) = \frac{|L(G) \cap \Sigma^{\leq n}|}{F_{\{n+2\}}}
+$$
 where F_\{n+2\} is the (n+2)th Fibonacci number.
 
 ## 14.11 Category-Theoretic Functors

@@ -108,7 +108,9 @@ Conformal Addition Examples:
 ```
 
 **Definition 21.1** (φ-Conformal Addition): For trace tensors **t₁**, **t₂** ∈ T¹_φ, the conformal addition ⊕: T¹_φ × T¹_φ → T¹_φ is:
-$$\mathbf{t_1} \oplus \mathbf{t_2} = Z(D(\mathbf{t_1}) + D(\mathbf{t_2}))$$
+$$
+\mathbf{t_1} \oplus \mathbf{t_2} = Z(D(\mathbf{t_1}) + D(\mathbf{t_2}))
+$$
 where D is decoding, addition occurs in ℕ, and Z re-encodes the result maintaining φ-constraint.
 
 ### Addition Process Visualization
@@ -142,7 +144,9 @@ graph TD
 Addition operations must respect information-theoretic constraints:
 
 **Theorem 21.1** (Entropy Bound Preservation): For φ-conformal addition, the entropy change is bounded:
-$$\Delta H = H(\mathbf{t_1} \oplus \mathbf{t_2}) - \frac{H(\mathbf{t_1}) + H(\mathbf{t_2})}{2} \leq \log_2(\phi)$$
+$$
+\Delta H = H(\mathbf{t_1} \oplus \mathbf{t_2}) - \frac{H(\mathbf{t_1}) + H(\mathbf{t_2})}{2} \leq \log_2(\phi)
+$$
 where φ is the golden ratio.
 
 ```text
@@ -224,11 +228,12 @@ graph LR
 Addition with explicit entropy constraints:
 
 **Definition 21.2** (Entropy-Bounded Addition): For maximum entropy increase δ:
-$$\mathbf{t_1} \oplus_\delta \mathbf{t_2} = \begin{cases}
+$$
+\mathbf{t_1} \oplus_\delta \mathbf{t_2} = \begin{cases}
 \mathbf{t_1} \oplus \mathbf{t_2} & \text{if } \Delta H \leq \delta \\
 \text{undefined} & \text{otherwise}
-\end{cases}$$
-
+\end{cases}
+$$
 ```text
 Entropy-Bounded Examples:
 '1' + '1' (δ=0.1): Δ=0.918 > 0.1 → Rejected ✗
@@ -335,8 +340,9 @@ graph TD
 Entropy changes follow predictable patterns:
 
 **Definition 21.3** (Addition Entropy Function): For traces t₁, t₂:
-$$\mathcal{H}(\mathbf{t_1}, \mathbf{t_2}) = H(\mathbf{t_1} \oplus \mathbf{t_2}) - \frac{H(\mathbf{t_1}) + H(\mathbf{t_2})}{2}$$
-
+$$
+\mathcal{H}(\mathbf{t_1}, \mathbf{t_2}) = H(\mathbf{t_1} \oplus \mathbf{t_2}) - \frac{H(\mathbf{t_1}) + H(\mathbf{t_2})}{2}
+$$
 ```text
 Entropy Statistics:
 Minimum change: -0.693 bits

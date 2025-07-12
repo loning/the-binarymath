@@ -26,8 +26,9 @@ Therefore: Σφ = \{00, 01, 10\}
 ```
 
 **Definition 2.1** (φ-Alphabet): The φ-alphabet is the set of all valid 2-bit patterns:
-$$\Sigma_\phi = \{00, 01, 10\}$$
-
+$$
+\Sigma_\phi = \{00, 01, 10\}
+$$
 ### Understanding Through Visualization
 
 ```mermaid

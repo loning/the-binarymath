@@ -114,7 +114,9 @@ Pattern: Fibonacci sequence traces yield convergents to φ!
 ```
 
 **Definition 26.1** (Trace Continued Fraction): For trace **t** ∈ T¹_φ with value v, the continued fraction representation CF: T¹_φ → ℕ* is:
-$$CF(\mathbf{t}) = [a_0; a_1, a_2, ..., a_n]$$
+$$
+CF(\mathbf{t}) = [a_0; a_1, a_2, ..., a_n]
+$$
 where v = a₀ + 1/(a₁ + 1/(a₂ + ... + 1/aₙ)...) through recursive nesting.
 
 ### Continued Fraction Architecture
@@ -268,8 +270,9 @@ graph TD
 Complete analysis of rational approximations:
 
 **Theorem 26.2** (Convergent Properties): For continued fraction [a₀; a₁, ..., aₙ], the convergents pₙ/qₙ satisfy:
-$$|v - \frac{p_n}{q_n}| < \frac{1}{q_n q_{n+1}}$$
-
+$$
+|v - \frac{p_n}{q_n}| < \frac{1}{q_n q_{n+1}}
+$$
 ```text
 Convergence Analysis:
 Average convergence rate: 16.374

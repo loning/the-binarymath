@@ -353,7 +353,9 @@ graph TD
 φ-machines process information while maintaining structural constraints:
 
 **Definition 7.4** (Information Capacity): A φ-machine's information processing capacity is bounded by:
-$$I_\phi(M) \leq \log_2(|Q|) + \log_2(\phi) \cdot n$$
+$$
+I_\phi(M) \leq \log_2(|Q|) + \log_2(\phi) \cdot n
+$$
 where |Q| is the number of states and n is the input length.
 
 ### Information Flow
@@ -413,8 +415,9 @@ Information capacity: I(X;Y) ≤ log₂(|Q|) × log₂(φ)
 ```
 
 **Theorem**: A φ-machine with n states has information processing capacity bounded by:
-$$C_{\phi-machine} = n \cdot \log_2(\phi) \approx 0.694n \text{ bits}$$
-
+$$
+C_{\phi-machine} = n \cdot \log_2(\phi) \approx 0.694n \text{ bits}
+$$
 ### 7.11.3 Category-Theoretic Analysis
 
 From ψ = ψ(ψ), φ-machines form a category:

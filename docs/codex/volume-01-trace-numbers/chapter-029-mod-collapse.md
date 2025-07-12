@@ -195,8 +195,9 @@ Key insight: φ-constraint preserved in all equivalence classes!
 ```
 
 **Definition 29.1** (Trace Equivalence Class): For modulus m, traces **t₁**, **t₂** ∈ T¹_φ are equivalent if:
-$$\mathbf{t}_1 \equiv \mathbf{t}_2 \pmod{m} \iff \text{decode}(\mathbf{t}_1) \equiv \text{decode}(\mathbf{t}_2) \pmod{m}$$
-
+$$
+\mathbf{t}_1 \equiv \mathbf{t}_2 \pmod{m} \iff \text{decode}(\mathbf{t}_1) \equiv \text{decode}(\mathbf{t}_2) \pmod{m}
+$$
 ### Equivalence Class Architecture
 
 ```mermaid
@@ -300,7 +301,7 @@ All systems satisfy:
 - Commutativity (abelian)
 ```
 
-**Theorem 29.2** (Modular Group): The set of trace equivalence classes {[0], [1], ..., [m-1]} forms an abelian group under modular addition.
+**Theorem 29.2** (Modular Group): The set of trace equivalence classes \{[0], [1], ..., [m-1]\} forms an abelian group under modular addition.
 
 ### Group Operation Table
 
@@ -398,7 +399,9 @@ Unique reconstruction in mod 15 ✓
 ```
 
 **Theorem 29.3** (Trace Chinese Remainder): For coprime moduli m₁, m₂, the map:
-$$\phi: \mathbb{Z}/(m_1m_2)\mathbb{Z} \to \mathbb{Z}/m_1\mathbb{Z} \times \mathbb{Z}/m_2\mathbb{Z}$$
+$$
+\phi: \mathbb{Z}/(m_1m_2)\mathbb{Z} \to \mathbb{Z}/m_1\mathbb{Z} \times \mathbb{Z}/m_2\mathbb{Z}
+$$
 is a ring isomorphism preserving trace structure.
 
 ### CRT Reconstruction
@@ -694,8 +697,9 @@ aᵖ⁻¹ ≡ 1 (mod p) for prime p
 ```
 
 **Theorem 29.5** (Trace Fermat): For prime modulus p and trace **t** ∈ T¹_φ with [**t**] ≠ [0]:
-$$[\mathbf{t}]^{p-1} = [1] \text{ in } \mathbb{Z}/p\mathbb{Z}_\varphi$$
-
+$$
+[\mathbf{t}]^{p-1} = [1] \text{ in } \mathbb{Z}/p\mathbb{Z}_\varphi
+$$
 ### Exponentiation Algorithm
 
 ```mermaid

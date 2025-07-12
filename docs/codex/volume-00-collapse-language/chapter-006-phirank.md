@@ -25,7 +25,9 @@ Trace | φ-Rank | Entropy | Symbol | Fib-Idx | Depth
 ```
 
 **Definition 6.1** (φ-Rank): The φ-rank of a trace T is:
-$$\phi\text{-rank}(T) = 1000 \cdot F_\text{idx} + 100 \cdot d + 10 \cdot s + h$$
+$$
+\phi\text{-rank}(T) = 1000 \cdot F_\text{idx} + 100 \cdot d + 10 \cdot s + h
+$$
 where:
 - F_idx = Fibonacci index (Zeckendorf position)
 - d = collapse depth
@@ -268,19 +270,23 @@ Each component of φ-rank captures different aspects:
 ### Entropy Component
 
 The Shannon entropy captures information content:
-$$H(T) = -\sum_{b \in \{0,1\}} p_b \log_2(p_b)$$
-
+$$
+H(T) = -\sum_{b \in \{0,1\}} p_b \log_2(p_b)
+$$
 ### Symbol Complexity
 
 Based on Σφ patterns:
-$$s(T) = \frac{1}{|T|-1} \sum_{i=1}^{|T|-1} w(T_i T_{i+1})$$
+$$
+s(T) = \frac{1}{|T|-1} \sum_{i=1}^{|T|-1} w(T_i T_{i+1})
+$$
 where w assigns weights to symbols in Σφ.
 
 ### Collapse Depth
 
 Estimates recursive depth:
-$$d(T) = \lfloor \log_2(|T| + 1) \rfloor + \lfloor \log_2(\text{transitions} + 1) \rfloor$$
-
+$$
+d(T) = \lfloor \log_2(|T| + 1) \rfloor + \lfloor \log_2(\text{transitions} + 1) \rfloor
+$$
 ### Component Interaction
 
 ```mermaid
@@ -504,8 +510,9 @@ The φ-rank functor has properties:
 φ-rank reveals deep truths about trace space:
 
 **Property 6.1** (Density): The density of traces with rank ≤ R grows as:
-$$|\{T : \phi\text{-rank}(T) \leq R\}| \sim R^{1/\log \phi}$$
-
+$$
+|\{T : \phi\text{-rank}(T) \leq R\}| \sim R^{1/\log \phi}
+$$
 **Property 6.2** (Gaps): There exist arbitrarily large gaps in the φ-rank spectrum, corresponding to "complexity jumps" in trace space.
 
 ### Theoretical Landscape

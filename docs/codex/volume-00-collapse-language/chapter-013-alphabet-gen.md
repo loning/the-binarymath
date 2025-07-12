@@ -25,7 +25,9 @@ Length 8: 55 valid paths
 ```
 
 **Definition 13.1** (φ-Generation Space): The space G_n of valid traces of length n is defined as:
-$$G_n = \{σ \in \{0,1\}^n : \text{"11"} \not\subseteq σ\}$$
+$$
+G_n = \{σ \in \{0,1\}^n : \text{"11"} \not\subseteq σ\}
+$$
 with cardinality |G_n| = F_\{n+2\} where F_k is the kth Fibonacci number.
 
 ### The Fibonacci Connection
@@ -246,7 +248,9 @@ Transition frequencies:
 ```
 
 **Definition 13.3** (Generation Entropy): The entropy of φ-generation is:
-$$H_φ = -\sum_{σ \in Σ_φ} P(σ) \log_2 P(σ)$$
+$$
+H_φ = -\sum_{σ \in Σ_φ} P(σ) \log_2 P(σ)
+$$
 where Σ_φ = \{00, 01, 10\} and P(σ) is the transition probability.
 
 ### Entropy Evolution

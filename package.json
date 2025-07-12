@@ -5,6 +5,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
+    "prebuild": "node scripts/fix-latex-blocks.js",
     "build": "docusaurus build",
     "build:fast": "DOCUSAURUS_SKIP_BUILD_OPTIMIZATION=true docusaurus build",
     "build:zh-fast": "DOCUSAURUS_SKIP_BUILD_OPTIMIZATION=true docusaurus build --locale zh-Hans",

@@ -81,7 +81,7 @@ Collapse:   [F₁₁ trace] (single component, structurally atomic) ✓
 
 ### The COP Sequence: Mathematics' Atomic Alphabet
 
-**COP = Fibonacci ∩ Primes = {F_n : F_n is prime}**
+**COP = Fibonacci ∩ Primes = \{F_n : F_n is prime\}**
 
 ```text
 F₃ = 2 ∈ Primes → COP ✓
@@ -137,8 +137,9 @@ Key Discovery: A special subset emerges!
 1. n is a mathematical prime (indivisible)
 2. The φ-trace of n consists of exactly one Fibonacci component
 
-$$\text{COP} = \{n \in \mathbb{N} \mid \text{Prime}(n) \land |\text{indices}(\text{trace}(n))| = 1\}$$
-
+$$
+\text{COP} = \{n \in \mathbb{N} \mid \text{Prime}(n) \land |\text{indices}(\text{trace}(n))| = 1\}
+$$
 ### The Hierarchy of Irreducibility
 
 ```mermaid
@@ -197,8 +198,9 @@ True COPs: 2, 3, 5, 13, 89, 233, ...
 
 **Theorem 23.1** (COP Characterization): The Collapse-Origin Primes are precisely those primes whose values equal single Fibonacci numbers:
 
-$$\text{COP} = \{F_n : F_n \text{ is prime}\} = \{2, 3, 5, 13, 89, 233, 1597, ...\}$$
-
+$$
+\text{COP} = \{F_n : F_n \text{ is prime}\} = \{2, 3, 5, 13, 89, 233, 1597, ...\}
+$$
 **Property 23.1** (Structural Atomicity): COP traces exhibit perfect atomicity:
 
 - Trace contains exactly one '1' bit
@@ -394,8 +396,9 @@ graph TD
 COPs create rhythmic anchors in φ-time:
 
 **Property 23.3** (Golden Anchor): COP trace positions follow:
-$$\text{bit position} \approx \log_\varphi(n)$$
-
+$$
+\text{bit position} \approx \log_\varphi(n)
+$$
 ```text
 Position Analysis:
 COP 2: position 3 ≈ log_φ(2) × k
@@ -434,8 +437,9 @@ COP distribution follows golden-modulated patterns:
 
 **Theorem 23.4** (COP Density): The density of COPs approximates:
 
-$$\pi_{\text{COP}}(x) \sim \frac{1}{\log \varphi} \cdot \frac{x}{\log x}$$
-
+$$
+\pi_{\text{COP}}(x) \sim \frac{1}{\log \varphi} \cdot \frac{x}{\log x}
+$$
 ```text
 Distribution Analysis:
 COPs up to 100: 9

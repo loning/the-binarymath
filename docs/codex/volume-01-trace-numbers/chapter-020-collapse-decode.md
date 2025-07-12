@@ -33,7 +33,7 @@ graph TD
 - Arbitrary bit patterns: "11111111" = 255₁₀ (consecutive 1s allowed)
 - Negative binary interpretation: Two's complement for negative numbers
 - Arbitrary precision: Any length bit string represents valid number
-- Positional weight system: Each position i contributes 2ⁱ to total value
+- Positional weight system: Each position k contributes 2^k to total value
 - No geometric constraints: Binary patterns independent of mathematical structure
 
 ### Domain II: Collapse-Only Trace Decoding
@@ -134,7 +134,7 @@ The **extreme sparsity** of intersection correspondence demonstrates:
 
 | Aspect | Traditional Binary Decoding | Collapse Trace Decoding |
 |--------|----------------------------|------------------------|
-| **Weight System** | Powers of 2: {1,2,4,8,16,...} | Fibonacci: {1,1,2,3,5,8,13,...} |
+| **Weight System** | Powers of 2: \{1,2,4,8,16,...\} | Fibonacci: \{1,1,2,3,5,8,13,...\} |
 | **Constraints** | None (any bit pattern valid) | φ-constraint (no "11" patterns) |
 | **Example** | "1011₂" = 11₁₀ | "1011" → Invalid (contains "11") |
 | **Mathematics** | Exponential positional system | Combinatorial Fibonacci system |
@@ -189,8 +189,10 @@ Decoding Examples (Trace → Number):
 ```
 
 **Definition 20.1** (Structural Inversion): For any trace tensor **t** ∈ T¹_φ, the decoding function D: T¹_φ → ℕ is:
-$$D(\mathbf{t}) = \sum_{\\{i: t_i = 1\\}} F_{i+1}$$
-where t_i is the i-th bit from the right (LSB first) and F_k is the k-th Fibonacci number.
+$$
+D(\mathbf{t}) = \sum_{j} t_j \cdot F_{j+1}
+$$
+where t_j is the j-th bit from the right (LSB first) and F_k is the k-th Fibonacci number.
 
 ### Decoding Process Visualization
 
@@ -227,8 +229,8 @@ The core of structural inversion lies in extracting Fibonacci components:
 **Algorithm 20.1** (Index Extraction): For trace string t = b_n-1...b_1b_0:
 
 1. Scan from right to left (LSB first)
-2. For each bit position i where b_i = 1
-3. Add Fibonacci index i+1 to the set
+2. For each bit position k where b_k = 1
+3. Add Fibonacci index k+1 to the set
 4. Return sorted index set
 
 ```text
@@ -239,7 +241,7 @@ Position 2 → F₃ = 2
 Position 3 → F₄ = 3
 Position 4 → F₅ = 5
 ...
-Position i → F_{i+1}
+Position k → F(k+1)
 ```
 
 ### Index Extraction Graph
@@ -254,7 +256,7 @@ graph LR
         P4["Position 4"] --> F5["F₅ = 5"]
         P5["Position 5"] --> F6["F₆ = 8"]
         
-        PATTERN["Pattern: pos i → F_(i+1)"]
+        PATTERN["Pattern: pos k → F_(k+1)"]
         
         P0 & P1 & P2 & P3 & P4 & P5 --> PATTERN
     end
@@ -290,7 +292,7 @@ graph TD
         NUM -->|"Z-index"| ZECK
         ZECK -->|"Encode"| TRACE
         TRACE -->|"Extract"| INDICES
-        INDICES -->|"Sum F_i"| RECOVERY
+        INDICES -->|"Sum F_k"| RECOVERY
         
         PERFECT["n = recovered ✓"]
         
@@ -497,8 +499,10 @@ graph LR
 Decoding extends to higher tensor ranks:
 
 **Definition 20.3** (Rank-n Decoding): For tensor **T** ∈ Tⁿ_φ:
-$$D_n(\mathbf{T}) = \sum_{i=1}^n D(\mathbf{t}_i)$$
-where **t**_i are the rank-1 components of **T**.
+$$
+D_n(\mathbf{T}) = \sum_{k=1}^n D(\mathbf{t}_k)
+$$
+where **t**_k are the rank-1 components of **T**.
 
 ```text
 Multi-rank Decoding Example:

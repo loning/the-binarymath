@@ -177,8 +177,9 @@ Trace: 0101
 ```
 
 **Definition 12.3** (Tree Complexity): For syntax tree T, the structural complexity is:
-$$C(T) = \frac{1}{3}\left(\frac{depth(T)}{size(T)} + \frac{|types(T)|}{|NodeType|} + branching(T)\right)$$
-
+$$
+C(T) = \frac{1}{3}\left(\frac{depth(T)}{size(T)} + \frac{|types(T)|}{|NodeType|} + branching(T)\right)
+$$
 ### Complexity Visualization
 
 ```mermaid
@@ -208,8 +209,9 @@ graph LR
 Well-formed trees exhibit structural balance:
 
 **Theorem 12.1** (Balance Theorem): For a syntax tree T with children having sizes \{s₁, ..., sₖ\}:
-$$balance(T) = 1 - \frac{\max_i s_i - \min_i s_i}{\max_i s_i}$$
-
+$$
+balance(T) = 1 - \frac{\max_i s_i - \min_i s_i}{\max_i s_i}
+$$
 *Proof*: Balance measures deviation from perfect symmetry. When all children have equal size, balance = 1. When maximally unbalanced, balance approaches 0. ∎
 
 ### Balance Analysis
@@ -426,7 +428,9 @@ graph TD
 Syntax trees enable compositional interpretation:
 
 **Definition 12.5** (Compositional Semantics): The meaning M(T) of a syntax tree T is computed as:
-$$M(T) = f_τ(M(child_1), ..., M(child_n))$$
+$$
+M(T) = f_τ(M(child_1), ..., M(child_n))
+$$
 where f_τ is the composition function for node type τ.
 
 ### Semantic Composition Rules
@@ -500,8 +504,9 @@ MI(parent,child) > 0 (context matters)
 ```
 
 **Theorem**: The information content of a syntax tree is bounded by:
-$$I(T) \leq |T| \cdot \log_2(|NodeTypes|) - \log_2(|\text{valid structures}|)$$
-
+$$
+I(T) \leq |T| \cdot \log_2(|NodeTypes|) - \log_2(|\text{valid structures}|)
+$$
 This shows syntax trees compress by exploiting structural constraints.
 
 ### 12.11.3 Category-Theoretic Analysis

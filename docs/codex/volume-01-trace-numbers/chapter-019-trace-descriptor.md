@@ -25,7 +25,9 @@ Zeckendorf Canonical: Structure verification
 ```
 
 **Definition 19.1** (Complete Trace Descriptor): For any trace tensor **t** ∈ T¹_φ, its complete descriptor is:
-$$\mathcal{D}(\mathbf{t}) = (L, R, W, \mathbf{G}, \mathbf{F}, H, φ, Z)$$
+$$
+\mathcal{D}(\mathbf{t}) = (L, R, W, \mathbf{G}, \mathbf{F}, H, φ, Z)
+$$
 where:
 
 - L: Effective length (rank-1 extent)
@@ -129,8 +131,9 @@ Key Gap Patterns:
 ```
 
 **Definition 19.2** (Gap Structure Vector): For trace **t** with 1s at positions p₁ < p₂ < ... < pₖ:
-$$\mathbf{G}(\mathbf{t}) = [p_2-p_1-1, p_3-p_2-1, ..., p_k-p_{k-1}-1]$$
-
+$$
+\mathbf{G}(\mathbf{t}) = [p_2-p_1-1, p_3-p_2-1, ..., p_k-p_{k-1}-1]
+$$
 **Definition 19.3** (Hamming-Simpson Structure): The HS-structure combines:
 - Hamming weight: global 1-density
 - Simpson diversity: local pattern diversity
@@ -226,11 +229,15 @@ Length-Entropy MI: 0.555 bits (moderate correlation)
 ```
 
 **Definition 19.4** (Trace Entropy): For trace **t** with binary sequence b₁b₂...bₙ:
-$$H(\mathbf{t}) = -\sum_{i \in \{0,1\}} P(b_i) \log_2 P(b_i)$$
+$$
+H(\mathbf{t}) = -\sum_{i \in \{0,1\}} P(b_i) \log_2 P(b_i)
+$$
 where P(b_i) is the frequency of bit i in the trace.
 
 **Theorem 19.2** (Entropy Bounds): For φ-valid traces, entropy is bounded:
-$$0 \leq H(\mathbf{t}) \leq \log_2(\phi) \approx 0.694$$
+$$
+0 \leq H(\mathbf{t}) \leq \log_2(\phi) \approx 0.694
+$$
 where φ is the golden ratio.
 
 ### Entropy Relationships
@@ -429,7 +436,9 @@ Invariant Preservation:
 ```
 
 **Definition 19.6** (Rank-Extended Descriptor): For tensor **T** ∈ Tⁿ_φ:
-$$\mathcal{D}_n(\mathbf{T}) = \bigotimes_{i=1}^{n} \mathcal{D}(\mathbf{t}_i)$$
+$$
+\mathcal{D}_n(\mathbf{T}) = \bigotimes_{i=1}^{n} \mathcal{D}(\mathbf{t}_i)
+$$
 where ⊗ represents the descriptor tensor product.
 
 ### Rank Progression

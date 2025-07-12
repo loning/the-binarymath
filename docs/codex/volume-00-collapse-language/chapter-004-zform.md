@@ -19,7 +19,9 @@ Every number 0-100 has unique representation: True
 ```
 
 **Theorem 4.1** (Zeckendorf's Theorem): Every non-negative integer n has a unique representation as:
-$$n = \sum_{i \in I} F_i$$
+$$
+n = \sum_{i \in I} F_i
+$$
 where I is a set of indices such that no two indices are consecutive, and F_i is the i-th Fibonacci number.
 
 ### Why Uniqueness Matters
@@ -189,8 +191,9 @@ Implies golden ratio ≈ 3.354
 ```
 
 **Theorem 4.2** (Density Theorem): The asymptotic density of 1s in Zeckendorf representations is:
-$$d = \frac{1}{\phi^2} \approx 0.382$$
-
+$$
+d = \frac{1}{\phi^2} \approx 0.382
+$$
 where φ = (1+√5)/2 is the golden ratio.
 
 ### Density Visualization
