@@ -81,8 +81,8 @@ n=8: Traditional φ(8)=4, φ-totient(8)=7 ✗ Divergence
 
 ### The Canonical Intersection Principle: Natural Totient Optimization
 
-**Traditional Euler Totient**: φ(n) = |\\{k ≤ n : gcd(k,n) = 1\\}|  
-**φ-Constrained Totient**: φ_φ(n) = |\\{k ≤ n : k φ-valid, φ-gcd(k,n) = 1\\}|  
+**Traditional Euler Totient**: φ(n) = | \{k ≤ n : gcd(k,n) = 1 \} |  
+**φ-Constrained Totient**: φ_φ(n) = | \{k ≤ n : k φ-valid, φ-gcd(k,n) = 1 \} |  
 **Canonical Intersection**: **Natural number selection** where traditional and constrained totient computation converge
 
 The intersection demonstrates that:

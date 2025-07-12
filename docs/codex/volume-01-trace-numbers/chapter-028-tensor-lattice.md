@@ -112,8 +112,9 @@ Key insight: Different bases reveal different lattice structures!
 ```
 
 **Definition 28.1** (Tensor Lattice Basis): A basis B = {**b₁**, **b₂**, ..., **bₙ**} ⊂ T¹_φ forms a lattice basis if:
-$$\mathcal{L} = \left\{\sum_{i=1}^n c_i \mathbf{b}_i : c_i \in \mathbb{Z}\right\} \subset T^1_\varphi$$
-
+$$
+\mathcal{L} = \left\{\sum_{i=1}^n c_i \mathbf{b}_i : c_i \in \mathbb{Z}\right\} \subset T^1_\varphi
+$$
 ### Lattice Basis Architecture
 
 ```mermaid
@@ -215,8 +216,9 @@ All bases have determinant 0 (rank deficient)
 ```
 
 **Definition 28.2** (Trace Inner Product): For traces **t₁**, **t₂** ∈ T¹_φ as tensors:
-$$\langle \mathbf{t}_1, \mathbf{t}_2 \rangle = \sum_{i} t_1[i] \cdot t_2[i]$$
-
+$$
+\langle \mathbf{t}_1, \mathbf{t}_2 \rangle = \sum_{i} t_1[i] \cdot t_2[i]
+$$
 ### Gram Matrix Structure
 
 ```mermaid

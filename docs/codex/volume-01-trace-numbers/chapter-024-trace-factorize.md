@@ -188,7 +188,9 @@ Factorization Examples:
 ```
 
 **Definition 24.1** (Complete Trace Factorization): For any composite trace **t** ∈ T¹_φ, the complete factorization F: T¹_φ → P(T¹_φ × ℕ) is:
-$$F(\mathbf{t}) = \\{(\mathbf{p}_i, e_i) : \mathbf{p}_i \text{ prime trace}, \mathbf{t} = \prod_{i} \mathbf{p}_i^{e_i}\\}$$
+$$
+F(\mathbf{t}) = (\mathbf{p}_i, e_i) : \mathbf{p}_i \text{ prime trace}, \mathbf{t} = \prod_{i} \mathbf{p}_i^{e_i}
+$$
 where the product preserves φ-constraint at every step.
 
 ### Factorization Process Architecture
