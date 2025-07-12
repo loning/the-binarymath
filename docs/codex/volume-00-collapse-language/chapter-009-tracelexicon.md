@@ -348,9 +348,9 @@ Zipf coefficient: 0.97
 Semantic coherence: 0.456
 ```
 
-**Definition 9.4** (Category Coherence): For category C with words {w₁, ..., wₙ}:
+**Definition 9.4** (Category Coherence): For category C with words &#123;w₁, ..., wₙ&#125;:
 $$
-\text{coherence}(C) = \frac{1}{1 + \operatorname{avg}_{k,m} d(v_k, v_m)}
+\text{coherence}(C) = \frac{1}{1 + \overline{d(v_k, v_m)}}
 $$
 where d is semantic distance.
 

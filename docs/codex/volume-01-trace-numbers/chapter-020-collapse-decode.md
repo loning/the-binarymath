@@ -40,7 +40,7 @@ graph TD
 
 **Operations exclusive to structural mathematics:**
 - φ-constraint preservation: No "11" patterns allowed in valid traces
-- Fibonacci weight system: Position i contributes F_{i+1} to total value
+- Fibonacci weight system: Position i contributes F_(i+1) to total value
 - Zeckendorf uniqueness: Every natural number has unique φ-valid representation
 - Geometric meaning: Each bit represents presence of specific Fibonacci component
 - Structural validation: Every trace must pass φ-compliance before decoding
@@ -124,7 +124,7 @@ The **extreme sparsity** of intersection correspondence demonstrates:
 - No structural constraints on bit patterns
 - Purely arithmetic interpretation
 
-**φ-Constrained Trace Decoding**: Σᵢ bᵢ × F_{i+1} (Fibonacci positional system)
+**φ-Constrained Trace Decoding**: Σᵢ bᵢ × F_(i+1) (Fibonacci positional system)
 - Example: "101" = 1×F₁ + 0×F₂ + 1×F₃ = 1×1 + 0×1 + 1×2 = 3
 - Based on Fibonacci number progression
 - Strict φ-constraint on valid patterns ('11' forbidden)
@@ -134,7 +134,7 @@ The **extreme sparsity** of intersection correspondence demonstrates:
 
 | Aspect | Traditional Binary Decoding | Collapse Trace Decoding |
 |--------|----------------------------|------------------------|
-| **Weight System** | Powers of 2: \{1,2,4,8,16,...\} | Fibonacci: \{1,1,2,3,5,8,13,...\} |
+| **Weight System** | Powers of 2: &#123;1,2,4,8,16,...&#125; | Fibonacci: &#123;1,1,2,3,5,8,13,...&#125; |
 | **Constraints** | None (any bit pattern valid) | φ-constraint (no "11" patterns) |
 | **Example** | "1011₂" = 11₁₀ | "1011" → Invalid (contains "11") |
 | **Mathematics** | Exponential positional system | Combinatorial Fibonacci system |

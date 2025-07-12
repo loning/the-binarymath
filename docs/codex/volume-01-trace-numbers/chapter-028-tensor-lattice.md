@@ -111,9 +111,9 @@ Power basis: ['10', '100', '1010', '100000'] → values [1, 2, 4, 8]
 Key insight: Different bases reveal different lattice structures!
 ```
 
-**Definition 28.1** (Tensor Lattice Basis): A basis B = {**b₁**, **b₂**, ..., **bₙ**} ⊂ T¹_φ forms a lattice basis if:
+**Definition 28.1** (Tensor Lattice Basis): A basis B = &#123;**b₁**, **b₂**, ..., **bₙ**&#125; ⊂ T¹_φ forms a lattice basis if:
 $$
-\mathcal{L} = \left\{\sum_{i=1}^n c_i \mathbf{b}_i : c_i \in \mathbb{Z}\right\} \subset T^1_\varphi
+\mathcal{L} = \left\lbrace\sum_{i=1}^n c_i \mathbf{b}_i : c_i \in \mathbb{Z}\right\rbrace \subset T^1_\varphi
 $$
 ### Lattice Basis Architecture
 
