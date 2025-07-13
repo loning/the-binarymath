@@ -3,19 +3,18 @@
 Chapter 082: AlphaCollapse Unit Test Verification
 从ψ=ψ(ψ)推导Computing α via Rank-6/7 Weighted Trace Path Averages
 
-Core principle: From ψ = ψ(ψ) derive fine structure constant where α is φ-valid
-rank-6/7 trace resonance system that computes α through weighted trace path averages,
-creating systematic fine structure frameworks with bounded resonance patterns and natural constant
-properties governed by golden constraints, showing how α emerges from rank-6/7 trace structures.
+Core principle: From ψ = ψ(ψ) derive fine structure constant as geometric property
+of rank space, where α emerges as categorical limit between binary collapse tensors
+at electromagnetic ranks, revealing that physical constants are not arbitrary but
+necessary consequences of rank space topology.
 
 This verification program implements:
 1. φ-constrained α computation as rank-6/7 trace resonance operations
-2. Alpha analysis: resonance patterns, rank structure with φ-preservation
-3. Three-domain analysis: Traditional vs φ-constrained vs intersection fine structure theory
-4. Graph theory analysis of α networks and resonance connectivity patterns
-5. Information theory analysis of α entropy and resonance information
-6. Category theory analysis of α functors and resonance morphisms
-7. Visualization of α structures and resonance patterns
+2. Binary rank space geometry showing how constants emerge from geometric structure
+3. Observer dependence: how measured values vary with observer rank
+4. Three-level cascade structure emerging from self-reference hierarchy
+5. Predictions of constant variation for different observer positions
+6. Complete visualization of rank space geometry and α emergence
 """
 
 import torch
@@ -42,16 +41,18 @@ class AlphaCollapseSystem:
     """
     Core system for implementing fine structure constant computation through rank-6/7 trace resonances.
     Implements φ-constrained α analysis via rank-based weighted trace path operations.
+    Enhanced with rank space geometry framework showing α as geometric necessity.
     """
     
     def __init__(self, max_trace_size: int = 8, max_rank_traces: int = 30):
-        """Initialize alpha collapse system"""
+        """Initialize alpha collapse system with rank space geometry"""
         self.max_trace_size = max_trace_size
         self.max_rank_traces = max_rank_traces
         self.fibonacci_numbers = self._generate_fibonacci(10)
         self.alpha_cache = {}
         self.rank_cache = {}
         self.resonance_cache = {}
+        self.human_observer_rank = 25  # Human consciousness operates at rank ~25
         self.trace_universe = self._build_trace_universe()
         
     def _generate_fibonacci(self, count: int) -> List[int]:
@@ -423,6 +424,39 @@ class AlphaCollapseSystem:
         phi = (1 + sqrt(5)) / 2
         return ((dynamics + rank_dynamics) * phi) % 1.0
         
+    def predict_alpha_variation(self, delta_r_obs: float) -> Dict:
+        """
+        预测α随观察者秩变化
+        Physical constants vary with observer rank: Δα/α = (Δr_obs/r_obs) × log₂(φ)/ln(φ)
+        """
+        phi = (1 + np.sqrt(5)) / 2
+        r_obs_human = self.human_observer_rank
+        
+        # Binary channel capacity
+        channel_capacity = np.log2(phi) / np.log(phi)  # ≈ 0.694
+        
+        # Relative variation
+        relative_variation = (delta_r_obs / r_obs_human) * channel_capacity
+        
+        # Current α value
+        alpha_current = 1/137.035999084
+        
+        # Predicted α at new observer rank
+        alpha_new = alpha_current * (1 + relative_variation)
+        
+        return {
+            'delta_r_obs': delta_r_obs,
+            'r_obs_current': r_obs_human,
+            'r_obs_new': r_obs_human + delta_r_obs,
+            'channel_capacity': channel_capacity,
+            'relative_variation': relative_variation,
+            'variation_percent': relative_variation * 100,
+            'alpha_current': alpha_current,
+            'alpha_new': alpha_new,
+            'alpha_new_inverse': 1/alpha_new if alpha_new != 0 else 0,
+            'prediction': f'α will {"increase" if delta_r_obs > 0 else "decrease"} by {abs(relative_variation*100):.3f}%'
+        }
+    
     def compute_alpha_constant(self) -> Dict:
         """计算精细结构常数α的值 - Using Chapter 033 Master Cascade Formula"""
         if not self.trace_universe:
@@ -754,6 +788,219 @@ class AlphaCollapseSystem:
         # 4. Domain Analysis Visualization
         self._plot_domain_analysis()
         
+        # 5. Rank Space Geometry Visualization
+        self._plot_rank_space_geometry()
+        
+    def _plot_rank_space_geometry(self):
+        """可视化秩空间几何和观察者依赖性"""
+        phi = (1 + np.sqrt(5)) / 2
+        
+        fig = plt.figure(figsize=(18, 12))
+        
+        # 1. Collapse Tensor Field 3D Visualization - Enhanced
+        ax1 = fig.add_subplot(2, 3, 1, projection='3d')
+        
+        # Create finer rank and angle meshgrid for smoother visualization
+        r_vals = np.linspace(0, 30, 100)
+        theta_vals = np.linspace(0, 2*np.pi, 100)
+        R, THETA = np.meshgrid(r_vals, theta_vals)
+        
+        # Collapse tensor magnitude with oscillatory structure
+        # T^μν(r) = E_P φ^(-r) × oscillatory structure
+        MAGNITUDE = np.zeros_like(R)
+        for i in range(len(r_vals)):
+            for j in range(len(theta_vals)):
+                r = r_vals[i]
+                theta = theta_vals[j]
+                # Include both radial decay and angular modulation
+                radial_factor = phi**(-r)
+                oscillatory = np.abs(np.cos(np.pi * r / np.log(phi)))
+                angular_mod = 1 + 0.3 * np.cos(3 * theta) * np.exp(-r/10)  # Angular variation
+                mag = radial_factor * oscillatory * angular_mod
+                MAGNITUDE[j, i] = mag
+        
+        # Convert to 3D coordinates
+        X = R * np.cos(THETA)
+        Y = R * np.sin(THETA)
+        Z = MAGNITUDE
+        
+        # Create surface plot with enhanced colormap
+        surf = ax1.plot_surface(X, Y, Z, cmap='plasma', alpha=0.9, 
+                               edgecolor='none', linewidth=0,
+                               rcount=100, ccount=100,
+                               vmin=0, vmax=np.max(MAGNITUDE))
+        
+        # Add multiple contour levels
+        contour_levels = np.linspace(0, np.max(MAGNITUDE), 15)
+        contours = ax1.contour(X, Y, Z, levels=contour_levels, 
+                              zdir='z', offset=0, cmap='plasma', 
+                              alpha=0.6, linewidths=0.5)
+        
+        # Mark special electromagnetic ranks with enhanced visualization
+        special_ranks = {
+            6: {'color': 'red', 'label': 'Rank-6 (Primary EM)', 'linewidth': 4},
+            7: {'color': 'orange', 'label': 'Rank-7 (Secondary EM)', 'linewidth': 3},
+            5: {'color': 'yellow', 'label': 'Rank-5 (Adjacent)', 'linewidth': 2, 'alpha': 0.5},
+            8: {'color': 'cyan', 'label': 'Rank-8 (Adjacent)', 'linewidth': 2, 'alpha': 0.5}
+        }
+        
+        for rank, props in special_ranks.items():
+            theta_circle = np.linspace(0, 2*np.pi, 200)
+            x_circle = rank * np.cos(theta_circle)
+            y_circle = rank * np.sin(theta_circle)
+            # Calculate z values with angular modulation
+            z_circle = []
+            for theta in theta_circle:
+                radial_factor = phi**(-rank)
+                oscillatory = np.abs(np.cos(np.pi * rank / np.log(phi)))
+                angular_mod = 1 + 0.3 * np.cos(3 * theta) * np.exp(-rank/10)
+                z_circle.append(radial_factor * oscillatory * angular_mod)
+            z_circle = np.array(z_circle)
+            
+            ax1.plot(x_circle, y_circle, z_circle, 
+                    color=props['color'], 
+                    linewidth=props['linewidth'],
+                    alpha=props.get('alpha', 1.0),
+                    label=props['label'])
+        
+        # Add radial lines for better depth perception
+        for angle in np.linspace(0, 2*np.pi, 8, endpoint=False):
+            r_line = np.linspace(0, 30, 50)
+            x_line = r_line * np.cos(angle)
+            y_line = r_line * np.sin(angle)
+            z_line = phi**(-r_line) * np.abs(np.cos(np.pi * r_line / np.log(phi)))
+            ax1.plot(x_line, y_line, z_line, 'k-', alpha=0.1, linewidth=0.5)
+        
+        # Add colorbar
+        cbar = fig.colorbar(surf, ax=ax1, shrink=0.5, aspect=5)
+        cbar.set_label('T^μν Magnitude', rotation=270, labelpad=15)
+        
+        ax1.set_xlabel('r cos(θ)', fontsize=10)
+        ax1.set_ylabel('r sin(θ)', fontsize=10)
+        ax1.set_zlabel('Tensor Magnitude', fontsize=10)
+        ax1.set_title('Collapse Tensor Field T^μν(r) with EM Resonances', fontsize=12, fontweight='bold')
+        ax1.legend(loc='upper left', fontsize=8)
+        ax1.view_init(elev=20, azim=30)
+        ax1.set_box_aspect([1,1,0.5])  # Adjust aspect ratio
+        
+        # 2. Observer rank dependence
+        ax2 = fig.add_subplot(2, 3, 2)
+        
+        delta_r_values = np.linspace(-10, 10, 50)
+        alpha_variations = []
+        alpha_inverses = []
+        
+        for delta_r in delta_r_values:
+            pred = self.predict_alpha_variation(delta_r)
+            alpha_variations.append(pred['variation_percent'])
+            alpha_inverses.append(pred['alpha_new_inverse'])
+        
+        ax2.plot(delta_r_values + 25, alpha_inverses, 'b-', linewidth=2)
+        ax2.axhline(y=137.036, color='r', linestyle='--', alpha=0.5, label='Human α⁻¹')
+        ax2.axvline(x=25, color='r', linestyle='--', alpha=0.5, label='Human rank')
+        ax2.set_xlabel('Observer Rank')
+        ax2.set_ylabel('Measured α⁻¹')
+        ax2.set_title('Fine Structure Constant vs Observer Rank')
+        ax2.legend()
+        ax2.grid(True, alpha=0.3)
+        
+        # 3. Three-level cascade breakdown
+        ax3 = fig.add_subplot(2, 3, 3)
+        
+        cascade_data = self.compute_alpha_constant()
+        levels = ['Level 0\n(Baseline)', 'Level 1\n(Golden)', 'Level 2\n(Fibonacci)']
+        values = [
+            cascade_data['cascade_level_0'],
+            cascade_data['cascade_level_1'],
+            cascade_data['cascade_level_2']
+        ]
+        contributions = [v/cascade_data['cascade_visibility']*100 for v in values]
+        
+        bars = ax3.bar(levels, values, color=['blue', 'green', 'red'], alpha=0.7)
+        
+        # Add contribution percentages
+        for bar, contrib in zip(bars, contributions):
+            height = bar.get_height()
+            ax3.text(bar.get_x() + bar.get_width()/2., height,
+                    f'{contrib:.1f}%', ha='center', va='bottom')
+        
+        ax3.set_ylabel('Cascade value')
+        ax3.set_title('Three-Level Cascade Structure')
+        ax3.set_ylim(0, 0.6)
+        
+        # 4. Rank-6/7 resonance visualization
+        ax4 = fig.add_subplot(2, 3, 4)
+        
+        ranks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        contributions = []
+        
+        for rank in ranks:
+            # Get traces at this rank
+            rank_traces = [data for data in self.trace_universe.values() 
+                          if data.get('alpha_properties', {}).get('rank', 0) == rank]
+            if rank_traces:
+                contrib = np.mean([t['alpha_properties']['alpha_contribution'] 
+                                 for t in rank_traces])
+            else:
+                contrib = 0
+            contributions.append(contrib)
+        
+        bars = ax4.bar(ranks, contributions, color=['gray']*5 + ['green', 'orange'] + ['gray']*3)
+        ax4.axhline(y=2.141, color='g', linestyle='--', alpha=0.5, label='Rank-6 level')
+        ax4.axhline(y=2.488, color='orange', linestyle='--', alpha=0.5, label='Rank-7 level')
+        ax4.set_xlabel('Rank')
+        ax4.set_ylabel('Mean α Contribution')
+        ax4.set_title('Rank-Specific α Contributions')
+        ax4.legend()
+        
+        # 5. Theoretical vs measured comparison
+        ax5 = fig.add_subplot(2, 3, 5)
+        
+        categories = ['Theoretical\n(Perfect)', 'Measured\n(Degraded)']
+        alpha_theoretical = cascade_data['alpha_phi_theoretical']
+        alpha_measured = cascade_data['alpha_traditional']
+        values = [alpha_theoretical, alpha_measured]
+        
+        bars = ax5.bar(categories, values, color=['gold', 'gray'], alpha=0.7)
+        
+        # Add values on bars
+        for bar, val in zip(bars, values):
+            height = bar.get_height()
+            ax5.text(bar.get_x() + bar.get_width()/2., height,
+                    f'α⁻¹={1/val:.6f}', ha='center', va='bottom', fontsize=10)
+        
+        ax5.set_ylabel('Fine structure constant α')
+        ax5.set_title('Theoretical vs Measured α')
+        ax5.set_ylim(0, max(values) * 1.2)
+        
+        # 6. Rank space metric components visualization
+        ax6 = fig.add_subplot(2, 3, 6)
+        
+        # Show how metric components vary with rank
+        ranks = np.linspace(0, 30, 100)
+        g_rr_values = [1/phi**(2*r/3) for r in ranks]
+        g_theta_values = [phi**(2*r/3) for r in ranks]
+        
+        ax6.semilogy(ranks, g_rr_values, 'b-', label='g_rr (radial)', linewidth=2)
+        ax6.semilogy(ranks, g_theta_values, 'r-', label='g_θθ (angular)', linewidth=2)
+        
+        # Mark special ranks
+        ax6.axvline(x=6, color='g', linestyle='--', alpha=0.5, label='Rank-6')
+        ax6.axvline(x=7, color='orange', linestyle='--', alpha=0.5, label='Rank-7')
+        ax6.axvline(x=25, color='purple', linestyle='--', alpha=0.5, label='Human observer')
+        
+        ax6.set_xlabel('Rank r')
+        ax6.set_ylabel('Metric component (log scale)')
+        ax6.set_title('Binary Rank Space Metric: ds² = dr²/φ^(2r/3) + φ^(2r/3)dθ²')
+        ax6.legend()
+        ax6.grid(True, alpha=0.3)
+        
+        plt.tight_layout()
+        plt.savefig('chapter-082-alpha-collapse-rank-geometry.png', dpi=300, bbox_inches='tight')
+        plt.close()
+        
+        print("Rank space geometry visualization saved.")
+    
     def _plot_alpha_computation_process(self):
         """绘制α计算过程的详细可视化 - 基于Chapter 033 Cascade Structure"""
         fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(16, 12))

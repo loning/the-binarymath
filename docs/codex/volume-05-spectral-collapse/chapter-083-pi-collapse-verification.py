@@ -42,16 +42,18 @@ class PiCollapseSystem:
     """
     Core system for implementing π computation through closed trace loops.
     Implements φ-constrained π analysis via closed geometric trace operations.
+    Enhanced with rank space geometry framework showing π as geometric necessity.
     """
     
     def __init__(self, max_loop_size: int = 8, max_closed_traces: int = 24):
-        """Initialize pi collapse system"""
+        """Initialize pi collapse system with rank space geometry"""
         self.max_loop_size = max_loop_size
         self.max_closed_traces = max_closed_traces
         self.fibonacci_numbers = self._generate_fibonacci(12)
         self.pi_cache = {}
         self.loop_cache = {}
         self.geometric_cache = {}
+        self.human_observer_rank = 25  # Human consciousness operates at rank ~25
         self.trace_universe = self._build_trace_universe()
         
     def _generate_fibonacci(self, count: int) -> List[int]:
@@ -489,6 +491,33 @@ class PiCollapseSystem:
         phi = (1 + sqrt(5)) / 2
         return ((dynamics + closure_measure) * phi) % 1.0
         
+    def predict_pi_variation(self, delta_r_obs: float) -> Dict:
+        """
+        预测观察者rank变化对π测量的影响
+        Δπ/π = (Δr_obs/r_obs) × log₂(φ)/ln(φ) × geometric_factor
+        """
+        phi = (1 + np.sqrt(5)) / 2
+        r_obs = self.human_observer_rank
+        
+        # Observer variation factor with geometric coupling
+        variation_factor = (delta_r_obs / r_obs) * np.log2(phi) / np.log(phi) * 0.8
+        
+        # Current theoretical π
+        pi_theoretical = np.pi
+        
+        # Predicted variation
+        variation_percent = variation_factor * 100
+        pi_new = pi_theoretical * (1 + variation_factor)
+        
+        return {
+            'delta_r_obs': delta_r_obs,
+            'r_obs_new': r_obs + delta_r_obs,
+            'variation_percent': variation_percent,
+            'pi_theoretical': pi_theoretical,
+            'pi_new': pi_new,
+            'geometric_factor': 0.8
+        }
+    
     def compute_pi_constant(self) -> Dict:
         """计算π常数的值 - Master π Formula from Closed φ-Traces"""
         if not self.trace_universe:
@@ -806,6 +835,9 @@ class PiCollapseSystem:
         
         # 5. Domain Analysis Visualization
         self._plot_domain_analysis()
+        
+        # 6. Rank Space Geometry Visualization
+        self._plot_rank_space_geometry()
         
     def _plot_pi_computation_process(self):
         """绘制π计算过程的详细可视化 - φ-constrained geometric computation"""
@@ -1197,6 +1229,201 @@ class PiCollapseSystem:
         plt.tight_layout()
         plt.savefig('chapter-083-pi-collapse-domains.png', dpi=300, bbox_inches='tight')
         plt.close()
+        
+    def _plot_rank_space_geometry(self):
+        """可视化秩空间几何和观察者依赖性 - 显示π如何从几何结构中产生"""
+        phi = (1 + np.sqrt(5)) / 2
+        
+        fig = plt.figure(figsize=(18, 12))
+        
+        # 1. Collapse Tensor Field 3D Visualization for π
+        ax1 = fig.add_subplot(2, 3, 1, projection='3d')
+        
+        # Create finer rank and angle meshgrid
+        r_vals = np.linspace(0, 30, 100)
+        theta_vals = np.linspace(0, 2*np.pi, 100)
+        R, THETA = np.meshgrid(r_vals, theta_vals)
+        
+        # Collapse tensor with circular geometry emphasis
+        MAGNITUDE = np.zeros_like(R)
+        for i in range(len(r_vals)):
+            for j in range(len(theta_vals)):
+                r = r_vals[i]
+                theta = theta_vals[j]
+                # Circular wave patterns for π
+                radial_factor = phi**(-r)
+                circular_wave = np.abs(np.sin(np.pi * r / 4))  # Circular resonance
+                angular_mod = 1 + 0.2 * np.cos(4 * theta) * np.exp(-r/15)  # 4-fold symmetry
+                mag = radial_factor * circular_wave * angular_mod
+                MAGNITUDE[j, i] = mag
+        
+        # Convert to 3D coordinates
+        X = R * np.cos(THETA)
+        Y = R * np.sin(THETA)
+        Z = MAGNITUDE
+        
+        # Create surface plot
+        surf = ax1.plot_surface(X, Y, Z, cmap='coolwarm', alpha=0.9,
+                               edgecolor='none', linewidth=0,
+                               rcount=100, ccount=100)
+        
+        # Add contour lines
+        contour_levels = np.linspace(0, np.max(MAGNITUDE), 20)
+        contours = ax1.contour(X, Y, Z, levels=contour_levels,
+                              zdir='z', offset=0, cmap='coolwarm',
+                              alpha=0.6, linewidths=0.5)
+        
+        # Mark special geometric ranks
+        special_ranks = {
+            3: {'color': 'red', 'label': 'Rank-3 (π seed)', 'linewidth': 4},
+            10: {'color': 'orange', 'label': 'Rank-10 (π×3)', 'linewidth': 3},
+            22: {'color': 'yellow', 'label': 'Rank-22 (π×7)', 'linewidth': 2}
+        }
+        
+        for rank, props in special_ranks.items():
+            theta_circle = np.linspace(0, 2*np.pi, 200)
+            x_circle = rank * np.cos(theta_circle)
+            y_circle = rank * np.sin(theta_circle)
+            z_circle = []
+            for theta in theta_circle:
+                radial_factor = phi**(-rank)
+                circular_wave = np.abs(np.sin(np.pi * rank / 4))
+                angular_mod = 1 + 0.2 * np.cos(4 * theta) * np.exp(-rank/15)
+                z_circle.append(radial_factor * circular_wave * angular_mod)
+            z_circle = np.array(z_circle)
+            
+            ax1.plot(x_circle, y_circle, z_circle,
+                    color=props['color'],
+                    linewidth=props['linewidth'],
+                    label=props['label'])
+        
+        # Add circular grid lines
+        for radius in [3, 10, 22]:
+            theta_grid = np.linspace(0, 2*np.pi, 100)
+            x_grid = radius * np.cos(theta_grid)
+            y_grid = radius * np.sin(theta_grid)
+            ax1.plot(x_grid, y_grid, 0, 'k-', alpha=0.2, linewidth=0.5)
+        
+        # Colorbar
+        cbar = fig.colorbar(surf, ax=ax1, shrink=0.5, aspect=5)
+        cbar.set_label('Geometric Field Magnitude', rotation=270, labelpad=15)
+        
+        ax1.set_xlabel('r cos(θ)', fontsize=10)
+        ax1.set_ylabel('r sin(θ)', fontsize=10)
+        ax1.set_zlabel('Field Magnitude', fontsize=10)
+        ax1.set_title('Circular Geometry in Rank Space', fontsize=12, fontweight='bold')
+        ax1.legend(loc='upper left', fontsize=8)
+        ax1.view_init(elev=25, azim=45)
+        ax1.set_box_aspect([1,1,0.5])
+        
+        # 2. Observer rank dependence for π
+        ax2 = fig.add_subplot(2, 3, 2)
+        
+        delta_r_values = np.linspace(-10, 10, 50)
+        pi_variations = []
+        pi_values = []
+        
+        for delta_r in delta_r_values:
+            pred = self.predict_pi_variation(delta_r)
+            pi_variations.append(pred['variation_percent'])
+            pi_values.append(pred['pi_new'])
+        
+        ax2.plot(delta_r_values + 25, pi_values, 'b-', linewidth=2)
+        ax2.axhline(y=np.pi, color='r', linestyle='--', alpha=0.5, label='True π')
+        ax2.axvline(x=25, color='r', linestyle='--', alpha=0.5, label='Human rank')
+        ax2.set_xlabel('Observer Rank')
+        ax2.set_ylabel('Measured π')
+        ax2.set_title('π Value vs Observer Rank')
+        ax2.legend()
+        ax2.grid(True, alpha=0.3)
+        
+        # 3. Three-level cascade for π
+        ax3 = fig.add_subplot(2, 3, 3)
+        
+        pi_data = self.compute_pi_constant()
+        levels = ['Level 0\n(Base)', 'Level 1\n(Golden)', 'Level 2\n(Fibonacci)']
+        values = [
+            pi_data['pi_cascade_level_0'],
+            pi_data['pi_cascade_level_1'],
+            pi_data['pi_cascade_level_2']
+        ]
+        contributions = [v/pi_data['pi_cascade_total']*100 for v in values]
+        
+        bars = ax3.bar(levels, values, color=['blue', 'green', 'red'], alpha=0.7)
+        
+        for bar, contrib in zip(bars, contributions):
+            height = bar.get_height()
+            ax3.text(bar.get_x() + bar.get_width()/2., height,
+                    f'{contrib:.1f}%', ha='center', va='bottom')
+        
+        ax3.set_ylabel('Cascade value')
+        ax3.set_title('π Three-Level Cascade Structure')
+        ax3.set_ylim(0, 3.5)
+        
+        # 4. Closed loop distribution
+        ax4 = fig.add_subplot(2, 3, 4)
+        
+        loop_types = defaultdict(int)
+        for data in self.trace_universe.values():
+            loop_type = data.get('pi_properties', {}).get('loop_type', 'open')
+            loop_types[loop_type] += 1
+        
+        types = list(loop_types.keys())
+        counts = list(loop_types.values())
+        colors = ['red' if 'closed' in t else 'gray' for t in types]
+        
+        bars = ax4.bar(types, counts, color=colors, alpha=0.7)
+        ax4.set_xlabel('Loop Type')
+        ax4.set_ylabel('Count')
+        ax4.set_title('Distribution of Loop Types')
+        ax4.tick_params(axis='x', rotation=45)
+        
+        # 5. Theoretical vs computed π
+        ax5 = fig.add_subplot(2, 3, 5)
+        
+        categories = ['Theoretical\n(Exact)', 'Computed\n(φ-traces)']
+        pi_theoretical = pi_data['pi_traditional']
+        pi_computed = pi_data['pi_phi_theoretical']
+        values = [pi_theoretical, pi_computed]
+        
+        bars = ax5.bar(categories, values, color=['gold', 'silver'], alpha=0.7)
+        
+        for bar, val in zip(bars, values):
+            height = bar.get_height()
+            ax5.text(bar.get_x() + bar.get_width()/2., height,
+                    f'{val:.6f}', ha='center', va='bottom', fontsize=10)
+        
+        ax5.set_ylabel('π value')
+        ax5.set_title('Theoretical vs Computed π')
+        ax5.set_ylim(0, 4)
+        
+        # 6. Rank space metric for circular geometry
+        ax6 = fig.add_subplot(2, 3, 6)
+        
+        # Metric components emphasizing circular symmetry
+        ranks = np.linspace(0, 30, 100)
+        g_rr_values = [1/phi**(2*r/3) for r in ranks]
+        g_theta_values = [phi**(2*r/3) for r in ranks]
+        
+        ax6.semilogy(ranks, g_rr_values, 'b-', label='g_rr (radial)', linewidth=2)
+        ax6.semilogy(ranks, g_theta_values, 'r-', label='g_θθ (angular)', linewidth=2)
+        
+        # Mark where metric components are equal (circular regime)
+        equal_idx = np.argmin(np.abs(np.array(g_rr_values) - np.array(g_theta_values)))
+        ax6.axvline(x=ranks[equal_idx], color='green', linestyle='--', 
+                   label=f'Equal at r={ranks[equal_idx]:.1f}')
+        
+        ax6.set_xlabel('Rank r')
+        ax6.set_ylabel('Metric Component')
+        ax6.set_title('Rank Space Metric Components')
+        ax6.legend()
+        ax6.grid(True, alpha=0.3)
+        
+        plt.suptitle('Rank Space Geometry and π Emergence', fontsize=16, fontweight='bold')
+        plt.tight_layout()
+        plt.savefig('chapter-083-pi-collapse-rank-geometry.png', dpi=300, bbox_inches='tight')
+        plt.close()
+        print("Rank space geometry visualization saved.")
 
 class TestPiCollapse(unittest.TestCase):
     """测试PiCollapse系统的各个组件"""
