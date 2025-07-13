@@ -85,7 +85,7 @@ Category preservation: 0.333 (selective composition)
 ### The Consistency Convergence Principle: Natural Coherence Optimization
 
 **Traditional Consistency**: ¬(p ∧ ¬p) through abstract logical checking  
-**φ-Constrained Coherence**: C_φ: Operations → {Consistent, Inconsistent} through structural preservation with φ-maintenance  
+**φ-Constrained Coherence**: C_φ: Operations → &#123;Consistent, Inconsistent&#125; through structural preservation with φ-maintenance  
 **Consistency Convergence**: **Selective implementation alignment** where traditional consistency achieves structural coherence with enhanced pattern recognition
 
 The convergence demonstrates that:

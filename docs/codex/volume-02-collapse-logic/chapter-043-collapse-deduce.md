@@ -83,7 +83,7 @@ Deduction entropy: 1.750 bits (balanced diversity)
 ### The Deductive Convergence Principle: Natural Path Optimization
 
 **Traditional Deduction**: P ⊢ Q through abstract inference rules  
-**φ-Constrained Expansion**: D_φ: Trace_φ → {Trace_φ} through controlled path growth with φ-preservation  
+**φ-Constrained Expansion**: D_φ: Trace_φ → &#123;Trace_φ&#125; through controlled path growth with φ-preservation  
 **Deductive Convergence**: **Structured implementation alignment** where traditional deduction achieves path expansion with controlled inference
 
 The convergence demonstrates that:
