@@ -707,10 +707,6 @@ class AlphaCollapseSystem:
         if not self.trace_universe:
             return
             
-        # Create visualizations directory
-        import os
-        os.makedirs('visualization_output', exist_ok=True)
-        
         # 1. Alpha Structure Visualization
         self._plot_alpha_structure()
         
@@ -773,7 +769,7 @@ class AlphaCollapseSystem:
         ax4.set_title('Alpha Type Distribution')
         
         plt.tight_layout()
-        plt.savefig('visualization_output/chapter-082-alpha-collapse-structure.png', dpi=300, bbox_inches='tight')
+        plt.savefig('chapter-082-alpha-collapse-structure.png', dpi=300, bbox_inches='tight')
         plt.close()
         
     def _plot_alpha_properties(self):
@@ -828,7 +824,7 @@ class AlphaCollapseSystem:
         ax4.set_aspect('equal')
         
         plt.tight_layout()
-        plt.savefig('visualization_output/chapter-082-alpha-collapse-properties.png', dpi=300, bbox_inches='tight')
+        plt.savefig('chapter-082-alpha-collapse-properties.png', dpi=300, bbox_inches='tight')
         plt.close()
         
     def _plot_domain_analysis(self):
@@ -885,7 +881,7 @@ class AlphaCollapseSystem:
         ax4.grid(True, alpha=0.3)
         
         plt.tight_layout()
-        plt.savefig('visualization_output/chapter-082-alpha-collapse-domains.png', dpi=300, bbox_inches='tight')
+        plt.savefig('chapter-082-alpha-collapse-domains.png', dpi=300, bbox_inches='tight')
         plt.close()
 
 class TestAlphaCollapse(unittest.TestCase):
@@ -1047,7 +1043,7 @@ def run_alpha_collapse_verification():
     # Generate visualizations
     print("\n5. Generating Visualizations...")
     alpha_system.generate_visualizations()
-    print("Visualizations saved to visualization_output/")
+    print("Visualizations saved to current directory")
     
     # Run unit tests
     print("\n6. Running Unit Tests...")

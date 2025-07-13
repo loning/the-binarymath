@@ -580,10 +580,6 @@ class CollapseAnalyzerSystem:
         if not self.trace_universe:
             return
             
-        # Create visualizations directory
-        import os
-        os.makedirs('visualization_output', exist_ok=True)
-        
         # 1. Frequency Structure Visualization
         self._plot_frequency_structure()
         
@@ -637,7 +633,7 @@ class CollapseAnalyzerSystem:
         ax4.set_title('Frequency Type Distribution')
         
         plt.tight_layout()
-        plt.savefig('visualization_output/chapter-081-collapse-analyzer-structure.png', dpi=300, bbox_inches='tight')
+        plt.savefig('chapter-081-collapse-analyzer-structure.png', dpi=300, bbox_inches='tight')
         plt.close()
         
     def _plot_frequency_properties(self):
@@ -691,7 +687,7 @@ class CollapseAnalyzerSystem:
         ax4.set_aspect('equal')
         
         plt.tight_layout()
-        plt.savefig('visualization_output/chapter-081-collapse-analyzer-properties.png', dpi=300, bbox_inches='tight')
+        plt.savefig('chapter-081-collapse-analyzer-properties.png', dpi=300, bbox_inches='tight')
         plt.close()
         
     def _plot_domain_analysis(self):
@@ -766,7 +762,7 @@ class CollapseAnalyzerSystem:
         ax4.grid(True, alpha=0.3)
         
         plt.tight_layout()
-        plt.savefig('visualization_output/chapter-081-collapse-analyzer-domains.png', dpi=300, bbox_inches='tight')
+        plt.savefig('chapter-081-collapse-analyzer-domains.png', dpi=300, bbox_inches='tight')
         plt.close()
 
 class TestCollapseAnalyzer(unittest.TestCase):
@@ -904,7 +900,7 @@ def run_collapse_analyzer_verification():
     # Generate visualizations
     print("\n5. Generating Visualizations...")
     analyzer.generate_visualizations()
-    print("Visualizations saved to visualization_output/")
+    print("Visualizations saved to current directory")
     
     # Run unit tests
     print("\n6. Running Unit Tests...")
