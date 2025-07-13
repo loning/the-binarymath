@@ -491,112 +491,55 @@ class PiCollapseSystem:
         phi = (1 + sqrt(5)) / 2
         return ((dynamics + closure_measure) * phi) % 1.0
         
-    def predict_pi_variation(self, delta_r_obs: float) -> Dict:
-        """
-        预测观察者rank变化对π测量的影响
-        Δπ/π = (Δr_obs/r_obs) × log₂(φ)/ln(φ) × geometric_factor
-        """
-        phi = (1 + np.sqrt(5)) / 2
-        r_obs = self.human_observer_rank
-        
-        # Observer variation factor with geometric coupling
-        variation_factor = (delta_r_obs / r_obs) * np.log2(phi) / np.log(phi) * 0.8
-        
-        # Current theoretical π
-        pi_theoretical = np.pi
-        
-        # Predicted variation
-        variation_percent = variation_factor * 100
-        pi_new = pi_theoretical * (1 + variation_factor)
-        
-        return {
-            'delta_r_obs': delta_r_obs,
-            'r_obs_new': r_obs + delta_r_obs,
-            'variation_percent': variation_percent,
-            'pi_theoretical': pi_theoretical,
-            'pi_new': pi_new,
-            'geometric_factor': 0.8
-        }
     
     def compute_pi_constant(self) -> Dict:
-        """计算π常数的值 - Master π Formula from Closed φ-Traces"""
+        """计算π的近似值 - 通过闭合φ-迹的几何分析"""
         if not self.trace_universe:
             return {}
             
-        # Binary Foundation: Golden ratio and Fibonacci numbers
-        phi = (1 + np.sqrt(5)) / 2
+        # π是数学常数，这里只是分析φ-迹空间中的几何性质
+        pi_mathematical = np.pi  # 3.141592653589793...
         
-        # Three-level π cascade computation (inspired by α cascade structure)
-        # Level 0: Universal geometric baseline
-        pi_cascade_level_0 = 3.0  # Base π approximation
-        
-        # Level 1: Golden ratio geometric modulation  
-        pi_cascade_level_1 = 0.25 * np.cos(np.pi / phi)**2  # Golden angle modulation
-        
-        # Level 2: Fibonacci geometric correction from closed loops
-        F_6, F_7, F_8 = 8, 13, 21  # Fibonacci numbers for π computation
-        geometric_factor = F_8 + F_7 - F_6  # = 21 + 13 - 8 = 26
-        pi_cascade_level_2 = 1 / (geometric_factor * phi**3)  # Geometric correction
-        
-        # Total π cascade visibility
-        pi_cascade_total = pi_cascade_level_0 + pi_cascade_level_1 + pi_cascade_level_2
-        
-        # Focus on closed loop traces for π computation
+        # 分析闭合迹的几何性质
         closed_traces = [data for data in self.trace_universe.values() 
                         if data['pi_properties']['loop_type'] in ['full_closed', 'partial_closed']]
         
-        # Compute weighted averages for closed loops
-        def compute_weighted_average(traces, weight_key, value_key):
-            if not traces:
-                return 0.0
-            weights = [t['pi_properties'][weight_key] for t in traces]
-            values = [t['pi_properties'][value_key] for t in traces]
-            total_weight = sum(weights)
-            if total_weight == 0:
-                return 0.0
-            return sum(w * v for w, v in zip(weights, values)) / total_weight
-            
-        # Closed loop π contributions
-        closed_pi_contribution = compute_weighted_average(closed_traces, 'loop_weight', 'pi_contribution')
+        # 计算闭合迹的平均周长/直径比
+        circumference_diameter_ratios = []
+        for trace_data in closed_traces:
+            pi_props = trace_data['pi_properties']
+            if pi_props['diameter_estimate'] > 0:
+                ratio = pi_props['geometric_circumference'] / pi_props['diameter_estimate']
+                circumference_diameter_ratios.append(ratio)
         
-        # φ-enhanced π calculation using closed loop geometry
-        pi_phi_raw = closed_pi_contribution if closed_pi_contribution > 0 else pi_cascade_total
+        # 平均比率
+        if circumference_diameter_ratios:
+            mean_ratio = np.mean(circumference_diameter_ratios)
+            std_ratio = np.std(circumference_diameter_ratios)
+        else:
+            mean_ratio = 0.0
+            std_ratio = 0.0
         
-        # Perfect theoretical π calculation (φ-constrained geometric formula)
-        # Based on closed trace circumference/diameter ratios with φ-constraint optimization
-        perfect_pi_phi = pi_cascade_total * (1 + phi**(-3))  # Golden ratio geometric enhancement
-        
-        # Traditional π (mathematically perfect but not φ-constrained)
-        pi_traditional = np.pi  # 3.141592653589793
-        
-        # Enhancement analysis
-        enhancement_ratio = perfect_pi_phi / pi_traditional
+        # 分析φ-迹空间的几何特性
+        phi = (1 + np.sqrt(5)) / 2
         
         return {
-            # Theoretical perfect values (from φ-constrained geometry)
-            'pi_phi_theoretical': perfect_pi_phi,
-            'pi_cascade_level_0': pi_cascade_level_0,
-            'pi_cascade_level_1': pi_cascade_level_1,
-            'pi_cascade_level_2': pi_cascade_level_2,
-            'pi_cascade_total': pi_cascade_total,
-            'golden_ratio': phi,
-            'geometric_factor': geometric_factor,
+            # 数学常数π
+            'pi_mathematical': pi_mathematical,
             
-            # Traditional value
-            'pi_traditional': pi_traditional,
-            
-            # Enhancement analysis  
-            'enhancement_ratio': enhancement_ratio,
-            'geometric_optimization': (perfect_pi_phi - pi_traditional) / pi_traditional * 100,
-            
-            # Empirical closed loop contributions
-            'closed_pi_contribution': closed_pi_contribution,
+            # φ-迹空间的几何分析
             'closed_traces_count': len(closed_traces),
             'total_traces': len(self.trace_universe),
+            'mean_circumference_diameter_ratio': mean_ratio,
+            'std_circumference_diameter_ratio': std_ratio,
             
-            # Revolutionary insight
-            'phi_constraint_enhances_pi': enhancement_ratio > 1.0,
-            'geometric_optimization_achieved': True
+            # 几何特性
+            'closed_loop_percentage': len(closed_traces) / len(self.trace_universe) * 100,
+            'golden_ratio': phi,
+            
+            # 比较分析
+            'ratio_difference_from_pi': mean_ratio - pi_mathematical if mean_ratio > 0 else None,
+            'relative_difference': (mean_ratio - pi_mathematical) / pi_mathematical * 100 if mean_ratio > 0 else None
         }
         
     def analyze_pi_system(self) -> Dict:
@@ -846,7 +789,7 @@ class PiCollapseSystem:
         # Get π computation data
         pi_comp = self.compute_pi_constant()
         
-        # 1. π Cascade Formula Steps (geometric foundation)
+        # 1. π Computation Process Steps (geometric foundation)
         steps = ['ψ = ψ(ψ)', 'Closed\nTraces', 'Geometric\nLoops', 'φ-Constraint\nOptimization', 
                 'Circumference/\nDiameter', 'Golden\nRatio', 'Perfect\nπ_φ', 'Enhanced π']
         step_values = [1.0, 24, 8, 0.618, 3.14159, 1.618, 3.155, 3.155]  # Representative values
@@ -859,50 +802,56 @@ class PiCollapseSystem:
         ax1.set_xticks(x_pos)
         ax1.set_xticklabels(steps, rotation=45, ha='right', fontsize=9)
         ax1.set_ylabel('Process Values')
-        ax1.set_title('π Computation: φ-Constrained Geometric Formula')
+        ax1.set_title('π Analysis: φ-Constrained Geometric Properties')
         ax1.grid(True, alpha=0.3)
         
-        # 2. Three-Level π Cascade Structure
-        cascade_levels = ['Level 0\nGeometric Base', 'Level 1\nGolden Angle', 'Level 2\nFibonacci', 'Total\nπ Cascade']
-        cascade_values = [pi_comp['pi_cascade_level_0'], pi_comp['pi_cascade_level_1'], 
-                         pi_comp['pi_cascade_level_2'], pi_comp['pi_cascade_total']]
-        cascade_colors = ['lightblue', 'gold', 'lightcoral', 'darkgreen']
+        # 2. 几何性质分析
+        analysis_labels = ['Closed\nTraces', 'Mean C/D\nRatio', 'Std Dev\nC/D']
+        analysis_values = [
+            pi_comp['closed_traces_count'],
+            pi_comp['mean_circumference_diameter_ratio'],
+            pi_comp['std_circumference_diameter_ratio']
+        ]
+        analysis_colors = ['lightblue', 'gold', 'lightcoral']
         
-        bars = ax2.bar(cascade_levels, cascade_values, color=cascade_colors, alpha=0.8)
-        ax2.set_ylabel('π Cascade Values')
-        ax2.set_title('Three-Level π Cascade Computation')
+        bars = ax2.bar(analysis_labels, analysis_values, color=analysis_colors, alpha=0.8)
+        ax2.set_ylabel('Values')
+        ax2.set_title('Geometric Properties of φ-Traces')
         ax2.grid(True, alpha=0.3)
         
         # Add value labels on bars
-        for bar, value in zip(bars, cascade_values):
+        for bar, value in zip(bars, analysis_values):
             height = bar.get_height()
             ax2.text(bar.get_x() + bar.get_width()/2., height + height*0.02,
-                    f'{value:.6f}', ha='center', va='bottom', fontsize=9)
+                    f'{value:.3f}', ha='center', va='bottom', fontsize=9)
         
-        # 3. Traditional vs φ-Enhanced π Comparison
-        pi_categories = ['Traditional\nπ', 'φ-Enhanced\nπ_φ', 'Enhancement\nGain']
-        pi_values = [pi_comp['pi_traditional'], pi_comp['pi_phi_theoretical'], 
-                    pi_comp['pi_phi_theoretical'] - pi_comp['pi_traditional']]
-        pi_colors = ['lightcoral', 'gold', 'lightgreen']
+        # 3. π比较分析
+        comparison_labels = ['Mathematical\nπ', 'Mean C/D\nin φ-traces', 'Difference']
+        comparison_values = [
+            pi_comp['pi_mathematical'],
+            pi_comp['mean_circumference_diameter_ratio'],
+            abs(pi_comp['ratio_difference_from_pi']) if pi_comp['ratio_difference_from_pi'] else 0
+        ]
+        comparison_colors = ['red', 'blue', 'green']
         
-        bars = ax3.bar(pi_categories, pi_values, color=pi_colors, alpha=0.7)
-        ax3.set_ylabel('π Value')
-        ax3.set_title('φ-Enhanced π vs Traditional π')
+        bars = ax3.bar(comparison_labels, comparison_values, color=comparison_colors, alpha=0.7)
+        ax3.set_ylabel('Value')
+        ax3.set_title('π Analysis in φ-Trace Space')
         ax3.grid(True, alpha=0.3)
         
         # Add value labels
-        for bar, value in zip(bars, pi_values):
+        for bar, value, label in zip(bars, comparison_values, comparison_labels):
             height = bar.get_height()
             ax3.text(bar.get_x() + bar.get_width()/2., height + height*0.01,
-                    f'{value:.6f}', ha='center', va='bottom', fontweight='bold', fontsize=10)
+                    f'{value:.4f}', ha='center', va='bottom', fontweight='bold', fontsize=10)
         
-        # Add enhancement annotation
-        enhancement_ratio = pi_comp['enhancement_ratio']
-        geometric_opt = pi_comp['geometric_optimization']
-        ax3.text(0.5, pi_comp['pi_phi_theoretical'] + 0.01, 
-                f'Enhancement: {enhancement_ratio:.3f}×\nOptimization: +{geometric_opt:.2f}%',
-                ha='center', va='bottom', bbox=dict(boxstyle="round,pad=0.3", facecolor="yellow", alpha=0.7),
-                fontsize=10, fontweight='bold')
+        # Add relative error annotation if available
+        if pi_comp['relative_difference']:
+            ax3.text(0.5, max(comparison_values) * 0.9, 
+                    f'Relative Error: {pi_comp["relative_difference"]:.2f}%',
+                    ha='center', transform=ax3.transData,
+                    bbox=dict(boxstyle="round,pad=0.3", facecolor="wheat", alpha=0.7),
+                    fontsize=10)
         
         # 4. Closed Loop Geometry Analysis
         closed_traces = pi_comp['closed_traces_count']
@@ -918,9 +867,9 @@ class PiCollapseSystem:
                                           colors=trace_colors, startangle=90)
         ax4.set_title('Trace Type Distribution in π Universe')
         
-        # Add geometric factor information
-        geometric_factor = pi_comp['geometric_factor']
-        ax4.text(0, -1.3, f'Geometric Factor: {geometric_factor}\nFibonacci Enhancement: F₈+F₇-F₆',
+        # Add analysis information
+        closed_percentage = pi_comp.get('closed_loop_percentage', 0)
+        ax4.text(0, -1.3, f'Closed Loop Percentage: {closed_percentage:.1f}%\nMean C/D Ratio: {pi_comp.get("mean_circumference_diameter_ratio", 0):.3f}',
                 ha='center', va='center', bbox=dict(boxstyle="round,pad=0.3", facecolor="lightblue", alpha=0.7),
                 fontsize=10)
         
@@ -1165,40 +1114,36 @@ class PiCollapseSystem:
         
         # Traditional vs φ-constrained π computation comparison
         pi_computation = self.compute_pi_constant()
-        traditional_pi = pi_computation['pi_traditional']
-        phi_pi = pi_computation['pi_phi_theoretical']
-        enhancement_ratio = pi_computation['enhancement_ratio']
+        traditional_pi = pi_computation['pi_mathematical']
+        mean_cd_ratio = pi_computation['mean_circumference_diameter_ratio']
+        closed_percentage = pi_computation['closed_loop_percentage']
         
         # Domain comparison
-        systems = ['Traditional π\n(Mathematical)', 'φ-Constrained π\n(Geometric)']
-        pi_values = [traditional_pi, phi_pi]
+        systems = ['Mathematical π', 'Mean C/D Ratio\nin φ-traces']
+        values = [traditional_pi, mean_cd_ratio]
         
-        bars = ax1.bar(systems, pi_values, color=['lightcoral', 'lightblue'], alpha=0.7)
-        ax1.set_ylabel('π Value')
-        ax1.set_title('π Value Comparison: Traditional vs φ-Enhanced')
+        bars = ax1.bar(systems, values, color=['lightcoral', 'lightblue'], alpha=0.7)
+        ax1.set_ylabel('Value')
+        ax1.set_title('Geometric Analysis: Mathematical π vs φ-Trace Ratios')
         ax1.grid(True, alpha=0.3)
         
         # Add value labels
-        for bar, value in zip(bars, pi_values):
+        for bar, value in zip(bars, values):
             height = bar.get_height()
             ax1.text(bar.get_x() + bar.get_width()/2., height + height*0.005,
                     f'{value:.6f}', ha='center', va='bottom', fontweight='bold')
         
-        # Closed loop contribution analysis
-        closed_contrib = pi_computation['closed_pi_contribution']
+        # Closed loop analysis
         closed_traces = pi_computation['closed_traces_count']
         
-        # Enhancement factor visualization
-        ax2.bar(['Enhancement Ratio'], [enhancement_ratio], color='lightgreen', alpha=0.7)
-        ax2.axhline(y=1.0, color='red', linestyle='--', label='Traditional Baseline')
-        ax2.set_ylabel('Enhancement Ratio')
-        ax2.set_title('φ-Enhancement of π')
-        ax2.legend()
+        # Closure percentage visualization
+        ax2.bar(['Closed Loop\nPercentage'], [closed_percentage], color='lightgreen', alpha=0.7)
+        ax2.set_ylabel('Percentage (%)')
+        ax2.set_title('Closed Loop Traces in φ-Space')
         ax2.grid(True, alpha=0.3)
         
-        # Add enhancement percentage
-        geometric_opt = pi_computation['geometric_optimization']
-        ax2.text(0, enhancement_ratio + 0.001, f'+{geometric_opt:.2f}%\nOptimization',
+        # Add percentage label
+        ax2.text(0, closed_percentage + 0.5, f'{closed_percentage:.1f}%',
                 ha='center', va='bottom', fontweight='bold', 
                 bbox=dict(boxstyle="round,pad=0.3", facecolor="yellow", alpha=0.7))
         
@@ -1215,15 +1160,20 @@ class PiCollapseSystem:
         ax3.set_title('π-Relevant Trace Distribution')
         ax3.grid(True, alpha=0.3)
         
-        # Geometric factor analysis
-        geometric_factor = pi_computation['geometric_factor']
-        cascade_levels = ['Level 0', 'Level 1', 'Level 2', 'Total']
-        cascade_values = [pi_computation['pi_cascade_level_0'], pi_computation['pi_cascade_level_1'],
-                         pi_computation['pi_cascade_level_2'], pi_computation['pi_cascade_total']]
+        # Loop type distribution
+        loop_types = {}
+        for data in self.trace_universe.values():
+            lt = data['pi_properties']['loop_type']
+            loop_types[lt] = loop_types.get(lt, 0) + 1
         
-        ax4.bar(cascade_levels, cascade_values, color=['lightblue', 'gold', 'lightcoral', 'darkgreen'], alpha=0.7)
-        ax4.set_ylabel('π Cascade Values')
-        ax4.set_title(f'π Cascade Structure (Geometric Factor: {geometric_factor})')
+        types = list(loop_types.keys())
+        counts = list(loop_types.values())
+        colors = ['red' if 'closed' in t else 'gray' for t in types]
+        
+        ax4.bar(types, counts, color=colors, alpha=0.7)
+        ax4.set_ylabel('Count')
+        ax4.set_title('Loop Type Distribution in φ-Traces')
+        ax4.tick_params(axis='x', rotation=45)
         ax4.grid(True, alpha=0.3)
         
         plt.tight_layout()
@@ -1233,6 +1183,7 @@ class PiCollapseSystem:
     def _plot_rank_space_geometry(self):
         """可视化秩空间几何和观察者依赖性 - 显示π如何从几何结构中产生"""
         phi = (1 + np.sqrt(5)) / 2
+        pi_data = self.compute_pi_constant()  # Get pi computation data
         
         fig = plt.figure(figsize=(18, 12))
         
@@ -1316,49 +1267,56 @@ class PiCollapseSystem:
         ax1.view_init(elev=25, azim=45)
         ax1.set_box_aspect([1,1,0.5])
         
-        # 2. Observer rank dependence for π
+        # 2. 周长/直径比分布
         ax2 = fig.add_subplot(2, 3, 2)
         
-        delta_r_values = np.linspace(-10, 10, 50)
-        pi_variations = []
-        pi_values = []
+        # 收集所有闭合迹的周长/直径比
+        ratios = []
+        for data in self.trace_universe.values():
+            if data['pi_properties']['loop_type'] in ['full_closed', 'partial_closed']:
+                diam = data['pi_properties']['diameter_estimate']
+                if diam > 0:
+                    ratio = data['pi_properties']['geometric_circumference'] / diam
+                    ratios.append(ratio)
         
-        for delta_r in delta_r_values:
-            pred = self.predict_pi_variation(delta_r)
-            pi_variations.append(pred['variation_percent'])
-            pi_values.append(pred['pi_new'])
+        if ratios:
+            ax2.hist(ratios, bins=20, alpha=0.7, color='blue', edgecolor='black')
+            ax2.axvline(x=np.pi, color='r', linestyle='--', linewidth=2, label=f'π = {np.pi:.4f}')
+            ax2.axvline(x=np.mean(ratios), color='g', linestyle='--', linewidth=2, 
+                       label=f'Mean = {np.mean(ratios):.4f}')
         
-        ax2.plot(delta_r_values + 25, pi_values, 'b-', linewidth=2)
-        ax2.axhline(y=np.pi, color='r', linestyle='--', alpha=0.5, label='True π')
-        ax2.axvline(x=25, color='r', linestyle='--', alpha=0.5, label='Human rank')
-        ax2.set_xlabel('Observer Rank')
-        ax2.set_ylabel('Measured π')
-        ax2.set_title('π Value vs Observer Rank')
+        ax2.set_xlabel('Circumference/Diameter Ratio')
+        ax2.set_ylabel('Count')
+        ax2.set_title('Distribution of C/D Ratios in φ-Trace Space')
         ax2.legend()
         ax2.grid(True, alpha=0.3)
         
-        # 3. Three-level cascade for π
+        # 3. 闭合迹的几何性质
         ax3 = fig.add_subplot(2, 3, 3)
         
         pi_data = self.compute_pi_constant()
-        levels = ['Level 0\n(Base)', 'Level 1\n(Golden)', 'Level 2\n(Fibonacci)']
-        values = [
-            pi_data['pi_cascade_level_0'],
-            pi_data['pi_cascade_level_1'],
-            pi_data['pi_cascade_level_2']
-        ]
-        contributions = [v/pi_data['pi_cascade_total']*100 for v in values]
         
-        bars = ax3.bar(levels, values, color=['blue', 'green', 'red'], alpha=0.7)
+        # 显示分析结果
+        diff_val = pi_data['ratio_difference_from_pi'] if pi_data['ratio_difference_from_pi'] is not None else 0
+        rel_err = pi_data['relative_difference'] if pi_data['relative_difference'] is not None else 0
         
-        for bar, contrib in zip(bars, contributions):
-            height = bar.get_height()
-            ax3.text(bar.get_x() + bar.get_width()/2., height,
-                    f'{contrib:.1f}%', ha='center', va='bottom')
+        analysis_text = f"""φ-Trace Geometric Analysis:
         
-        ax3.set_ylabel('Cascade value')
-        ax3.set_title('π Three-Level Cascade Structure')
-        ax3.set_ylim(0, 3.5)
+Mathematical π = {pi_data['pi_mathematical']:.6f}
+        
+Closed traces: {pi_data['closed_traces_count']}/{pi_data['total_traces']}
+Mean C/D ratio: {pi_data['mean_circumference_diameter_ratio']:.4f}
+Std deviation: {pi_data['std_circumference_diameter_ratio']:.4f}
+
+Difference from π: {diff_val:.4f}
+Relative error: {rel_err:.2f}%
+"""
+        
+        ax3.text(0.1, 0.5, analysis_text, transform=ax3.transAxes, 
+                fontsize=10, verticalalignment='center',
+                bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
+        ax3.axis('off')
+        ax3.set_title('Geometric Analysis Summary')
         
         # 4. Closed loop distribution
         ax4 = fig.add_subplot(2, 3, 4)
@@ -1378,24 +1336,22 @@ class PiCollapseSystem:
         ax4.set_title('Distribution of Loop Types')
         ax4.tick_params(axis='x', rotation=45)
         
-        # 5. Theoretical vs computed π
+        # 5. 闭合迹的拓扑性质
         ax5 = fig.add_subplot(2, 3, 5)
         
-        categories = ['Theoretical\n(Exact)', 'Computed\n(φ-traces)']
-        pi_theoretical = pi_data['pi_traditional']
-        pi_computed = pi_data['pi_phi_theoretical']
-        values = [pi_theoretical, pi_computed]
+        # 分析闭合迹的长度分布
+        closed_lengths = []
+        for data in self.trace_universe.values():
+            if data['pi_properties']['loop_type'] in ['full_closed', 'partial_closed']:
+                closed_lengths.append(len(data['trace']))
         
-        bars = ax5.bar(categories, values, color=['gold', 'silver'], alpha=0.7)
-        
-        for bar, val in zip(bars, values):
-            height = bar.get_height()
-            ax5.text(bar.get_x() + bar.get_width()/2., height,
-                    f'{val:.6f}', ha='center', va='bottom', fontsize=10)
-        
-        ax5.set_ylabel('π value')
-        ax5.set_title('Theoretical vs Computed π')
-        ax5.set_ylim(0, 4)
+        if closed_lengths:
+            ax5.hist(closed_lengths, bins=range(min(closed_lengths), max(closed_lengths)+2), 
+                    alpha=0.7, color='green', edgecolor='black')
+            ax5.set_xlabel('Trace Length')
+            ax5.set_ylabel('Count')
+            ax5.set_title('Length Distribution of Closed Traces')
+            ax5.grid(True, alpha=0.3)
         
         # 6. Rank space metric for circular geometry
         ax6 = fig.add_subplot(2, 3, 6)
@@ -1419,7 +1375,7 @@ class PiCollapseSystem:
         ax6.legend()
         ax6.grid(True, alpha=0.3)
         
-        plt.suptitle('Rank Space Geometry and π Emergence', fontsize=16, fontweight='bold')
+        plt.suptitle('Geometric Analysis of φ-Trace Space', fontsize=16, fontweight='bold')
         plt.tight_layout()
         plt.savefig('chapter-083-pi-collapse-rank-geometry.png', dpi=300, bbox_inches='tight')
         plt.close()
@@ -1479,12 +1435,12 @@ class TestPiCollapse(unittest.TestCase):
         pi_comp = self.pi_system.compute_pi_constant()
         
         # Verify computation results
-        self.assertIn('pi_traditional', pi_comp)
-        self.assertIn('pi_phi_theoretical', pi_comp)
-        self.assertIn('enhancement_ratio', pi_comp)
+        self.assertIn('pi_mathematical', pi_comp)
+        self.assertIn('mean_circumference_diameter_ratio', pi_comp)
+        self.assertIn('closed_loop_percentage', pi_comp)
         
-        # Traditional π should be approximately π
-        self.assertAlmostEqual(pi_comp['pi_traditional'], np.pi, places=5)
+        # Mathematical π should be exactly π
+        self.assertAlmostEqual(pi_comp['pi_mathematical'], np.pi, places=5)
         
     def test_pi_system_analysis(self):
         """测试π系统分析"""
@@ -1566,24 +1522,26 @@ def run_pi_collapse_verification():
     
     if test_result.wasSuccessful():
         print("\n✓ All PiCollapse tests passed!")
-        print("\nThree-Domain Analysis Results:")
+        print("\nGeometric Analysis Results:")
         print("=" * 50)
         
-        traditional_pi = pi_analysis['pi_traditional']
-        phi_pi = pi_analysis['pi_phi_theoretical']
-        enhancement_ratio = pi_analysis['enhancement_ratio']
+        pi_comp = pi_system.compute_pi_constant()
         
-        print(f"Traditional π constant: π = {traditional_pi:.6f} (mathematical)")
-        print(f"φ-constrained π computation: π_φ = {phi_pi:.6f} (geometric)") 
-        print(f"Enhancement ratio: {enhancement_ratio:.3f}× (geometric optimization)")
-        print(f"Network density: {graph_analysis.get('network_density', 0):.3f} (π-connectivity)")
+        print(f"Mathematical π: {pi_comp['pi_mathematical']:.6f}")
+        print(f"Mean C/D ratio in φ-traces: {pi_comp['mean_circumference_diameter_ratio']:.4f}")
+        print(f"Std deviation: {pi_comp['std_circumference_diameter_ratio']:.4f}")
+        
+        if pi_comp['ratio_difference_from_pi'] is not None:
+            print(f"Difference from π: {pi_comp['ratio_difference_from_pi']:.4f}")
+            print(f"Relative error: {pi_comp['relative_difference']:.2f}%")
         
         print(f"\nClosed Loop Analysis:")
-        print(f"Closed loop traces: {pi_analysis['closed_traces_count']} elements")
-        print(f"Total traces: {pi_analysis['total_traces']} elements")
-        print(f"Closed loop contribution: {pi_analysis['closed_pi_contribution']:.3f}")
+        print(f"Closed loop traces: {pi_comp['closed_traces_count']} / {pi_comp['total_traces']}")
+        print(f"Closed loop percentage: {pi_comp['closed_loop_percentage']:.1f}%")
+        print(f"Network density: {graph_analysis.get('network_density', 0):.3f}")
+        
+        print(f"\nSystem Properties:")
         print(f"Mean closure measure: {pi_analysis['mean_closure_measure']:.3f}")
-        print(f"Mean π ratio: {pi_analysis['mean_pi_ratio']:.3f}")
         print(f"Mean geometric circumference: {pi_analysis['mean_geometric_circumference']:.3f}")
         print(f"Mean diameter estimate: {pi_analysis['mean_diameter_estimate']:.3f}")
         
@@ -1602,8 +1560,8 @@ def run_pi_collapse_verification():
         
         print("\n" + "=" * 80)
         print("PiCollapse verification completed successfully!")
-        print("π constant computed from closed φ-trace geometric loops.")
-        print("Three-domain analysis shows φ-constraint enhancement of π computation.")
+        print("Analyzed geometric properties of closed loops in φ-trace space.")
+        print("π remains a mathematical constant, independent of trace structures.")
         print("=" * 80)
         
         return True

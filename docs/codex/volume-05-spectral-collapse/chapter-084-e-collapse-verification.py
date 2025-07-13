@@ -513,55 +513,14 @@ class ECollapseSystem:
         phi = (1 + sqrt(5)) / 2
         return ((dynamics + growth_measure) * phi) % 1.0
         
-    def predict_e_variation(self, delta_r_obs: float) -> Dict:
-        """
-        预测观察者rank变化对e测量的影响
-        Δe/e = (Δr_obs/r_obs) × log₂(φ)/ln(φ) × exponential_factor
-        """
-        phi = (1 + np.sqrt(5)) / 2
-        r_obs = self.human_observer_rank
-        
-        # Observer variation factor with exponential coupling
-        variation_factor = (delta_r_obs / r_obs) * np.log2(phi) / np.log(phi) * 0.5
-        
-        # Current theoretical e
-        e_theoretical = np.e
-        
-        # Predicted variation
-        variation_percent = variation_factor * 100
-        e_new = e_theoretical * (1 + variation_factor)
-        
-        return {
-            'delta_r_obs': delta_r_obs,
-            'r_obs_new': r_obs + delta_r_obs,
-            'variation_percent': variation_percent,
-            'e_theoretical': e_theoretical,
-            'e_new': e_new,
-            'exponential_factor': 0.5
-        }
     
     def compute_e_constant(self) -> Dict:
-        """计算e常数的值 - Master e Formula from Expanding φ-Traces"""
+        """分析e的近似值 - 通过扩展φ-迹的指数分析"""
         if not self.trace_universe:
             return {}
             
-        # Binary Foundation: Golden ratio and Fibonacci numbers
-        phi = (1 + np.sqrt(5)) / 2
-        
-        # Three-level e cascade computation (inspired by π cascade structure)
-        # Level 0: Universal exponential baseline
-        e_cascade_level_0 = 2.0  # Base e approximation (1+1)^1
-        
-        # Level 1: Golden ratio exponential modulation  
-        e_cascade_level_1 = 0.25 * np.cos(np.pi / phi)**2  # Golden angle modulation
-        
-        # Level 2: Fibonacci exponential correction from expanding traces
-        F_8, F_9, F_10 = 21, 34, 55  # Fibonacci numbers for e computation
-        exponential_factor = F_10 + F_9 - F_8  # = 55 + 34 - 21 = 68
-        e_cascade_level_2 = 1 / (exponential_factor * phi**2)  # Exponential correction
-        
-        # Total e cascade base
-        e_cascade_total = e_cascade_level_0 + e_cascade_level_1 + e_cascade_level_2
+        # e是数学常数，这里只是分析φ-迹空间中的指数增长性质
+        e_mathematical = np.e  # 2.718281828459045...
         
         # Focus on expanding traces for e computation
         expanding_traces = [data for data in self.trace_universe.values() 
@@ -578,47 +537,76 @@ class ECollapseSystem:
                 return 0.0
             return sum(w * v for w, v in zip(weights, values)) / total_weight
             
-        # Expanding trace e contributions
-        expanding_e_contribution = compute_weighted_average(expanding_traces, 'expansion_weight', 'e_contribution')
+        # 计算增长率
+        growth_rates = []
+        e_approximations = []
+        exponential_weights = []
+        for trace_data in expanding_traces:
+            e_props = trace_data['e_properties']
+            growth_rate = e_props['growth_rate']
+            e_approx = e_props['e_approximation']
+            exp_weight = e_props['exponential_weight']
+            if growth_rate > 0:
+                growth_rates.append(growth_rate)
+            if e_approx > 0:
+                e_approximations.append(e_approx)
+            if exp_weight > 0:
+                exponential_weights.append(exp_weight)
         
-        # φ-enhanced e calculation using expanding trace integration
-        e_phi_raw = expanding_e_contribution if expanding_e_contribution > 0 else e_cascade_total
+        # 统计分析
+        if growth_rates:
+            mean_growth_rate = np.mean(growth_rates)
+            std_growth_rate = np.std(growth_rates)
+        else:
+            mean_growth_rate = 0.0
+            std_growth_rate = 0.0
+            
+        if e_approximations:
+            mean_e_approximation = np.mean(e_approximations)
+            std_e_approximation = np.std(e_approximations)
+        else:
+            mean_e_approximation = 0.0
+            std_e_approximation = 0.0
+            
+        if exponential_weights:
+            mean_exponential_weight = np.mean(exponential_weights)
+        else:
+            mean_exponential_weight = 0.0
         
-        # Perfect theoretical e calculation (φ-constrained exponential formula)
-        # Based on expanding trace weight integration with φ-constraint optimization
-        perfect_e_phi = e_cascade_total * (1 + phi**(-2))  # Golden ratio exponential enhancement
+        # 分析φ-迹空间的指数特性
+        phi = (1 + np.sqrt(5)) / 2
         
-        # Traditional e (mathematically perfect Euler's number)
-        e_traditional = np.e  # 2.718281828459045
-        
-        # Enhancement analysis
-        enhancement_ratio = perfect_e_phi / e_traditional
+        # 扩展迹贡献
+        expanding_contribution = compute_weighted_average(expanding_traces, 'expansion_weight', 'e_contribution')
         
         return {
-            # Theoretical perfect values (from φ-constrained exponentials)
-            'e_phi_theoretical': perfect_e_phi,
-            'e_cascade_level_0': e_cascade_level_0,
-            'e_cascade_level_1': e_cascade_level_1,
-            'e_cascade_level_2': e_cascade_level_2,
-            'e_cascade_total': e_cascade_total,
-            'golden_ratio': phi,
-            'exponential_factor': exponential_factor,
+            # 数学常数e
+            'e_mathematical': e_mathematical,
+            'e_traditional': e_mathematical,  # for compatibility
             
-            # Traditional value
-            'e_traditional': e_traditional,
-            
-            # Enhancement analysis  
-            'enhancement_ratio': enhancement_ratio,
-            'exponential_optimization': (perfect_e_phi - e_traditional) / e_traditional * 100,
-            
-            # Empirical expanding trace contributions
-            'expanding_e_contribution': expanding_e_contribution,
+            # φ-迹空间的指数分析
             'expanding_traces_count': len(expanding_traces),
             'total_traces': len(self.trace_universe),
+            'mean_growth_rate': mean_growth_rate,
+            'std_growth_rate': std_growth_rate,
+            'mean_e_approximation': mean_e_approximation,
+            'std_e_approximation': std_e_approximation,
+            'mean_exponential_weight': mean_exponential_weight,
+            'expanding_contribution': expanding_contribution,
             
-            # Revolutionary insight
-            'phi_constraint_enhances_e': enhancement_ratio > 1.0,
-            'exponential_optimization_achieved': True
+            # 指数特性
+            'expanding_percentage': len(expanding_traces) / len(self.trace_universe) * 100,
+            'golden_ratio': phi,
+            'exponential_factor': len(self.fibonacci_numbers),  # Fibonacci count as factor
+            
+            # 比较分析
+            'approximation_difference': mean_e_approximation - e_mathematical if mean_e_approximation > 0 else None,
+            'relative_difference': (mean_e_approximation - e_mathematical) / e_mathematical * 100 if mean_e_approximation > 0 else None,
+            
+            # φ增强分析(理论探索，不是测量值)
+            'e_phi_theoretical': mean_e_approximation if mean_e_approximation > 0 else e_mathematical,
+            'enhancement_ratio': mean_e_approximation / e_mathematical if mean_e_approximation > 0 else 1.0,
+            'exponential_optimization': (mean_e_approximation - e_mathematical) / e_mathematical * 100 if mean_e_approximation > 0 else 0.0
         }
         
     def analyze_e_system(self) -> Dict:
@@ -868,10 +856,12 @@ class ECollapseSystem:
         # Get e computation data
         e_comp = self.compute_e_constant()
         
-        # 1. e Cascade Formula Steps (exponential foundation)
+        # 1. e Computation Process Steps (exponential foundation)
         steps = ['ψ = ψ(ψ)', 'Expanding\nTraces', 'Exponential\nPatterns', 'φ-Constraint\nOptimization', 
-                'Weight\nIntegration', 'Golden\nRatio', 'Perfect\ne_φ', 'Enhanced e']
-        step_values = [1.0, 30, 10, 0.618, 2.718, 1.618, 2.758, 2.758]  # Representative values
+                'Weight\nIntegration', 'Growth\nAnalysis', 'Mean\nApproximation', 'e Analysis']
+        step_values = [1.0, e_comp['expanding_traces_count'], e_comp['mean_exponential_weight'], 
+                      0.618, e_comp['expanding_contribution'], e_comp['mean_growth_rate'], 
+                      e_comp['mean_e_approximation'], e_comp['e_mathematical']]  # Representative values
         
         # Create exponential flow diagram
         x_pos = range(len(steps))
@@ -881,50 +871,46 @@ class ECollapseSystem:
         ax1.set_xticks(x_pos)
         ax1.set_xticklabels(steps, rotation=45, ha='right', fontsize=9)
         ax1.set_ylabel('Process Values')
-        ax1.set_title('e Computation: φ-Constrained Exponential Formula')
+        ax1.set_title('e Analysis: φ-Constrained Exponential Properties')
         ax1.grid(True, alpha=0.3)
         
-        # 2. Three-Level e Cascade Structure
-        cascade_levels = ['Level 0\nExponential Base', 'Level 1\nGolden Angle', 'Level 2\nFibonacci', 'Total\ne Cascade']
-        cascade_values = [e_comp['e_cascade_level_0'], e_comp['e_cascade_level_1'], 
-                         e_comp['e_cascade_level_2'], e_comp['e_cascade_total']]
-        cascade_colors = ['lightblue', 'gold', 'lightcoral', 'darkgreen']
+        # 2. Growth Rate Distribution in Expanding Traces
+        growth_rates = []
+        for data in self.trace_universe.values():
+            if data['e_properties']['expansion_type'] in ['exponential_expanding', 'linear_expanding']:
+                rate = data['e_properties']['growth_rate']
+                if rate > 0:
+                    growth_rates.append(rate)
         
-        bars = ax2.bar(cascade_levels, cascade_values, color=cascade_colors, alpha=0.8)
-        ax2.set_ylabel('e Cascade Values')
-        ax2.set_title('Three-Level e Cascade Computation')
+        if growth_rates:
+            ax2.hist(growth_rates, bins=15, alpha=0.7, color='green', edgecolor='black')
+            ax2.axvline(x=np.mean(growth_rates), color='r', linestyle='--', linewidth=2,
+                       label=f'Mean = {np.mean(growth_rates):.3f}')
+        ax2.set_xlabel('Growth Rate')
+        ax2.set_ylabel('Count')
+        ax2.set_title('Growth Rate Distribution in Expanding Traces')
+        ax2.legend()
         ax2.grid(True, alpha=0.3)
         
-        # Add value labels on bars
-        for bar, value in zip(bars, cascade_values):
-            height = bar.get_height()
-            ax2.text(bar.get_x() + bar.get_width()/2., height + height*0.02,
-                    f'{value:.6f}', ha='center', va='bottom', fontsize=9)
+        # 3. e Approximation Analysis
+        e_approximations = []
+        for data in self.trace_universe.values():
+            if data['e_properties']['expansion_type'] in ['exponential_expanding', 'linear_expanding']:
+                e_approx = data['e_properties']['e_approximation']
+                if e_approx > 0 and e_approx < 10:  # reasonable range
+                    e_approximations.append(e_approx)
         
-        # 3. Traditional vs φ-Enhanced e Comparison
-        e_categories = ['Traditional\ne', 'φ-Enhanced\ne_φ', 'Enhancement\nGain']
-        e_values = [e_comp['e_traditional'], e_comp['e_phi_theoretical'], 
-                   e_comp['e_phi_theoretical'] - e_comp['e_traditional']]
-        e_colors = ['lightcoral', 'gold', 'lightgreen']
-        
-        bars = ax3.bar(e_categories, e_values, color=e_colors, alpha=0.7)
-        ax3.set_ylabel('e Value')
-        ax3.set_title('φ-Enhanced e vs Traditional e')
+        if e_approximations:
+            ax3.hist(e_approximations, bins=20, alpha=0.7, color='orange', edgecolor='black')
+            ax3.axvline(x=e_comp['e_mathematical'], color='r', linestyle='--', linewidth=2,
+                       label=f'e = {e_comp["e_mathematical"]:.6f}')
+            ax3.axvline(x=e_comp['mean_e_approximation'], color='b', linestyle='--', linewidth=2,
+                       label=f'Mean = {e_comp["mean_e_approximation"]:.3f}')
+        ax3.set_xlabel('e Approximation')
+        ax3.set_ylabel('Count')
+        ax3.set_title('e Approximation Distribution in φ-Traces')
+        ax3.legend()
         ax3.grid(True, alpha=0.3)
-        
-        # Add value labels
-        for bar, value in zip(bars, e_values):
-            height = bar.get_height()
-            ax3.text(bar.get_x() + bar.get_width()/2., height + height*0.01,
-                    f'{value:.6f}', ha='center', va='bottom', fontweight='bold', fontsize=10)
-        
-        # Add enhancement annotation
-        enhancement_ratio = e_comp['enhancement_ratio']
-        exponential_opt = e_comp['exponential_optimization']
-        ax3.text(0.5, e_comp['e_phi_theoretical'] + 0.01, 
-                f'Enhancement: {enhancement_ratio:.3f}×\nOptimization: +{exponential_opt:.2f}%',
-                ha='center', va='bottom', bbox=dict(boxstyle="round,pad=0.3", facecolor="yellow", alpha=0.7),
-                fontsize=10, fontweight='bold')
         
         # 4. Expanding Trace Analysis
         expanding_traces = e_comp['expanding_traces_count']
@@ -942,7 +928,7 @@ class ECollapseSystem:
         
         # Add exponential factor information
         exponential_factor = e_comp['exponential_factor']
-        ax4.text(0, -1.3, f'Exponential Factor: {exponential_factor}\nFibonacci Enhancement: F₁₀+F₉-F₈',
+        ax4.text(0, -1.3, f'Exponential Factor: {exponential_factor}\nFibonacci Count',
                 ha='center', va='center', bbox=dict(boxstyle="round,pad=0.3", facecolor="lightblue", alpha=0.7),
                 fontsize=10)
         
@@ -1199,7 +1185,7 @@ class ECollapseSystem:
                     f'{value:.6f}', ha='center', va='bottom', fontweight='bold')
         
         # Expanding trace contribution analysis
-        expanding_contrib = e_computation['expanding_e_contribution']
+        expanding_contrib = e_computation.get('expanding_contribution', 0)
         expanding_traces = e_computation['expanding_traces_count']
         
         # Enhancement factor visualization
@@ -1229,15 +1215,16 @@ class ECollapseSystem:
         ax3.set_title('e-Relevant Trace Distribution')
         ax3.grid(True, alpha=0.3)
         
-        # Exponential factor analysis
-        exponential_factor = e_computation['exponential_factor']
-        cascade_levels = ['Level 0', 'Level 1', 'Level 2', 'Total']
-        cascade_values = [e_computation['e_cascade_level_0'], e_computation['e_cascade_level_1'],
-                         e_computation['e_cascade_level_2'], e_computation['e_cascade_total']]
+        # Exponential properties analysis
+        properties = ['Growth\nMeasure', 'e\nApprox', 'Exp\nWeight', 'Growth\nRate']
+        values = [e_computation.get('mean_growth_measure', 0),
+                 e_computation.get('mean_e_approximation', 0) / 10,  # scale down for visualization
+                 e_computation.get('mean_exponential_weight', 0),
+                 e_computation.get('mean_growth_rate', 0)]
         
-        ax4.bar(cascade_levels, cascade_values, color=['lightblue', 'gold', 'lightcoral', 'darkgreen'], alpha=0.7)
-        ax4.set_ylabel('e Cascade Values')
-        ax4.set_title(f'e Cascade Structure (Exponential Factor: {exponential_factor})')
+        ax4.bar(properties, values, color=['blue', 'green', 'purple', 'orange'], alpha=0.7)
+        ax4.set_ylabel('Average Values')
+        ax4.set_title('Mean Exponential Properties in φ-Traces')
         ax4.grid(True, alpha=0.3)
         
         plt.tight_layout()
@@ -1247,6 +1234,7 @@ class ECollapseSystem:
     def _plot_rank_space_geometry(self):
         """可视化秩空间几何和观察者依赖性 - 显示e如何从指数结构中产生"""
         phi = (1 + np.sqrt(5)) / 2
+        e_data = self.compute_e_constant()  # Get e computation data
         
         fig = plt.figure(figsize=(18, 12))
         
@@ -1331,49 +1319,54 @@ class ECollapseSystem:
         ax1.view_init(elev=20, azim=30)
         ax1.set_box_aspect([1,1,0.5])
         
-        # 2. Observer rank dependence for e
+        # 2. 增长率分布
         ax2 = fig.add_subplot(2, 3, 2)
         
-        delta_r_values = np.linspace(-10, 10, 50)
-        e_variations = []
-        e_values = []
+        # 收集所有扩展迹的增长率
+        growth_rates = []
+        for data in self.trace_universe.values():
+            if data['e_properties']['expansion_type'] in ['exponential_expanding', 'linear_expanding']:
+                rate = data['e_properties']['growth_rate']
+                if rate > 0:
+                    growth_rates.append(rate)
         
-        for delta_r in delta_r_values:
-            pred = self.predict_e_variation(delta_r)
-            e_variations.append(pred['variation_percent'])
-            e_values.append(pred['e_new'])
+        if growth_rates:
+            ax2.hist(growth_rates, bins=20, alpha=0.7, color='green', edgecolor='black')
+            ax2.axvline(x=np.mean(growth_rates), color='r', linestyle='--', linewidth=2,
+                       label=f'Mean = {np.mean(growth_rates):.3f}')
         
-        ax2.plot(delta_r_values + 25, e_values, 'b-', linewidth=2)
-        ax2.axhline(y=np.e, color='r', linestyle='--', alpha=0.5, label='True e')
-        ax2.axvline(x=25, color='r', linestyle='--', alpha=0.5, label='Human rank')
-        ax2.set_xlabel('Observer Rank')
-        ax2.set_ylabel('Measured e')
-        ax2.set_title('e Value vs Observer Rank')
+        ax2.set_xlabel('Growth Rate')
+        ax2.set_ylabel('Count')
+        ax2.set_title('Growth Rate Distribution in Expanding Traces')
         ax2.legend()
         ax2.grid(True, alpha=0.3)
         
-        # 3. Three-level cascade for e
+        # 3. e Approximation vs Growth Measure
         ax3 = fig.add_subplot(2, 3, 3)
         
-        e_data = self.compute_e_constant()
-        levels = ['Level 0\n(Base)', 'Level 1\n(Golden)', 'Level 2\n(Fibonacci)']
-        values = [
-            e_data['e_cascade_level_0'],
-            e_data['e_cascade_level_1'],
-            e_data['e_cascade_level_2']
-        ]
-        contributions = [v/e_data['e_cascade_total']*100 for v in values]
+        growth_measures = []
+        e_approximations = []
+        expansion_types = []
         
-        bars = ax3.bar(levels, values, color=['blue', 'green', 'red'], alpha=0.7)
+        for data in self.trace_universe.values():
+            e_props = data['e_properties']
+            if e_props['expansion_type'] in ['exponential_expanding', 'linear_expanding']:
+                growth = e_props['growth_measure']
+                e_approx = e_props['e_approximation']
+                if 0 < e_approx < 10:  # reasonable range
+                    growth_measures.append(growth)
+                    e_approximations.append(e_approx)
+                    expansion_types.append(e_props['expansion_type'])
         
-        for bar, contrib in zip(bars, contributions):
-            height = bar.get_height()
-            ax3.text(bar.get_x() + bar.get_width()/2., height,
-                    f'{contrib:.1f}%', ha='center', va='bottom')
-        
-        ax3.set_ylabel('Cascade value')
-        ax3.set_title('e Three-Level Cascade Structure')
-        ax3.set_ylim(0, 2.5)
+        if growth_measures and e_approximations:
+            colors = ['red' if t == 'exponential_expanding' else 'orange' for t in expansion_types]
+            ax3.scatter(growth_measures, e_approximations, c=colors, alpha=0.6, s=50)
+            ax3.axhline(y=np.e, color='b', linestyle='--', alpha=0.7, label=f'e = {np.e:.6f}')
+            ax3.set_xlabel('Growth Measure')
+            ax3.set_ylabel('e Approximation')
+            ax3.set_title('e Approximation vs Growth Measure')
+            ax3.legend()
+            ax3.grid(True, alpha=0.3)
         
         # 4. Expansion type distribution
         ax4 = fig.add_subplot(2, 3, 4)
@@ -1393,24 +1386,25 @@ class ECollapseSystem:
         ax4.set_title('Distribution of Expansion Types')
         ax4.tick_params(axis='x', rotation=45)
         
-        # 5. Theoretical vs computed e
+        # 5. Exponential Weight Distribution
         ax5 = fig.add_subplot(2, 3, 5)
         
-        categories = ['Theoretical\n(Exact)', 'Computed\n(φ-traces)']
-        e_theoretical = e_data['e_traditional']
-        e_computed = e_data['e_phi_theoretical']
-        values = [e_theoretical, e_computed]
+        exp_weights = []
+        for data in self.trace_universe.values():
+            if data['e_properties']['expansion_type'] in ['exponential_expanding', 'linear_expanding']:
+                weight = data['e_properties']['exponential_weight']
+                if weight > 0:
+                    exp_weights.append(weight)
         
-        bars = ax5.bar(categories, values, color=['gold', 'lightgreen'], alpha=0.7)
-        
-        for bar, val in zip(bars, values):
-            height = bar.get_height()
-            ax5.text(bar.get_x() + bar.get_width()/2., height,
-                    f'{val:.6f}', ha='center', va='bottom', fontsize=10)
-        
-        ax5.set_ylabel('e value')
-        ax5.set_title('Theoretical vs Computed e')
-        ax5.set_ylim(0, 3.5)
+        if exp_weights:
+            ax5.hist(exp_weights, bins=20, alpha=0.7, color='purple', edgecolor='black')
+            ax5.axvline(x=e_data['mean_exponential_weight'], color='r', linestyle='--', linewidth=2,
+                       label=f'Mean = {e_data["mean_exponential_weight"]:.3f}')
+            ax5.set_xlabel('Exponential Weight')
+            ax5.set_ylabel('Count')
+            ax5.set_title('Exponential Weight Distribution')
+            ax5.legend()
+            ax5.grid(True, alpha=0.3)
         
         # 6. Rank space metric for exponential growth
         ax6 = fig.add_subplot(2, 3, 6)
@@ -1604,7 +1598,7 @@ def run_e_collapse_verification():
         print(f"\nExpanding Trace Analysis:")
         print(f"Expanding traces: {e_analysis['expanding_traces_count']} elements")
         print(f"Total traces: {e_analysis['total_traces']} elements")
-        print(f"Expanding contribution: {e_analysis['expanding_e_contribution']:.3f}")
+        print(f"Expanding contribution: {e_analysis.get('expanding_contribution', 0):.3f}")
         print(f"Mean growth measure: {e_analysis['mean_growth_measure']:.3f}")
         print(f"Mean e approximation: {e_analysis['mean_e_approximation']:.3f}")
         print(f"Mean exponential weight: {e_analysis['mean_exponential_weight']:.3f}")
