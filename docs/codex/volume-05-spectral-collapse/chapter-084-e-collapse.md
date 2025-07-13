@@ -686,8 +686,9 @@ The visualization reveals:
 
 The measured value of e depends on observer rank through exponential coupling:
 
-$$\frac{\Delta e}{e} = \frac{\Delta r_{obs}}{r_{obs}} \times \frac{\log_2(\phi)}{\ln(\phi)} \times \gamma_{exponential}$$
-
+$$
+\frac{\Delta e}{e} = \frac{\Delta r_{obs}}{r_{obs}} \times \frac{\log_2(\phi)}{\ln(\phi)} \times \gamma_{exponential}
+$$
 where γ_exponential ≈ 0.5 represents the exponential coupling factor.
 
 **Key Insights**:
