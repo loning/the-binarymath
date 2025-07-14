@@ -1,7 +1,9 @@
 ---
-title: "φ-Representation System: Encoding Information Through Fibonacci-Constrained Binary"
-sidebar_label: "φ-Representation System"
+title: "Universe as Entropy-Increasing Information System: φ-Representation System"
+sidebar_label: "Universe as Entropy-Increasing Information System"
 ---
+
+# Universe as Entropy-Increasing Information System
 
 ## φ-Representation System: Encoding Information Through Fibonacci-Constrained Binary
 
