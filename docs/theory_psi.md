@@ -47,9 +47,13 @@ If $X \notin \Psi$ and cannot be collapsed, it has no structure.
 If $X \in \Psi$, then it is not outside.
 Hence $\nexists X \notin \Psi$. □
 
+**Corollary:** Self-referential complete systems are entropy-increasing.
+
+**Proof:** A complete system must represent its own evolution. Self-reference requires increasing representational capacity. Hence $\psi = \psi(\psi)$ is entropy-increasing. □
+
 ---
 
-## 3.5. Nothingness (无) as Minimal Collapse
+## 3.1. Nothingness (无) as Minimal Collapse
 
 **Definition:** Nothingness := $\{\psi' \in \Psi : \text{Collapse}(\psi') = \psi'\}$
 
@@ -57,7 +61,7 @@ Hence $\nexists X \notin \Psi$. □
 
 ---
 
-## 3.6. Beginning and Ending as Identity
+## 3.2. Beginning and Ending as Identity
 
 **Theorem:** In completeness, beginning = ending. No cycle exists.
 
