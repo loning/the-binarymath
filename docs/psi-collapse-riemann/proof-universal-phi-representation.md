@@ -33,7 +33,9 @@ sidebar_label: "φ-Representation System"
 **Lemma 1.1** (Zeckendorf's Theorem): Every positive integer has a unique representation as a sum of non-consecutive Fibonacci numbers.
 
 *Proof*: By strong induction and the greedy algorithm. Given any integer n, we can uniquely express:
-$$n = \sum_{i} F_i$$
+$$
+n = \sum_{i} F_i
+$$
 where $F_i$ are Fibonacci numbers and no two are consecutive.
 
 **Lemma 1.2** (Binary Encoding): The Zeckendorf representation directly maps to binary without consecutive 11s.
