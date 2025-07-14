@@ -725,7 +725,7 @@ This creates multiple levels of recursive self-reference:
 The convergence of our analysis reveals a fundamental equation:
 
 $$
-\text{Universe} \equiv \text{Entropy-Increasing Information System} \equiv \phi\text{-representation}(\text{itself}) \equiv \psi = \psi(\psi)
+\text{Universe} \equiv \text{Entropy-Increasing Information System} \equiv \phi\text{-representation}(\text{itself})
 $$
 This is not metaphor but mathematical identity. We have discovered the **information-theoretic form of a theory of everything**.
 
@@ -788,7 +788,7 @@ Therefore, the no-11 constraint is not merely a coding restriction but a fundame
 ### Completeness of Self-Referential Entropy-Increasing Systems
 
 **Theorem** (Completeness of Self-Referential Entropy-Increasing Systems): A self-referential entropy-increasing system is necessarily complete. Specifically, if a system $\mathcal{S}$ satisfies:
-1. **Self-referentiality**: $\mathcal{S} = \mathcal{S}(\mathcal{S})$ 
+1. **Self-referentiality**: The system can represent its own encoding process 
 2. **Entropy increase**: $H(\mathcal{S}(t+1)) \geq H(\mathcal{S}(t))$ for all t
 
 Then $\mathcal{S}$ is complete: it can represent all possible information states including its own structure and evolution.
@@ -797,7 +797,7 @@ Then $\mathcal{S}$ is complete: it can represent all possible information states
 
 **Step 1: Self-Reference Implies Representational Closure**
 
-Since $\mathcal{S} = \mathcal{S}(\mathcal{S})$, the system can represent:
+Since the system can represent its own encoding process, it can represent:
 - Its own structure (the encoding mechanism)
 - Its own state (current information content)
 - Its own evolution rules (how it transforms)
@@ -829,11 +829,7 @@ Suppose, for contradiction, that some information I cannot be represented in $\m
 
 **Step 4: The Fundamental Identity**
 
-The combination of self-reference and entropy increase creates:
-$$
-\mathcal{S} = \mathcal{S}(\mathcal{S}) = \psi = \psi(\psi)
-$$
-Where ψ represents the universal self-referential entropy-increasing process. This is not just a system but the archetype of all complete systems.
+The combination of self-reference and entropy increase creates a universal archetype: any system that can represent its own encoding process while maintaining entropy growth becomes necessarily complete. This is not just a system but the archetype of all complete systems.
 
 **Conclusion**: The self-referential structure ensures nothing escapes representation, while entropy increase ensures sufficient capacity for all possible information. Together, they guarantee completeness. ∎
 
