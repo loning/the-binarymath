@@ -1,0 +1,15 @@
+{
+  "observer_count": 5,
+  "trace_size": 89,
+  "rounds_per_observer": 5,
+  "analysis": {
+    "mean_position_variance": 464.544,
+    "mean_bias_magnitude": 1.0651826905814231e-05,
+    "entropy_perception_variance": 3.100158653850186e-16,
+    "mean_path_divergence": 0.96
+  },
+  "golden_base_statistics": {
+    "fibonacci_position_ratio": 0.24,
+    "total_collapse_events": 25
+  }
+}
