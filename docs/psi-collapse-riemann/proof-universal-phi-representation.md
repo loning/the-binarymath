@@ -32,7 +32,7 @@ sidebar_label: "φ-Representation System"
 
 **Lemma 1.1** (Zeckendorf's Theorem): Every positive integer has a unique representation as a sum of non-consecutive Fibonacci numbers.
 
-*Proof*: By strong induction and the greedy algorithm. Given any integer n, we can uniquely express:
+*Proof*: By strong induction and the greedy algorithm. Given any integer $n$, we can uniquely express:
 $$
 n = \sum_{i} F_i
 $$
@@ -40,13 +40,13 @@ where $F_i$ are Fibonacci numbers and no two are consecutive.
 
 **Lemma 1.2** (Binary Encoding): The Zeckendorf representation directly maps to binary without consecutive 11s.
 
-*Proof*: Place 1 at position i if $F_i$ is in the sum, 0 otherwise. By construction, no two consecutive positions have 1s.
+*Proof*: Place 1 at position $i$ if $F_i$ is in the sum, 0 otherwise. By construction, no two consecutive positions have 1s.
 
 **Theorem 1.3** (Finite Information Encoding): Any finite or finitely describable information can be encoded as integers, therefore as φ-constrained binary.
 
 *Proof*: 
 1. Finite information → finite symbol sequences
-2. Mathematical operations → finite descriptions (e.g., 1/3 = {DIV, 1, 3})
+2. Mathematical operations → finite descriptions (e.g., 1/3 = $\{\text{DIV}, 1, 3\}$)
 3. Computable processes → finite programs (Church-Turing thesis)
 4. Finite symbol sequences → integers (by Gödel numbering)
 5. Any integer → unique Zeckendorf representation (Lemma 1.1)
@@ -95,10 +95,10 @@ If X and Y are distinguishable pieces of information:
 - The set of all distinguishable states can be enumerated
 
 **Step 3: Enumeration Implies Integer Mapping**
-Any enumerable set S can be mapped to integers:
-- If S is finite: Direct bijection with {1, 2, ..., n}
-- If S is countably infinite: Bijection with ℕ
-- If S appears uncountable: Only finitely many elements can actually be distinguished in any finite time
+Any enumerable set $S$ can be mapped to integers:
+- If $S$ is finite: Direct bijection with the set &#123;1, 2, ..., k&#125; for some k
+- If $S$ is countably infinite: Bijection with ℕ
+- If $S$ appears uncountable: Only finitely many elements can actually be distinguished in any finite time
 
 **Step 4: All Integers Have φ-Representation**
 By Zeckendorf's theorem, every positive integer has unique φ-representation.
@@ -107,11 +107,11 @@ By Zeckendorf's theorem, every positive integer has unique φ-representation.
 
 *Mathematical Formalization*:
 
-Let I = {all information in the universe}
-Let D = {all distinguishable entities}  
-Let E = {all enumerable entities}
-Let ℕ = {all natural numbers}
-Let Φ = {all φ-representable entities}
+Let I = $\{$all information in the universe$\}$
+Let D = $\{$all distinguishable entities$\}$  
+Let E = $\{$all enumerable entities$\}$
+Let ℕ = $\{$all natural numbers$\}$
+Let Φ = $\{$all φ-representable entities$\}$
 
 **Theorem**: I ⊆ D = E = ℕ = Φ
 
@@ -123,20 +123,20 @@ Let Φ = {all φ-representable entities}
 5. Φ ⊆ ℕ (φ-sequences decode to naturals)
 6. Therefore: I ⊆ Φ and Φ = ℕ
 
-**Conclusion**: Every element of I has a φ-representation.
+**Conclusion**: Every element of $I$ has a φ-representation.
 
 *Rigorous Negative Proof (By Contradiction)*:
 
-**Assume**: There exists information I that cannot be φ-represented.
+**Assume**: There exists information $I$ that cannot be φ-represented.
 
 **Then**:
-1. I cannot be mapped to any integer (since all integers are φ-representable)
-2. I cannot be enumerated
-3. I cannot be distinguished from other states
+1. $I$ cannot be mapped to any integer (since all integers are φ-representable)
+2. $I$ cannot be enumerated
+3. $I$ cannot be distinguished from other states
 4. But information MUST be distinguishable (by definition)
 5. **Contradiction!**
 
-**Therefore**: No such I exists. ALL information is φ-representable.
+**Therefore**: No such $I$ exists. ALL information is φ-representable.
 
 *Deep Philosophical Proof*:
 
@@ -260,7 +260,7 @@ Any local binary constraint can be expressed as forbidden patterns. Let C be a c
 
 **Step 2: Growth Rate Analysis**
 For constraint C forbidding pattern P of length k:
-- Let $a_n$ = number of valid n-bit sequences
+- Let $a_n$ = number of valid $n$-bit sequences
 - The recurrence relation depends on P's structure
 - Growth rate λ = $\lim_{n→∞} \sqrt[n]{a_n}$
 
@@ -399,7 +399,7 @@ Therefore, φ-constrained binary sequences CAN encode ALL information in the uni
 The φ-constraint system provides an alternative encoding with specific mathematical properties useful for certain applications.
 
 ### 2. Information Bounds
-Maximum information in n positions: $F_{n+2}$ distinct states (compared to $2^n$ for standard binary).
+Maximum information in $n$ positions: $F_{n+2}$ distinct states (compared to $2^n$ for standard binary).
 
 ### 3. Mathematical Properties
 The system exhibits interesting connections to number theory through Fibonacci sequences and the golden ratio.
@@ -596,7 +596,7 @@ The golden ratio φ ≈ 1.618... appears throughout nature and mathematics:
 **In Mathematics**:
 - Continued fractions: φ = [1;1,1,1,...] (simplest infinite continued fraction)
 - Pentagon/pentagram: Ratio of diagonal to side
-- Fibonacci limit: lim(F_{n+1}/F_n) = φ
+- Fibonacci limit: $\lim_{n \to \infty}(F_{n+1}/F_n) = φ$
 - Optimal packing: Often involves φ-related arrangements
 
 ### The Deep Connection
