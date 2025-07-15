@@ -1,0 +1,42 @@
+{
+  "8_cities": {
+    "fibonacci_spiral": {
+      "standard": 23.88,
+      "phi": 18.97,
+      "optimal": 23.88
+    },
+    "fibonacci_grid": {
+      "standard": 60.32,
+      "phi": 45.99,
+      "optimal": 60.0
+    },
+    "random": {
+      "standard": 83.17,
+      "phi": 69.86,
+      "optimal": 83.17
+    },
+    "regular_grid": {
+      "standard": 26.49,
+      "phi": 19.74,
+      "optimal": 24.0
+    }
+  },
+  "21_cities": {
+    "fibonacci_spiral": {
+      "standard": 32.25,
+      "phi": 25.21
+    },
+    "fibonacci_grid": {
+      "standard": 89.77,
+      "phi": 68.78
+    },
+    "random": {
+      "standard": 131.16,
+      "phi": 107.38
+    },
+    "regular_grid": {
+      "standard": 64.24,
+      "phi": 55.32
+    }
+  }
+}
