@@ -74,7 +74,7 @@ Independent Researcher\\
 \maketitle
 
 \begin{abstract}
-This paper establishes that every piece of information in the universe can be uniquely represented through binary sequences constrained to contain no consecutive 1s ($\phi$-constrained sequences). We prove this universality through rigorous mathematical analysis, demonstrating: (1) Universal encoding capability; (2) Mathematical completeness; (3) Optimal entropy characteristics—$\phi$-constraint achieves minimal entropy growth rate ($\log \phi \approx 0.694$ bits/position) among binary encoding systems with two-bit local constraints. Our proof establishes equivalence between information content, distinguishability, and $\phi$-representability. We address fundamental objections including Gödel's incompleteness theorem and the halting problem, showing how the $\phi$-system resolves each through its connection to Fibonacci sequences and golden ratio mathematics.
+This paper establishes that every piece of information in the universe can be uniquely represented through binary sequences constrained to contain no consecutive 1s ($\phi$-constrained sequences). We prove this universality through rigorous mathematical analysis, demonstrating: (1) Universal encoding capability; (2) Mathematical completeness; (3) Optimal entropy characteristics—$\phi$-constraint achieves minimal entropy growth rate ($\log \phi$ bits/position) among binary encoding systems with two-bit local constraints. Our proof establishes equivalence between information content, distinguishability, and $\phi$-representability. We address fundamental objections including Gödel's incompleteness theorem and the halting problem, showing how the $\phi$-system resolves each through its connection to Fibonacci sequences and golden ratio mathematics.
 \end{abstract}
 
 \textbf{Keywords:} $\phi$-representation, Fibonacci sequences, golden ratio, information theory, universal encoding, Zeckendorf representation, entropy optimization
@@ -410,21 +410,21 @@ The $\phi$-system represents the computational \textit{objects}, not their behav
 \textbf{Mathematical Reality}:
 \begin{itemize}
 \item Real numbers: Defined via Cauchy sequences (discrete algorithmic processes)
-\item Calculus: Uses discrete approximation procedures (limits, series)
+\item Calculus: Uses discrete operational procedures (limits, series)
 \item Computation: All continuous calculations are discretized
 \item Physics: Measurements have finite precision; quantum mechanics is fundamentally discrete
 \end{itemize}
 
-\textbf{Key Insight}: Traditional mathematics never truly captures "pure" continuity—it encodes procedures for approximating continuous behavior to arbitrary precision. The $\phi$-system does exactly the same thing.
+\textbf{Key Insight}: Traditional mathematics never truly captures "pure" continuity—it encodes procedures for computing continuous behavior to arbitrary precision. The $\phi$-system does exactly the same thing.
 
 \textbf{Practical Examples}:
 \begin{itemize}
 \item $\pi$: Encoded as series expansion algorithms, not "the actual infinite decimal"
-\item $\sqrt{2}$: Encoded as iterative approximation procedures
+\item $\sqrt{2}$: Encoded as iterative computational procedures
 \item Derivatives: Encoded as limit operation definitions
 \end{itemize}
 
-Therefore: All measurable continuous values $\to$ discrete approximation procedures $\to$ $\phi$-representation.
+Therefore: All measurable continuous values $\to$ discrete computational procedures $\to$ $\phi$-representation.
 
 \textbf{Quantum Mechanics}: Described by finite complex amplitudes $\to$ $\phi$-representation.
 
@@ -482,12 +482,12 @@ Let $\lambda$ be the growth rate of valid sequences of length $n$ for a constrai
 
 Different two-bit constraints yield:
 \begin{itemize}
-\item Forbidden "11": $\lambda = \phi \approx 1.618$ (Fibonacci recurrence)
-\item Forbidden "00": $\lambda = \phi \approx 1.618$ (equivalent by symmetry)  
+\item Forbidden "11": $\lambda = \phi$ (Fibonacci recurrence)
+\item Forbidden "00": $\lambda = \phi$ (equivalent by symmetry)  
 \item Other forbidden patterns: $\lambda > \phi$
 \end{itemize}
 
-The entropy per position is $H = \log \lambda$. Since the $\phi$-constraint achieves the minimum $\lambda$ among complete systems, it minimizes entropy growth: $H(\phi\text{-constraint}) = \log \phi \approx 0.694$ bits/position.
+The entropy per position is $H = \log \lambda$. Since the $\phi$-constraint achieves the minimum $\lambda$ among complete systems, it minimizes entropy growth: $H(\phi\text{-constraint}) = \log \phi$ bits/position.
 \end{proof}
 
 \subsection{Comparative Analysis}
@@ -495,9 +495,9 @@ The entropy per position is $H = \log \lambda$. Since the $\phi$-constraint achi
 \textbf{Efficiency Metrics}:
 \begin{itemize}
 \item Standard binary: 1 bit/bit (baseline)
-\item $\phi$-binary for integer $N$: $\lceil\log_\phi(N)\rceil \approx 1.44\lceil\log_2(N)\rceil$ bits
-\item Overhead factor: $\log_2(\phi) \approx 0.694$
-\item Information density: $1/\log_2(\phi) \approx 1.44$ bits per $\phi$-bit
+\item $\phi$-binary for integer $N$: $\lceil\log_\phi(N)\rceil$ bits
+\item Overhead factor: $\log_2(\phi)$
+\item Information density: $1/\log_2(\phi)$ bits per $\phi$-bit
 \end{itemize}
 
 This 44\% overhead is the theoretical minimum for constraint-based universal encoding systems.
@@ -535,7 +535,7 @@ The discrete structure of $\phi$-representation aligns with quantum mechanics' f
 
 \subsection{Golden Ratio Connections}
 
-The golden ratio $\phi = \frac{1+\sqrt{5}}{2} \approx 1.618$ appears throughout mathematics and nature:
+The golden ratio $\phi = \frac{1+\sqrt{5}}{2}$ appears throughout mathematics and nature:
 
 \textbf{Mathematical Occurrences}:
 \begin{itemize}
@@ -589,7 +589,7 @@ The operational interpretation of continuous mathematics embedded in our proof c
 \textbf{Process Ontology}: Our analysis suggests that mathematical objects are more accurately understood as computational procedures rather than static entities:
 
 \begin{itemize}
-\item \textbf{Numbers as Algorithms}: Rather than viewing $\pi$ as a "completed infinite decimal," it is better understood as an algorithmic specification—a procedure for computing approximations to arbitrary precision.
+\item \textbf{Numbers as Algorithms}: Rather than viewing $\pi$ as a "completed infinite decimal," it is better understood as an algorithmic specification—a procedure for computing values to arbitrary precision.
 
 \item \textbf{Geometric Objects as Constructions}: Geometric figures become construction procedures rather than platonic forms. A circle is the algorithm for generating points equidistant from a center.
 
@@ -742,9 +742,9 @@ For binary strings of length $n$:
 - Without constraint: $2^n$ possible sequences
 - With no-11 constraint: $F_{n+2}$ possible sequences (Fibonacci numbers)
 
-The ratio of allowed sequences: $\frac{F_{n+2}}{2^n} \approx \frac{\phi^{n+2}/\sqrt{5}}{2^n} = \frac{\phi^2}{\sqrt{5}} \cdot \left(\frac{\phi}{2}\right)^n$
+The ratio of allowed sequences: $\frac{F_{n+2}}{2^n} = \frac{\phi^{n+2}/\sqrt{5}}{2^n} = \frac{\phi^2}{\sqrt{5}} \cdot \left(\frac{\phi}{2}\right)^n$
 
-Since $\phi/2 \approx 0.809 < 1$, this ratio decreases exponentially, meaning the constraint becomes increasingly restrictive.
+Since $\phi/2 < 1$, this ratio decreases exponentially, meaning the constraint becomes increasingly restrictive.
 
 \textbf{Step 2: Entropy Forcing Mechanism}
 
