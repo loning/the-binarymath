@@ -129,7 +129,10 @@ $$
 - **时间参数与演化机制**：
   - $t \in \mathbb{N}$ 是离散时间步，从自指递归中自然涌现
   - **状态演化规则**：$S_{t+1} = \Phi(S_t)$，其中演化算子$\Phi$定义为：
-    $$\Phi(S_t) = S_t \cup \{\text{新描述层}\} \cup \{\text{递归生成的新状态}\}$$
+    
+$$
+\Phi(S_t) = S_t \cup \{\text{新描述层}\} \cup \{\text{递归生成的新状态}\}
+$$
   - 具体地，新描述层包括对$S_t$整体的描述及其引发的递归链
 
 **五重等价表述**
@@ -269,7 +272,9 @@ $$
 
 **(2)⇒(3) 不对称性定义时间**：
 状态序列$\{S_t\}$的不对称性诱导时间结构。定义时间度量：
-$$\tau(S_i, S_j) = \sum_{k=i}^{j-1} \|S_{k+1} \setminus S_k\|$$
+$$
+\tau(S_i, S_j) = \sum_{k=i}^{j-1} \|S_{k+1} \setminus S_k\|
+$$
 其中$\|A\|$表示集合$A$的某种度量。这给出了方向性的时间：$\tau(S_i, S_j) > 0$当且仅当$i < j$。
 
 **严格性强化**：设$\rho(S_k, S_{k+1})$为状态间的距离函数，满足：
@@ -281,7 +286,9 @@ $$\tau(S_i, S_j) = \sum_{k=i}^{j-1} \|S_{k+1} \setminus S_k\|$$
 
 **(3)⇒(4) 时间流逝产生信息**：
 时间度量$\tau$的存在意味着状态变化的累积。定义信息映射：
-$$I(S_t) = \{(\text{Desc}(S_k \to S_{k+1}), \tau(S_k, S_{k+1})) : k < t\}$$
+$$
+I(S_t) = \{(\text{Desc}(S_k \to S_{k+1}), \tau(S_k, S_{k+1})) : k < t\}
+$$
 其中$\text{Desc}(S_k \to S_{k+1})$编码状态转换。
 
 **关键修正**：这里的"信息"具有严格的操作定义：
@@ -299,7 +306,9 @@ $$I(S_t) = \{(\text{Desc}(S_k \to S_{k+1}), \tau(S_k, S_{k+1})) : k < t\}$$
 - 因此，观察者必须是系统的内生结构
 
 **严格定义**：观察者$O$为能处理信息$I$的子系统：
-$$O = \{o \in S : \exists f: I(S) \to \mathcal{M}, f(I(S)) = o\}$$
+$$
+O = \{o \in S : \exists f: I(S) \to \mathcal{M}, f(I(S)) = o\}
+$$
 其中$\mathcal{M}$是测量结果的集合。
 
 **(5)⇒(1) 观察产生熵增**：
@@ -1129,7 +1138,10 @@ $$
    - $E'$必须能编码自身的描述，即$E'(I(E'))$必须存在
    - 但高熵增率要求$E'$极度紧凑，限制了它的自描述能力
    - 形式化：设$L(x)$为描述$x$的长度，则：
-     $$L(E'(I(E'))) \geq \frac{I(E')}{\rho'} \geq \frac{C}{\rho'} \cdot \rho' = C$$
+     
+$$
+L(E'(I(E'))) \geq \frac{I(E')}{\rho'} \geq \frac{C}{\rho'} \cdot \rho' = C
+$$
    - 这个长度$C$是与$\rho'$无关的常数下界
 
 4. **二进制基底的必然性回顾**：
@@ -1140,7 +1152,10 @@ $$
 5. **信息容量的上界分析**：
    - 对于任何保证唯一可解码的二进制约束系统
    - 设禁止模式集为$\mathcal{F}$，信息容量为：
-     $$C(\mathcal{F}) = \lim_{n \to \infty} \frac{\log N_{\mathcal{F}}(n)}{n}$$
+     
+$$
+C(\mathcal{F}) = \lim_{n \to \infty} \frac{\log N_{\mathcal{F}}(n)}{n}
+$$
    - 其中$N_{\mathcal{F}}(n)$是长度为$n$的合法串数量
    
    **引理2.11.1**：对于任何非空约束集$\mathcal{F}$，$C(\mathcal{F}) \leq \log \phi$
@@ -1445,25 +1460,35 @@ $$
    对于第$k$层描述$\hat{D}_k$，需要处理的信息量为$|D_k|$。
    
    **关键观察**：由于描述函数的单射性，每增加一层递归，需要处理的信息量至少增加一个单位：
-   $$|D_k| \geq |D_{k-1}| + 1$$
    
+$$
+|D_k| \geq |D_{k-1}| + 1
+$$
    因此，计算第$k$层描述的最小时间复杂度为：
-   $$T_k \geq \sum_{i=0}^{k-1} |D_i| \geq \sum_{i=0}^{k-1} i = \frac{k(k-1)}{2}$$
    
+$$
+T_k \geq \sum_{i=0}^{k-1} |D_i| \geq \sum_{i=0}^{k-1} i = \frac{k(k-1)}{2}
+$$
    **步骤3：从熵增公理推导存储成本**
    
    熵增公理要求$H(S_{k+1}) > H(S_k)$，意味着每层描述包含更多信息。
    最保守估计下，每层增加一个单位的信息：
-   $$H(S_k) \geq H(S_0) + k$$
    
+$$
+H(S_k) \geq H(S_0) + k
+$$
    因此存储成本至少为：
-   $$S_k \geq k$$
    
+$$
+S_k \geq k
+$$
    **步骤4：总成本函数的下界**
    
    综合计算和存储成本，第$k$层描述的总成本满足：
-   $$C_k \geq \alpha_1 \cdot \frac{k(k-1)}{2} + \alpha_2 \cdot k \geq \alpha k$$
    
+$$
+C_k \geq \alpha_1 \cdot \frac{k(k-1)}{2} + \alpha_2 \cdot k \geq \alpha k
+$$
    其中$\alpha$是由系统参数决定的正常数。
    
    **最大熵原理**：在资源约束下，系统选择最大熵的分布：
@@ -2157,8 +2182,10 @@ $$
 
 1. **基础定理回顾**：
    根据定理2.3，φ-表示具有最小熵增长性质：
-   $$\forall \text{encoding } E: \text{entropy\_growth}(\text{φ-rep}) \leq \text{entropy\_growth}(E)$$
-
+   
+$$
+\forall \text{encoding } E: \text{entropy\_growth}(\text{φ-rep}) \leq \text{entropy\_growth}(E)
+$$
 2. **退相干的熵增本质**：
    **引理5.1.1**：量子退相干过程等价于系统熵增过程
    
@@ -2214,8 +2241,10 @@ $$
 
 1. **自指完备数据的定义**：
    **定义5.2.1**：数据序列$D$具有自指完备性当且仅当：
-   $$\exists f: D = f(D, \text{context}) \text{ 且 } |f| < |D|$$
    
+$$
+\exists f: D = f(D, \text{context}) \text{ 且 } |f| < |D|
+$$
    即数据可以通过比自身更短的规则完全重构。
 
 2. **φ-编码的压缩优势**：
@@ -2231,8 +2260,10 @@ $$
    **引理5.2.3**：φ-编码的压缩率提升
    
    对于Fibonacci结构数据，压缩率改进约为：
-   $$R_{\text{improvement}} = \frac{R_φ}{R_{std}} \approx φ^{0.5} \approx 1.27$$
-
+   
+$$
+R_{\text{improvement}} = \frac{R_φ}{R_{std}} \approx φ^{0.5} \approx 1.27
+$$
 **桥接假设的明确标识**：
 - **假设H5.2.1**：存在大量具有自指完备性质的实际数据
 - **假设H5.2.2**：φ-编码算法可以有效实现
@@ -2272,8 +2303,10 @@ $$
 
 1. **控制系统的熵增本质**：
    **定义5.3.1**：控制系统的稳定性等价于状态熵的有界性
-   $$\text{Stable}(S) \Leftrightarrow \sup_t H(S_t) < \infty$$
-
+   
+$$
+\text{Stable}(S) \Leftrightarrow \sup_t H(S_t) < \infty
+$$
 2. **φ-比例控制的理论基础**：
    **定理5.3.2**：φ-比例控制实现最小熵增长控制
    
@@ -2288,8 +2321,10 @@ $$
    **引理5.3.3**：φ-控制系统的稳定裕度
    
    Lyapunov函数分析显示，φ-比例控制的稳定裕度约为标准控制的$φ$倍：
-   $$\text{Stability\_Margin}_φ \approx φ \cdot \text{Stability\_Margin}_{std}$$
-
+   
+$$
+\text{Stability\_Margin}_φ \approx φ \cdot \text{Stability\_Margin}_{std}
+$$
 **桥接假设的明确标识**：
 - **假设H5.3.1**：控制系统的稳定性可以用信息熵刻画
 - **假设H5.3.2**：φ-比例在控制系统中具有特殊意义
@@ -2340,8 +2375,10 @@ $$
 
 2. **分布式共识协议的分析**：
    **定义5.4.2**：分布式一致性等价于节点状态熵的最小化
-   $$\text{Consensus}(N) \Leftrightarrow \min \sum_{i=1}^{|N|} H(s_i)$$
    
+$$
+\text{Consensus}(N) \Leftrightarrow \min \sum_{i=1}^{|N|} H(s_i)
+$$
    **结论**：共识协议属于熵减系统，与φ-表示的熵增控制原理不符。
 
 3. **其他不适用场景**：
@@ -2370,8 +2407,10 @@ $$
 
 1. **熵增系统的定义**：
    **定义5.5.1**：熵增系统是满足以下条件的系统$S$：
-   $$\exists \text{process } P: \frac{dH(S)}{dt} > 0 \text{ 且 } S = S(S, P)$$
    
+$$
+\exists \text{process } P: \frac{dH(S)}{dt} > 0 \text{ 且 } S = S(S, P)
+$$
    即系统的熵持续增长，且系统状态依赖于自身状态和过程。
 
 2. **φ-表示优势的适用条件**：
