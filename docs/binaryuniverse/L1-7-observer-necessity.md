@@ -132,8 +132,9 @@ $$
 3. 新状态：$S' = S \cup \{r\}$
 
 由于$r \notin S$（新信息）：
-$$H(S') = H(S \cup \{r\}) > H(S)$$
-
+$$
+H(S') = H(S \cup \{r\}) > H(S)
+$$
 即使"完美"观察（不扰动对象）也因记录而增熵。
 
 这是自指结构的本质：自我观察必然自我扩展。∎
@@ -143,8 +144,9 @@ $$H(S') = H(S \cup \{r\}) > H(S)$$
 ### 观察者的数学结构
 
 观察者可形式化为三元组：
-$$O = (\mathcal{S}_O, \mathcal{A}_O, \mathcal{M}_O)$$
-
+$$
+O = (\mathcal{S}_O, \mathcal{A}_O, \mathcal{M}_O)
+$$
 其中：
 - $\mathcal{S}_O$：观察者的内部状态空间
 - $\mathcal{A}_O$：可执行的观察动作

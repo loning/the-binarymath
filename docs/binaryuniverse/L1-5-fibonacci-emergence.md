@@ -23,8 +23,9 @@ $$
 设$a_n$为长度为n的满足no-11约束的二进制串数量。
 
 **引理1.5.1（基本递归关系）**
-$$a_n = a_{n-1} + a_{n-2} \quad \text{for } n \geq 2$$
-
+$$
+a_n = a_{n-1} + a_{n-2} \quad \text{for } n \geq 2
+$$
 **证明**：
 将长度为n的合法串按最后一位分类：
 
@@ -67,8 +68,9 @@ $a_n = F_{n+2}$ 对所有 $n \geq 0$
 假设对所有$k \leq n$，有$a_k = F_{k+2}$。
 
 则：
-$$a_{n+1} = a_n + a_{n-1} = F_{n+2} + F_{n+1} = F_{n+3}$$
-
+$$
+a_{n+1} = a_n + a_{n-1} = F_{n+2} + F_{n+1} = F_{n+3}
+$$
 最后一步使用了Fibonacci数的定义。
 
 因此，由数学归纳法，$a_n = F_{n+2}$对所有$n \geq 0$成立。∎
@@ -89,38 +91,46 @@ $$a_{n+1} = a_n + a_{n-1} = F_{n+2} + F_{n+1} = F_{n+3}$$
 
 **引理1.5.4（生成函数表示）**
 合法串的生成函数为：
-$$G(x) = \sum_{n=0}^{\infty} a_n x^n = \frac{1}{1-x-x^2}$$
-
+$$
+G(x) = \sum_{n=0}^{\infty} a_n x^n = \frac{1}{1-x-x^2}
+$$
 **证明**：
 从递归关系$a_n = a_{n-1} + a_{n-2}$：
 
-$$\sum_{n=2}^{\infty} a_n x^n = x\sum_{n=2}^{\infty} a_{n-1} x^{n-1} + x^2\sum_{n=2}^{\infty} a_{n-2} x^{n-2}$$
-
+$$
+\sum_{n=2}^{\infty} a_n x^n = x\sum_{n=2}^{\infty} a_{n-1} x^{n-1} + x^2\sum_{n=2}^{\infty} a_{n-2} x^{n-2}
+$$
 整理得：
-$$G(x) - a_0 - a_1x = x(G(x) - a_0) + x^2 G(x)$$
-
+$$
+G(x) - a_0 - a_1x = x(G(x) - a_0) + x^2 G(x)
+$$
 代入$a_0 = 1, a_1 = 2$：
-$$G(x) - 1 - 2x = x(G(x) - 1) + x^2 G(x)$$
-
+$$
+G(x) - 1 - 2x = x(G(x) - 1) + x^2 G(x)
+$$
 解得：
-$$G(x) = \frac{1}{1-x-x^2}$$
-
+$$
+G(x) = \frac{1}{1-x-x^2}
+$$
 ### 步骤6：渐近行为
 
 **引理1.5.5（增长率）**
-$$a_n \sim \frac{\phi^{n+2}}{\sqrt{5}} \text{ as } n \to \infty$$
-
+$$
+a_n \sim \frac{\phi^{n+2}}{\sqrt{5}} \text{ as } n \to \infty
+$$
 其中$\phi = \frac{1+\sqrt{5}}{2}$是黄金比例。
 
 **证明**：
 使用Fibonacci数的Binet公式：
-$$F_n = \frac{\phi^n - \psi^n}{\sqrt{5}}$$
-
+$$
+F_n = \frac{\phi^n - \psi^n}{\sqrt{5}}
+$$
 其中$\psi = \frac{1-\sqrt{5}}{2} = -1/\phi$。
 
 由于$|\psi| < 1$，当$n \to \infty$时：
-$$a_n = F_{n+2} \sim \frac{\phi^{n+2}}{\sqrt{5}}$$
-
+$$
+a_n = F_{n+2} \sim \frac{\phi^{n+2}}{\sqrt{5}}
+$$
 ## 技术细节
 
 ### 组合解释
@@ -134,15 +144,17 @@ $$a_n = F_{n+2} \sim \frac{\phi^{n+2}}{\sqrt{5}}$$
 ### 矩阵表示
 
 递归可用矩阵形式表示：
-$$\begin{pmatrix} a_n \\ a_{n-1} \end{pmatrix} = \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} a_{n-1} \\ a_{n-2} \end{pmatrix}$$
-
+$$
+\begin{pmatrix} a_n \\ a_{n-1} \end{pmatrix} = \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} a_{n-1} \\ a_{n-2} \end{pmatrix}
+$$
 转移矩阵的特征值正是$\phi$和$\psi$。
 
 ### 连分数联系
 
 生成函数可展开为连分数：
-$$\frac{1}{1-x-x^2} = \cfrac{1}{1-\cfrac{x}{1-\cfrac{x}{1-\cdots}}}$$
-
+$$
+\frac{1}{1-x-x^2} = \cfrac{1}{1-\cfrac{x}{1-\cfrac{x}{1-\cdots}}}
+$$
 这种无限自相似结构呼应了自指完备性。
 
 ## 与后续引理的关系

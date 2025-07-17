@@ -49,8 +49,9 @@ $$
 
 **证明（反证法）**：
 假设存在$n$有两个不同的表示：
-$$n = \sum_{i \in I} F_i = \sum_{j \in J} F_j$$
-
+$$
+n = \sum_{i \in I} F_i = \sum_{j \in J} F_j
+$$
 其中$I \neq J$，且两个表示都满足不连续条件。
 
 设$k = \max(I \triangle J)$（对称差的最大元素）。
@@ -65,11 +66,13 @@ $$n = \sum_{i \in I} F_i = \sum_{j \in J} F_j$$
 **情况1**：$k-1 \in J$
 由于$J$满足不连续条件，$k-2 \notin J$。
 但这意味着：
-$$\sum_{j \in J, j \leq k} F_j \geq F_{k-1} = F_k - F_{k-2}$$
-
+$$
+\sum_{j \in J, j \leq k} F_j \geq F_{k-1} = F_k - F_{k-2}
+$$
 由于$I$中没有$k-1$（不连续条件），且$k-2$可能在$I$中：
-$$\sum_{i \in I, i \leq k} F_i = F_k + \sum_{i \in I, i < k-1} F_i$$
-
+$$
+\sum_{i \in I, i \leq k} F_i = F_k + \sum_{i \in I, i < k-1} F_i
+$$
 但$\sum_{i \in I, i < k-1} F_i < F_{k-1}$（否则违反贪心选择）。
 
 这导致$\sum_{i \in I} F_i < \sum_{j \in J} F_j$，矛盾！
@@ -83,12 +86,14 @@ $$\sum_{i \in I, i \leq k} F_i = F_k + \sum_{i \in I, i < k-1} F_i$$
 
 **引理1.6.3（编码双射）**
 存在双射：
-$$\phi: \{b \in \{0,1\}^* : b \text{ 不含 } "11"\} \leftrightarrow \mathbb{Z}^+$$
-
+$$
+\phi: \{b \in \{0,1\}^* : b \text{ 不含 } "11"\} \leftrightarrow \mathbb{Z}^+
+$$
 **定义**：
 对于二进制串$b = b_n b_{n-1} \cdots b_1$：
-$$\phi(b) = \sum_{i=1}^n b_i F_i$$
-
+$$
+\phi(b) = \sum_{i=1}^n b_i F_i
+$$
 **双射性证明**：
 1. **单射性**：由唯一性定理，不同的二进制串对应不同的整数
 2. **满射性**：由存在性定理，每个整数都有对应的二进制串
@@ -97,20 +102,24 @@ $$\phi(b) = \sum_{i=1}^n b_i F_i$$
 
 **引理1.6.4（编码长度）**
 正整数n的φ-表示长度为：
-$$|\text{φ-repr}(n)| = \lfloor \log_\phi n \rfloor + O(1)$$
-
+$$
+|\text{φ-repr}(n)| = \lfloor \log_\phi n \rfloor + O(1)
+$$
 **证明**：
 设n的φ-表示使用的最大Fibonacci数索引为k。
 
 由贪心算法的性质：
-$$F_k \leq n < F_{k+1}$$
-
+$$
+F_k \leq n < F_{k+1}
+$$
 由Fibonacci数的渐近公式：
-$$\frac{\phi^k}{\sqrt{5}} - 1 < F_k \leq n < F_{k+1} < \frac{\phi^{k+1}}{\sqrt{5}} + 1$$
-
+$$
+\frac{\phi^k}{\sqrt{5}} - 1 < F_k \leq n < F_{k+1} < \frac{\phi^{k+1}}{\sqrt{5}} + 1
+$$
 取对数：
-$$k < \log_\phi(n\sqrt{5}) + O(1)$$
-
+$$
+k < \log_\phi(n\sqrt{5}) + O(1)
+$$
 因此编码长度$k = \lfloor \log_\phi n \rfloor + O(1)$。∎
 
 ### 步骤5：算术运算
@@ -121,7 +130,10 @@ $$k < \log_\phi(n\sqrt{5}) + O(1)$$
 **算法概述**：
 1. 将两个φ-表示按位相加（可能产生"11"）
 2. 使用Fibonacci恒等式消除"11"：
-   $$F_i + F_i = F_{i+1} + F_{i-2}$$
+   
+$$
+F_i + F_i = F_{i+1} + F_{i-2}
+$$
 3. 递归处理直到满足no-11约束
 
 **复杂度**：$O(\log n)$，其中n是和的大小。
@@ -168,8 +180,9 @@ function phi_to_integer(phi_repr):
 ### 密度分析
 
 满足no-11约束的n位二进制串的比例：
-$$\lim_{n \to \infty} \frac{F_{n+2}}{2^n} = \lim_{n \to \infty} \frac{\phi^{n+2}/\sqrt{5}}{2^n} = 0$$
-
+$$
+\lim_{n \to \infty} \frac{F_{n+2}}{2^n} = \lim_{n \to \infty} \frac{\phi^{n+2}/\sqrt{5}}{2^n} = 0
+$$
 这说明φ-表示使用了二进制空间的一个零测度子集。
 
 ## 与后续引理的关系
