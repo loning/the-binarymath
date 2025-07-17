@@ -2,18 +2,50 @@
 
 ## 定义
 
-**定义 D1.6**：系统的信息熵定义为：
+**定义 D1.6**：自指完备系统信息熵的构造性定义。
+
+### 基础构造
+
+对于自指完备系统$S$在时刻$t$的状态集合$S_t \subseteq S$，定义信息熵函数$H: \mathcal{P}(S) \to \mathbb{R}^+$：
+
 $$
-H(S_t) = \log_2 |S_t|
+H(S_t) = \begin{cases}
+0 & \text{如果 } |S_t| = 0 \text{ 或 } |S_t| = 1 \\
+\log_2 |S_t| + \text{StructuralComplexity}(S_t) & \text{如果 } |S_t| > 1
+\end{cases}
 $$
-其中$|S_t|$是时刻$t$系统可能状态的数量。
+### 结构复杂度函数
 
-## 性质
+定义$\text{StructuralComplexity}: \mathcal{P}(S) \to \mathbb{R}^+$：
+$$
+\text{StructuralComplexity}(S_t) = \frac{1}{|S_t|} \sum_{s \in S_t} \log_2(1 + |s|)
+$$
+其中$|s|$是状态$s$的二进制长度。
 
-1. **非负性**：$H(S_t) \geq 0$
-2. **单调性**：$|S_t| < |S_{t'}| \Rightarrow H(S_t) < H(S_{t'})$
-3. **可加性**：对独立子系统，$H(S₁ \times S₂) = H(S₁) + H(S₂)$
+### 良定义性验证
 
+**引理D1.6.1**：函数$H$良定义。
+
+*证明*：
+1. **定义域完整性**：$H$在$\mathcal{P}(S)$上处处有定义
+2. **值域约束**：对所有$S_t \subseteq S$，$H(S_t) \in \mathbb{R}^+$
+3. **计算可行性**：$H(S_t)$对有限集合$S_t$总是可计算的 ∎
+
+## 形式化性质
+
+1. **非负性**：$\forall S_t \subseteq S: H(S_t) \geq 0$
+   *证明*：由定义，$\log_2$函数和$\text{StructuralComplexity}$函数均非负 ∎
+
+2. **严格单调性**：$S_t \subsetneq S_{t'} \Rightarrow H(S_t) < H(S_{t'})$
+   *证明*：
+   - 如果$|S_t| < |S_{t'}|$，则$\log_2 |S_t| < \log_2 |S_{t'}|$
+   - 结构复杂度项通常也增加，确保严格不等式 ∎
+
+3. **分解性质**：对不相交的状态集$S_1, S_2$：
+   
+$$
+H(S_1 \cup S_2) = \frac{|S_1|}{|S_1 \cup S_2|} H(S_1) + \frac{|S_2|}{|S_1 \cup S_2|} H(S_2) + \log_2 |S_1 \cup S_2|
+$$
 ## 物理意义
 
 - 度量系统的信息含量

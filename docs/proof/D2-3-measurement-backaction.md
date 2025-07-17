@@ -2,11 +2,28 @@
 
 ## 定义
 
-**定义 D2.3**：观察者o对状态s的反作用：
+**定义 D2.3**：观察者o对状态s的测量反作用的构造性定义。
+
+### 标准距离度量
+
+在自指完备系统S上定义标准距离度量$d: S \times S \to \mathbb{R}^+$：
+$$
+d(s,t) = \frac{|s \triangle t|}{|s| + |t|} + \epsilon \cdot |\log_2 |s| - \log_2 |t||
+$$
+其中：
+- $s \triangle t$ 是对称差集（不同元素的集合）
+- $\epsilon = \log_2 \phi$ 是权重参数
+
+### 测量反作用定义
+
+观察者$o \in O$对状态$s \in S$的反作用定义为：
 $$
 \text{backaction}(o,s) = d(s, o(s))
 $$
-其中d是状态空间的距离度量。
+
+### 非零性验证
+
+由[D1.5 观察者](D1-5-observer.md)的非平凡性，$o(s) \neq s$，因此$d(s, o(s)) > 0$。
 
 ## 距离度量选择
 

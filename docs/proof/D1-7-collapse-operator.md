@@ -20,15 +20,41 @@ $$
 
 ## 具体形式
 
-对于二进制串s，一个可能的Collapse算子：
-$$
-\Xi(s) = s \oplus \text{encode}(\psi(s))
-$$
-其中：
-- ⊕是满足no-11的连接操作
-- ψ是自指映射
-- encode是编码函数
+对于长度为n的二进制串$s = s_1s_2...s_n$，Collapse算子定义为：
 
+$$
+\Xi(s) = s \cdot \text{SafeConcat}(\text{SelfRef}(s))
+$$
+
+其中：
+
+1. **自指函数** $\text{SelfRef}: \{0,1\}^n \to \{0,1\}^*$：
+   
+$$
+   \text{SelfRef}(s) = \text{BinEncode}(|s|) \cdot \text{CheckSum}(s)
+   
+$$
+2. **安全连接** $\text{SafeConcat}: \{0,1\}^* \times \{0,1\}^* \to \{0,1\}^*$：
+   
+$$
+   \text{SafeConcat}(a,b) = \begin{cases}
+   a \cdot 0 \cdot b & \text{如果 } a \text{ 以1结尾且 } b \text{ 以1开始} \\
+   a \cdot b & \text{否则}
+   \end{cases}
+   
+$$
+3. **二进制编码** $\text{BinEncode}: \mathbb{N} \to \{0,1\}^*$：
+   
+$$
+   \text{BinEncode}(n) = \text{标准二进制表示且满足no-11约束}
+   
+$$
+4. **校验和** $\text{CheckSum}: \{0,1\}^n \to \{0,1\}^{\lceil \log_2 n \rceil}$：
+   
+$$
+   \text{CheckSum}(s) = (s_1 \oplus s_2 \oplus ... \oplus s_n) \text{ 的二进制扩展}
+   
+$$
 ## 信息增量
 
 Collapse必然增加信息：

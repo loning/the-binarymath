@@ -2,9 +2,28 @@
 
 ## 定义
 
-**定义 D2.2**：从状态s到Ξ(s)的信息增量：
+**定义 D2.2**：从状态s到Ξ(s)的信息增量的构造性定义。
+
+### 信息度量函数
+
+设H: S → ℝ⁺为信息度量函数，对于状态$s \in S$：
 $$
-\Delta I(s) = H(\Xi(s)) - H(s) > 0
+H(s) = \log_2 |s| + \text{Complexity}(s)
+$$
+其中Complexity(s)是s的结构复杂度。
+
+### 信息增量定义
+
+从状态s到Ξ(s)的信息增量定义为：
+$$
+\Delta I(s) = H(\Xi(s)) - H(s)
+$$
+
+### 正定性证明
+
+由[D1.7 Collapse算子](D1-7-collapse-operator.md)的扩展性质，有$|\Xi(s)| > |s|$，因此：
+$$
+\Delta I(s) \geq \log_2 |\Xi(s)| - \log_2 |s| = \log_2 \frac{|\Xi(s)|}{|s|} > 0
 $$
 ## 形式化性质
 

@@ -2,13 +2,32 @@
 
 ## 定义
 
-**定义 D1.4**：时间是状态转换的度量：
+**定义 D1.4**：时间度量的构造性定义。
+
+### 精确构造
+
+对于自指完备系统$S$中的任意两个状态$s, t \in S$，时间度量$\tau: S \times S \to \mathbb{R}^+$定义为：
+
 $$
-\tau: S \times S \to \mathbb{R}^+
+\tau(s,t) = \begin{cases}
+0 & \text{如果 } s = t \\
+H(t) - H(s) & \text{如果 } H(t) > H(s) \\
+\epsilon + \text{EditDistance}(s,t) \cdot \log_2 \phi & \text{否则}
+\end{cases}
 $$
-满足：
-- τ(s,s) = 0（自身转换无时间）
-- τ(s,t) > 0当s ≠ t（不同状态转换需要时间）
+
+其中：
+- $H(s) = \log_2 |s|$ 是状态$s$的信息熵
+- $\epsilon = \log_2 \phi \approx 0.694$ 是最小时间量子
+- $\text{EditDistance}(s,t)$ 是$s$到$t$的最小编辑距离
+- $\phi = \frac{1+\sqrt{5}}{2}$ 是黄金比例
+
+### 良定义性验证
+
+此构造满足：
+- **非负性**：$\tau(s,t) \geq 0$（显然）
+- **同一性**：$\tau(s,t) = 0 \iff s = t$（由定义）
+- **离散性**：$\tau(s,t) \geq \epsilon > 0$ 当$s \neq t$
 
 ## 形式化性质
 

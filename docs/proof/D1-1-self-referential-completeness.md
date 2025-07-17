@@ -9,9 +9,18 @@
 
 ## 形式化表示
 
+设$\mathcal{U}$为全集，定义算子$\Phi: \mathcal{P}(\mathcal{U}) \to \mathcal{P}(\mathcal{U})$：
+
 $$
-S = \{s | s \in S \wedge D(s) \in S \wedge D(D) \text{ is defined}\}
+\Phi(X) = \{s \in \mathcal{U} | \exists D: X \to X \text{ 使得 } D(s) \in X \wedge D \in X\}
 $$
+
+则系统$S$是自指完备的当且仅当$S$是$\Phi$的最小不动点：
+$$
+S = \mu X. \Phi(X)
+$$
+
+即$S = \Phi(S)$且对任何$T$满足$T = \Phi(T)$都有$S \subseteq T$。
 ## 等价表述
 
 以下条件等价于自指完备性：

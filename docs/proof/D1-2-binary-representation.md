@@ -2,16 +2,30 @@
 
 ## 定义
 
-**定义 D1.2**：系统状态的二进制表示定义为：
-- 字母表 Σ = {0, 1}
-- 状态空间 S ⊆ Σ*（有限二进制串集合）
-- 每个状态s ∈ S是一个二进制序列
+**定义 D1.2**：自指完备系统的二进制表示的构造性定义。
 
-## 形式化表示
+### 基础构造
 
+1. **字母表定义**：$\Sigma = \{0, 1\}$
+
+2. **有限串空间**：$\Sigma^* = \bigcup_{n=0}^{\infty} \Sigma^n$，其中$\Sigma^n$是长度为n的所有二进制串的集合
+
+3. **状态空间构造**：
+   
 $$
-S = \{s | s = b_1b_2...b_n, b_i \in \{0,1\}, n \in \mathbb{N}\}
+S = \{s \in \Sigma^* | |s| < \infty \wedge \text{Encodable}(s)\}
 $$
+   其中$\text{Encodable}: \Sigma^* \to \{0,1\}$判断串是否可以编码系统信息
+
+### 编码函数定义
+
+定义编码映射$\text{Encode}: \mathcal{U} \to S$，其中$\mathcal{U}$是原始对象空间：
+$$
+\text{Encode}(x) = \text{ToBinary}(Hash(x)) \in S
+$$
+其中：
+- $Hash: \mathcal{U} \to \mathbb{N}$是哈希函数
+- $\text{ToBinary}: \mathbb{N} \to \Sigma^*$是标准二进制转换
 ## 语义解释
 
 - **0**：潜在/未实现/虚
