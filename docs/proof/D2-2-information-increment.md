@@ -3,8 +3,9 @@
 ## 定义
 
 **定义 D2.2**：从状态s到Ξ(s)的信息增量：
-$$\Delta I(s) = H(\Xi(s)) - H(s) > 0$$
-
+$$
+\Delta I(s) = H(\Xi(s)) - H(s) > 0
+$$
 ## 形式化性质
 
 1. **正定性**：∀s ∈ S: ΔI(s) > 0
@@ -20,15 +21,17 @@ $$\Delta I(s) = H(\Xi(s)) - H(s) > 0$$
 ## 最小增量定理
 
 存在常数c > 0使得：
-$$\Delta I(s) \geq c, \quad \forall s \in S$$
-
+$$
+\Delta I(s) \geq c, \quad \forall s \in S
+$$
 这保证了真正的信息创生。
 
 ## 与熵增的关系
 
 系统总熵增：
-$$H(S_{t+1}) - H(S_t) \geq \sum_{s \in S_t} p(s) \cdot \Delta I(s)$$
-
+$$
+H(S_{t+1}) - H(S_t) \geq \sum_{s \in S_t} p(s) \cdot \Delta I(s)
+$$
 其中p(s)是状态s的概率。
 
 ## 与其他定义的关系

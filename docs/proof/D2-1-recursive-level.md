@@ -3,8 +3,9 @@
 ## 定义
 
 **定义 D2.1**：状态s的递归层次定义为：
-$$\text{level}(s) = \min\{n | s \in \Xi^n(s_0)\}$$
-
+$$
+\text{level}(s) = \min\{n | s \in \Xi^n(s_0)\}
+$$
 其中s₀是初始状态，Ξⁿ表示n次应用Collapse算子。
 
 ## 形式化性质
@@ -33,8 +34,9 @@ s₀ (level 0)
 ## 信息内容
 
 递归层次反映信息复杂度：
-$$H(s) \geq f(\text{level}(s))$$
-
+$$
+H(s) \geq f(\text{level}(s))
+$$
 其中f是某个递增函数。
 
 ## 与其他定义的关系

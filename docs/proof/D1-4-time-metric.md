@@ -3,8 +3,9 @@
 ## 定义
 
 **定义 D1.4**：时间是状态转换的度量：
-$$\tau: S \times S \to \mathbb{R}^+$$
-
+$$
+\tau: S \times S \to \mathbb{R}^+
+$$
 满足：
 - τ(s,s) = 0（自身转换无时间）
 - τ(s,t) > 0当s ≠ t（不同状态转换需要时间）
@@ -18,8 +19,9 @@ $$\tau: S \times S \to \mathbb{R}^+$$
 ## 与熵的关系
 
 在自指完备系统中，自然的时间度量是：
-$$\tau(S_t, S_{t+1}) = H(S_{t+1}) - H(S_t) > 0$$
-
+$$
+\tau(S_t, S_{t+1}) = H(S_{t+1}) - H(S_t) > 0
+$$
 这由[L1.3 熵单调性](L1-3-entropy-monotonicity.md)保证为正。
 
 ## 离散时间结构

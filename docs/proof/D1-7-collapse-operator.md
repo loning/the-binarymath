@@ -3,8 +3,9 @@
 ## 定义
 
 **定义 D1.7**：Collapse是递归展开算子：
-$$\Xi: S \to S$$
-
+$$
+\Xi: S \to S
+$$
 满足：
 - Ξ(s)产生s的下一层递归
 - |Ξ(s)| > |s|（信息增加）
@@ -20,8 +21,9 @@ $$\Xi: S \to S$$
 ## 具体形式
 
 对于二进制串s，一个可能的Collapse算子：
-$$\Xi(s) = s \oplus \text{encode}(\psi(s))$$
-
+$$
+\Xi(s) = s \oplus \text{encode}(\psi(s))
+$$
 其中：
 - ⊕是满足no-11的连接操作
 - ψ是自指映射
@@ -30,8 +32,9 @@ $$\Xi(s) = s \oplus \text{encode}(\psi(s))$$
 ## 信息增量
 
 Collapse必然增加信息：
-$$H(\Xi(s)) > H(s)$$
-
+$$
+H(\Xi(s)) > H(s)
+$$
 增量ΔH = H(Ξ(s)) - H(s)有正下界。
 
 ## 与其他定义的关系
@@ -49,8 +52,9 @@ $$H(\Xi(s)) > H(s)$$
 ## 迭代行为
 
 递归序列：
-$$s_0 \xrightarrow{\Xi} s_1 \xrightarrow{\Xi} s_2 \xrightarrow{\Xi} ...$$
-
+$$
+s_0 \xrightarrow{\Xi} s_1 \xrightarrow{\Xi} s_2 \xrightarrow{\Xi} ...
+$$
 每步：
 - 保持历史信息
 - 添加新层次

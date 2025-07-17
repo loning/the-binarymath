@@ -10,8 +10,9 @@
 ## 形式化定义
 
 对于n ∈ ℕ，其φ-表示（Zeckendorf表示）为：
-$$n = \sum_{i=1}^{k} b_i F_i$$
-
+$$
+n = \sum_{i=1}^{k} b_i F_i
+$$
 其中：
 - Fᵢ是第i个Fibonacci数（F₁=1, F₂=2, ...）
 - bᵢ ∈ {0,1}
@@ -24,8 +25,9 @@ $$n = \sum_{i=1}^{k} b_i F_i$$
 ## 与黄金比例的关系
 
 Fibonacci数的增长率：
-$$\lim_{n \to \infty} \frac{F_{n+1}}{F_n} = \phi$$
-
+$$
+\lim_{n \to \infty} \frac{F_{n+1}}{F_n} = \phi
+$$
 因此φ-表示与黄金比例深刻相关。
 
 ## 编码效率

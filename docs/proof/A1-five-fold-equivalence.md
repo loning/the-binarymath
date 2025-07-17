@@ -17,20 +17,25 @@
 则以下五个命题等价：
 
 ### P1：熵增表述
-$$H(S_{t+1}) > H(S_t)$$
-
+$$
+H(S_{t+1}) > H(S_t)
+$$
 ### P2：时间涌现表述
-$$\exists \tau: S \times S \to \mathbb{R}^+, \forall t: \tau(S_t, S_{t+1}) > 0$$
-
+$$
+\exists \tau: S \times S \to \mathbb{R}^+, \forall t: \tau(S_t, S_{t+1}) > 0
+$$
 ### P3：观察者表述
-$$\forall o \in O, s \in S: \text{Observe}(o,s) \neq s$$
-
+$$
+\forall o \in O, s \in S: \text{Observe}(o,s) \neq s
+$$
 ### P4：不对称表述
-$$\forall t: S_{t+1} \neq S_t$$
-
+$$
+\forall t: S_{t+1} \neq S_t
+$$
 ### P5：递归展开表述
-$$\forall t < t': \neg(S_{t'} \to S_t)$$
-
+$$
+\forall t < t': \neg(S_{t'} \to S_t)
+$$
 ## 公理的等价性
 
 ### 五个视角的统一

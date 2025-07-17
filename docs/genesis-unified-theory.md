@@ -384,13 +384,20 @@ $$
 
 其中：
 1. **一阶递归生成**：
-   $$\Delta_t^{(1)} = \{\text{Desc}_t(s) : s \in S_t \land \text{Desc}_t(s) \notin S_t\}$$
    
+$$
+\Delta_t^{(1)} = \{\text{Desc}_t(s) : s \in S_t \land \text{Desc}_t(s) \notin S_t\}
+$$
 2. **高阶递归生成**：
-   $$\Delta_t^{(2)} = \{\text{Desc}_t(\text{Desc}_t(s)) : s \in S_t \land \text{Desc}_t(s) \in S_t \cap \mathcal{L}\}$$
    
+$$
+\Delta_t^{(2)} = \{\text{Desc}_t(\text{Desc}_t(s)) : s \in S_t \land \text{Desc}_t(s) \in S_t \cap \mathcal{L}\}
+$$
 3. **交互生成**：
-   $$\Delta_t^{(3)} = \{f(s_1, s_2) : s_1, s_2 \in S_t, f \in \text{Oper}_t\}$$
+   
+$$
+\Delta_t^{(3)} = \{f(s_1, s_2) : s_1, s_2 \in S_t, f \in \text{Oper}_t\}
+$$
    其中$\text{Oper}_t$是时刻$t$可用的二元操作集合
 
 **定理1.2（动态完备性的一致性）**

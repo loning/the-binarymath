@@ -3,15 +3,17 @@
 ## 定义
 
 **定义 D1.3**：序列s满足no-11约束，当且仅当：
-$$\forall i: s[i] = 1 \Rightarrow s[i+1] \neq 1$$
-
+$$
+\forall i: s[i] = 1 \Rightarrow s[i+1] \neq 1
+$$
 即序列中不存在连续的两个1。
 
 ## 形式化表示
 
 对于s = b₁b₂...bₙ ∈ {0,1}*：
-$$\text{valid}(s) \iff \forall i \in [1,n-1]: \neg(b_i = 1 \wedge b_{i+1} = 1)$$
-
+$$
+\text{valid}(s) \iff \forall i \in [1,n-1]: \neg(b_i = 1 \wedge b_{i+1} = 1)
+$$
 ## 等价表述
 
 ### no-11约束的多种表述

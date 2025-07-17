@@ -9,8 +9,9 @@
 
 ## 形式化表示
 
-$$S = \{s | s \in S \wedge D(s) \in S \wedge D(D) \text{ is defined}\}$$
-
+$$
+S = \{s | s \in S \wedge D(s) \in S \wedge D(D) \text{ is defined}\}
+$$
 ## 等价表述
 
 以下条件等价于自指完备性：
