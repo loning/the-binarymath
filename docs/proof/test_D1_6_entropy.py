@@ -1,320 +1,326 @@
 #!/usr/bin/env python3
 """
-Machine verification unit tests for D1.6: Entropy
-Testing the constructive definition of information entropy in self-referential complete systems.
+Machine verification unit tests for D1.6: Entropy Definition
+Testing the formal definition of entropy in self-referential complete systems.
+Based on the verified formula: H = ln(|S_t|)
 """
 
 import unittest
 import math
-from typing import Set, List, Callable, Union
+from typing import Set, List, Dict, Any
 
 
-class SystemEntropy:
-    """Implementation of D1.6: Entropy definition"""
+class EntropySystem:
+    """System for testing entropy properties"""
     
     def __init__(self):
-        self.epsilon = 1e-10  # Small value for numerical stability
+        self.phi = (1 + math.sqrt(5)) / 2  # Golden ratio
+        self.ln_phi = math.log(self.phi)   # ln(φ) ≈ 0.4812
     
-    def structural_complexity(self, state_set: Set[str]) -> float:
-        """StructuralComplexity: P(S) → R⁺"""
-        if not state_set:
+    def compute_entropy(self, S_t: Set[str]) -> float:
+        """
+        Compute information entropy of a state set
+        
+        H(S_t) = ln(|S_t|)
+        """
+        if len(S_t) == 0:
             return 0.0
         
-        total_complexity = sum(math.log2(1 + len(state)) for state in state_set)
-        return total_complexity / len(state_set)
+        return math.log(len(S_t))
     
-    def entropy(self, state_set: Set[str]) -> float:
-        """H: P(S) → R⁺ - Information entropy function"""
-        size = len(state_set)
+    def compute_entropy_increase(self, S_t: Set[str], S_t_plus_1: Set[str]) -> float:
+        """
+        Compute entropy increase
         
-        if size == 0 or size == 1:
-            return 0.0
+        ΔH = ln(|S_{t+1}|/|S_t|) = ln(growth rate)
+        """
+        if len(S_t) == 0:
+            return self.compute_entropy(S_t_plus_1)
         
-        base_entropy = math.log2(size)
-        structural_comp = self.structural_complexity(state_set)
-        
-        return base_entropy + structural_comp
+        growth_rate = len(S_t_plus_1) / len(S_t)
+        return math.log(growth_rate)
     
-    def is_well_defined(self, state_set: Set[str]) -> bool:
-        """Check if entropy function is well-defined for given state set"""
-        try:
-            entropy_val = self.entropy(state_set)
-            return entropy_val >= 0 and math.isfinite(entropy_val)
-        except (ValueError, ZeroDivisionError):
-            return False
+    def verify_non_negativity(self, state_sets: List[Set[str]]) -> bool:
+        """Verify H(S_t) ≥ 0 for all state sets"""
+        for S_t in state_sets:
+            if self.compute_entropy(S_t) < 0:
+                return False
+        return True
     
-    def is_computable(self, state_set: Set[str]) -> bool:
-        """Check if entropy is computable for finite state set"""
-        if not isinstance(state_set, set):
-            return False
+    def verify_monotonicity(self, S1: Set[str], S2: Set[str]) -> bool:
+        """Verify if S1 ⊂ S2 then H(S1) < H(S2)"""
+        if S1 == S2:
+            return True
         
-        # Check if all states are finite binary strings
-        for state in state_set:
-            if not isinstance(state, str) or not all(c in '01' for c in state):
+        if S1.issubset(S2) and S1 != S2:
+            H1 = self.compute_entropy(S1)
+            H2 = self.compute_entropy(S2)
+            return H1 < H2
+        
+        return True
+    
+    def verify_entropy_increase_bound(self, S_t: Set[str], S_t_plus_1: Set[str]) -> bool:
+        """Verify entropy increase equals ln(growth rate)"""
+        if len(S_t) == 0:
+            return True
+        
+        # Compute actual entropy increase
+        H_t = self.compute_entropy(S_t)
+        H_t_plus_1 = self.compute_entropy(S_t_plus_1)
+        actual_increase = H_t_plus_1 - H_t
+        
+        # Compute theoretical value
+        growth_rate = len(S_t_plus_1) / len(S_t)
+        theoretical_increase = math.log(growth_rate)
+        
+        # Check equality (within numerical tolerance)
+        return abs(actual_increase - theoretical_increase) < 1e-10
+    
+    def evolve_with_no11_constraint(self, S_t: Set[str]) -> Set[str]:
+        """Evolve system respecting no-11 constraint"""
+        S_next = set()
+        
+        for s in S_t:
+            # Always can append 0
+            S_next.add(s + '0')
+            
+            # Can append 1 only if last bit is not 1
+            if not s or s[-1] != '1':
+                S_next.add(s + '1')
+        
+        return S_next
+    
+    def generate_fibonacci_sequence(self, n: int) -> List[int]:
+        """Generate Fibonacci sequence"""
+        if n <= 0:
+            return []
+        if n == 1:
+            return [1]
+        
+        fib = [1, 1]  # F_1 = 1, F_2 = 1 (standard)
+        for i in range(2, n):
+            fib.append(fib[-1] + fib[-2])
+        
+        return fib
+    
+    def verify_fibonacci_growth(self, evolution_sequence: List[Set[str]]) -> bool:
+        """Verify state count follows Fibonacci sequence"""
+        sizes = [len(S) for S in evolution_sequence]
+        
+        # Starting from {0, 1}, sizes should be 2, 3, 5, 8, 13, ...
+        # which is F_3, F_4, F_5, F_6, F_7, ...
+        expected = self.generate_fibonacci_sequence(len(sizes) + 2)[2:]
+        
+        for i, (actual, expected_val) in enumerate(zip(sizes, expected)):
+            if actual != expected_val:
                 return False
         
-        return len(state_set) < float('inf')
+        return True
     
-    def verify_non_negativity(self, state_set: Set[str]) -> bool:
-        """Verify non-negativity property: H(S_t) ≥ 0"""
-        if not self.is_well_defined(state_set):
-            return False
-        return self.entropy(state_set) >= 0
+    def shannon_to_natural_conversion(self, H_shannon_bits: float) -> float:
+        """Convert Shannon entropy (bits) to natural units (nats)"""
+        return H_shannon_bits * math.log(2)
     
-    def verify_strict_monotonicity(self, smaller_set: Set[str], larger_set: Set[str]) -> bool:
-        """Verify strict monotonicity: S_t ⊊ S_t' ⟹ H(S_t) < H(S_t')"""
-        if not (smaller_set < larger_set):  # strict subset
-            return False
-        
-        if not (self.is_well_defined(smaller_set) and self.is_well_defined(larger_set)):
-            return False
-        
-        h_smaller = self.entropy(smaller_set)
-        h_larger = self.entropy(larger_set)
-        
-        return h_smaller < h_larger
-    
-    def decomposition_property(self, set1: Set[str], set2: Set[str]) -> float:
-        """Compute decomposition property for disjoint sets"""
-        if set1 & set2:  # Not disjoint
-            raise ValueError("Sets must be disjoint")
-        
-        union_set = set1 | set2
-        if not union_set:
-            return 0.0
-        
-        size1, size2, size_union = len(set1), len(set2), len(union_set)
-        
-        if size_union == 0:
-            return 0.0
-        
-        weight1 = size1 / size_union if size1 > 0 else 0
-        weight2 = size2 / size_union if size2 > 0 else 0
-        
-        h1 = self.entropy(set1) if set1 else 0
-        h2 = self.entropy(set2) if set2 else 0
-        
-        return weight1 * h1 + weight2 * h2 + math.log2(size_union)
+    def natural_to_shannon_conversion(self, H_nats: float) -> float:
+        """Convert natural entropy (nats) to Shannon units (bits)"""
+        return H_nats / math.log(2)
 
 
-class TestSystemEntropy(unittest.TestCase):
-    """Unit tests for D1.6: Entropy"""
+class TestEntropyDefinition(unittest.TestCase):
+    """Unit tests for D1.6: Entropy Definition"""
     
     def setUp(self):
-        self.entropy = SystemEntropy()
-    
-    def test_structural_complexity_basic(self):
-        """Test StructuralComplexity function"""
-        # Empty set
-        self.assertEqual(self.entropy.structural_complexity(set()), 0.0)
-        
-        # Single state
-        complexity = self.entropy.structural_complexity({'0'})
-        expected = math.log2(1 + 1)  # log2(1 + |'0'|)
-        self.assertAlmostEqual(complexity, expected, places=10)
-        
-        # Multiple states
-        states = {'0', '1', '01', '10'}
-        complexity = self.entropy.structural_complexity(states)
-        expected = (math.log2(2) + math.log2(2) + math.log2(3) + math.log2(3)) / 4
-        self.assertAlmostEqual(complexity, expected, places=10)
-    
-    def test_entropy_basic_cases(self):
-        """Test entropy function for basic cases"""
-        # Empty set: H = 0
-        self.assertEqual(self.entropy.entropy(set()), 0.0)
-        
-        # Single state: H = 0
-        self.assertEqual(self.entropy.entropy({'0'}), 0.0)
-        
-        # Two states: H > 0
-        entropy_val = self.entropy.entropy({'0', '1'})
-        self.assertGreater(entropy_val, 0)
-        
-        # Four states
-        entropy_val = self.entropy.entropy({'00', '01', '10', '11'})
-        self.assertGreater(entropy_val, math.log2(4))  # Should be greater than base entropy
-    
-    def test_well_defined_property(self):
-        """Test that entropy function is well-defined"""
-        test_sets = [
-            set(),
-            {'0'},
-            {'0', '1'},
-            {'00', '01', '10'},
-            {'', '0', '1', '01', '10', '001', '010', '100'}
+        self.system = EntropySystem()
+        # Test state sets
+        self.test_sets = [
+            set(),  # Empty set
+            {'0'},  # Single state
+            {'0', '1'},  # Two states
+            {'00', '01', '10'},  # Three states (no '11')
+            {'000', '001', '010', '100', '101'},  # Five states
         ]
-        
-        for state_set in test_sets:
-            with self.subTest(state_set=state_set):
-                self.assertTrue(self.entropy.is_well_defined(state_set))
     
-    def test_computability(self):
-        """Test that entropy is computable for finite sets"""
-        # Valid finite sets
-        valid_sets = [
-            set(),
-            {'0', '1'},
-            {'00', '01', '10', '11'},
-            {'101', '010', '001'}
-        ]
+    def test_entropy_computation(self):
+        """Test basic entropy computation H = ln(|S_t|)"""
+        # Test specific values
+        self.assertEqual(self.system.compute_entropy(set()), 0.0)
+        self.assertEqual(self.system.compute_entropy({'0'}), 0.0)  # ln(1) = 0
+        self.assertAlmostEqual(self.system.compute_entropy({'0', '1'}), math.log(2))
+        self.assertAlmostEqual(self.system.compute_entropy({'0', '1', '2'}), math.log(3))
         
-        for state_set in valid_sets:
-            with self.subTest(state_set=state_set):
-                self.assertTrue(self.entropy.is_computable(state_set))
-        
-        # Invalid sets (not all binary strings)
-        invalid_sets = [
-            {'a', 'b'},
-            {'012'},
-            {'0', '1', 'invalid'}
-        ]
-        
-        for state_set in invalid_sets:
-            with self.subTest(state_set=state_set):
-                self.assertFalse(self.entropy.is_computable(state_set))
+        # Test general formula
+        for n in range(1, 10):
+            S = {str(i) for i in range(n)}
+            H = self.system.compute_entropy(S)
+            self.assertAlmostEqual(H, math.log(n))
     
-    def test_non_negativity_property(self):
-        """Test non-negativity: ∀S_t ⊆ S: H(S_t) ≥ 0"""
-        test_sets = [
-            set(),
-            {'0'},
-            {'1'},
-            {'0', '1'},
-            {'00', '01', '10', '11'},
-            {'', '0', '1', '01', '10', '001'},
-            set(f'{i:03b}' for i in range(8))  # All 3-bit strings
-        ]
+    def test_non_negativity(self):
+        """Test Property D1.6.1: Non-negativity"""
+        self.assertTrue(self.system.verify_non_negativity(self.test_sets))
         
-        for state_set in test_sets:
-            with self.subTest(state_set=state_set):
-                self.assertTrue(self.entropy.verify_non_negativity(state_set))
-                if self.entropy.is_well_defined(state_set):
-                    self.assertGreaterEqual(self.entropy.entropy(state_set), 0)
+        # Test with larger sets
+        large_sets = [
+            {bin(i)[2:] for i in range(100)},
+            {str(i) for i in range(1000)}
+        ]
+        self.assertTrue(self.system.verify_non_negativity(large_sets))
     
-    def test_strict_monotonicity_property(self):
-        """Test strict monotonicity: S_t ⊊ S_t' ⟹ H(S_t) < H(S_t')"""
-        # Test cases: (smaller_set, larger_set)
+    def test_monotonicity(self):
+        """Test Property D1.6.2: Monotonicity"""
+        # Test with nested sets
+        S1 = {'0', '1'}
+        S2 = {'0', '1', '00'}
+        S3 = {'0', '1', '00', '01', '10'}
+        
+        self.assertTrue(self.system.verify_monotonicity(S1, S2))
+        self.assertTrue(self.system.verify_monotonicity(S2, S3))
+        self.assertTrue(self.system.verify_monotonicity(S1, S3))
+    
+    def test_entropy_increase_formula(self):
+        """Test Property D1.6.4: Entropy increase equals ln(growth rate)"""
+        # Test various transitions
         test_cases = [
-            ({'0'}, {'0', '1'}),
-            ({'0', '1'}, {'0', '1', '01'}),
-            ({'00', '01'}, {'00', '01', '10', '11'}),
-            ({'0'}, {'0', '1', '01', '10'}),
-            (set(), {'0'}),
+            ({'0', '1'}, {'00', '01', '10'}),  # 2 → 3
+            ({'00', '01', '10'}, {'000', '001', '010', '100', '101'}),  # 3 → 5
+            ({'a'}, {'a0', 'a1'}),  # 1 → 2
         ]
         
-        for smaller, larger in test_cases:
-            with self.subTest(smaller=smaller, larger=larger):
-                if len(smaller) > 1 and len(larger) > 1:  # Both non-trivial
-                    self.assertTrue(self.entropy.verify_strict_monotonicity(smaller, larger))
-                    h_small = self.entropy.entropy(smaller)
-                    h_large = self.entropy.entropy(larger)
-                    self.assertLess(h_small, h_large)
+        for S_t, S_t_plus_1 in test_cases:
+            self.assertTrue(
+                self.system.verify_entropy_increase_bound(S_t, S_t_plus_1)
+            )
     
-    def test_entropy_grows_with_size(self):
-        """Test that entropy generally grows with state set size"""
-        # Build increasingly large sets
-        sets = [
-            {'0', '1'},
-            {'0', '1', '01'},
-            {'0', '1', '01', '10'},
-            {'0', '1', '01', '10', '00'},
-            {'0', '1', '01', '10', '00', '11'},
-        ]
+    def test_fibonacci_evolution(self):
+        """Test that no-11 constraint leads to Fibonacci growth"""
+        # Start with {0, 1}
+        S_t = {'0', '1'}
+        evolution = [S_t]
         
-        entropies = [self.entropy.entropy(s) for s in sets]
+        # Evolve for several steps
+        for _ in range(10):
+            S_t = self.system.evolve_with_no11_constraint(S_t)
+            evolution.append(S_t)
         
-        # Check that entropy is generally increasing
-        for i in range(len(entropies) - 1):
-            self.assertLess(entropies[i], entropies[i + 1])
+        # Verify Fibonacci growth
+        self.assertTrue(self.system.verify_fibonacci_growth(evolution))
+        
+        # Verify entropy increases
+        for i in range(len(evolution) - 1):
+            H_i = self.system.compute_entropy(evolution[i])
+            H_next = self.system.compute_entropy(evolution[i + 1])
+            self.assertGreater(H_next, H_i)
     
-    def test_decomposition_property_basic(self):
-        """Test basic decomposition property for disjoint sets"""
-        set1 = {'0', '1'}
-        set2 = {'00', '01'}
+    def test_entropy_increase_bound(self):
+        """Test that entropy increase approaches ln(φ)"""
+        # Evolve system and track entropy increases
+        S_t = {'0', '1'}
+        increases = []
         
-        # Verify they're disjoint
-        self.assertTrue(set1.isdisjoint(set2))
+        for _ in range(20):
+            S_next = self.system.evolve_with_no11_constraint(S_t)
+            delta_H = self.system.compute_entropy_increase(S_t, S_next)
+            increases.append(delta_H)
+            S_t = S_next
         
-        # Test decomposition property
-        decomp_val = self.entropy.decomposition_property(set1, set2)
-        self.assertIsInstance(decomp_val, float)
-        self.assertGreaterEqual(decomp_val, 0)
-        
-        # Test with empty sets
-        decomp_empty = self.entropy.decomposition_property(set(), {'0'})
-        self.assertGreaterEqual(decomp_empty, 0)
+        # Later increases should approach ln(φ)
+        last_increases = increases[-5:]
+        for delta_H in last_increases:
+            # Should be close to ln(φ) ≈ 0.4812
+            self.assertAlmostEqual(delta_H, self.system.ln_phi, places=3)
     
-    def test_decomposition_property_error_cases(self):
-        """Test decomposition property error handling"""
-        # Non-disjoint sets should raise error
-        set1 = {'0', '1'}
-        set2 = {'1', '01'}  # '1' is in both sets
+    def test_shannon_entropy_relation(self):
+        """Test Property D1.6.5: Relation to Shannon entropy"""
+        # For uniform distribution over n states:
+        # Shannon: H_S = log₂(n) bits
+        # Natural: H_N = ln(n) nats
+        # Relation: H_N = H_S × ln(2)
         
-        with self.assertRaises(ValueError):
-            self.entropy.decomposition_property(set1, set2)
+        for n in [2, 4, 8, 16, 32]:
+            S = {str(i) for i in range(n)}
+            
+            # Our entropy (natural units)
+            H_natural = self.system.compute_entropy(S)
+            
+            # Shannon entropy
+            H_shannon_bits = math.log2(n)
+            
+            # Convert and compare
+            H_shannon_converted = self.system.shannon_to_natural_conversion(H_shannon_bits)
+            self.assertAlmostEqual(H_natural, H_shannon_converted)
+            
+            # Reverse conversion
+            H_natural_to_bits = self.system.natural_to_shannon_conversion(H_natural)
+            self.assertAlmostEqual(H_natural_to_bits, H_shannon_bits)
     
-    def test_structural_complexity_properties(self):
-        """Test properties of StructuralComplexity function"""
-        # Complexity should be non-negative
-        test_sets = [
-            {'0'},
-            {'0', '1'},
-            {'00', '01', '10'},
-            {'', '0', '1', '01'}
-        ]
+    def test_thermodynamic_correspondence(self):
+        """Test correspondence with Boltzmann entropy"""
+        # S = k_B ln(Ω)
+        # With k_B = 1 (natural units), S = ln(Ω)
+        # Where Ω is number of microstates
         
-        for state_set in test_sets:
-            complexity = self.entropy.structural_complexity(state_set)
-            self.assertGreaterEqual(complexity, 0)
-        
-        # Longer states should generally contribute more complexity
-        short_states = {'0', '1'}
-        long_states = {'0000', '0001'}
-        
-        complexity_short = self.entropy.structural_complexity(short_states)
-        complexity_long = self.entropy.structural_complexity(long_states)
-        self.assertLess(complexity_short, complexity_long)
+        # Our entropy with state count as "microstates"
+        for n in [1, 10, 100, 1000]:
+            S = {str(i) for i in range(n)}
+            H = self.system.compute_entropy(S)
+            
+            # Boltzmann entropy (k_B = 1)
+            S_boltzmann = math.log(n) if n > 0 else 0
+            
+            self.assertAlmostEqual(H, S_boltzmann)
     
-    def test_entropy_mathematical_consistency(self):
-        """Test mathematical consistency of entropy definition"""
-        # Base case: |S| = 2^k should give H ≥ k
-        for k in range(1, 5):
-            states = set(f'{i:0{k}b}' for i in range(2**k))
-            entropy_val = self.entropy.entropy(states)
-            self.assertGreaterEqual(entropy_val, k)
+    def test_specific_examples(self):
+        """Test specific calculation examples"""
+        # Example 1: Empty set
+        self.assertEqual(self.system.compute_entropy(set()), 0.0)
         
-        # Entropy should be continuous-like in behavior
-        # (larger sets should have larger entropy)
-        sizes = [2, 4, 8, 16]
-        entropies = []
+        # Example 2: Two states
+        S2 = {'0', '1'}
+        H2 = self.system.compute_entropy(S2)
+        self.assertAlmostEqual(H2, math.log(2), places=10)
+        self.assertAlmostEqual(H2, 0.693147, places=5)
         
-        for size in sizes:
-            states = set(f'{i:05b}' for i in range(size))
-            entropies.append(self.entropy.entropy(states))
+        # Example 3: Three states
+        S3 = {'00', '01', '10'}
+        H3 = self.system.compute_entropy(S3)
+        self.assertAlmostEqual(H3, math.log(3), places=10)
+        self.assertAlmostEqual(H3, 1.098612, places=5)
         
-        # Should be increasing
-        for i in range(len(entropies) - 1):
-            self.assertLess(entropies[i], entropies[i + 1])
+        # Example 4: Entropy increase
+        delta_H = H3 - H2
+        growth_rate = 3 / 2
+        self.assertAlmostEqual(delta_H, math.log(growth_rate), places=10)
+        self.assertAlmostEqual(delta_H, 0.405465, places=5)
     
-    def test_edge_cases(self):
-        """Test edge cases and boundary conditions"""
-        # Very long states
-        long_state = '0' * 100
-        long_states = {long_state}
-        self.assertTrue(self.entropy.is_well_defined(long_states))
+    def test_long_term_behavior(self):
+        """Test long-term entropy growth rate"""
+        # Evolve for many steps
+        S_t = {'0', '1'}
+        growth_rates = []
         
-        # Mixed length states
-        mixed_states = {'', '0', '01', '001', '0001'}
-        entropy_val = self.entropy.entropy(mixed_states)
-        self.assertGreater(entropy_val, 0)
+        for _ in range(50):
+            S_next = self.system.evolve_with_no11_constraint(S_t)
+            if len(S_t) > 0:
+                rate = len(S_next) / len(S_t)
+                growth_rates.append(rate)
+            S_t = S_next
         
-        # Single very complex state
-        complex_state = '01010101010101010101'
-        complex_states = {complex_state}
-        # Should have entropy 0 (single state) but be well-defined
-        self.assertEqual(self.entropy.entropy(complex_states), 0.0)
-        self.assertTrue(self.entropy.is_well_defined(complex_states))
+        # Check convergence to golden ratio
+        last_rates = growth_rates[-10:]
+        for rate in last_rates:
+            self.assertAlmostEqual(rate, self.system.phi, places=4)
+    
+    def test_mathematical_consistency(self):
+        """Test mathematical consistency of the entropy formula"""
+        # Test that H(S1 ∪ S2) = ln(|S1 ∪ S2|) when S1 ∩ S2 = ∅
+        S1 = {'00', '01'}
+        S2 = {'10', '11'}  # Note: '11' included for this test
+        
+        self.assertEqual(S1.intersection(S2), set())  # Disjoint
+        
+        H_union = self.system.compute_entropy(S1.union(S2))
+        expected = math.log(len(S1) + len(S2))
+        
+        self.assertAlmostEqual(H_union, expected)
 
 
 if __name__ == '__main__':

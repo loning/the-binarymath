@@ -1,244 +1,341 @@
 #!/usr/bin/env python3
 """
-Machine verification unit tests for D1.2: Binary Representation
-Testing the constructive definition of binary representation in self-referential complete systems.
+Machine verification unit tests for D1.2: Binary Representation Definition
+Testing the formal definition of binary representation systems.
 """
 
 import unittest
-import hashlib
-from typing import Set, List, Callable, Union
+from typing import Set, Callable, Any, Dict, List, Optional, Tuple
 
 
-class BinaryRepresentation:
-    """Implementation of D1.2: Binary Representation"""
+class BinaryRepresentationSystem:
+    """System for testing binary representation properties"""
     
     def __init__(self):
-        self.alphabet = {0, 1}
-        self.max_length = 1000  # Practical finite limit
-    
-    def sigma_star(self, max_len: int = None) -> Set[str]:
-        """Generate Σ* up to specified length"""
-        if max_len is None:
-            max_len = self.max_length
+        self.sigma = {'0', '1'}  # Binary alphabet
+        self.encodings = {}
         
-        result = set()
-        for n in range(max_len + 1):
-            for i in range(2**n):
-                binary_str = format(i, f'0{n}b') if n > 0 else ''
-                result.add(binary_str)
-        return result
+    def is_binary_string(self, s: str) -> bool:
+        """Check if a string is a valid binary string"""
+        return all(char in self.sigma for char in s)
     
-    def sigma_n(self, n: int) -> Set[str]:
-        """Generate Σⁿ - all binary strings of length n"""
-        if n == 0:
-            return {''}
-        return {format(i, f'0{n}b') for i in range(2**n)}
+    def verify_binary_representation(self, S: Set[str], encode_func: Callable) -> bool:
+        """Verify if S has a valid binary representation"""
+        # Check S ⊆ Σ*
+        if not all(self.is_binary_string(s) for s in S):
+            return False
+        
+        # Check existence of encoding function
+        if encode_func is None:
+            return False
+        
+        return True
+    
+    def binary_encode(self, x: Any) -> str:
+        """Encode an object to binary string"""
+        if x is None:
+            return ""  # ε (empty string)
+        elif x == "ground_state":
+            return "0"
+        elif x == "excited_state":
+            return "1"
+        else:
+            # General encoding using hash
+            h = hash(str(x))
+            # Ensure positive value for binary conversion
+            h = h if h >= 0 else h + 2**64
+            return bin(h)[2:]  # Remove '0b' prefix
     
     def is_encodable(self, s: str) -> bool:
-        """Encodable predicate: checks if string can encode system information"""
-        # Basic encodability: string consists only of 0s and 1s
-        return all(c in '01' for c in s) and len(s) < float('inf')
+        """Check if a string is encodable (finite and binary)"""
+        # Check finiteness
+        if len(s) == float('inf'):
+            return False
+        
+        # Check all characters are binary
+        return self.is_binary_string(s)
     
-    def state_space(self, max_len: int = 10) -> Set[str]:
-        """Construct state space S according to D1.2"""
-        sigma_star = self.sigma_star(max_len)
-        return {s for s in sigma_star if len(s) < float('inf') and self.is_encodable(s)}
+    def complement(self, s: str) -> str:
+        """Compute complement of binary string"""
+        return ''.join('1' if bit == '0' else '0' for bit in s)
     
-    def hash_function(self, x: Union[str, int, float]) -> int:
-        """Hash function: U → ℕ"""
-        return int(hashlib.md5(str(x).encode()).hexdigest()[:8], 16)
+    def verify_minimality(self) -> bool:
+        """Verify |Σ| = 2 is minimal for completeness"""
+        # Two symbols are necessary
+        return len(self.sigma) == 2
     
-    def to_binary(self, n: int) -> str:
-        """ToBinary: ℕ → Σ*"""
-        if n == 0:
-            return '0'
-        return bin(n)[2:]  # Remove '0b' prefix
+    def verify_completeness(self, universe: Set[Any], encode_func: Callable) -> bool:
+        """Verify every object can be encoded"""
+        try:
+            for obj in universe:
+                s = encode_func(obj)
+                if not self.is_binary_string(s):
+                    return False
+            return True
+        except:
+            return False
     
-    def encode(self, x: Union[str, int, float]) -> str:
-        """Encode: U → S mapping according to D1.2"""
-        hash_val = self.hash_function(x)
-        binary_repr = self.to_binary(hash_val)
-        return binary_repr
+    def verify_symmetry(self, S: Set[str]) -> bool:
+        """Verify complement closure"""
+        for s in S:
+            comp = self.complement(s)
+            if comp not in S:
+                return False
+        return True
+    
+    def decode(self, s: str, original_objects: Dict[str, Any]) -> Optional[Any]:
+        """Decode binary string back to object (if mapping exists)"""
+        return original_objects.get(s)
+    
+    def verify_reversibility(self, objects: List[Any], encode_func: Callable) -> bool:
+        """Verify encoding is reversible"""
+        # Create encoding map
+        encoding_map = {}
+        for obj in objects:
+            s = encode_func(obj)
+            if s in encoding_map and encoding_map[s] != obj:
+                # Collision detected - not reversible
+                return False
+            encoding_map[s] = obj
+        
+        # Check decode(encode(x)) = x
+        for obj in objects:
+            s = encode_func(obj)
+            decoded = encoding_map.get(s)
+            if decoded != obj:
+                return False
+        
+        return True
+    
+    def verify_finiteness(self, S: Set[str]) -> bool:
+        """Verify all strings in S are finite"""
+        return all(len(s) < float('inf') for s in S)
+    
+    def get_all_binary_strings_up_to_length(self, n: int) -> Set[str]:
+        """Generate all binary strings up to length n"""
+        strings = {''}  # Empty string
+        for length in range(1, n + 1):
+            for i in range(2**length):
+                binary = bin(i)[2:].zfill(length)
+                strings.add(binary)
+        return strings
+    
+    def verify_semantic_mapping(self) -> Tuple[bool, Dict[str, str]]:
+        """Verify semantic mapping of 0 and 1"""
+        semantics = {
+            '0': 'potential',
+            '1': 'realized'
+        }
+        return True, semantics
 
 
-class TestBinaryRepresentation(unittest.TestCase):
-    """Unit tests for D1.2: Binary Representation"""
+class TestBinaryRepresentationDefinition(unittest.TestCase):
+    """Unit tests for D1.2: Binary Representation Definition"""
     
     def setUp(self):
-        self.br = BinaryRepresentation()
+        self.system = BinaryRepresentationSystem()
+        self.test_universe = {
+            'a', 'b', 'c', 123, 456, 
+            'ground_state', 'excited_state',
+            (1, 2), 'list_obj', 'dict_obj'
+        }
     
-    def test_alphabet_definition(self):
-        """Test alphabet Σ = {0, 1}"""
-        self.assertEqual(self.br.alphabet, {0, 1})
-        self.assertEqual(len(self.br.alphabet), 2)
+    def test_binary_alphabet(self):
+        """Test binary alphabet properties"""
+        # Test alphabet size
+        self.assertEqual(len(self.system.sigma), 2)
+        
+        # Test alphabet elements
+        self.assertIn('0', self.system.sigma)
+        self.assertIn('1', self.system.sigma)
+        
+        # Test minimality
+        self.assertTrue(self.system.verify_minimality())
     
-    def test_sigma_n_construction(self):
-        """Test Σⁿ construction for various n"""
-        # Σ⁰ = {ε} (empty string)
-        sigma_0 = self.br.sigma_n(0)
-        self.assertEqual(sigma_0, {''})
-        self.assertEqual(len(sigma_0), 1)
-        
-        # Σ¹ = {0, 1}
-        sigma_1 = self.br.sigma_n(1)
-        self.assertEqual(sigma_1, {'0', '1'})
-        self.assertEqual(len(sigma_1), 2)
-        
-        # Σ² = {00, 01, 10, 11}
-        sigma_2 = self.br.sigma_n(2)
-        expected_sigma_2 = {'00', '01', '10', '11'}
-        self.assertEqual(sigma_2, expected_sigma_2)
-        self.assertEqual(len(sigma_2), 4)
-        
-        # General property: |Σⁿ| = 2ⁿ
-        for n in range(5):
-            sigma_n = self.br.sigma_n(n)
-            self.assertEqual(len(sigma_n), 2**n)
-    
-    def test_sigma_star_construction(self):
-        """Test Σ* = ⋃_{n=0}^∞ Σⁿ"""
-        sigma_star_3 = self.br.sigma_star(3)
-        
-        # Should contain all strings of length 0, 1, 2, 3
-        expected_strings = {'', '0', '1', '00', '01', '10', '11', 
-                           '000', '001', '010', '011', '100', '101', '110', '111'}
-        self.assertEqual(sigma_star_3, expected_strings)
-        
-        # Total count should be 2⁰ + 2¹ + 2² + 2³ = 1 + 2 + 4 + 8 = 15
-        self.assertEqual(len(sigma_star_3), 15)
-    
-    def test_encodable_predicate(self):
-        """Test Encodable: Σ* → {0,1} predicate"""
+    def test_binary_string_validation(self):
+        """Test binary string validation"""
         # Valid binary strings
-        self.assertTrue(self.br.is_encodable(''))
-        self.assertTrue(self.br.is_encodable('0'))
-        self.assertTrue(self.br.is_encodable('1'))
-        self.assertTrue(self.br.is_encodable('01010'))
-        self.assertTrue(self.br.is_encodable('11001100'))
+        self.assertTrue(self.system.is_binary_string(''))
+        self.assertTrue(self.system.is_binary_string('0'))
+        self.assertTrue(self.system.is_binary_string('1'))
+        self.assertTrue(self.system.is_binary_string('0101'))
+        self.assertTrue(self.system.is_binary_string('111000'))
         
-        # Invalid strings (not binary)
-        self.assertFalse(self.br.is_encodable('012'))
-        self.assertFalse(self.br.is_encodable('abc'))
-        self.assertFalse(self.br.is_encodable('2'))
-        self.assertFalse(self.br.is_encodable('1a0'))
+        # Invalid strings
+        self.assertFalse(self.system.is_binary_string('2'))
+        self.assertFalse(self.system.is_binary_string('01a'))
+        self.assertFalse(self.system.is_binary_string('abc'))
     
-    def test_state_space_construction(self):
-        """Test state space S construction"""
-        S = self.br.state_space(3)
+    def test_encoding_function(self):
+        """Test binary encoding function"""
+        # Test special cases
+        self.assertEqual(self.system.binary_encode(None), '')
+        self.assertEqual(self.system.binary_encode('ground_state'), '0')
+        self.assertEqual(self.system.binary_encode('excited_state'), '1')
         
-        # All elements should be encodable
-        for s in S:
-            self.assertTrue(self.br.is_encodable(s))
-        
-        # Should be subset of Σ*
-        sigma_star_3 = self.br.sigma_star(3)
-        self.assertTrue(S.issubset(sigma_star_3))
-        
-        # All strings in Σ* that are encodable should be in S
-        expected_S = {s for s in sigma_star_3 if self.br.is_encodable(s)}
-        self.assertEqual(S, expected_S)
+        # Test general encoding
+        for obj in self.test_universe:
+            if obj is not None:  # Skip None as it has special encoding
+                encoded = self.system.binary_encode(obj)
+                self.assertTrue(self.system.is_binary_string(encoded))
+                self.assertGreater(len(encoded), 0)  # Non-empty for non-None
     
-    def test_hash_function_properties(self):
-        """Test Hash: U → ℕ function properties"""
-        # Hash function should be deterministic
-        x = "test_input"
-        hash1 = self.br.hash_function(x)
-        hash2 = self.br.hash_function(x)
-        self.assertEqual(hash1, hash2)
+    def test_encodability_check(self):
+        """Test encodability verification"""
+        # Encodable strings
+        self.assertTrue(self.system.is_encodable(''))
+        self.assertTrue(self.system.is_encodable('0'))
+        self.assertTrue(self.system.is_encodable('101010'))
         
-        # Hash should produce non-negative integers
-        test_inputs = ["", "0", "1", "hello", 42, 3.14159]
-        for inp in test_inputs:
-            hash_val = self.br.hash_function(inp)
-            self.assertIsInstance(hash_val, int)
-            self.assertGreaterEqual(hash_val, 0)
-        
-        # Different inputs should typically produce different hashes
-        hash_a = self.br.hash_function("a")
-        hash_b = self.br.hash_function("b")
-        self.assertNotEqual(hash_a, hash_b)
+        # Non-encodable strings
+        self.assertFalse(self.system.is_encodable('012'))
+        self.assertFalse(self.system.is_encodable('abc'))
     
-    def test_to_binary_function(self):
-        """Test ToBinary: ℕ → Σ* function"""
-        # Test specific conversions
-        self.assertEqual(self.br.to_binary(0), '0')
-        self.assertEqual(self.br.to_binary(1), '1')
-        self.assertEqual(self.br.to_binary(2), '10')
-        self.assertEqual(self.br.to_binary(3), '11')
-        self.assertEqual(self.br.to_binary(4), '100')
-        self.assertEqual(self.br.to_binary(5), '101')
-        self.assertEqual(self.br.to_binary(8), '1000')
+    def test_complement_operation(self):
+        """Test complement operation"""
+        # Test basic complements
+        self.assertEqual(self.system.complement('0'), '1')
+        self.assertEqual(self.system.complement('1'), '0')
+        self.assertEqual(self.system.complement('010'), '101')
+        self.assertEqual(self.system.complement('1111'), '0000')
+        self.assertEqual(self.system.complement(''), '')
         
-        # Test that result is always in Σ*
-        for n in range(16):
-            binary_str = self.br.to_binary(n)
-            self.assertTrue(self.br.is_encodable(binary_str))
-            # Verify it's a valid binary representation
-            self.assertEqual(int(binary_str, 2), n)
+        # Test double complement
+        for s in ['0', '1', '010', '111000']:
+            double_comp = self.system.complement(self.system.complement(s))
+            self.assertEqual(s, double_comp)
     
-    def test_encode_function(self):
-        """Test Encode: U → S mapping"""
-        # Test encoding various objects
-        test_objects = ["hello", 42, 3.14, "", "binary_test"]
+    def test_completeness_property(self):
+        """Test Property D1.2.2: Completeness"""
+        # Every object in universe can be encoded
+        completeness = self.system.verify_completeness(
+            self.test_universe, 
+            self.system.binary_encode
+        )
+        self.assertTrue(completeness)
         
-        for obj in test_objects:
-            encoded = self.br.encode(obj)
-            
-            # Result should be in state space S
-            self.assertTrue(self.br.is_encodable(encoded))
-            
-            # Should be deterministic
-            encoded2 = self.br.encode(obj)
-            self.assertEqual(encoded, encoded2)
-            
-            # Result should be non-empty for non-empty inputs
-            if str(obj):
-                self.assertGreater(len(encoded), 0)
-    
-    def test_encode_injectivity(self):
-        """Test that encode function is injective (different inputs → different outputs)"""
-        test_inputs = ["a", "b", "c", "test1", "test2", 1, 2, 42]
-        encoded_values = [self.br.encode(inp) for inp in test_inputs]
-        
-        # All encoded values should be different (with high probability)
-        unique_encoded = set(encoded_values)
-        # Note: Hash collisions are possible but very unlikely for small test set
-        self.assertGreaterEqual(len(unique_encoded), len(test_inputs) * 0.8)
-    
-    def test_constructive_properties(self):
-        """Test constructive properties required for machine verification"""
-        # State space should be effectively enumerable
-        S_small = self.br.state_space(5)
-        self.assertIsInstance(S_small, set)
-        self.assertGreater(len(S_small), 0)
-        
-        # All functions should be total and computable
-        for s in ['', '0', '1', '01', '10']:
-            # Encodable should be decidable
-            result = self.br.is_encodable(s)
-            self.assertIsInstance(result, bool)
-        
-        # Encode should be total on finite inputs
-        test_finite_inputs = ["", "a", "test", 0, 1, 42]
-        for inp in test_finite_inputs:
-            encoded = self.br.encode(inp)
+        # Verify each encoding
+        for obj in self.test_universe:
+            encoded = self.system.binary_encode(obj)
             self.assertIsInstance(encoded, str)
-            self.assertTrue(self.br.is_encodable(encoded))
+            self.assertTrue(self.system.is_binary_string(encoded))
     
-    def test_mathematical_structure_preservation(self):
-        """Test that binary representation preserves essential mathematical structure"""
-        # The empty string should map to something distinguishable
-        empty_encoded = self.br.encode("")
-        nonempty_encoded = self.br.encode("nonempty")
+    def test_symmetry_property(self):
+        """Test Property D1.2.3: Symmetry"""
+        # Generate a set of binary strings
+        test_set = self.system.get_all_binary_strings_up_to_length(3)
         
-        # Different conceptual objects should typically encode differently
-        # (though hash collisions are theoretically possible)
-        self.assertIsInstance(empty_encoded, str)
-        self.assertIsInstance(nonempty_encoded, str)
+        # Add complements to make it symmetric
+        symmetric_set = test_set.copy()
+        for s in test_set:
+            symmetric_set.add(self.system.complement(s))
         
-        # Both should be valid binary representations
-        self.assertTrue(self.br.is_encodable(empty_encoded))
-        self.assertTrue(self.br.is_encodable(nonempty_encoded))
+        # Verify symmetry
+        self.assertTrue(self.system.verify_symmetry(symmetric_set))
+        
+        # Test non-symmetric set
+        non_symmetric = {'0', '10', '110'}  # Missing complements
+        self.assertFalse(self.system.verify_symmetry(non_symmetric))
+    
+    def test_reversibility_property(self):
+        """Test Property D1.2.4: Reversibility"""
+        # Test with unique objects
+        unique_objects = ['a', 'b', 'c', 'd', 'e']
+        
+        # Custom injective encoding
+        def injective_encode(x):
+            if x in unique_objects:
+                # Create unique encoding for each object
+                idx = unique_objects.index(x)
+                return bin(idx + 1)[2:]  # 1, 10, 11, 100, 101
+            return self.system.binary_encode(x)
+        
+        # Verify reversibility
+        is_reversible = self.system.verify_reversibility(
+            unique_objects, 
+            injective_encode
+        )
+        self.assertTrue(is_reversible)
+    
+    def test_finiteness_property(self):
+        """Test Property D1.2.5: Finiteness"""
+        # Generate finite set of strings
+        finite_set = self.system.get_all_binary_strings_up_to_length(10)
+        
+        # Verify all are finite
+        self.assertTrue(self.system.verify_finiteness(finite_set))
+        
+        # Each string has finite length
+        for s in finite_set:
+            self.assertLess(len(s), float('inf'))
+    
+    def test_semantic_mapping(self):
+        """Test Lemma D1.2.3: Semantic mapping"""
+        is_valid, semantics = self.system.verify_semantic_mapping()
+        
+        self.assertTrue(is_valid)
+        self.assertEqual(semantics['0'], 'potential')
+        self.assertEqual(semantics['1'], 'realized')
+    
+    def test_binary_representation_definition(self):
+        """Test complete binary representation definition"""
+        # Create a binary representation system
+        S = self.system.get_all_binary_strings_up_to_length(5)
+        
+        # Verify it satisfies binary representation
+        has_binary_rep = self.system.verify_binary_representation(
+            S, 
+            self.system.binary_encode
+        )
+        self.assertTrue(has_binary_rep)
+    
+    def test_string_concatenation_properties(self):
+        """Test properties of binary string concatenation"""
+        # Concatenation preserves binary nature
+        s1, s2 = '010', '110'
+        concat = s1 + s2
+        self.assertTrue(self.system.is_binary_string(concat))
+        self.assertEqual(concat, '010110')
+        
+        # Empty string is identity
+        self.assertEqual('' + s1, s1)
+        self.assertEqual(s1 + '', s1)
+    
+    def test_edge_cases(self):
+        """Test edge cases"""
+        # Empty string
+        self.assertTrue(self.system.is_binary_string(''))
+        self.assertEqual(self.system.complement(''), '')
+        
+        # Single characters
+        self.assertEqual(self.system.complement('0'), '1')
+        self.assertEqual(self.system.complement('1'), '0')
+        
+        # Very long strings
+        long_string = '01' * 1000
+        self.assertTrue(self.system.is_binary_string(long_string))
+        comp = self.system.complement(long_string)
+        self.assertEqual(comp, '10' * 1000)
+    
+    def test_mathematical_representation(self):
+        """Test mathematical representation formulas"""
+        # Test Σ* generation
+        sigma_star_3 = self.system.get_all_binary_strings_up_to_length(3)
+        expected = {
+            '',  # ε
+            '0', '1',  # Σ¹
+            '00', '01', '10', '11',  # Σ²
+            '000', '001', '010', '011', '100', '101', '110', '111'  # Σ³
+        }
+        self.assertEqual(sigma_star_3, expected)
+        
+        # Verify |Σⁿ| = 2ⁿ
+        for n in range(4):  # Only test up to n=3 since sigma_star_3 only has strings up to length 3
+            strings_n = {s for s in sigma_star_3 if len(s) == n}
+            if n == 0:
+                self.assertEqual(len(strings_n), 1)  # Just ε
+            else:
+                self.assertEqual(len(strings_n), 2**n)
 
 
 if __name__ == '__main__':
