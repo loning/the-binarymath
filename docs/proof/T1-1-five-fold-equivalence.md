@@ -64,7 +64,10 @@ graph LR
 **严格证明**：
 1. **变化的度量**：熵差$\Delta H = H(S_{t+1}) - H(S_t) > 0$提供了状态变化的定量测度
 2. **时间度量的构造**：由[L1.4 时间涌现](L1-4-time-emergence.md)，定义：
-   $$τ(S_t, S_{t+1}) := \Delta H = H(S_{t+1}) - H(S_t)$$
+   
+$$
+τ(S_t, S_{t+1}) := \Delta H = H(S_{t+1}) - H(S_t)
+$$
 3. **度量公理验证**：
    - **正定性**：$τ(S_t, S_{t+1}) > 0$（由假设）
    - **非退化性**：$τ(S_t, S_t) = 0$
@@ -84,12 +87,17 @@ graph LR
    - 计算它们之间的差异
    
 2. **识别机制的必然性**：为了区分$S_t$和$S_{t+1}$，系统必须包含映射：
-   $$\text{Distinguish}: S×S → \{0,1\}$$
+   
+$$
+\text{Distinguish}: S×S → \{0,1\}
+$$
    使得$\text{Distinguish}(S_t, S_{t+1}) = 1$当且仅当$τ(S_t, S_{t+1}) > 0$
 
 3. **观察者的构造**：由[L1.5 观察者必然性](L1-5-observer-necessity.md)，识别映射定义了观察者$o ∈ O$：
-   $$o(s) := \{s' ∈ S | \text{Distinguish}(s, s') = 1\}$$
-
+   
+$$
+o(s) := \{s' ∈ S | \text{Distinguish}(s, s') = 1\}
+$$
 4. **观察的非平凡性**：由于$τ(S_t, S_{t+1}) > 0$，必有$S_{t+1} \in o(S_t)$但$S_t \notin o(S_t)$，
    因此$o(S_t) \neq S_t$，即$\forall o∈O,s∈S: \text{Observe}(o,s)≠s$
 
