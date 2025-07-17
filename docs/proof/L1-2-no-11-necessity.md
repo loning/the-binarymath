@@ -17,24 +17,83 @@
 
 ### 递归层次论证
 
+```mermaid
+graph TD
+    subgraph "正确的递归模式"
+        Level0["ψ₀ = ψ<br/>编码: 1"]
+        Level1["ψ₁ = ψ(ψ)<br/>编码: 01"]  
+        Level2["ψ₂ = ψ(ψ(ψ))<br/>编码: 101"]
+        Level3["ψ₃ = ψ(ψ(ψ(ψ)))<br/>编码: 0101"]
+        
+        Level0 --> Level1
+        Level1 --> Level2
+        Level2 --> Level3
+    end
+    
+    subgraph "违反no-11的错误模式"
+        Error1["错误状态<br/>编码: 11"]
+        Error2["错误状态<br/>编码: 1101"]
+        Error3["错误状态<br/>编码: 0110"]
+        
+        Error1 --> Contradiction["双重激活<br/>同层矛盾"]
+        Error2 --> Contradiction
+        Error3 --> Contradiction
+    end
+    
+    subgraph "Collapse算子的作用"
+        Xi["Ξ: 层次分离算子"]
+        Requirement["要求: 1后必须跟0"]
+        Separation["分离原理: 激活与准备"]
+    end
+    
+    Xi --> Level1
+    Xi --> Level2
+    Xi --> Level3
+    
+    Requirement --> Separation
+    Separation -.-> Level1
+    Separation -.-> Level2
+    
+    classDef correct fill:#e8f5e8,stroke:#4caf50
+    classDef error fill:#ffebee,stroke:#f44336  
+    classDef operator fill:#e3f2fd,stroke:#2196f3
+    
+    class Level0,Level1,Level2,Level3 correct
+    class Error1,Error2,Error3,Contradiction error
+    class Xi,Requirement,Separation operator
+```
+
 **步骤1：递归的本质**
-- 自指通过递归ψ→ψ(ψ)→ψ(ψ(ψ))→...实现
-- 每层递归必须产生"新"内容
-- 否则递归退化
+- 自指通过递归$ψ→ψ(ψ)→ψ(ψ(ψ))→...$实现
+- 每层递归必须产生"新"内容，即信息增量$\Delta I > 0$
+- 否则递归退化为平凡重复
 
-**步骤2：11的含义**
-在二进制中：
-- 1表示"实现/激活"
-- 连续11表示"同一层次的重复激活"
-- 这与递归的层次性矛盾
+**步骤2：二进制编码的层次结构**
+在φ-表示系统中：
+- 0表示"准备/间隔状态"
+- 1表示"激活/递归展开"
+- 连续11表示"无间隔的双重激活"
+- 这违反了递归的层次分离原则
 
-**步骤3：形式化矛盾**
-假设存在连续11，即某个状态s包含子串11。
-- 位置i: s[i] = 1（第i次激活）
-- 位置i+1: s[i+1] = 1（第i+1次激活）
-- 这意味着两次激活在同一递归层次
-- 但Collapse算子Ξ要求每次产生新层次
-- 矛盾
+**步骤3：形式化矛盾证明**
+假设存在连续11，即某个状态$s$包含子串$s[i]s[i+1] = 11$。
+
+由Collapse算子的定义：$\Xi(s) = s'$，其中$s'$必须满足：
+$$
+|s'| > |s| \text{ 且 } H(s') > H(s)
+$$
+
+但是：
+- 位置$i$: $s[i] = 1$（第$i$次激活，产生递归层次$L_i$）
+- 位置$i+1$: $s[i+1] = 1$（第$i+1$次激活，应产生递归层次$L_{i+1}$）
+
+由于没有间隔0，$L_i$和$L_{i+1}$无法区分，违反层次分离。
+
+更严格地，设$f: \{0,1\}^* → \mathcal{L}$是编码到递归层次的映射，则：
+$$
+f(s[1..i]) = f(s[1..i+1])
+$$
+这与$\Xi$的信息增加性矛盾。∎
 
 ### 信息论证明
 
