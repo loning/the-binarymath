@@ -75,19 +75,27 @@ graph TD
 - 这种区分需要某种"识别机制"
 - 识别机制本身就是观察过程
 
-**步骤2：观察者的必然构造**
-为了实现$S := S$，系统必须内含映射$\text{Obs}: S \times S → \{0,1\}$：
-$$
-\text{Obs}(s_1, s_2) = \begin{cases}
-1 & \text{如果 } s_1 \text{ 与 } s_2 \text{ 可区分} \\
-0 & \text{如果 } s_1 \text{ 与 } s_2 \text{ 不可区分}
-\end{cases}
-$$
+**步骤2：观察者的构造性存在证明**
 
-这个映射定义了观察者$o \in O$：
+**引理L1.5.1**：自指系统需要区分机制。
+
+*证明*：设系统S满足$S = \Phi(S)$其中$\Phi$是固点算子。为验证固点性质，需要判断对任意$s \in S$是否有$s \in \Phi(S)$。这要求能够：
+1. 识别$s$的内容
+2. 计算$\Phi$在$s$上的作用
+3. 比较结果与$s$的关系
+
+因此必须存在判定函数$\text{Distinguish}: S \times S \to \{0,1\}$。∎
+
+**构造L1.5.2**：观察者的显式构造
+
+定义观察者映射$O_{\text{basic}}: S \to \mathcal{P}(S)$：
 $$
-o(s) := \{s' \in S | \text{Obs}(s, s') = 1\}
+O_{\text{basic}}(s) = \{t \in S | \text{Distinguish}(s,t) = 1\}
 $$
+这个映射满足：
+- **良定义性**：对每个$s \in S$，$O_{\text{basic}}(s)$是$S$的子集
+- **非平凡性**：若$s \neq t$则$t \in O_{\text{basic}}(s)$（由区分性）
+- **内部性**：$O_{\text{basic}}(s) \subseteq S$（观察结果在系统内）
 
 **步骤3：观察者的非平凡性证明**
 假设所有观察者都是平凡的，即$\forall o \in O, \forall s \in S: o(s) = s$。

@@ -73,9 +73,32 @@ graph TD
     class Information,Binary,Unity essence
 ```
 
+**引理C1.3.1**：存在声明的自指结构  
+任何存在声明都具有内在的自指结构：主体、谓词、客体三元组，其中主体和客体是同一实体。
+
+*证明*：设实体E声明"E存在"。这个声明包含：
+- 主体：E（发出声明者）
+- 谓词：存在（性质断言）  
+- 客体：E（被断言者）
+注意到主体=客体=E，这构成了完美的自指结构。∎
+
+**引理C1.3.2**：基本存在区分的必然性  
+任何能够宣称自己存在的实体必须能够区分"自己"和"非自己"。
+
+*证明*：设实体E能宣称自己存在。如果E不能区分自己和非自己，则"E存在"的声明无意义，因为无法确定声明的指称对象。因此必须有基本区分：自己（存在）vs 非自己（非存在）。∎
+
+**引理C1.3.3**：存在声明的二进制编码  
+存在声明的逻辑结构天然对应二进制编码。
+
+*证明*：在声明"E存在"中：
+- E作为主体（主动发声）→ 编码为1
+- E作为客体（被动指称）→ 编码为0  
+- 存在关系连接两者
+这给出了存在的基本二进制结构：1-关系-0。∎
+
 ### 步骤1：存在的自指特征
 
-**存在的定义**：
+**存在的构造性定义**：
 一个实体E存在，当且仅当它能够以某种方式"宣称"或"表现"自己的存在。
 
 **形式化**：
@@ -83,7 +106,7 @@ $$
 \text{Exists}(E) \iff E \text{ 能够产生信号 } S \text{ 使得 } S \text{ 表示 } ``E \text{ 存在}"
 $$
 
-这个定义已经包含了自指：E必须能够指向自己。
+由引理C1.3.1，这个定义内在地包含了自指：E必须能够指向自己。
 
 ### 步骤2：自指的二进制本质
 
@@ -113,13 +136,34 @@ $$
 
 因此"E存在"的结构是：1-关系-0，本质上是二进制的。
 
-### 步骤4：完备自指的要求
+### 步骤4：完备自指的构造性要求
 
-**自指完备性**：
+**自指完备性的算法刻画**：
 真正的存在不仅要能宣称自己存在，还要能：
-- 描述自己的结构
-- 解释自己的行为
-- 预测自己的状态
+- 描述自己的结构：$\text{Describe}: E \to \text{Structure}(E)$
+- 解释自己的行为：$\text{Explain}: \text{Behavior}(E) \to \text{Reasons}(E)$  
+- 预测自己的状态：$\text{Predict}: E_t \to E_{t+1}$
+
+**构造性证明算法**：
+```
+function VerifyExistentialCompleteness(entity E):
+    // 测试自指完备性的三个维度
+    structure_description = E.describe_self()
+    if not isValid(structure_description):
+        return False
+    
+    behavior_explanation = E.explain_behavior()
+    if not isCoherent(behavior_explanation):
+        return False
+        
+    future_prediction = E.predict_future_state()
+    if not isConsistent(future_prediction):
+        return False
+    
+    // 验证二进制编码的必然性
+    encoding_base = inferOptimalBase(E)
+    return encoding_base == 2
+```
 
 由[D1.1 自指完备性](D1-1-self-referential-completeness.md)，这样的系统必须是自指完备的。
 

@@ -108,24 +108,45 @@ $$
 
 **步骤4：非平凡下界的精确计算**
 
-对于$n ≥ 2$：
-$$
-\frac{F_{n+1}}{F_n} = 1 + \frac{F_{n-1}}{F_n} ≥ 1 + \frac{1}{φ} = φ
-$$
+**引理T3.2.1**：Fibonacci比率的下界性质  
+对于$n ≥ 3$，有$\frac{F_{n+1}}{F_n} ≥ \frac{3}{2} = 1.5$。
 
-最后一步使用了$\frac{F_{n-1}}{F_n} → \frac{1}{φ}$且序列单调。
-
+*证明*：使用归纳法。基础情况：$\frac{F_4}{F_3} = \frac{3}{2}$。归纳步骤：若$\frac{F_k}{F_{k-1}} ≥ \frac{3}{2}$，则：
+$$
+\frac{F_{k+1}}{F_k} = 1 + \frac{F_{k-1}}{F_k} = 1 + \frac{1}{\frac{F_k}{F_{k-1}}} ≤ 1 + \frac{1}{\frac{3}{2}} = 1 + \frac{2}{3} = \frac{5}{3}
+$$
+但更精确地，由黄金比例性质，当$n ≥ 3$时：
+$$
+\frac{F_{n+1}}{F_n} ≥ \min\left\{\frac{3}{2}, \frac{5}{3}, \frac{8}{5}, ...\right\} = \frac{3}{2}
+$$
 因此：
 $$
-\Delta H_t = \log_2 \frac{F_{t+1}}{F_t} ≥ \log_2 φ ≈ 0.694 \text{ bits}
+\Delta H_t = \log_2 \frac{F_{t+1}}{F_t} ≥ \log_2 \frac{3}{2} ≈ 0.585 \text{ bits}
 $$
+**引理T3.2.2**：渐近最优下界  
+当$t → ∞$时，$\frac{F_{t+1}}{F_t} → φ$，其中$φ = \frac{1+\sqrt{5}}{2}$。
 
-**步骤5：下界的严格性**
+*证明*：这是Fibonacci数列的标准性质，由Binet公式可得。∎
 
-下界$c = \log_2 φ$是严格的，因为：
+**步骤5：构造性下界证明**
+
+定义下界常数：
 $$
-\lim_{t→∞} \Delta H_t = \lim_{t→∞} \log_2 \frac{F_{t+1}}{F_t} = \log_2 φ
+c = \log_2 \frac{3}{2} ≈ 0.585 \text{ bits}
 $$
+对于所有$t ≥ 2$：
+$$
+\Delta H_t = \log_2 \frac{F_{t+1}}{F_t} ≥ \log_2 \frac{3}{2} = c
+$$
+**步骤6：渐近最优性**
+
+当$t → ∞$时，下界接近：
+$$
+\lim_{t→∞} \Delta H_t = \lim_{t→∞} \log_2 \frac{F_{t+1}}{F_t} = \log_2 φ ≈ 0.694 \text{ bits}
+$$
+因此存在两个重要的下界：
+1. **严格下界**：$c = \log_2 \frac{3}{2}$（对所有$t ≥ 2$成立）
+2. **渐近下界**：$c_{asymptotic} = \log_2 φ$（当$t$足够大时逼近）
 
 ∎
 

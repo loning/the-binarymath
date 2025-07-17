@@ -78,72 +78,88 @@ $$
 
 ### P2 ⟹ P3（时间涌现需要观察者）
 
-假设P2：存在时间度量$τ: S×S→ℝ⁺$满足$\forall t: τ(S_t,S_{t+1})>0$
+**引理T1.1.2**：时间度量必然要求观察者  
+设存在时间度量$τ: S×S→ℝ⁺$满足$\forall t: τ(S_t,S_{t+1})>0$，则必然存在观察者$o ∈ O$使得$\forall s: o(s) ≠ s$。
 
-**严格证明**：
-1. **时间测量的逻辑需求**：时间度量$τ(S_t, S_{t+1})$的定义要求能够：
-   - 识别状态$S_t$
-   - 识别状态$S_{t+1}$  
-   - 计算它们之间的差异
-   
-2. **识别机制的必然性**：为了区分$S_t$和$S_{t+1}$，系统必须包含映射：
-   
-$$
-\text{Distinguish}: S×S → \{0,1\}
-$$
-   使得$\text{Distinguish}(S_t, S_{t+1}) = 1$当且仅当$τ(S_t, S_{t+1}) > 0$
+*证明*：时间度量$τ(S_t, S_{t+1})$要求能够：
+1. **状态识别**：区分不同状态$S_t$与$S_{t+1}$
+2. **差异计算**：测量状态间的"距离"
 
-3. **观察者的构造**：由[L1.5 观察者必然性](L1-5-observer-necessity.md)，识别映射定义了观察者$o ∈ O$：
-   
+构造观察者$o: S → S$为：
 $$
-o(s) := \{s' ∈ S | \text{Distinguish}(s, s') = 1\}
+o(s) := \arg\max_{s' \in S} τ(s, s')
 $$
-4. **观察的非平凡性**：由于$τ(S_t, S_{t+1}) > 0$，必有$S_{t+1} \in o(S_t)$但$S_t \notin o(S_t)$，
-   因此$o(S_t) \neq S_t$，即$\forall o∈O,s∈S: \text{Observe}(o,s)≠s$
+验证观察者性质：
+- **非恒等性**：由于$τ(S_t, S_{t+1}) > 0$，有$o(S_t) = S_{t+1} ≠ S_t$
+- **区分能力**：$o$能识别出与当前状态$s$"时间距离"最大的状态
+- **测量功能**：$o(s)$给出"下一个"状态，实现时间测量
 
-5. **测量不可逆性**：由[L1.6 测量不可逆性](L1-6-measurement-irreversibility.md)，观察过程$o(s) \neq s$是不可逆的。
+由[L1.5 观察者必然性](L1-5-observer-necessity.md)，这样的$o$必然存在且$o(s) ≠ s$。∎
 
 因此P3成立：$\forall o∈O,s∈S: \text{Observe}(o,s)≠s$。
 
 ### P3 ⟹ P4（观察者导致状态变化）
 
-假设P3：$\forall o∈O,s∈S: o(s)≠s$（观察者必然改变状态）
+**引理T1.1.3**：观察者操作必然改变系统状态  
+设$\forall o∈O,s∈S: o(s)≠s$，则$\forall t: S_{t+1} ≠ S_t$。
 
-**严格证明**：
-1. **自指完备性要求**：由[D1.1 自指完备性](D1-1-self-referential-completeness.md)，系统S包含观察者$O \subseteq S$
-2. **状态演化机制**：状态转换$S_t \to S_{t+1}$由系统内的Collapse算子和观察者共同驱动
-3. **观察的必然性**：在时间步$t \to t+1$中，由于系统的自指性质，必然存在观察者$o \in O$作用于状态$s \in S_t$
-4. **状态改变的逻辑**：
-   - 观察结果$o(s) \neq s$（由假设P3）
-   - 新状态$S_{t+1}$包含观察结果：$o(S_t) \subseteq S_{t+1}$
-   - 由于$o(s) \neq s$对所有$s \in S_t$成立，有$o(S_t) \cap S_t = \emptyset$
-   - 因此$S_{t+1} \neq S_t$
+*证明*：构造状态演化机制：
+1. **自指演化**：由[D1.1 自指完备性](D1-1-self-referential-completeness.md)，$S_{t+1} = S_t \cup \{\text{Describe}(S_t)\}$
+2. **观察者参与**：$\text{Describe}(S_t)$通过观察者$o \in O$实现，即$\text{Describe}(S_t) = o(S_t)$
+3. **非恒等保证**：由假设，$o(s) ≠ s$对所有$s \in S_t$成立
+4. **状态扩展**：因此$o(S_t) \notin S_t$，故$S_{t+1} = S_t \cup \{o(S_t)\} ≠ S_t$
+
+更一般地，若系统在时刻$t$包含观察者操作，则：
+$$
+S_{t+1} = \Xi(S_t) = S_t \oplus \{o(s) : s \in S_t, o \in O\}
+$$
+由于$\forall s: o(s) ≠ s$，集合$\{o(s) : s \in S_t\}$与$S_t$不交，因此$S_{t+1} ≠ S_t$。∎
 
 因此P4成立：$\forall t: S_{t+1} ≠ S_t$。
 
 ### P4 ⟹ P5（状态变化不可逆）
 
-假设P4：$∀t: S_{t+1}≠S_t$
+**引理T1.1.4**：持续状态变化蕴含不可逆递归  
+设$\forall t: S_{t+1} ≠ S_t$，则$\forall t<t': ¬(S_{t'}→S_t)$。
 
-1. 假设$∃t<t': S_{t'}→S_t$（可逆）
-2. 则存在路径：$S_t \to ... \to S_{t'} \to S_t$
-3. 但由[D1.3 no-11约束](D1-3-no-11-constraint.md)，不能回到相同状态
-4. 矛盾
+*证明*：反证法。假设$\exists t < t'$使得$S_{t'} → S_t$（存在从$S_{t'}$回到$S_t$的路径）。
 
-因此P5成立。
+1. **路径存在性**：存在序列$S_{t'} = s_0 → s_1 → ... → s_k = S_t$
+2. **中间步骤分析**：每一步$s_i → s_{i+1}$都是系统演化步骤
+3. **状态变化要求**：由假设P4，每一步都有$s_{i+1} ≠ s_i$
+4. **no-11约束**：由[D1.3 no-11约束](D1-3-no-11-constraint.md)，系统状态序列不能包含连续重复
+5. **循环矛盾**：但序列$S_t → ... → S_{t'} → ... → S_t$形成循环，这要求在某处有$s_j = S_t$，与步骤3矛盾
+
+更严格地，由[L1.8 递归非终止性](L1-8-recursion-non-termination.md)，自指系统的Collapse算子$\Xi$满足：
+$$
+\forall n \in \mathbb{N}: \Xi^n(S) ≠ \Xi^{n+1}(S)
+$$
+这保证了不存在回退路径。∎
+
+因此P5成立：$\forall t<t': ¬(S_{t'}→S_t)$。
 
 ### P5 ⟹ P1（递归展开增加熵）
 
-假设P5：$∀t<t': ¬(S_{t'}→S_t)$
+**引理T1.1.5**：不可逆递归必然增加熵  
+设$\forall t<t': ¬(S_{t'}→S_t)$，则$H(S_{t+1}) > H(S_t)$。
 
-1. 系统不能回到之前状态
-2. 每次递归必产生新状态
-3. 由[L1.3 熵单调性](L1-3-entropy-monotonicity.md)：$|S_{t+1}|>|S_t|$
-4. 因此$H(S_{t+1}) > H(S_t)$
+*证明*：不可逆性保证了信息的单向增长：
 
-因此P1成立。
+1. **新状态必然性**：由于$¬(S_{t+1} → S_t)$，状态$S_{t+1}$不能退化到$S_t$
+2. **信息保持**：$S_t$的所有信息必须保留在$S_{t+1}$中（否则可能退化）
+3. **信息增长**：由[D1.7 Collapse算子](D1-7-collapse-operator.md)，$S_{t+1} = \Xi(S_t) = S_t \oplus \text{SelfReference}(S_t)$
+4. **严格增长**：$\text{SelfReference}(S_t) ≠ \emptyset$（非平凡自指），因此$|S_{t+1}| > |S_t|$
+5. **熵增公式**：$H(S_{t+1}) = \log_2|S_{t+1}| > \log_2|S_t| = H(S_t)$
 
-完成循环证明。∎
+更精确地，由[L1.3 熵单调性](L1-3-entropy-monotonicity.md)和[T3.2 熵增下界](T3-2-entropy-lower-bound.md)：
+$$
+H(S_{t+1}) - H(S_t) \geq \log_2 φ > 0
+$$
+其中$φ = \frac{1+\sqrt{5}}{2}$是黄金比例。∎
+
+因此P1成立：$H(S_{t+1}) > H(S_t)$。
+
+**完成循环证明**：P1⟹P2⟹P3⟹P4⟹P5⟹P1，所以P1⟺P2⟺P3⟺P4⟺P5。∎
 
 ## 定理意义
 

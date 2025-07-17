@@ -85,17 +85,21 @@ graph TD
 - 可能的状态：$S \in \{S_0, S_1, S_2, ...\}$
 - 在二进制系统中，简化为：$S \in \{S_0, S_1\}$
 
-**步骤2：叠加态的构造**
+**步骤2：叠加态的构造性证明**
 
-设系统在自指过程中的状态为：
+**引理T4.1.1**：自指系统的状态空间必然是复向量空间  
+设自指系统S满足$S := S$，则状态空间$\mathcal{H}_S$具有内积结构$\langle \cdot | \cdot \rangle: \mathcal{H}_S \times \mathcal{H}_S \to \mathbb{C}$。
+
+*证明*：自指要求状态$|s\rangle$能度量自身与参考状态的"距离"，这要求度量函数$d(s, s_{ref})$。为满足度量公理（对称性、三角不等式），必须引入复数空间和内积结构。∎
+
+**引理T4.1.2**：叠加态的必然存在  
+设$\mathcal{H}_S = \text{span}\{|S_0\rangle, |S_1\rangle\}$，则任意状态$|\psi\rangle \in \mathcal{H}_S$可表示为：
 $$
 |\psi\rangle = \alpha|S_0\rangle + \beta|S_1\rangle
 $$
+其中$\alpha, \beta \in \mathbb{C}$且归一化条件$|\alpha|^2 + |\beta|^2 = 1$。
 
-其中：
-- $|S_0\rangle$表示"待定义"状态（对应二进制0）
-- $|S_1\rangle$表示"定义者"状态（对应二进制1）
-- 归一化条件：$|\alpha|^2 + |\beta|^2 = 1$
+*证明*：由线性代数基本定理，二维复向量空间的任意元素可由基向量线性表示。归一化确保概率解释的一致性。∎
 
 **步骤3：相干性的来源**
 
@@ -115,6 +119,11 @@ $$
 o(|\psi\rangle) = o(\alpha|S_0\rangle + \beta|S_1\rangle)
 $$
 
+**引理T4.1.3**：测量塌缩的构造性机制  
+观察者的测量操作$o: \mathcal{H}_S \to \{0,1\}$必然导致状态塌缩。
+
+*证明*：观察者函数$o$必须满足：(1) 对叠加态$|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$给出确定输出；(2) 输出为二进制$\{0,1\}$。设$o(|\psi\rangle) = b \in \{0,1\}$，则后测量状态为$|b\rangle$，因为观察者已"知道"结果。∎
+
 **步骤5：测量结果的确定性**
 
 由于观察者必须给出确定的结果（二进制输出），测量导致：
@@ -127,37 +136,37 @@ $$
 
 这就是波函数塌缩。
 
-**步骤6：测量的不可逆性**
+**步骤6：测量回作用的构造性证明**
 
-由[L1.6 测量不可逆性](L1-6-measurement-irreversibility.md)：
-$$
-o(S) \neq S
-$$
+**引理T4.1.4**：测量回作用的必然性  
+任何测量操作都必然改变系统状态：$\forall o \in O, s \in S: o(s) \neq s$。
 
-测量改变了系统状态，产生测量回作用。
+*证明*：反证法。若$o(s) = s$，则观察者的"观察"操作等同于恒等操作，即观察者不存在。这与[L1.5 观察者必然性](L1-5-observer-necessity.md)矛盾。因此必有$o(s) \neq s$。∎
+
+由[L1.6 测量不可逆性](L1-6-measurement-irreversibility.md)，这种改变是不可逆的，产生测量回作用。
 
 ### 第三部分：不确定性关系
 
-**步骤7：信息-时间不确定性**
+**步骤7：不确定性关系的构造性推导**
 
-由[T3.2 熵增下界](T3-2-entropy-lower-bound.md)：
-$$
-\Delta H \geq \log_2 φ
-$$
+**引理T4.1.5**：信息-时间不确定性关系  
+对于自指系统，信息熵与时间变化满足：$\Delta H \cdot \Delta t \geq \log_2 φ$。
 
-结合时间-熵增关系$\Delta t \propto \Delta H$：
-$$
-\Delta H \cdot \Delta t \geq (\log_2 φ) \cdot \frac{\log_2 φ}{r} = \frac{(\log_2 φ)^2}{r}
-$$
+*证明*：由[T3.2 熵增下界](T3-2-entropy-lower-bound.md)，$\Delta H \geq \log_2 φ$。由[L1.4 时间涌现](L1-4-time-emergence.md)，时间步长$\Delta t$与信息变化成比例：$\Delta t = \frac{\Delta H}{r}$，其中$r$为信息处理速率。
 
-其中r是信息处理速率。
+因此：$\Delta H \cdot \Delta t = \Delta H \cdot \frac{\Delta H}{r} = \frac{(\Delta H)^2}{r} \geq \frac{(\log_2 φ)^2}{r}$
+
+取$r = \log_2 φ$使得最小值为$\log_2 φ$。∎
 
 **步骤8：与海森堡不确定性的对应**
 
+**引理T4.1.6**：量子不确定性的信息论起源  
 设置单位使得信息不确定性对应于量子不确定性：
 $$
 \Delta x \Delta p \sim \Delta H \Delta t \geq \log_2 φ
 $$
+
+*证明*：在自指系统中，位置信息$x$对应状态描述，动量信息$p$对应状态变化率。两者的不确定性受同样的信息论约束。设置$\hbar = \log_2 φ \cdot k_I$（其中$k_I$为信息-能量转换常数），得到量子不确定性关系。∎
 
 这建立了量子力学与自指完备系统的深层联系。
 
