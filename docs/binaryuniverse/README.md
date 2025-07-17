@@ -50,40 +50,43 @@
   - 信息概念的涌现
   - 理论的逻辑结构
 
-### 第2章：从熵增到φ-表示系统 - 信息编码的必然形式
+### 第2章：信息编码理论体系
 
-#### 2.1 基础定义（待创建）
-- `D1-1-self-referential-completeness.md` - 定义1.1：自指完备性
-- `D1-2-binary-representation.md` - 定义1.2：二进制表示
-- `D1-3-no-11-constraint.md` - 定义1.3：no-11约束
-- `D1-4-time-metric.md` - 定义1.4：时间度量
-- `D1-5-observer.md` - 定义1.5：观察者
-- `D1-6-entropy.md` - 定义1.6：熵
-- `D1-7-collapse-operator.md` - 定义1.7：Collapse算子
-- `D1-8-phi-representation.md` - 定义1.8：φ-表示
+#### 2.1 基础定义系列（纯定义，无证明）
+- `D1-1-self-referential-completeness.md` - 定义1.1：自指完备性的形式化定义
+- `D1-2-binary-representation.md` - 定义1.2：二进制表示的四个条件
+- `D1-3-no-11-constraint.md` - 定义1.3：no-11约束的三种等价表述
+- `D1-4-time-metric.md` - 定义1.4：时间度量函数的性质
+- `D1-5-observer.md` - 定义1.5：观察者的三重功能结构
+- `D1-6-entropy.md` - 定义1.6：自指系统中熵的精确定义
+- `D1-7-collapse-operator.md` - 定义1.7：Collapse算子的数学表述
+- `D1-8-phi-representation.md` - 定义1.8：φ-表示系统的完整定义
 
-#### 2.2 核心引理（待创建）
-- `L1-1-binary-uniqueness.md` - 引理1.1：二进制编码的唯一性
-- `L1-2-encoding-efficiency.md` - 引理1.2：编码效率
-- `L1-3-entropy-monotonicity.md` - 引理1.3：熵的单调性
-- `L1-4-time-emergence.md` - 引理1.4：时间涌现
-- `L1-5-observer-necessity.md` - 引理1.5：观察者的必然性
-- `L1-6-measurement-irreversibility.md` - 引理1.6：测量的不可逆性
-- `L1-7-phi-optimality.md` - 引理1.7：φ-表示的最优性
-- `L1-8-recursion-non-termination.md` - 引理1.8：递归的不可终止性
+#### 2.2 编码需求引理系列（证明编码的必然性）
+- `L1-1-encoding-emergence.md` - 引理1.1：编码需求的涌现
+- `L1-2-binary-necessity.md` - 引理1.2：二进制基底的必然性
+- `L1-3-constraint-requirement.md` - 引理1.3：约束的必要性
+- `L1-4-no-11-optimality.md` - 引理1.4：no-11约束的最优性
+- `L1-5-fibonacci-emergence.md` - 引理1.5：Fibonacci结构的涌现
+- `L1-6-phi-uniqueness.md` - 引理1.6：φ-表示的唯一性
+- `L1-7-entropy-upper-bound.md` - 引理1.7：熵增率的理论上界
+- `L1-8-encoding-completeness.md` - 引理1.8：编码完备性
 
-#### 2.3 主要定理（待创建）
-- `T2-1-binary-necessity.md` - 定理2.1：二进制必然性定理
-- `T2-2-no-11-constraint-theorem.md` - 定理2.2：no-11约束定理
-- `T2-3-phi-encoding-theorem.md` - 定理2.3：φ-编码定理
-- `T2-4-encoding-completeness.md` - 定理2.4：编码完备性定理
+#### 2.3 核心编码定理系列（主要结果）
+- `T2-1-encoding-necessity-theorem.md` - 定理2.1：编码机制必然性定理
+- `T2-2-binary-uniqueness-theorem.md` - 定理2.2：二进制唯一性定理
+- `T2-3-constraint-optimization-theorem.md` - 定理2.3：约束优化定理
+- `T2-4-phi-representation-theorem.md` - 定理2.4：φ-表示系统定理
+- `T2-5-zeckendorf-correspondence.md` - 定理2.5：Zeckendorf对应定理
+- `T2-6-maximal-entropy-rate.md` - 定理2.6：最大熵增率定理
 
-#### 2.4 重要推论（待创建）
-- `C1-1-binary-isomorphism.md` - 推论1.1：二进制同构
-- `C1-2-higher-base-degeneracy.md` - 推论1.2：高进制退化
-- `C1-3-binary-nature-of-existence.md` - 推论1.3：存在的二进制本质
-- `C2-1-fibonacci-emergence.md` - 推论2.1：Fibonacci数列涌现
-- `C2-2-golden-ratio.md` - 推论2.2：黄金比例
+#### 2.4 编码理论推论系列（衍生结果）
+- `C2-1-binary-isomorphism.md` - 推论2.1：二进制同构性
+- `C2-2-higher-base-impossibility.md` - 推论2.2：高进制系统的不可能性
+- `C2-3-fibonacci-necessity.md` - 推论2.3：Fibonacci数列的必然性
+- `C2-4-golden-ratio-emergence.md` - 推论2.4：黄金比例的涌现
+- `C2-5-discrete-continuous-equivalence.md` - 推论2.5：离散-连续等价性
+- `C2-6-information-trinity.md` - 推论2.6：信息三位一体
 
 ### 第3章：从自指到观察者 - 量子现象的理论推导
 
