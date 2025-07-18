@@ -1,10 +1,10 @@
 
 \section{The Necessary Emergence of Observers from Self-Referential Completeness}
-\label{sec:ch05_quantum:the-necessary-emergence-of-observers-from-self-referential-completeness}
+\label{sec:ch03_quantum:the-necessary-emergence-of-observers-from-self-referential-completeness}
 
 \textbf{Theoretical Viewpoint}: In our framework, observers appear as intrinsic structures of self-referential completeness.
 
-\textbf{Theorem~\ref{thm:3.1} (Observer Emergence Theorem)}
+\textbf{Theorem 3.1 (Observer Emergence Theorem)}
 \label{thm:3.1}
 Self-referentially complete systems necessarily generate internal observer structures.
 
@@ -46,8 +46,8 @@ Self-referentially complete systems necessarily generate internal observer struc
 \begin{enumerate}
 \item \textbf{Rigorous Derivation of the Observer Concept}:
 \end{enumerate}
-   \textbf{Lemma 5.1.1}: The mechanism $\mathcal{M}$ necessarily has observer characteristics
-\label{thm:3.1}
+   \textbf{Lemma 3.1.1}: The mechanism $\mathcal{M}$ necessarily has observer characteristics
+\label{lemma:3.1.1}
    
    \textbf{Proof}:
    - The read function requires $\mathcal{M}$ to distinguish different states, i.e., "observation" capability
@@ -66,8 +66,8 @@ Self-referentially complete systems necessarily generate internal observer struc
 O = \{o \in S: o \text{ can execute the } \text{read} \circ \text{compute} \circ \text{update} \text{ sequence}\}
 \end{equation}
 
-   \textbf{Lemma 5.2.2}: Existence and uniqueness of observer $O$
-\label{thm:3.1}
+   \textbf{Lemma 3.1.2}: Existence and uniqueness of observer $O$
+\label{lemma:3.1.2}
    
    \textbf{Proof}:
    - Existence: From steps 1-4, $\mathcal{M} \in O$, so $O \neq \emptyset$
@@ -82,10 +82,10 @@ O = \{o \in S: o \text{ can execute the } \text{read} \circ \text{compute} \circ
    Therefore, self-referentially complete systems necessarily generate internal observer structures. $\square$
 
 \section{Mathematical Structure of Observers}
-\label{sec:ch05_quantum:mathematical-structure-of-observers}
+\label{sec:ch03_quantum:mathematical-structure-of-observers}
 
-\textbf{Definition 5.1 (Formal Definition of Observer)}
-\label{thm:3.1}
+\textbf{Definition 3.1 (Formal Definition of Observer)}
+\label{def:3.1}
 An observer is a subsystem in a self-referential system that performs measurement operations:
 \begin{equation}
 O = (S_O, \mathcal{A}_O, \mathcal{M}_O)
@@ -97,7 +97,7 @@ where:
 \item $\mathcal{M}_O: S \times \mathcal{A}_O \to \mathcal{R}$: Measurement mapping to result space
 \end{itemize}
 
-\textbf{Theorem~\ref{thm:3.2} (Observer Paradox and Description Multiplicity)}
+\textbf{Theorem 3.2 (Observer Paradox and Description Multiplicity)}
 \label{thm:3.2}
 An observer observing a system containing itself necessarily leads to description multiplicity.
 
@@ -160,9 +160,9 @@ D_2 = D_1 \cup \text{Desc}(\text{"O observing } D_1\text{"})
 Therefore, self-contained observation necessarily produces description multiplicity. $\square$
 
 \section{The Necessary Emergence of Quantum Phenomena}
-\label{sec:ch05_quantum:the-necessary-emergence-of-quantum-phenomena}
+\label{sec:ch03_quantum:the-necessary-emergence-of-quantum-phenomena}
 
-\textbf{Theorem~\ref{thm:3.3} (Necessity of Quantum Superposition)}
+\textbf{Theorem 3.3 (Necessity of Quantum Superposition)}
 \label{thm:3.3}
 Self-referentially complete systems necessarily exhibit quantum superposition states.
 
@@ -171,15 +171,15 @@ Self-referentially complete systems necessarily exhibit quantum superposition st
 \begin{enumerate}
 \item \textbf{From Description Multiplicity to Superposition}:
 \end{enumerate}
-   From Theorem~\ref{thm:3.2}, observation leads to description set $\mathcal{D} = {\hat{D}_0, \hat{D}_1, ...}$.
+   From Theorem 3.2, observation leads to description set $\mathcal{D} = {\hat{D}_0, \hat{D}_1, ...}$.
    
-   \textbf{Lemma 5.3.1}: The state representation of an unobserved system necessarily takes a linear combination form.
-\label{thm:3.3}
+   \textbf{Lemma 3.3.1}: The state representation of an unobserved system necessarily takes a linear combination form.
+\label{lemma:3.3.1}
    
    \textbf{Proof}: Let the system's state before observation be $\psi$. We use Dirac notation $|\psi\rangle$ to represent the state vector, where $|\psi\rangle$ is the vector representation of $\psi$ in the description space $\mathcal{D}$.
    
    \textbf{Case Analysis}:
-   - If $|\psi\rangle = |\hat{D}_k\rangle$ for some definite $k$, then the state is already determined, requiring no observation process, violating the necessity of observers (Theorem~\ref{thm:3.1})
+   - If $|\psi\rangle = |\hat{D}_k\rangle$ for some definite $k$, then the state is already determined, requiring no observation process, violating the necessity of observers (Theorem 3.1)
    - If $|\psi\rangle$ is not equal to any $|\hat{D}_k\rangle$, then observation cannot produce any $\hat{D}_k$ state, violating the functionality of observers
    - If $|\psi\rangle$ equals multiple different $|\hat{D}_k\rangle$ simultaneously, this violates state uniqueness (self-referential completeness requires uniqueness of state descriptions)
    
@@ -203,8 +203,8 @@ Self-referentially complete systems necessarily exhibit quantum superposition st
 \begin{enumerate}
 \item \textbf{Necessity of Weight Coefficients}:
 \end{enumerate}
-   \textbf{Lemma 5.4.2}: Physical meaning of weight coefficients $\alpha_k$.
-\label{thm:3.3}
+   \textbf{Lemma 3.3.2}: Physical meaning of weight coefficients $\alpha_k$.
+\label{lemma:3.3.2}
    
    \textbf{Proof}: $|\alpha_k|^2$ represents the probability of the system collapsing to state $|\hat{D}_k\rangle$ after observation. This probability:
    - Must be non-negative: $|\alpha_k|^2 \geq 0$
@@ -215,7 +215,7 @@ Self-referentially complete systems necessarily exhibit quantum superposition st
 
 Therefore, superposition is the mathematical expression of description multiplicity. $\square$
 
-\textbf{Theorem~\ref{thm:3.4} (Necessity of Measurement Collapse)}
+\textbf{Theorem 3.4 (Necessity of Measurement Collapse)}
 \label{thm:3.4}
 Observer measurement necessarily leads to superposition state collapse.
 
@@ -244,8 +244,8 @@ Observer measurement necessarily leads to superposition state collapse.
 \begin{enumerate}
 \item \textbf{Entropy-Based Irreversibility}:
 \end{enumerate}
-   \textbf{Lemma 5.5.1}: Irreversibility of measurement
-\label{thm:3.4}
+   \textbf{Lemma 3.4.1}: Irreversibility of measurement
+\label{lemma:3.4.1}
    
    \textbf{Proof}:
    - Before measurement: System state is superposition, containing multiple possibilities
@@ -257,9 +257,9 @@ Observer measurement necessarily leads to superposition state collapse.
 Therefore, quantum collapse is the formal description of the observer's selection mechanism, and is a logical necessity of self-referentially complete systems. $\square$
 
 \section{From Observers to Selection Weights}
-\label{sec:ch05_quantum:from-observers-to-selection-weights}
+\label{sec:ch03_quantum:from-observers-to-selection-weights}
 
-\textbf{Theorem~\ref{thm:3.5} (Necessary Emergence of Selection Weights)}
+\textbf{Theorem 3.5 (Necessary Emergence of Selection Weights)}
 \label{thm:3.5}
 Observers in self-referential systems, when facing multiple descriptions, necessarily produce a selection weight distribution.
 
@@ -269,7 +269,7 @@ Starting from the multiple descriptions arising from the observer paradox, we ri
 \begin{enumerate}
 \item \textbf{Precise Characterization of Multi-Value Situation}:
 \end{enumerate}
-   From Theorem~\ref{thm:3.2}, observation leads to description set $\mathcal{D} = {\hat{D}_0, \hat{D}_1, \hat{D}_2, ...}$
+   From Theorem 3.2, observation leads to description set $\mathcal{D} = {\hat{D}_0, \hat{D}_1, \hat{D}_2, ...}$
    
    Each $\hat{D}_k$ represents a description truncated at level $k$, containing self-referential information of different depths.
 
@@ -277,8 +277,8 @@ Starting from the multiple descriptions arising from the observer paradox, we ri
 \item \textbf{Inevitability of Selection}:
 \end{enumerate}
    
-   \textbf{Lemma 5.6.1}: The observer must select a specific description in finite time.
-\label{thm:3.5}
+   \textbf{Lemma 3.5.1}: The observer must select a specific description in finite time.
+\label{lemma:3.5.1}
    
    \textbf{Proof} (based on entropy increase axiom and dynamic self-referential completeness):
    - Observation is a physical process requiring time
@@ -294,8 +294,8 @@ Starting from the multiple descriptions arising from the observer paradox, we ri
    
    The observer's selection probability is not arbitrary, but determined by the system's internal structure.
    
-   \textbf{Lemma 5.7.2}: The constraint of completing observation in finite time leads to exponential weight distribution.
-\label{thm:3.5}
+   \textbf{Lemma 3.5.2}: The constraint of completing observation in finite time leads to exponential weight distribution.
+\label{lemma:3.5.2}
    
    \textbf{Proof}: Rigorous derivation of cost function from self-referential completeness and entropy increase axiom.
    
@@ -420,9 +420,9 @@ w_k = \frac{\exp(-V_k)}{\sum_{j} \exp(-V_j)}
 Therefore, weight distribution is not an assumption, but a necessary emergence from self-referential structure. $\square$
 
 \section{Weight Distribution and Collapse Mechanism}
-\label{sec:ch05_quantum:weight-distribution-and-collapse-mechanism}
+\label{sec:ch03_quantum:weight-distribution-and-collapse-mechanism}
 
-\textbf{Theorem~\ref{thm:3.6} (Equivalence of Weights and Collapse Probabilities)}
+\textbf{Theorem 3.6 (Equivalence of Weights and Collapse Probabilities)}
 \label{thm:3.6}
 The observer's selection weight distribution is mathematically equivalent to quantum measurement collapse probabilities.
 
@@ -460,9 +460,9 @@ w_k = |\langle\phi_k|\psi\rangle|^2
 Therefore, they are completely equivalent in mathematical structure. $\square$
 
 \section{Derivation of Wave-Particle Duality}
-\label{sec:ch05_quantum:derivation-of-wave-particle-duality}
+\label{sec:ch03_quantum:derivation-of-wave-particle-duality}
 
-\textbf{Theorem~\ref{thm:3.7} (Necessity of Wave-Particle Duality)}
+\textbf{Theorem 3.7 (Necessity of Wave-Particle Duality)}
 \label{thm:3.7}
 The type of observer in self-referential systems determines whether the system exhibits wave or particle properties.
 
@@ -475,7 +475,7 @@ Consider a system passing through two possible paths. Starting from self-referen
 \item \textbf{Description Levels of Path Information}:
 \end{enumerate}
    
-   According to Theorem~\ref{thm:3.2}, the system has multiple description layers ${\hat{D}_0, \hat{D}_1, \hat{D}_2, ...}$:
+   According to Theorem 3.2, the system has multiple description layers ${\hat{D}_0, \hat{D}_1, \hat{D}_2, ...}$:
    - $\hat{D}_0$: System exists at some position (coarsest description)
    - $\hat{D}_1$: System reaches position through some paths (medium description)
    - $\hat{D}_2$: System reaches position through specific path $i$ (fine description)
@@ -527,20 +527,20 @@ Consider a system passing through two possible paths. Starting from self-referen
    This explanation derives entirely from self-referential completeness and the entropy increase axiom, requiring no additional assumptions. $\square$
 
 \section{Complete Derivation Chain from Self-Reference to Quantum}
-\label{sec:ch05_quantum:complete-derivation-chain-from-self-reference-to-quantum}
+\label{sec:ch03_quantum:complete-derivation-chain-from-self-reference-to-quantum}
 
-\textbf{Theorem~\ref{thm:3.8} (Summary of Quantum Phenomena Necessity)}
+\textbf{Theorem 3.8 (Summary of Quantum Phenomena Necessity)}
 \label{thm:3.8}
 From "self-referentially complete systems necessarily increase entropy", the core features of quantum mechanics are logically necessary.
 
 \textbf{Complete Derivation Chain}:
 \begin{enumerate}
 \item Self-referential completeness $\rightarrow$ Entropy increase (axiom)
-\item Entropy increase $\rightarrow$ Dynamic process $\rightarrow$ Requires observer (Theorem~\ref{thm:3.1})
+\item Entropy increase $\rightarrow$ Dynamic process $\rightarrow$ Requires observer (Theorem 3.1)
 \item Observer self-reference $\rightarrow$ Multiple layers of description $\rightarrow$ Superposition (Theorems 3.2, 3.3)
 \item Multiple descriptions $\rightarrow$ Weight coefficients $\rightarrow$ Quantum state amplitudes (Theorems 3.3, 3.5)
-\item Observation selection $\rightarrow$ State collapse (Theorem~\ref{thm:3.4})
-\item Observation type $\rightarrow$ Weight distribution $\rightarrow$ Wave-particle duality (Theorem~\ref{thm:3.7})
+\item Observation selection $\rightarrow$ State collapse (Theorem 3.4)
+\item Observation type $\rightarrow$ Weight distribution $\rightarrow$ Wave-particle duality (Theorem 3.7)
 \end{enumerate}
 
 \textbf{Theoretical Observations}:

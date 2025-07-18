@@ -30,3 +30,5 @@ build_output.txt
 *.pyc
 pdf/genesis/main.*
 pdf/genesis/references.bib
+!pdf/genesis/main.pdf
+!pdf/genesis/main.tex
