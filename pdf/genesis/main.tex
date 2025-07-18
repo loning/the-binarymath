@@ -1,0 +1,251 @@
+\documentclass[12pt,a4paper]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{tcolorbox}
+\usepackage{listings}
+\usepackage{makeidx}
+
+% Page geometry
+\geometry{
+    left=3cm,
+    right=2.5cm,
+    top=2.5cm,
+    bottom=2.5cm,
+    headheight=15pt
+}
+
+% Custom colors
+\definecolor{theoremcolor}{RGB}{0,100,150}
+\definecolor{definitioncolor}{RGB}{150,0,100}
+\definecolor{proofcolor}{RGB}{100,150,0}
+\definecolor{axiomcolor}{RGB}{200,50,50}
+
+% Theorem environments
+\theoremstyle{definition}
+\newtheorem{axiom}{Axiom}[chapter]
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\newtheorem{observation}{Observation}[chapter]
+\newtheorem{remark}{Remark}[chapter]
+\newtheorem{example}{Example}[chapter]
+
+% Custom theorem styles
+\newtheoremstyle{colored}
+  {3pt}% Space above
+  {3pt}% Space below
+  {}% Body font
+  {}% Indent amount
+  {\bfseries\color{theoremcolor}}% Theorem head font
+  {.}% Punctuation after theorem head
+  {.5em}% Space after theorem head
+  {}% Theorem head spec
+
+\theoremstyle{colored}
+\newtheorem{maintheorem}{Main Theorem}[chapter]
+\newtheorem{keyresult}{Key Result}[chapter]
+
+% Headers and footers
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\leftmark}
+\fancyhead[RO]{\rightmark}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Title formatting
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\color{theoremcolor}}
+  {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{definitioncolor}}
+  {\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{proofcolor}}
+  {\thesubsection}{1em}{}
+
+% Custom commands
+\newcommand{\bpsi}{\boldsymbol{\psi}}
+\newcommand{\bPSI}{\boldsymbol{\Psi}}
+\newcommand{\selfref}[1]{\textbf{#1}}
+\newcommand{\entropy}[1]{H(#1)}
+\newcommand{\collapse}[1]{\Xi[#1]}
+\newcommand{\phirep}[1]{\phi\text{-repr}(#1)}
+\newcommand{\binary}[1]{{0,1}^{#1}}
+\newcommand{\fibseq}[1]{F_{#1}}
+\newcommand{\goldenratio}{\phi}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=theoremcolor,
+    filecolor=definitioncolor,
+    urlcolor=proofcolor,
+    citecolor=theoremcolor,
+    pdfauthor={Auric},
+    pdftitle={Genesis Unified Theory: From Self-Referential Completeness to Universe},
+    pdfsubject={Information Theory, Quantum Mechanics, Mathematical Physics},
+    pdfkeywords={self-reference, entropy, information, quantum, phi-representation}
+}
+
+% Enable index
+\makeindex
+
+% Title page information
+\title{
+    \vspace{-2cm}
+    \textbf{\Huge The Genesis Structure of the Information Universe}\\
+    \vspace{1cm}
+    \textbf{\Large From a Single Axiom to Complete Theory}\\
+    \vspace{1cm}
+    \textbf{\large A Complete Theoretical Framework Based on}\\
+    \textbf{\large Self-Referentially Complete Systems Necessarily Increase Entropy}
+}
+\author{
+    \textbf{Auric}\\
+    \vspace{0.3cm}
+    \textit{Email: aloning@gmail.com}\\
+    \textit{Website: https://binarymath.dw.cash/}\\
+    \vspace{0.3cm}
+    \textit{English Translation}
+}
+\date{\today}
+
+\begin{document}
+
+% Title page
+\maketitle
+\thispagestyle{empty}
+
+% Copyright page
+\clearpage
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+\textbf{The Genesis Structure of the Information Universe}\\
+From a Single Axiom to Complete Theory\\
+\vspace{1cm}
+Complete theoretical framework deriving the entire universe\\
+from the single axiom of self-referential completeness.\\
+\vspace{1cm}
+This work demonstrates that all information encoding,\\
+quantum phenomena, and mathematical structures\\
+emerge necessarily from the principle that\\
+self-referentially complete systems necessarily increase entropy.\\
+\vspace{2cm}
+\textcopyright\ 2024 Auric\\
+Email: aloning@gmail.com\\
+Website: https://binarymath.dw.cash/\\
+All rights reserved.
+\end{center}
+\vspace*{\fill}
+
+% Table of Contents
+\clearpage
+\tableofcontents
+
+% Note to Reviewers
+\clearpage
+\chapter*{To Reviewers: Theoretical Foundation and Academic Positioning}
+\addcontentsline{toc}{chapter}{To Reviewers}
+\input{note_to_reviewers}
+
+% Abstract
+\clearpage
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+\input{abstract}
+
+% Main content
+\mainmatter
+
+\chapter{Introduction: From a Single Axiom to the Complete Universe}
+\label{ch:introduction}
+\input{ch01_introduction}
+
+\chapter{Single Axiom and Its Complete Definition}
+\label{ch:axiom}
+\input{ch02_axiom}
+
+\chapter{From Axiom to Derivation}
+\label{ch:derivation}
+\input{ch03_derivation}
+
+\chapter{From Entropy Increase to $\phi$-Representation System}
+\label{ch:encoding}
+\input{ch04_encoding}
+
+\chapter{From Self-Reference to Observers: Quantum Phenomena}
+\label{ch:quantum}
+\input{ch05_quantum}
+
+\chapter{From System Stability to Riemann Hypothesis}
+\label{ch:riemann}
+\input{ch06_riemann}
+
+\chapter{Theoretical Predictions and Applications}
+\label{ch:applications}
+\input{ch07_applications}
+
+\chapter{Conclusion: The Unifying Power of a Single Axiom}
+\label{ch:conclusion}
+\input{ch08_conclusion}
+
+\chapter{Philosophical Defense: Responding to Deep Criticisms}
+\label{ch:defense}
+\input{ch09_defense}
+
+\chapter{Conceptual Completeness Check}
+\label{ch:completeness}
+\input{ch10_completeness}
+
+\chapter{Philosophical Speculation: Ultimate Meaning of Self-Referential Completeness}
+\label{ch:philosophy}
+\input{ch11_philosophy}
+
+% Appendices
+\appendix
+
+\chapter{Derivation Logic Flow Charts}
+\label{app:flowcharts}
+\input{appendix_flowcharts}
+
+\chapter{Mathematical Proofs and Details}
+\label{app:proofs}
+\input{appendix_proofs}
+
+\chapter{Computational Verifications}
+\label{app:computational}
+\input{appendix_computational}
+
+% Bibliography
+\bibliographystyle{plain}
+\bibliography{references}
+
+% Index
+\printindex
+
+\end{document}

@@ -1,0 +1,956 @@
+
+\section{Emergence of Information Encoding Requirements}
+\label{sec:ch04_encoding:emergence-of-information-encoding-requirements}
+
+From the unique axiom, the need for encoding systems naturally emerges.
+
+\textbf{Theorem~\ref{thm:2.1} (Emergence of Encoding Requirements)}
+\label{thm:2.1}
+Self-referentially complete entropy-increasing systems necessarily require encoding mechanisms.
+
+\textbf{Derivation}:
+
+\begin{enumerate}
+\item \textbf{Emergence of the concept of information} (from Theorem~\ref{thm:1.5}):
+\end{enumerate}
+   Self-referential completeness produces distinguishable structures, i.e., information:
+   
+\begin{equation}
+\text{SelfRefComplete}(S) \Rightarrow \exists \text{Info}(x) \text{ in } S
+\end{equation}
+   where $\text{Info}(x) \equiv \exists y \in S: x \neq y \land \text{Desc}(x) \neq \text{Desc}(y)$ (Definition 3.5).
+
+\begin{enumerate}
+\item \textbf{Accumulation of information} (from the entropy increase axiom):
+\end{enumerate}
+   From the strict definition of entropy $H(S_t) = \log |S_t|$ (Theorem~\ref{thm:1.1}),
+   entropy growth means growth in the number of distinguishable states:
+   
+\begin{equation}
+\forall t: H(S_{t+1}) > H(S_t) \Rightarrow |S_{t+1}| > |S_t|
+\end{equation}
+
+\begin{enumerate}
+\item \textbf{Requirement for finite representation}:
+\end{enumerate}
+   Self-referential completeness requires the existence of a description function $\text{Desc}: S \to \mathcal{L}$,
+   where $\mathcal{L}$ is the set of finite symbol strings (defined in Chapter~\ref{ch:axiom}).
+   
+   This directly implies:
+\begin{equation}
+\text{SelfRefComplete}(S) \Rightarrow \forall s \in S: |\text{Desc}(s)| < \infty
+\end{equation}
+   
+   \textbf{Key insight}: Finite description is not an additional assumption but an inherent requirement of the definition of self-referential completeness.
+
+\begin{enumerate}
+\item \textbf{Strict derivation of encoding requirements}:
+\end{enumerate}
+   \textbf{Lemma 4.1.1}: Accumulated information requires systematic encoding
+\label{thm:2.1}
+   
+   \textbf{Proof}:
+   - From step 2, new distinguishable states join at each time t: $S_{t+1} \supset S_t$
+   - These states must be handled by the description function: for all $s \in S_{t+1}$, $\text{Desc}(s)$ must exist
+   - Processing new states requires consistent encoding rules, otherwise the injectivity of the description function is destroyed
+   - Therefore there must exist an encoding mechanism $E: S \to \mathcal{L}$
+   - By self-referential completeness, $E \in S$ (the encoder itself must be within the system) $\square$
+
+\begin{enumerate}
+\item \textbf{Completeness requirements for the encoding mechanism}:
+\end{enumerate}
+   Since the system must describe its own encoding process, the encoding mechanism must:
+   - Be able to encode any distinguishable information
+   - Maintain encoding consistency and reversibility
+   - Support encoding of self-referential structures
+
+   Therefore there must exist an encoding function:
+   
+\begin{equation}
+\exists E: S \rightarrow \Sigma^* \text{ where } |\Sigma| < \infty
+\end{equation}
+   
+   where $\Sigma$ is a finite encoding alphabet and $\Sigma^*$ is the set of all finite strings composed of symbols from $\Sigma$.
+
+\section{Emergence of Encoding Completeness}
+\label{sec:ch04_encoding:emergence-of-encoding-completeness}
+
+\textbf{Theorem~\ref{thm:2.2} (Encoding Completeness)}
+\label{thm:2.2}
+All information emerging from self-referential completeness can be encoded.
+
+\textbf{Derivation}:
+
+\begin{enumerate}
+\item \textbf{Recursive definition of information} (from Theorem~\ref{thm:1.5}):
+\end{enumerate}
+   
+\begin{equation}
+\text{Info}(x) \equiv \exists y \in S: x \neq y \land \text{Desc}(x) \neq \text{Desc}(y)
+\end{equation}
+
+\begin{enumerate}
+\item \textbf{Distinguishable implies describable}:
+\end{enumerate}
+   If $x$ is distinguishable in $S$, then by the definition of self-referential completeness,
+   there exists a description function $\text{Desc}: S \to \mathcal{L}$ such that $\text{Desc}(x) \in \mathcal{L}$
+
+\begin{enumerate}
+\item \textbf{Describable implies encodable}:
+\end{enumerate}
+   Descriptions are symbol sequences that can be mapped to integers through standard encoding:
+   
+\begin{equation}
+\text{Desc}(x) \xrightarrow{\text{encode}} n \in \mathbb{N}
+\end{equation}
+   
+   Here the encoding can be any function that injectively maps finite symbol strings to natural numbers.
+
+\begin{enumerate}
+\item \textbf{Treatment of "continuous" information}:
+\end{enumerate}
+   So-called continuous objects (like $\pi$, e, sin) manifest in self-referential systems as:
+   - Generation rules (algorithms)
+   - Defining properties (axioms)
+   - Approximation sequences (computations)
+   
+   These are all finite descriptions, therefore encodable.
+
+\textbf{Conclusion}: In our theoretical framework, "information" is defined as distinguishability, therefore by definition is encodable.
+
+\section{From Entropy Increase to Encoding Necessity}
+\label{sec:ch04_encoding:from-entropy-increase-to-encoding-necessity}
+
+Chapters~\ref{ch:introduction}--\ref{ch:derivation} have proven the necessity of entropy increase. Here we focus on how entropy increase leads to encoding requirements in detail.
+
+\textbf{Theorem~\ref{thm:2.3} (Necessity of Encoding Mechanisms)}
+\label{thm:2.3}
+Self-referentially complete entropy-increasing systems necessarily evolve encoding mechanisms.
+
+\textbf{Proof}:
+Let system S satisfy self-referential completeness. From Theorem~\ref{thm:1.1} it necessarily increases in entropy.
+
+\begin{enumerate}
+\item \textbf{Unboundedness of information accumulation}:
+\end{enumerate}
+   From the entropy increase property: $\forall t: H(S_{t+1}) > H(S_t)$
+   Therefore: $\lim_{t \to \infty} H(S_t) = \infty$
+   
+\begin{enumerate}
+\item \textbf{Finiteness requirement of descriptions}:
+\end{enumerate}
+   Self-referential completeness requires the existence of a description function $\text{Desc}: S \to \mathcal{L}$
+   where $\mathcal{L}$ is some formal language. To ensure describability:
+   
+\begin{equation}
+\forall s \in S_t: |\text{Desc}(s)| < \infty
+\end{equation}
+
+\begin{enumerate}
+\item \textbf{Necessity of encoding}:
+\end{enumerate}
+   A contradiction appears: infinitely growing entropy vs finite description length
+   Solution: There must exist an encoding function $E: S \to \Sigma^*$
+   such that arbitrarily complex states can be represented by finite symbol sequences
+   
+\begin{enumerate}
+\item \textbf{Recursivity of encoding}:
+\end{enumerate}
+   By self-reference requirements, the encoding function itself must be encodable:
+   
+\begin{equation}
+E \in \text{Domain}(E)
+\end{equation}
+Therefore, encoding mechanisms are a necessary requirement of self-referentially complete entropy-increasing systems. $\square$
+
+\section{From Entropy Increase to Optimal Encoding Derivation}
+\label{sec:ch04_encoding:from-entropy-increase-to-optimal-encoding-derivation}
+
+\textbf{Theorem~\ref{thm:2.4} (Entropy Increase Drives Encoding Optimization)}
+\label{thm:2.4}
+Self-referentially complete entropy-increasing systems necessarily evolve optimal encoding.
+
+\textbf{Proof}:
+
+\begin{enumerate}
+\item \textbf{Definition of encoding efficiency}:
+\end{enumerate}
+   For encoding $E: \mathcal{S} \to \Sigma^*$, define maximum encoding length:
+   
+\begin{equation}
+L_{\max}(E) = \max_{s \in S} |E(s)|
+\end{equation}
+
+\begin{enumerate}
+\item \textbf{Relationship between number of states and encoding length}:
+\end{enumerate}
+   If the system has $|S|$ different states, any uniquely decodable encoding must satisfy:
+   
+\begin{equation}
+L_{\max}(E) \geq \log_{|\Sigma|} |S|
+\end{equation}
+
+\begin{enumerate}
+\item \textbf{Constraints on encoding length}:
+\end{enumerate}
+   - By the axiom, entropy continuously grows: $H(S_t) \to \infty$
+   - From Theorem~\ref{thm:1.1}, entropy equals the logarithm of the number of distinguishable states in the system
+   - Let $|S_t|$ be the number of distinguishable states in the system at time $t$, then $H(S_t) = \log |S_t|$
+   - Entropy increase implies $|S_t| \to \infty$
+   - By the definition of self-referential completeness, descriptions belong to the set of finite symbol strings $\mathcal{L}$: $\forall s \in S_t: |\text{Desc}(s)| < \infty$
+   - Therefore the encoding system must satisfy: under the condition $|S_t| \to \infty$, all description lengths remain finite
+   - We prove by contradiction below that this requires encoding to be near-optimal
+   
+\begin{enumerate}
+\item \textbf{Necessity of optimality}:
+\end{enumerate}
+   
+   \textbf{Lemma 4.2.1}: Self-referentially complete systems must use near-optimal encoding.
+\label{thm:2.4}
+   
+   \textbf{Proof}:
+   Consider two cases with different encoding efficiency:
+   
+   \textbf{Case A - Optimal encoding}:
+   - Encoding length near information-theoretic lower bound: $L_{\max}(E) \approx \log_{|\Sigma|} |S_t|$
+   - As $t$ grows, encoding length grows slowly
+   
+   \textbf{Case B - Inefficient encoding}:
+   - Encoding length far exceeds information-theoretic lower bound: $L_{\max}(E) \gg \log_{|\Sigma|} |S_t|$
+   - For example: $L_{\max}(E) = c \cdot |S_t|$ (some constant $c > 0$)
+   
+   \textbf{Contradiction derivation}:
+   - By the axiom, $|S_t| \to \infty$ as $t \to \infty$
+   - For inefficient encoding, $L_{\max}(E) \to \infty$ and grows rapidly
+   - But self-referential completeness requires the encoding function $E$ itself must be describable by the system
+   - The description of encoding function $E$ includes:
+     - For each state $s$, need to store the value of $E(s)$
+     - If $L_{\max}(E) = c \cdot |S_t|$, then need at least $|S_t| \cdot c \cdot |S_t|$ space to store the mapping table
+     - This leads to $|\text{Desc}(E)| \geq c \cdot |S_t|^2 \to \infty$
+   - \textbf{Key to the contradiction}:
+     - Self-referential completeness definition requires: $\text{Desc}: S \to \mathcal{L}$
+     - Where $\mathcal{L}$ is the set of finite symbol strings, i.e., $\forall \ell \in \mathcal{L}: |\ell| < \infty$
+     - But $|\text{Desc}(E)| \to \infty$ means $\text{Desc}(E) \notin \mathcal{L}$
+     - This contradicts the requirement that $E \in S$ (encoding function is part of the system) and $\text{Desc}(E) \in \mathcal{L}$
+   
+   Therefore, only near-optimal encoding is compatible with self-referential completeness. $\square$
+
+\textbf{Corollary 4.1.1 (Emergence of Encoding Constraints)}
+\label{thm:2.2}
+Optimal encoding must satisfy the following constraints:
+
+\begin{enumerate}
+\item \textbf{Unique decodability}:
+\end{enumerate}
+   
+\begin{equation}
+\forall s_1, s_2 \in S: s_1 \neq s_2 \Rightarrow E(s_1) \neq E(s_2)
+\end{equation}
+\begin{enumerate}
+\item \textbf{Prefix-freeness} (to ensure immediate decodability):
+\end{enumerate}
+   
+\begin{equation}
+\forall s_1, s_2 \in S: E(s_1) \text{ is not a prefix of } E(s_2)
+\end{equation}
+\begin{enumerate}
+\item \textbf{Self-embedding}:
+\end{enumerate}
+   
+\begin{equation}
+E \in \text{Domain}(E) \land E(E) \in \text{Range}(E)
+\end{equation}
+These constraints naturally emerge from the logical consequences of the axiom (self-referentially complete systems necessarily increase in entropy) and the definition of self-referential completeness.
+
+\textbf{Theorem~\ref{thm:2.5} (Necessity of Binary Base)}
+\label{thm:2.5}
+In self-referentially complete systems, binary is the only viable encoding base.
+
+\textbf{Proof}:
+
+\begin{enumerate}
+\item \textbf{Complete Classification of Base Sizes}:
+\end{enumerate}
+   Let the encoding alphabet be $\Sigma$, $|\Sigma| = k$. We analyze all possible values of $k$.
+   
+   \textbf{Case 1: $k = 1$}
+   - Only one symbol, all states indistinguishable
+   - $H(S) = \log(1) = 0$, no entropy increase
+   - Violates the basic axiom, excluded
+   
+   \textbf{Case 2: $k \geq 2$}
+   - Requires further analysis
+   
+\begin{enumerate}
+\item \textbf{Recursive Structure Analysis of Self-Referential Encoding}:
+\end{enumerate}
+   
+   \textbf{Lemma 4.3.1}: Self-description complexity of encoding systems.
+\label{thm:2.5}
+   
+   For a $k$-ary encoding system $\mathcal{E}_k$, define:
+   - $\mathcal{D}_k$: Minimum information required to describe $\mathcal{E}_k$
+   - $\mathcal{C}_k$: Information encoding capacity of $\mathcal{E}_k$
+   
+   Self-referential completeness requires: $\mathcal{D}_k \leq \mathcal{C}_k$
+   
+   \textbf{Analysis}:
+   - $\mathcal{D}_k$ contains:
+     - Definition of $k$ symbols: requires $\log k!$ bits to distinguish them
+     - Inter-symbol relations: at least $(k-1)$ independent relations
+     - Encoding/decoding rules: $O(k)$ complexity
+   - Therefore: $\mathcal{D}_k \geq k \log k + O(k)$
+   
+\begin{enumerate}
+\item \textbf{Special Properties of Binary}:
+\end{enumerate}
+   
+   \textbf{Lemma 4.4.2}: Only $k=2$ can achieve self-description with minimum recursive depth.
+\label{thm:2.5}
+   
+   \textbf{Proof}:
+   For $k=2$:
+   - Two symbols defined through negation: $0 \equiv \neg 1$, $1 \equiv \neg 0$
+   - This is a pure duality relation, requiring no third-party reference
+   - Description complexity: $\mathcal{D}_2 = O(1)$ (constant)
+   
+   For $k \geq 3$:
+   - Requires additional structure to distinguish $k$ different symbols
+   - Cannot be defined solely through mutual negation (how to define the 3rd?)
+   - Requires ordering relations or other organizing principles
+   - Description complexity: $\mathcal{D}_k \geq k \log k$
+
+\begin{enumerate}
+\item \textbf{Combinatorial Complexity Argument}:
+\end{enumerate}
+   
+   \textbf{Lemma 4.5.3}: Higher-base encoding systems require more complex constraint structures.
+\label{thm:2.5}
+   
+   For $k$-ary encoding systems:
+   - To ensure unique decodability, some pattern constraints are needed
+   - $k=2$: Only need to forbid a single 2-bit pattern (like "11")
+   - $k=3$: Requires more complex constraint sets
+     - If only forbidding single symbols, degenerates to binary
+     - If forbidding length-2 patterns, 9 possible patterns
+     - Must carefully choose constraint sets to ensure decodability and non-degeneracy
+   - Larger $k$ means more complex constraint design
+   
+   \textbf{Key Insight}: The constraint set itself needs to be described by the system. Since descriptions must be finite (from the construction of $\mathcal{L}$ in the self-referential completeness definition), complex constraint sets require longer descriptions, creating tension with the axiom's requirement of continuous entropy increase. The simplest constraints (like a single 2-bit forbidden pattern) most easily satisfy the coordination between axiom and definition.
+   
+\begin{enumerate}
+\item \textbf{Logical Necessity of Encoding Efficiency}:
+\end{enumerate}
+   
+   \textbf{Lemma 4.6.4}: The logical consequences of the axiom and self-referential completeness definition determine the choice of encoding base.
+\label{thm:2.5}
+   
+   Consider the dynamic process of system evolution:
+   - Time $t$: System has $|S_t|$ states
+   - Time $t+1$: By the axiom, $|S_{t+1}| > |S_t|$
+   - The encoder $E$ must assign encodings to all new states
+   
+   For $k$-ary systems:
+   - Without constraints, there are $k^n$ encodings of length $n$
+   - But no constraints lead to prefix ambiguity, preventing unique decoding
+   - Constraints must be introduced, reducing available encodings
+   - Simpler constraints mean more concise system descriptions
+   
+   $k=2$ provides the simplest constraint structure (single 2-bit forbidden pattern).
+   
+   \textbf{Logical Necessity of Conciseness}: The encoding system $E$ and its constraint rules must all be captured by finite-length descriptions. More complex systems require longer descriptions, but by the self-referential completeness definition, descriptions belong to the set of finite symbol strings $\mathcal{L}$. Therefore, the logical consequences of the axiom and self-referential completeness definition determine the choice of concise structures.
+   
+\begin{enumerate}
+\item \textbf{Completeness Argument}:
+\end{enumerate}
+   
+   \textbf{Theorem~\ref{thm:2.5} (Synthesis)}: Consider the following constraints:
+\label{thm:2.5}
+   
+   a) \textbf{Entropy increase requirement}: $k > 1$ (otherwise no entropy increase)
+   b) \textbf{Self-description requirement}: The encoding system must be able to describe itself
+   c) \textbf{Minimum complexity}: $k=2$ achieves the simplest self-description (duality relation)
+   d) \textbf{Constraint simplicity}: $k=2$ allows the simplest constraint structure
+   
+   These four independent arguments all point to the same conclusion: $k=2$ is the only encoding base that satisfies all requirements of self-referential completeness.
+   
+   Furthermore, Theorems 2.5.1 and 2.5.2 prove by contradiction that:
+   - Any static system with $k \geq 3$ necessarily degenerates or fails
+   - Any dynamic $k$-value system necessarily degenerates to static binary
+   
+Therefore, binary is not only the optimal choice but the only choice. $\square$
+
+\textbf{Note}: The necessity of binary is logical, not numerical---it comes from the inherent requirements of self-referential completeness.
+
+\section{Proof by Contradiction for k$\geq$3 Systems}
+\label{sec:ch04_encoding:proof-by-contradiction-for-k-geq-3-systems}
+
+\textbf{Theorem~\ref{thm:2.5}.1 (Infeasibility of Higher-Order Systems)}
+\label{thm:2.5}
+Any encoding system with $k \geq 3$ either degenerates to binary or cannot satisfy self-referential completeness.
+
+\textbf{Proof by Contradiction}:
+Assume there exists an encoding system with $k \geq 3$ that can satisfy self-referential completeness requirements.
+
+\textbf{Case 1: Detailed Analysis of k=3}
+
+Consider a ternary system with symbol set $\Sigma = {0, 1, 2}$.
+
+\begin{enumerate}
+\item \textbf{Necessary Constraints of Self-Referential Encoding}:
+\end{enumerate}
+   Since the system must be able to describe itself, the three symbols must be mutually defined. Possible definitional structures:
+   
+   a) \textbf{Circular Definition}:
+   - 0 defined as "not 1 and not 2"
+   - 1 defined as "not 0 and not 2"  
+   - 2 defined as "not 0 and not 1"
+   
+   But this is circular, providing no real basis for distinction.
+
+   b) \textbf{Hierarchical Definition}:
+   - 0 = "ground state"
+   - 1 = "not 0"
+   - 2 = "not 0 and not 1"
+   
+   This actually establishes binary opposition (0 vs not-0), with the third symbol being derivative.
+
+\begin{enumerate}
+\item \textbf{Information-Theoretic Analysis}:
+\end{enumerate}
+   To ensure unique decodability, constraints must be introduced. Consider all possible constraint patterns:
+   - If forbidding single symbols (e.g., forbid "2"), system degenerates to binary
+   - If forbidding length-2 patterns, there are 9 possible combinations
+   
+   \textbf{Key Insight}: Any effective constraint set breaks the symmetry of the three symbols, causing one symbol to become "special," and the system essentially degenerates to binary opposition.
+
+\textbf{Case 2: General Proof for k$\geq$4}
+
+\begin{enumerate}
+\item \textbf{Combinatorial Explosion of Symbol Definitions}:
+\end{enumerate}
+   - $k$ symbols need to be mutually distinguished
+   - Each symbol's definition needs to reference the other $k-1$ symbols
+   - Definition complexity: $O(k!)$
+   
+\begin{enumerate}
+\item \textbf{Recursive Depth of Self-Referential Encoding}:
+\end{enumerate}
+   Suppose the system needs to encode its own definition, including:
+   - Definitions of $k$ symbols: requires space $S_1 = k^2$
+   - Inter-symbol relations: requires space $S_2 = C(k,2) = k(k-1)/2$
+   - Encoding rules: requires space $S_3 \geq k \log k$
+   
+   Total description complexity: $D(k) \geq S_1 + S_2 + S_3 = O(k^2)$
+
+\begin{enumerate}
+\item \textbf{Contradiction of Entropy Increase Efficiency}:
+\end{enumerate}
+   According to Theorem~\ref{thm:2.4} (Entropy Increase Drives Encoding Optimization), the system must optimize entropy increase rate. However:
+   - More symbols mean higher description complexity
+   - Higher complexity means slower entropy increase rate
+   - This contradicts the requirement for entropy maximization
+
+\textbf{Core Proof by Contradiction}:
+
+Let $I(k)$ be the maximum information capacity of a single symbol in a $k$-ary system, and $C(k)$ be the minimum information required to completely describe the system.
+
+Self-referential completeness requires: The system's information encoding capacity must be no less than its self-description requirement, i.e., there exists length $n$ such that:
+\begin{equation}
+n \cdot I(k) \geq C(k)
+\end{equation}
+Specific analysis:
+\begin{itemize}
+\item $I(k) = \log k$ (a single $k$-ary symbol carries at most $\log k$ bits of information)
+\item Lower bound derivation of $C(k)$:
+  - Defining $k$ different symbols: requires at least $k \log k$ bits
+  - Distinction rules between symbols: requires at least $O(k^2)$ bits
+  - Encoding/decoding algorithm: requires at least $O(k)$ bits
+\item Therefore: $C(k) \geq k \log k + O(k^2)$
+\end{itemize}
+
+Key inequality:
+\begin{equation}
+\frac{C(k)}{I(k)} \geq \frac{k \log k + O(k^2)}{\log k} = k + O(k^2/\log k)
+\end{equation}
+When $k \geq 3$, even using arbitrarily long encoding sequences, the growth rate of the system's self-description requirement ($O(k^2)$) far exceeds the growth rate of its information encoding capacity ($O(\log k)$), making self-referential completeness unsatisfiable.
+
+\textbf{Conclusion}: Proof by contradiction shows that systems with $k \geq 3$ either degenerate to binary or are logically infeasible. $\square$
+
+\section{Infeasibility of Dynamic k-Value Systems}
+\label{sec:ch04_encoding:infeasibility-of-dynamic-k-value-systems}
+
+\textbf{Theorem~\ref{thm:2.5}.2 (Dynamic Systems Necessarily Degenerate)}
+\label{thm:2.5}
+Self-referentially complete dynamic $k$-value systems (where $k$ changes with time) necessarily degenerate to static binary systems.
+
+\textbf{Proof}:
+
+\textbf{1. Infinite Recursion Problem of Meta-Encoding}
+
+For dynamic system $k(t)$, we need:
+\begin{itemize}
+\item State encoding: currently using base $k(t)$
+\item Meta-information encoding: recording the value of $k(t)$ and transition rules
+\end{itemize}
+
+\textbf{Recursion Dilemma}:
+\begin{itemize}
+\item In what base is the meta-information encoded?
+\item If using $k(t)$: How to read it when switching to $k(t+1)$ at time $t+1$?
+\item If using fixed base $k_0$: The system is essentially base-$k_0$
+\end{itemize}
+
+\textbf{2. Destruction of Self-Referential Completeness}
+
+Let the complete description of the system at time $t$ be $D(t)$, including:
+\begin{itemize}
+\item Current data: encoded in base $k(t)$
+\item History of $k$ values: ${k(0), k(1), ..., k(t)}$
+\item Transition rules: $F(t) \to k(t+1)$
+\end{itemize}
+
+\textbf{Key Problem}: $D(t)$ itself must be encoded in some base.
+
+If encoding $D(t)$ in base $k(t)$:
+\begin{itemize}
+\item When $k(t) \to k(t+1)$, the interpretation of $D(t)$ changes
+\item The same bit string has different meanings in different bases
+\item Information identity is destroyed
+\end{itemize}
+
+If encoding $D(t)$ in fixed base $k_0$:
+\begin{itemize}
+\item The real encoding system is base-$k_0$
+\item Changes in $k(t)$ are just an abstraction layer on top of $k_0$
+\end{itemize}
+
+\textbf{3. Destruction of Information Identity}
+
+Consider the symbol sequence "11":
+\begin{itemize}
+\item In binary interpretation: represents value 3
+\item In ternary interpretation: represents value 4
+\end{itemize}
+
+When $k(t)=2 \to k(t+1)=3$, the semantics of the same symbol sequence changes. This violates the principle of information identity: in self-referentially complete systems, the meaning of information must be determinate and cannot depend on external interpretation rules.
+
+Deeper problem: If such semantic drift is allowed, the system loses determinacy of self-description---the same description has different meanings at different times, fundamentally destroying self-referential completeness.
+
+\textbf{4. Violation of Minimum Entropy Increase Principle}
+
+Dynamic systems require extra space to store $k(t)$ and transition rules, and this meta-information reduces effective information density.
+
+Let the entropy increase rate of the dynamic system be $\rho_d$ and the static binary system be $\rho_2$:
+
+\begin{equation}
+\rho_d = \frac{H_{\text{info}}(t) + H_{\text{meta}}(t)}{t} < \frac{H_{\text{info}}(t)}{t} \leq \rho_2 = \log \phi
+\end{equation}
+\textbf{Conclusion}: Dynamic k-value systems are either essentially still binary or lose self-referential completeness. Self-referentially complete systems must not only use binary but must \textbf{always} use binary. $\square$
+
+\textbf{Comprehensive Significance of Theorems 2.5, 2.5.1, and 2.5.2}:
+
+These three theorems prove the absolute necessity of binary from different angles:
+\begin{itemize}
+\item \textbf{Theorem~\ref{thm:2.5}}: Positively argues that only $k=2$ satisfies all requirements
+\label{thm:2.5}
+\item \textbf{Theorem~\ref{thm:2.5}.1}: Proves by contradiction that $k \geq 3$ necessarily fails
+\label{thm:2.5}
+\item \textbf{Theorem~\ref{thm:2.5}.2}: Proves that even allowing dynamic $k$ values cannot escape binary
+\label{thm:2.5}
+\end{itemize}
+
+This constitutes a complete proof: Binary is not the optimal choice among many, but the \textbf{only logically feasible choice}. Any system attempting to use other encoding bases, whether static or dynamic, necessarily violates the basic requirements of self-referential completeness.
+
+\section{From Entropy Maximization to the Necessity of $\phi$-Representation}
+\label{sec:ch04_encoding:from-entropy-maximization-to-the-necessity-of-phi-representation}
+
+\textbf{Core Derivation Chain}:
+Entropy increase requirement $\rightarrow$ Optimal encoding $\rightarrow$ Binary base $\rightarrow$ Minimum constraints $\rightarrow$ no-11 constraint $\rightarrow$ $\phi$-representation
+
+\textbf{Key Insight}: $\phi$-representation is not our choice but a necessary result derived from the unique axiom. However, it should be clear: this is a derivation within our theoretical framework, not a claim that the physical universe must be so.
+
+\textbf{Theorem~\ref{thm:2.6} (Entropy Maximization Constraint)}
+\label{thm:2.6}
+Under the premise of ensuring unique decodability, entropy maximization requires minimum encoding constraints.
+
+\textbf{Proof}:
+
+\begin{enumerate}
+\item \textbf{Constraints and Information Capacity}:
+\end{enumerate}
+   Let $N_k(n)$ be the number of binary strings of length n satisfying constraint k.
+   Define information capacity (average information per bit):
+   
+\begin{equation}
+C_k = \lim_{n \to \infty} \frac{\log N_k(n)}{n}
+\end{equation}
+   
+   \textbf{Key Insight}: $C_k$ measures encoding efficiency under constraint $k$. Larger $C_k$ means more efficient encoding.
+   
+\begin{enumerate}
+\item \textbf{Necessity of Minimum Constraints}:
+\end{enumerate}
+   
+   \textbf{Lemma 4.7.1}: To ensure unique decodability, some constraints must exist.
+\label{thm:2.6}
+   
+   \textbf{Proof}: A completely unconstrained set of binary strings produces prefix ambiguity. For example:
+   - "01" might be one codeword
+   - "010" might be another codeword
+   - When decoding "010", cannot determine if it's "01,0" or "010"
+   
+   Therefore constraints must be introduced to avoid ambiguity.
+   
+\begin{enumerate}
+\item \textbf{Optimization of Constraint Length}:
+\end{enumerate}
+   Consider forbidding specific patterns of length k:
+   
+   - \textbf{k=1}: Forbid "0" or "1" 
+     - Result: Can only use one symbol
+     - Information capacity: $C_1 = 0$ (complete degeneration)
+   
+   - \textbf{k=2}: Forbid some two-bit pattern
+     - Four choices: "00", "01", "10", "11"
+     - Information capacity: $C_2 > 0$ (non-degenerate)
+   
+   - \textbf{k$\geq$3}: Forbid longer patterns
+     - Weaker constraints, but increased encoding complexity
+     - Self-referential completeness requires encoding rules to be describable by the system
+     - Longer forbidden patterns require more complex descriptions, violating finite description requirements
+   
+\begin{enumerate}
+\item \textbf{Deep Analysis of k=2}:
+\end{enumerate}
+   
+   \textbf{Theorem~\ref{thm:2.6}.2}: Among the four constraints for k=2, forbidding "11" (or equivalently "00") is the optimal choice.
+\label{thm:2.6}
+   
+   \textbf{Proof}: Analyze the recursive structure of the four cases:
+   
+   - \textbf{Forbid "00"}:
+     - Recursion: $N(n) = N(n-1) + N(n-2)$
+     - Physical meaning: No consecutive "empty" states allowed
+   
+   - \textbf{Forbid "11"}:
+     - Recursion: $N(n) = N(n-1) + N(n-2)$ (by 0-1 symmetry)
+     - Physical meaning: No consecutive "full" states allowed
+     - \textbf{This perfectly corresponds to the recursive unfolding structure of self-referential systems}
+   
+   - \textbf{Forbid "01" or "10"}:
+     - Breaks 0-1 symmetry
+     - More complex recursion: involves parity
+     - \textbf{Necessity of Symmetry}: Self-referential system $\psi = \psi(\psi)$ has inherent symmetry
+     - In binary representation, 0 and 1 are dual concepts ($0 \equiv \neg 1$)
+     - If encoding rules are asymmetric for 0 and 1, it breaks the symmetry of self-referential structure
+     - This leads to inconsistency when the system describes itself
+   
+\begin{enumerate}
+\item \textbf{Precise Calculation of Information Capacity}:
+\end{enumerate}
+   
+   For the no-11 constraint, the number of valid strings follows Fibonacci recursion:
+   
+\begin{equation}
+N(0) = 1, \quad N(1) = 2, \quad N(n) = N(n-1) + N(n-2)
+\end{equation}
+   
+   Therefore:
+\begin{equation}
+N(n) = F_{n+2} \text{ (the (n+2)-th Fibonacci number)}
+\end{equation}
+   
+   From the asymptotic behavior of Fibonacci numbers:
+\begin{equation}
+F_n \sim \frac{\phi^n}{\sqrt{5}} \text{ as } n \to \infty
+\end{equation}
+   
+   So the information capacity is:
+\begin{equation}
+C_{no-11} = \lim_{n \to \infty} \frac{\log F_{n+2}}{n} = \log \phi \approx 0.694
+\end{equation}
+   
+   where $\phi = \frac{1+\sqrt{5}}{2}$ is the golden ratio.
+
+\begin{enumerate}
+\item \textbf{Proof of Optimality}:
+\end{enumerate}
+   
+   \textbf{Theorem~\ref{thm:2.6}.3}: The no-11 constraint achieves maximum information capacity among all minimum constraints ensuring unique decodability.
+\label{thm:2.6}
+   
+   \textbf{Proof}:
+   - No constraint: $C = \log 2 = 1$, but no unique decodability
+   - k=1 constraint: $C = 0$, degenerate
+   - k=2 constraint: $C = \log \phi \approx 0.694$, non-degenerate and simple
+   - k$\geq$3 constraint: $C > \log \phi$, but complexity too high, violates minimality
+   
+   Between simplicity (k=2) and capacity ($C > 0$), no-11 achieves optimal balance.
+
+\begin{enumerate}
+\item \textbf{Deep Connection with the Golden Ratio}:
+\end{enumerate}
+   
+   The appearance of $\phi$ is not coincidental but necessary from self-referential structure:
+   - $\phi$ satisfies $\phi = 1 + 1/\phi$ (self-referential equation)
+   - This is precisely the numerical manifestation of self-referential structure
+   - Fibonacci recursion is essentially a discretized self-referential process
+
+Therefore, the no-11 constraint and the resulting $\phi$-representation system are the necessary choice for self-referentially complete entropy-increasing systems. $\square$
+
+\textbf{Theorem~\ref{thm:2.7} (Mathematical Structure of no-11 Constraint)}
+\label{thm:2.7}
+The number of binary strings without "11" follows Fibonacci recursion.
+
+\textbf{Proof}:
+Let $a_n$ be the number of valid strings of length n (not containing "11").
+
+Initial conditions: $a_0 = 1$ (empty string), $a_1 = 2$ ("0" and "1")
+
+Recursive relation:
+\begin{itemize}
+\item Strings of length n can be obtained by appending "0" to strings of length n-1: contributes $a_{n-1}$
+\item Or by appending "01" to strings of length n-2: contributes $a_{n-2}$
+\item Cannot append "11" as it's forbidden
+\end{itemize}
+
+Therefore: $a_n = a_{n-1} + a_{n-2}$, which is precisely the Fibonacci recursion.
+
+Define Fibonacci sequence: $F_0 = 0, F_1 = 1, F_n = F_{n-1} + F_{n-2}$ for $n \geq 2$.
+Then $a_n = F_{n+2}$. $\square$
+
+\textbf{Definition 4.1 ($\phi$-Representation System)}
+\label{thm:2.1}
+The positional value encoding system based on the no-11 constraint:
+\begin{equation}
+\text{$\phi$-repr}(b_n b_{n-1}...b_1) = \sum_{i=1}^n b_i F_i
+\end{equation}
+where $F_i$ is the i-th Fibonacci number (as defined above), $b_i \in {0,1}$, and no adjacent 1s exist.
+
+\textbf{Theorem~\ref{thm:2.8} (Zeckendorf Theorem)}
+\label{thm:2.8}
+Every positive integer has one and only one $\phi$-representation.
+
+\textbf{Note}: This theorem is a known result whose proof establishes the completeness of $\phi$-representation.
+
+\section{Summary of the Necessity of the Derivation Chain}
+\label{sec:ch04_encoding:summary-of-the-necessity-of-the-derivation-chain}
+
+\textbf{Theorem~\ref{thm:2.9} (Necessity of $\phi$-Representation)}
+\label{thm:2.9}
+From the unique axiom "self-referentially complete systems necessarily increase in entropy," the $\phi$-representation system is a logically necessary result.
+
+\textbf{Complete Derivation Chain}:
+\begin{enumerate}
+\item Self-referential completeness $\rightarrow$ Entropy increase (axiom)
+\item Entropy increase $\rightarrow$ Need for encoding (Theorem~\ref{thm:2.1}: managing infinitely growing information)
+\item Finite description requirement $\rightarrow$ Optimal encoding (Theorem~\ref{thm:2.4}: inefficient encoding violates self-referential completeness)
+\item Simplest self-description $\rightarrow$ Binary (Theorem~\ref{thm:2.5}: k=2 is the only choice)
+\item Unique decodability + maximum entropy $\rightarrow$ no-11 constraint (Theorem~\ref{thm:2.6}: minimum constraint)
+\item no-11 constraint $\rightarrow$ Fibonacci structure (Theorem~\ref{thm:2.7}: mathematical necessity)
+\item Fibonacci structure $\rightarrow$ $\phi$-representation system (Theorem~\ref{thm:2.8}: Zeckendorf theorem)
+\end{enumerate}
+
+Each step is a logical necessity of the previous step, with no arbitrary choices.
+
+\textbf{Theoretical Clarification}: This derivation chain shows how to derive $\phi$-representation from a single axiom within our theoretical framework. This is not claiming:
+\begin{itemize}
+\item The physical world must use $\phi$-representation
+\item All information systems must adopt this encoding
+\item This is the only possible mathematical framework
+\end{itemize}
+
+But rather showing: Given acceptance of our axiom, $\phi$-representation is a natural theoretical result. $\square$
+
+\section{Formal Proof of Encoding Completeness}
+\label{sec:ch04_encoding:formal-proof-of-encoding-completeness}
+
+\textbf{Theorem~\ref{thm:2.10} (Absolute Completeness of $\phi$-Representation)}
+\label{thm:2.10}
+The $\phi$-representation system can encode all information in self-referentially complete systems.
+
+\textbf{Proof}:
+
+\begin{enumerate}
+\item \textbf{Formal Definition of Information} (from Theorem~\ref{thm:1.5}):
+\end{enumerate}
+   Information is distinguishable structure in the system, satisfying:
+   
+\begin{equation}
+\text{Info}(x) \equiv \exists y \in S: x \neq y \land \text{Desc}(x) \neq \text{Desc}(y)
+\end{equation}
+\begin{enumerate}
+\item \textbf{Distinguishable Implies Encodable}:
+\end{enumerate}
+   By Lemma 3.4, distinguishable structures must be encodable:
+   
+\begin{equation}
+\text{Info}(x) \Rightarrow \exists e: S \to \mathbb{N}, e(x) \neq e(y) \text{ when } x \neq y
+\end{equation}
+\begin{enumerate}
+\item \textbf{Application of Zeckendorf Theorem}:
+\end{enumerate}
+   For any $n \in \mathbb{N}$, there exists a unique $\phi$-representation:
+   
+\begin{equation}
+n = \sum_{i \in I} F_i
+\end{equation}
+   where $I$ is a finite set containing no adjacent indices, and $F_i$ are Fibonacci numbers.
+
+\begin{enumerate}
+\item \textbf{Completeness of the Encoding Chain}:
+\end{enumerate}
+   By the definition of distinguishability, if $\text{Info}(x)$ holds, then $x$ is distinguishable in the system.
+   By Lemma 3.4, distinguishable structures must be encodable as natural numbers $n \in \mathbb{N}$.
+   By Zeckendorf theorem, every natural number has a unique $\phi$-representation.
+   
+   Therefore the encoding chain is:
+\begin{equation}
+\text{Info}(x) \xrightarrow{\text{encode}} n \xrightarrow{\text{Zeckendorf}} \phi\text{-repr}(n)
+\end{equation}
+   Each step is a bijection, ensuring information is lossless.
+
+\begin{enumerate}
+\item \textbf{Preservation of Self-Reference}:
+\end{enumerate}
+   The $\phi$-representation system itself can be $\phi$-represented (through encoding of its generation rules),
+   satisfying self-referential completeness requirements.
+
+Therefore, $\phi$-representation is complete for self-referentially complete systems. $\square$
+
+\textbf{Corollary 4.2.1}:
+\label{thm:2.9}
+So-called "continuous" objects ($\pi$, e, sin, etc.) manifest in self-referential systems as finite descriptions (algorithms or axioms),
+therefore can be $\phi$-represented. This is not approximation but exact representation of their essence.
+
+\section{Theoretical Upper Bound of Entropy Increase Rate}
+\label{sec:ch04_encoding:theoretical-upper-bound-of-entropy-increase-rate}
+
+\textbf{Theorem~\ref{thm:2.11} (Maximum Entropy Increase Rate of Self-Referentially Complete Systems)}
+\label{thm:2.11}
+For any self-referentially complete entropy-increasing system, its entropy increase rate cannot exceed $\log \phi$.
+
+\textbf{Proof by Contradiction}:
+Assume there exists a self-referentially complete system $\mathcal{S}'$ with entropy increase rate $\rho' > \log \phi$.
+
+\begin{enumerate}
+\item \textbf{Necessary Requirements of Encoding Efficiency}:
+\end{enumerate}
+   - By Theorem~\ref{thm:2.1}, $\mathcal{S}'$ must have encoding mechanism $E'$
+   - Since $\rho' > \log \phi$, the system produces more information per unit time than the $\phi$-representation system
+   - This means the information capacity growth rate of $E'$ must exceed $\phi$-representation
+
+\begin{enumerate}
+\item \textbf{Constraints of Self-Referential Completeness}:
+\end{enumerate}
+   - $\mathcal{S}'$ must be able to completely describe itself, including its encoding mechanism $E'$
+   - Let the information required to describe $E'$ be $I(E')$
+   - Due to the high efficiency of $E'$ (entropy increase rate $\rho' > \log \phi$), it must encode many states
+   - At time $t$, the system has approximately $e^{\rho' t}$ different states
+   - $E'$ must assign encodings to each state, requiring at least $\log(e^{\rho' t}) = \rho' t$ bits
+   - Therefore $I(E') \geq \rho' t$ for some sufficiently large $t$
+
+\begin{enumerate}
+\item \textbf{Dilemma of Recursive Description}:
+\end{enumerate}
+   - $E'$ must be able to encode its own description, i.e., $E'(I(E'))$ must exist
+   - But high entropy increase rate requires $E'$ to be extremely compact; by self-referential completeness definition, $E'$ must belong to $\mathcal{L}$
+   - Formally: Let $L(x)$ be the length of description of $x$, then:
+     
+\begin{equation}
+L(E'(I(E'))) \geq \frac{I(E')}{\rho'} \geq \frac{C}{\rho'} \cdot \rho' = C
+\end{equation}
+   - This length $C$ is a constant lower bound independent of $\rho'$
+
+\begin{enumerate}
+\item \textbf{Review of Binary Base Necessity}:
+\end{enumerate}
+   - By Theorem~\ref{thm:2.5}, self-referentially complete systems must use binary encoding
+   - In binary systems, to ensure unique decodability, some constraints must exist
+   - By Theorem~\ref{thm:2.6}, the minimum constraint is a length-2 pattern restriction (like no-11)
+
+\begin{enumerate}
+\item \textbf{Upper Bound Analysis of Information Capacity}:
+\end{enumerate}
+   - For any binary constraint system ensuring unique decodability
+   - Let the forbidden pattern set be $\mathcal{F}$, information capacity is:
+     
+\begin{equation}
+C(\mathcal{F}) = \lim_{n \to \infty} \frac{\log N_{\mathcal{F}}(n)}{n}
+\end{equation}
+   - Where $N_{\mathcal{F}}(n)$ is defined as: the number of binary strings of length $n$ satisfying constraint $\mathcal{F}$
+   - Formally: $N_{\mathcal{F}}(n) = |{s \in {0,1}^n : s\text{ does not contain any pattern in }\mathcal{F}}|$
+   
+   \textbf{Lemma 4.8.1}: For any non-empty constraint set $\mathcal{F}$, $C(\mathcal{F}) \leq \log \phi$
+\label{thm:2.11}
+   
+   \textbf{Proof}:
+   - If $\mathcal{F} = \emptyset$ (no constraints), then unique decodability cannot be ensured
+   - If $\mathcal{F}$ only contains patterns of length $\geq 3$:
+     - For example forbidding "111", still allows "11" as a codeword
+     - Then "11" is a prefix of "110", creating decoding ambiguity
+     - Generally, if the shortest forbidden pattern has length $k$, then all strings of length $<k$ can be codewords
+     - This necessarily creates prefix conflicts
+   - If $\mathcal{F}$ contains patterns of length 1, then $C(\mathcal{F}) = 0$ (degenerate)
+   - If $\mathcal{F}$ contains patterns of length 2:
+     - Optimal choice is forbidding "11" or "00", giving $C = \log \phi$
+     - Forbidding "01" or "10" breaks symmetry, reducing efficiency
+     - Forbidding multiple 2-bit patterns further reduces capacity
+   - Therefore, $\max_{\mathcal{F}} C(\mathcal{F}) = \log \phi$ $\square$
+
+\begin{enumerate}
+\item \textbf{Production of Contradiction}:
+\end{enumerate}
+   - $\mathcal{S}'$ requires $\rho' > \log \phi$
+   - But Lemma 2.11.1 proves that the information capacity upper bound of any self-referentially complete system is $\log \phi$
+   - Therefore $\mathcal{S}'$ cannot simultaneously satisfy:
+     - Entropy increase rate $\rho' > \log \phi$
+     - Self-referential completeness (ability to completely describe itself)
+     - Use binary encoding (requirement of Theorem~\ref{thm:2.5})
+     - Ensure unique decodability
+
+\begin{enumerate}
+\item \textbf{Conclusion}:
+\end{enumerate}
+   The assumption leads to contradiction. Therefore, there exists no self-referentially complete system with entropy increase rate exceeding $\log \phi$. $\square$
+
+\textbf{Corollary 4.3.1 (Optimality of $\phi$-Representation)}:
+\label{thm:2.11}
+The $\phi$-representation system achieves the theoretical maximum entropy increase rate for self-referentially complete systems and is the optimal encoding in this sense.
+
+\textbf{Note}:
+This theorem theoretically resolves the philosophical paradox raised in Section 11.6. Any system claiming higher entropy increase rate must sacrifice some essential property of self-referential completeness.
+
+\section{Chapter 2 Summary}
+\label{sec:ch04_encoding:chapter-2-summary}
+
+Starting from the unique axiom, we have derived a complete encoding theory through a rigorous logical chain:
+
+\textbf{Core Derivation Chain (Emphasizing Logical Order)}:
+
+\begin{enumerate}
+\item \textbf{Requirements for Information Encoding} (\S2.1-2.2):
+\end{enumerate}
+   - Self-referential completeness + entropy increase $\rightarrow$ need for encoding mechanism
+   - The encoding mechanism itself must be describable by the system
+
+\begin{enumerate}
+\item \textbf{Necessity of Binary} (\S2.5):
+\end{enumerate}
+   - Proven from four independent angles:
+     a) Minimization of self-description complexity
+     b) Avoidance of recursive loops
+     c) Entropy increase rate constraints
+     d) Unique decodability requirements
+   - Strengthened by contradiction (\S2.5.1-2.5.2):
+     - Systems with $k \geq 3$ necessarily degenerate to binary or fail logically
+
+\begin{enumerate}
+\item \textbf{Optimal Constraint Selection} (\S2.6):
+\end{enumerate}
+   - Among all binary constraints, no-11 maximizes entropy increase rate
+   - The $\phi$-representation system emerges as the unique solution
+
+Every step is logically necessary, with no circular reasoning or arbitrary assumptions.
+
