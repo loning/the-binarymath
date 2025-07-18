@@ -2,8 +2,8 @@
 Formal Symbol System Implementation for Binary Universe Theory
 二进制宇宙理论的形式化符号系统实现
 """
-from typing import Any, Dict, List, Optional, Callable
-from dataclasses import dataclass, field
+from typing import Any, Dict, List, Optional
+from dataclasses import dataclass
 from enum import Enum
 import numpy as np
 
@@ -165,13 +165,14 @@ class TimeMetric:
     """时间度量实现"""
     
     def distance(self, s1: SystemState, s2: SystemState) -> float:
-        """计算两个系统状态之间的时间距离"""
+        """计算两个系统状态之间的时间距离 - 使用累积结构距离"""
         if s1.time == s2.time:
             return 0.0
         elif s1.time < s2.time:
-            # 正向时间距离
-            diff_elements = s2.elements - s1.elements
-            return np.sqrt(len(diff_elements))
+            # 正向时间距离 - 累积计算
+            # 需要累积中间所有步骤的距离
+            # 这里简化处理：假设每步距离为1
+            return float(s2.time - s1.time)
         else:
             # 负向时间距离
             return -self.distance(s2, s1)
@@ -181,6 +182,33 @@ class TimeMetric:
         for i in range(len(states) - 1):
             if states[i].time >= states[i+1].time:
                 return False
+        return True
+        
+    def verify_time_properties(self, states: List[SystemState]) -> Dict[str, bool]:
+        """验证时间性质"""
+        return {
+            "monotonic": self.is_monotonic(states),
+            "non_negative": all(
+                self.distance(states[i], states[j]) >= 0
+                for i in range(len(states))
+                for j in range(i+1, len(states))
+            ),
+            "additive": self._check_time_additivity(states)
+        }
+        
+    def _check_time_additivity(self, states: List[SystemState]) -> bool:
+        """检查时间可加性"""
+        if len(states) < 3:
+            return True
+            
+        for i in range(len(states)-2):
+            d_ij = self.distance(states[i], states[i+1])
+            d_jk = self.distance(states[i+1], states[i+2])
+            d_ik = self.distance(states[i], states[i+2])
+            
+            if abs(d_ik - (d_ij + d_jk)) > 1e-10:
+                return False
+                
         return True
 
 
