@@ -201,7 +201,7 @@ d(s) = \begin{cases}
 1 + \max\{d(s'): s' \in \text{Pre}(s)\} \& \text{if } \text{Pre}(s) \neq \emptyset
 \end{cases}
 \end{equation}
-  where $\text{Pre}(s) = {s' \in S: \text{Desc}(s') = s}$ is the predecessor set of s
+  where $\text{Pre}(s) = \{s' \in S: \text{Desc}(s') = s\}$ is the predecessor set of s
   
   By self-reference, new description layers must be added at time t+1:
   
@@ -210,7 +210,7 @@ S_{t+1} = S_t \cup \{\text{Desc}^{(t+1)}(S_t)\} \cup \Delta_t
 \end{equation}
   where:
   - $\text{Desc}^{(t+1)}(S_t)$ is a new description of the entire $S_t$
-  - $\Delta_t = {s: d(s) = t+1}$ is all new elements with depth t+1
+  - $\Delta_t = \{s: d(s) = t+1\}$ is all new elements with depth t+1
   
 \begin{enumerate}
 \item \textbf{Strict Growth of State Space}:
@@ -253,7 +253,7 @@ S_{t+1} = S_t \cup \{\text{Desc}^{(t+1)}(S_t)\} \cup \Delta_t
 \end{enumerate}
   The new description layer not only adds states but also increases description diversity.
   
-  Let $D_t = {d \in \mathcal{L}: \exists s \in S_t, d = \text{Desc}(s)}$ be the description set at time t.
+  Let $D_t = \{d \in \mathcal{L}: \exists s \in S_t, d = \text{Desc}(s)\}$ be the description set at time t.
   
   Key observation: The description of $\text{Desc}^{(t+1)}(S_t)$ must encode the structure of the entire $S_t$, therefore:
   
@@ -266,7 +266,7 @@ S_{t+1} = S_t \cup \{\text{Desc}^{(t+1)}(S_t)\} \cup \Delta_t
 \begin{enumerate}
 \item \textbf{Strict Growth of Entropy}:
 \end{enumerate}
-  Since $D_{t+1} = D_t \cup {\text{Desc}(\text{Desc}^{(t+1)}(S_t))} \cup \Delta_D$
+  Since $D_{t+1} = D_t \cup \{\text{Desc}(\text{Desc}^{(t+1)}(S_t))\} \cup \Delta_D$
   (where $\Delta_D$ is the set of descriptions for new recursive elements),
   we have $|D_{t+1}| > |D_t|$.
   
@@ -417,7 +417,7 @@ Each $x \in M_{trad}$ must be:
 \item Communicated via finite representations (proofs, calculations)
 \end{itemize}
 
-Therefore: $M_{trad} \subseteq$ \{objects definable by finite symbol sequences\}
+Therefore: $M_{trad} \subseteq \{\text{objects definable by finite symbol sequences}\}$
 
 \textbf{Step 2: Bidirectional Proof of Equivalence}
 

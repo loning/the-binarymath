@@ -49,7 +49,7 @@ Based on this theoretical framework, we reposition the true advantage of $\phi$-
    \textbf{Proof Outline}:
    - Let $\phi$-structure quantum state be $|\psi_\phi\rangle$, standard quantum state be $|\psi_{std}\rangle$
    - In the same noise environment, entropy growth rate: $\frac{dS}{dt}|_\phi \leq \frac{dS}{dt}|_{std}$
-   - According to the minimal entropy growth property of Theorem 2.3
+   - According to the minimal entropy growth property of Theorem~\ref{thm:2.3}
    - Therefore $\phi$-structure states have stronger coherence preservation ability $\square$
 
 \textbf{Explicit Identification of Bridging Hypotheses}:
@@ -120,7 +120,7 @@ Based on this theoretical framework, we reposition the true advantage of $\phi$-
    
    \textbf{Proof}:
    - Let $D$ be a self-referentially complete data sequence
-   - According to Theorem 2.3, $\phi$-representation has minimal entropy growth: $H(\text{phi-code}(D)) \leq H(\text{any-code}(D))$
+   - According to Theorem~\ref{thm:2.3}, $\phi$-representation has minimal entropy growth: $H(\text{phi-code}(D)) \leq H(\text{any-code}(D))$
    - Compression rate $R = \frac{|D|}{|\text{compressed}(D)|} \propto \frac{1}{H(\text{code}(D))}$
    - Therefore $\phi$-encoding achieves highest compression rate $\square$
 
@@ -206,7 +206,7 @@ R_{\text{improvement}} = \frac{R_\phi}{R_{std}} \approx \phi^{0.5} \approx 1.27
    - Consider control system: $\dot{x} = f(x, u)$, where $u$ is control input
    - $\phi$-proportion control: $u = K_\phi e$, where $K_\phi = \frac{1}{\phi}K_0$
    - System state entropy: $H(x) = -\int p(x) \log p(x) dx$
-   - According to Theorem 2.3, $\phi$-representation has minimal entropy growth: $\frac{dH}{dt}|_\phi \leq \frac{dH}{dt}|_{std}$
+   - According to Theorem~\ref{thm:2.3}, $\phi$-representation has minimal entropy growth: $\frac{dH}{dt}|_\phi \leq \frac{dH}{dt}|_{std}$
    - Therefore $\phi$-proportion control achieves minimal entropy growth rate $\square$
 
 \begin{enumerate}
@@ -280,7 +280,7 @@ R_{\text{improvement}} = \frac{R_\phi}{R_{std}} \approx \phi^{0.5} \approx 1.27
 \label{thm:5.4.1}
    
    \textbf{Proof}:
-   - According to Theorem 2.3, $\phi$-representation has minimal entropy growth property
+   - According to Theorem~\ref{thm:2.3}, $\phi$-representation has minimal entropy growth property
    - For entropy-decreasing systems (like convergence algorithms), the goal is $\frac{dH}{dt} < 0$
    - The minimal entropy growth property of $\phi$-representation contradicts the entropy reduction goal
    - Therefore $\phi$-representation has no theoretical advantage in entropy-decreasing systems $\square$
@@ -311,7 +311,7 @@ R_{\text{improvement}} = \frac{R_\phi}{R_{std}} \approx \phi^{0.5} \approx 1.27
 The advantages of $\phi$-representation have clear applicable boundaries, manifesting only in self-referentially complete entropy-increasing systems. This recognition avoids seeking $\phi$-representation advantages in inappropriate problems.
 
 \textbf{Correct Application Directions}:
-Based on Theorem 5.4.1, focus should be on the following types of systems:
+Based on Theorem~\ref{thm:5.4.1}, focus should be on the following types of systems:
 \begin{itemize}
 \item Quantum systems (decoherence as entropy increase process)
 \item Self-referentially complete data processing (entropy increase control in information encoding)
@@ -343,7 +343,7 @@ Based on Theorem 5.4.1, focus should be on the following types of systems:
 \label{thm:5.5.2}
    
    \textbf{Proof}:
-   - According to Theorem 2.3, $\phi$-representation has minimal entropy growth property
+   - According to Theorem~\ref{thm:2.3}, $\phi$-representation has minimal entropy growth property
    - For non-entropy-increasing systems (like static optimization problems), entropy growth property is irrelevant
    - For non-self-referentially complete systems, $\phi$-representation's recursive structure cannot match system structure
    - Therefore $\phi$-representation advantages are effective only in self-referentially complete entropy-increasing systems $\square$
@@ -362,10 +362,10 @@ Based on Theorem 5.4.1, focus should be on the following types of systems:
    - \textbf{Adaptive systems}: Self-referentially complete and entropy-increasing, $\phi$-representation advantages maximal
 
 \textbf{Theoretical Foundation of Core Insight}:
-According to Theorem 5.5.2, $\phi$-representation advantages have clear applicable boundaries. Traditional NP problems (like TSP) belong to geometric optimization problems, not satisfying self-referential completeness conditions, therefore $\phi$-representation has no advantage in such problems.
+According to Theorem~\ref{thm:5.5.2}, $\phi$-representation advantages have clear applicable boundaries. Traditional NP problems (like TSP) belong to geometric optimization problems, not satisfying self-referential completeness conditions, therefore $\phi$-representation has no advantage in such problems.
 
 \textbf{Systematization of Theoretical Basis}:
-According to Theorem 2.3, $\phi$-representation has the smallest entropy growth among all encoding systems. This advantage is most obvious in the following self-referentially complete entropy-increasing systems:
+According to Theorem~\ref{thm:2.3}, $\phi$-representation has the smallest entropy growth among all encoding systems. This advantage is most obvious in the following self-referentially complete entropy-increasing systems:
 
 \begin{enumerate}
 \item \textbf{Quantum decoherence suppression} (Prediction 5.1): Entropy increase process of quantum systems
@@ -382,7 +382,7 @@ $\phi$-representation is unsuitable for the following system types:
 \end{itemize}
 
 \textbf{Theoretical Guidance for Verification Direction}:
-Based on Theorem 5.5.2, $\phi$-representation advantages should be sought in systems satisfying the following conditions:
+Based on Theorem~\ref{thm:5.5.2}, $\phi$-representation advantages should be sought in systems satisfying the following conditions:
 
 \begin{itemize}
 \item System has self-referential completeness properties
@@ -407,7 +407,7 @@ Therefore, the correct verification direction is in information theory, quantum 
 \begin{enumerate}
 \item \textbf{Derivation Strength Hierarchy of Predictions}:
 \end{enumerate}
-   - \textbf{Strong derivation}: Quantum decoherence suppression (5.1) - directly based on minimal entropy growth property of Theorem 2.3
+   - \textbf{Strong derivation}: Quantum decoherence suppression (5.1) - directly based on minimal entropy growth property of Theorem~\ref{thm:2.3}
    - \textbf{Medium derivation}: Information compression (5.2), adaptive control (5.3) - based on theoretical analogy of entropy increase control
    - \textbf{Theoretical limitations}: Convergence algorithms (like distributed consensus) - target entropy reduction, contradicts $\phi$-representation principle
    
