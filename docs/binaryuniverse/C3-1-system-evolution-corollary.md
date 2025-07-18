@@ -8,8 +8,9 @@
 
 设 $S(t)$ 是系统在时刻 $t$ 的状态，则演化方程为：
 
-$$\frac{dS}{dt} = \mathcal{L}[S] + \mathcal{R}[S, O]$$
-
+$$
+\frac{dS}{dt} = \mathcal{L}[S] + \mathcal{R}[S, O]
+$$
 其中 $\mathcal{L}$ 是自指演化算符，$\mathcal{R}$ 是观测器相互作用项。
 
 ## 证明

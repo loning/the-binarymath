@@ -8,8 +8,9 @@
 
 设 $|\psi\rangle$ 是系统的量子态，$\hat{M}$ 是观测算符。则测量过程满足：
 
-$$|\psi\rangle \xrightarrow{\hat{M}} \frac{\hat{P}_k|\psi\rangle}{\sqrt{\langle\psi|\hat{P}_k|\psi\rangle}}$$
-
+$$
+|\psi\rangle \xrightarrow{\hat{M}} \frac{\hat{P}_k|\psi\rangle}{\sqrt{\langle\psi|\hat{P}_k|\psi\rangle}}
+$$
 其中 $\hat{P}_k$ 是投影算符，对应测量结果 $k$。
 
 ## 证明

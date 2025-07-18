@@ -27,8 +27,9 @@
 
 ## 形式化表示
 
-$$SRC(S) \equiv \exists f: S \to S \text{ s.t. } S = f(S) \land \mathcal{C}(S) \land \mathcal{R}(S) \land |S| > 1$$
-
+$$
+SRC(S) \equiv \exists f: S \to S \text{ s.t. } S = f(S) \land \mathcal{C}(S) \land \mathcal{R}(S) \land |S| > 1
+$$
 其中：
 - $\mathcal{C}(S) := \forall x \in S, \exists y \in S, \exists g: S \to S \text{ s.t. } x = g(y)$
 - $\mathcal{R}(S) := \neg \exists x \in S \text{ s.t. } (x \in S \land \neg x \in S)$

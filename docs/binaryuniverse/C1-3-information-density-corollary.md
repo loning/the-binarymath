@@ -8,8 +8,9 @@
 
 设 $\mathcal{S}_n$ 是长度为 $n$ 的满足 no-11 约束的二进制序列集合。则信息密度 $\rho_n$ 满足：
 
-$$\rho_n = \frac{\log_2 |\mathcal{S}_n|}{n} \to \log_2 \varphi \text{ as } n \to \infty$$
-
+$$
+\rho_n = \frac{\log_2 |\mathcal{S}_n|}{n} \to \log_2 \varphi \text{ as } n \to \infty
+$$
 其中 $\varphi = \frac{1+\sqrt{5}}{2}$ 是黄金比例。
 
 ## 证明

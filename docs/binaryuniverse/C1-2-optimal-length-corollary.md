@@ -8,8 +8,9 @@
 
 设 $s \in S$ 是系统状态，$\phi(s)$ 是其 φ-表示。则编码长度 $L(s) = |\phi(s)|$ 满足：
 
-$$L(s) = \lceil \log_\varphi(s) \rceil$$
-
+$$
+L(s) = \lceil \log_\varphi(s) \rceil
+$$
 其中 $\varphi = \frac{1+\sqrt{5}}{2}$ 是黄金比例，且此长度是最优的。
 
 ## 证明

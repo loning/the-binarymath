@@ -8,8 +8,9 @@
 
 设 $|\psi\rangle$ 是逻辑量子态，$\mathcal{E}$ 是环境诱导的错误过程。则存在编码 $\mathcal{C}$ 和纠错操作 $\mathcal{R}$，使得：
 
-$$\mathcal{R} \circ \mathcal{E} \circ \mathcal{C}(|\psi\rangle) = |\psi\rangle$$
-
+$$
+\mathcal{R} \circ \mathcal{E} \circ \mathcal{C}(|\psi\rangle) = |\psi\rangle
+$$
 保真度满足：$F = |\langle\psi|\mathcal{R} \circ \mathcal{E} \circ \mathcal{C}(|\psi\rangle)|^2 \geq 1 - \epsilon$
 
 ## 证明

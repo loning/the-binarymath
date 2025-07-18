@@ -8,8 +8,9 @@
 
 设 $S^*$ 是系统的稳定态，$\delta S$ 是小扰动。则存在 Lyapunov 函数 $V(S)$ 使得：
 
-$$\frac{dV}{dt} \leq 0$$
-
+$$
+\frac{dV}{dt} \leq 0
+$$
 且当 $\|\delta S\| < \epsilon$ 时，$S(t) \to S^*$ 当 $t \to \infty$。
 
 ## 证明

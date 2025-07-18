@@ -8,8 +8,9 @@
 
 设 $S$ 是自指完备的二进制编码系统，满足 no-11 约束。则存在状态空间 $\mathcal{H}$ 和态矢量 $|\psi\rangle \in \mathcal{H}$，使得：
 
-$$\exists \mathcal{H}, |\psi\rangle \text{ s.t. } S \cong \langle \psi | \mathcal{O} | \psi \rangle$$
-
+$$
+\exists \mathcal{H}, |\psi\rangle \text{ s.t. } S \cong \langle \psi | \mathcal{O} | \psi \rangle
+$$
 其中 $\mathcal{O}$ 是观测算符集合。
 
 ## 证明

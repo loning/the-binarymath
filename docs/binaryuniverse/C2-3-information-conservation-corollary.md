@@ -8,12 +8,14 @@
 
 设 $S(t)$ 是系统在时刻 $t$ 的状态，$I(t)$ 是对应的信息量。则：
 
-$$\frac{dI}{dt} = 0$$
-
+$$
+\frac{dI}{dt} = 0
+$$
 但信息的分布可能发生变化：
 
-$$I_{\text{total}}(t) = I_{\text{system}}(t) + I_{\text{observer}}(t) = \text{constant}$$
-
+$$
+I_{\text{total}}(t) = I_{\text{system}}(t) + I_{\text{observer}}(t) = \text{constant}
+$$
 ## 证明
 
 **证明**：

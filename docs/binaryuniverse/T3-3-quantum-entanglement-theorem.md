@@ -8,12 +8,14 @@
 
 设 $S$ 是自指完备系统，包含子系统 $S_A$ 和 $S_B$。则存在复合态 $|\psi_{AB}\rangle$，使得：
 
-$$|\psi_{AB}\rangle \neq |\psi_A\rangle \otimes |\psi_B\rangle$$
-
+$$
+|\psi_{AB}\rangle \neq |\psi_A\rangle \otimes |\psi_B\rangle
+$$
 且满足非局域关联：
 
-$$\langle \hat{O}_A \otimes \hat{O}_B \rangle \neq \langle \hat{O}_A \rangle \langle \hat{O}_B \rangle$$
-
+$$
+\langle \hat{O}_A \otimes \hat{O}_B \rangle \neq \langle \hat{O}_A \rangle \langle \hat{O}_B \rangle
+$$
 ## 证明
 
 **证明**：

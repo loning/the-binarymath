@@ -8,8 +8,9 @@
 
 设 $S$ 是自指完备的二进制编码系统，满足 no-11 约束。则对于任意状态 $s \in S$，存在唯一的二进制序列 $b = (b_1, b_2, \ldots, b_n)$，$b_i \in \{0, 1\}$，使得：
 
-$$\phi(s) = b \land \forall b' \neq b : \phi(s) \neq b'$$
-
+$$
+\phi(s) = b \land \forall b' \neq b : \phi(s) \neq b'
+$$
 其中 $\phi$ 是 φ-表示映射。
 
 ## 证明

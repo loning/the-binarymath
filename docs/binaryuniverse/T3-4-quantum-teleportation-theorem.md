@@ -8,8 +8,9 @@
 
 设 $|\psi\rangle$ 是待传输的量子态，$|\Phi^+\rangle$ 是纠缠态。则存在操作序列 $\{M_i, U_j\}$，使得：
 
-$$|\psi\rangle_A \otimes |\Phi^+\rangle_{BC} \xrightarrow{M_A, U_C} |\psi\rangle_C$$
-
+$$
+|\psi\rangle_A \otimes |\Phi^+\rangle_{BC} \xrightarrow{M_A, U_C} |\psi\rangle_C
+$$
 其中下标表示粒子位置，$M_A$ 是 Alice 的测量，$U_C$ 是 Charlie 的幺正操作。
 
 ## 证明

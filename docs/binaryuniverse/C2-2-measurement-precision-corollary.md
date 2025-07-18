@@ -8,8 +8,9 @@
 
 设 $\Delta x$ 是测量精度，$\Delta p$ 是系统状态的不确定性。则存在基本限制：
 
-$$\Delta x \cdot \Delta p \geq \frac{1}{2} \log_2 \varphi$$
-
+$$
+\Delta x \cdot \Delta p \geq \frac{1}{2} \log_2 \varphi
+$$
 其中 $\varphi$ 是黄金比例。
 
 ## 证明
