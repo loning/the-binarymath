@@ -25,14 +25,20 @@ $$
 对于自指完备系统，约束条件包括：
 
 1. **概率归一化约束**：
-   $$\sum_{i} p_i = 1$$
-
+   
+$$
+\sum_{i} p_i = 1
+$$
 2. **自指完备性约束**：
-   $$\sum_{i} p_i \log_2 p_i \geq H_{\text{min}}$$
-
+   
+$$
+\sum_{i} p_i \log_2 p_i \geq H_{\text{min}}
+$$
 3. **no-11约束**（来自D1-3）：
-   $$p_i = 0 \text{ for all } i \in \text{Invalid}_{11}$$
-
+   
+$$
+p_i = 0 \text{ for all } i \in \text{Invalid}_{11}
+$$
 ### 步骤2：拉格朗日优化
 
 使用拉格朗日乘数法，构造拉格朗日函数：
@@ -136,7 +142,7 @@ $$
 H_{\max} = \log_2 \phi \approx 0.694
 $$
 
-数值模拟结果：$H_{\text{numerical}} \approx 0.693$，误差<0.2%。
+数值模拟结果：$H_{\text{numerical}} \approx 0.693$，误差&lt;0.2%。
 
 ### 验证2：收敛速度
 
