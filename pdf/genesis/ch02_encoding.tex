@@ -206,7 +206,7 @@ L_{\max}(E) \geq \log_{|\Sigma|} |S|
 \end{enumerate}
    
    \textbf{Lemma 4.2.1}: Self-referentially complete systems must use near-optimal encoding.
-\label{thm:2.4}
+\label{lemma:2.4.1}
    
    \textbf{Proof}:
    Consider two cases with different encoding efficiency:
@@ -236,7 +236,7 @@ L_{\max}(E) \geq \log_{|\Sigma|} |S|
    Therefore, only near-optimal encoding is compatible with self-referential completeness. $\square$
 
 \textbf{Corollary 4.1.1 (Emergence of Encoding Constraints)}
-\label{thm:2.2}
+\label{corollary:2.4.1}
 Optimal encoding must satisfy the following constraints:
 
 \begin{enumerate}
@@ -306,7 +306,7 @@ In self-referentially complete systems, binary is the only viable encoding base.
 \end{enumerate}
    
    \textbf{Lemma 4.4.2}: Only $k=2$ can achieve self-description with minimum recursive depth.
-\label{thm:2.5}
+\label{lemma:2.5.1}
    
    \textbf{Proof}:
    For $k=2$:
@@ -325,7 +325,7 @@ In self-referentially complete systems, binary is the only viable encoding base.
 \end{enumerate}
    
    \textbf{Lemma 4.5.3}: Higher-base encoding systems require more complex constraint structures.
-\label{thm:2.5}
+\label{lemma:2.5.2}
    
    For $k$-ary encoding systems:
    - To ensure unique decodability, some pattern constraints are needed
@@ -343,7 +343,7 @@ In self-referentially complete systems, binary is the only viable encoding base.
 \end{enumerate}
    
    \textbf{Lemma 4.6.4}: The logical consequences of the axiom and self-referential completeness definition determine the choice of encoding base.
-\label{thm:2.5}
+\label{lemma:2.5.3}
    
    Consider the dynamic process of system evolution:
    - Time $t$: System has $|S_t|$ states
@@ -879,7 +879,7 @@ C(\mathcal{F}) = \lim_{n \to \infty} \frac{\log N_{\mathcal{F}}(n)}{n}
    - Formally: $N_{\mathcal{F}}(n) = |{s \in {0,1}^n : s\text{ does not contain any pattern in }\mathcal{F}}|$
    
    \textbf{Lemma 4.8.1}: For any non-empty constraint set $\mathcal{F}$, $C(\mathcal{F}) \leq \log \phi$
-\label{thm:2.11}
+\label{lemma:2.11.1}
    
    \textbf{Proof}:
    - If $\mathcal{F} = \emptyset$ (no constraints), then unique decodability cannot be ensured

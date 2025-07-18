@@ -12,10 +12,14 @@
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{ragged2e}
 \usepackage{hyperref}
 \usepackage{cleveref}
 \usepackage{tikz}
+\usetikzlibrary{positioning}
 \usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -31,7 +35,8 @@
     right=2.5cm,
     top=2.5cm,
     bottom=2.5cm,
-    headheight=15pt
+    headheight=30pt,
+    headsep=10pt
 }
 
 % Custom colors
@@ -54,8 +59,8 @@
 
 % Custom theorem styles
 \newtheoremstyle{colored}
-  {3pt}% Space above
-  {3pt}% Space below
+  {6pt}% Space above
+  {6pt}% Space below
   {}% Body font
   {}% Indent amount
   {\bfseries\color{theoremcolor}}% Theorem head font
@@ -98,6 +103,13 @@
 \newcommand{\fibseq}[1]{F_{#1}}
 \newcommand{\goldenratio}{\phi}
 
+% Enhanced spacing
+\setlength{\parskip}{3pt}
+\setlength{\parindent}{0pt}
+\setlength{\itemsep}{2pt}
+\setlength{\topsep}{4pt}
+\setlength{\partopsep}{2pt}
+
 % Hyperref setup
 \hypersetup{
     colorlinks=true,
@@ -108,7 +120,9 @@
     pdfauthor={Auric},
     pdftitle={Genesis Unified Theory: From Self-Referential Completeness to Universe},
     pdfsubject={Information Theory, Quantum Mechanics, Mathematical Physics},
-    pdfkeywords={self-reference, entropy, information, quantum, phi-representation}
+    pdfkeywords={self-reference, entropy, information, quantum, phi-representation},
+    unicode=true,
+    pdfencoding=auto
 }
 
 % Enable index
@@ -186,7 +200,7 @@ All rights reserved.
 \label{ch:axiom}
 \input{ch01_axiom_and_derivation}
 
-\chapter{From Entropy Increase to $\phi$-Representation System}
+\chapter[From Entropy Increase to Phi-Representation System]{From Entropy Increase to $\phi$-Representation System}
 \label{ch:encoding}
 \input{ch02_encoding}
 

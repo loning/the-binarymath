@@ -1,51 +1,68 @@
-
 \section{Visualization of Core Derivation Chain}
 
-```mermaid
-graph TD
-    A["Unique Axiom: Self-ref Complete$\rightarrow$Entropy Increase"] 
-    
-    B1["Theorem 1.1: Entropy Increase Necessity"]
-    B2["Theorem 1.5: Information Concept Emergence"]
-    B3["Definition 1.2: Dynamic Self-referential Completeness"]
-    
-    C1["Theorem 2.1: Encoding Need Emergence"]
-    C2["Theorem 2.5: Binary Necessity"]
-    C3["Theorem 2.6: $\phi$-representation Necessity"]
-    
-    D1["Theorem 3.1: Observer Emergence"]
-    D2["Theorem 3.3: Quantum Superposition"]
-    D3["Theorem 3.4: Observation Collapse"]
-    
-    E1["Observation 4.1: Stability Contradiction"]
-    E2["Observation 4.3: Riemann Zeta Analogy"]
-    
-    F1["Predictions 5.1-5.3: Theory Applications"]
-    
-    A --> B1
-    A --> B2
-    A --> B3
-    
-    B1 --> C1
-    B2 --> C1
-    C1 --> C2
-    C2 --> C3
-    
-    B3 --> D1
-    D1 --> D2
-    D2 --> D3
-    
-    B1 --> E1
-    E1 --> E2
-    
-    C3 --> F1
-    D3 --> F1
-    
-    style A fill:\#f9f,stroke:\#333,stroke-width:4px
-    style E1 fill:\#ffa,stroke:\#333,stroke-width:2px,stroke-dasharray: 5 5
-    style E2 fill:\#ffa,stroke:\#333,stroke-width:2px,stroke-dasharray: 5 5
-    style F1 fill:\#aff,stroke:\#333,stroke-width:2px,stroke-dasharray: 5 5
-```
+\begin{figure}[h]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tikzpicture}[
+    node distance=2.0cm and 1.2cm,
+    every node/.style={draw, rectangle, rounded corners, minimum width=2.8cm, minimum height=0.8cm, text width=2.5cm, align=center, font=\tiny},
+    axiom/.style={fill=pink!30, thick},
+    theorem/.style={fill=blue!20},
+    analogy/.style={fill=yellow!30, dashed},
+    prediction/.style={fill=cyan!30, dashed},
+    arrow/.style={->, thick}
+]
+
+% Main axiom
+\node[axiom] (A) {Unique Axiom: Self-ref Complete$\rightarrow$Entropy Increase};
+
+% Level 1 - Basic theorems
+\node[theorem, below left=of A] (B1) {Theorem 1.1: Entropy Increase Necessity};
+\node[theorem, below=of A] (B2) {Theorem 1.5: Information Concept Emergence};
+\node[theorem, below right=of A] (B3) {Definition 1.2: Dynamic Self-referential Completeness};
+
+% Level 2 - Encoding theorems
+\node[theorem, below left=of B1] (C1) {Theorem 2.1: Encoding Need Emergence};
+\node[theorem, below=of C1] (C2) {Theorem 2.5: Binary Necessity};
+\node[theorem, below=of C2] (C3) {Theorem 2.6: $\phi$-representation Necessity};
+
+% Level 3 - Quantum theorems
+\node[theorem, below right=of B3] (D1) {Theorem 3.1: Observer Emergence};
+\node[theorem, below=of D1] (D2) {Theorem 3.3: Quantum Superposition};
+\node[theorem, below=of D2] (D3) {Theorem 3.4: Observation Collapse};
+
+% Level 4 - Riemann analogy
+\node[analogy, below=of B1] (E1) {Observation 4.1: Stability Contradiction};
+\node[analogy, below=of E1] (E2) {Observation 4.3: Riemann Zeta Analogy};
+
+% Level 5 - Predictions
+\node[prediction, below=of C3] (F1) {Predictions 5.1-5.3: Theory Applications};
+
+% Arrows
+\draw[arrow] (A) -- (B1);
+\draw[arrow] (A) -- (B2);
+\draw[arrow] (A) -- (B3);
+
+\draw[arrow] (B1) -- (C1);
+\draw[arrow] (B2) -- (C1);
+\draw[arrow] (C1) -- (C2);
+\draw[arrow] (C2) -- (C3);
+
+\draw[arrow] (B3) -- (D1);
+\draw[arrow] (D1) -- (D2);
+\draw[arrow] (D2) -- (D3);
+
+\draw[arrow] (B1) -- (E1);
+\draw[arrow] (E1) -- (E2);
+
+\draw[arrow] (C3) -- (F1);
+\draw[arrow] (D3) -- (F1);
+
+\end{tikzpicture}
+}
+\caption{Complete derivation chain from the single axiom to all theoretical results}
+\label{fig:derivation-chain}
+\end{figure}
 
 \textbf{Legend}:
 \begin{itemize}
@@ -55,4 +72,3 @@ graph TD
 \item Yellow: Formal analogy
 \item Blue: Theoretical prediction
 \end{itemize}
-
