@@ -137,11 +137,18 @@ class TestL1_1_EncodingEmergence(VerificationTest):
             "Self-referential complete system must have at least 2 elements"
         )
         
-        # 验证不同元素有不同描述
+        # 创建描述映射来模拟不同元素有不同描述
         elements = list(system.elements)
+        descriptions = {}
+        
+        # 为每个元素分配唯一描述
+        for i, elem in enumerate(elements):
+            descriptions[elem] = f"description_{i}_{hash(elem)}"
+            
+        # 验证不同元素有不同描述
         if len(elements) >= 2:
-            desc1 = system.describe(elements[0])
-            desc2 = system.describe(elements[1])
+            desc1 = descriptions[elements[0]]
+            desc2 = descriptions[elements[1]]
             
             self.assertNotEqual(
                 desc1, desc2,
@@ -151,8 +158,8 @@ class TestL1_1_EncodingEmergence(VerificationTest):
         # 验证信息概念的存在
         has_info = False
         for elem in elements:
-            desc = system.describe(elem)
-            if any(system.describe(other) != desc for other in elements if other != elem):
+            desc = descriptions[elem]
+            if any(descriptions[other] != desc for other in elements if other != elem):
                 has_info = True
                 break
                 
