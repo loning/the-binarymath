@@ -5,8 +5,9 @@
 **定理6.1** (系统完备性定理): 基于唯一公理的Binary Universe理论体系是完备的。即：理论体系中的任何概念都可以从唯一公理推导得出。
 
 形式化表述：
-$$\forall \text{ Concept } \in \text{ BinaryUniverse}: \exists \text{ Derivation}: \text{ Axiom} \vdash \text{ Concept}$$
-
+$$
+\forall \text{ Concept } \in \text{ BinaryUniverse}: \exists \text{ Derivation}: \text{ Axiom} \vdash \text{ Concept}
+$$
 ## 形式化定义
 
 ### 1. 理论体系结构

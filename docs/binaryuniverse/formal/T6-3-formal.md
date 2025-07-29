@@ -5,8 +5,9 @@
 **定理6.3** (概念推导完备性定理): 所有基础概念都可以从唯一公理推导出来。
 
 形式化表述：
-$$\forall C \in \text{FundamentalConcepts}: \exists D: \text{Axiom} \xrightarrow{D} C$$
-
+$$
+\forall C \in \text{FundamentalConcepts}: \exists D: \text{Axiom} \xrightarrow{D} C
+$$
 ## 形式化定义
 
 ### 1. 基础概念分类器

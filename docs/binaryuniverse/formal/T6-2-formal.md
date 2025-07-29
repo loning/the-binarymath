@@ -5,8 +5,9 @@
 **定理6.2** (逻辑一致性定理): Binary Universe理论体系内部逻辑一致，不存在矛盾。
 
 形式化表述：
-$$\neg \exists (P, \neg P): \text{Axiom} \vdash P \land \text{Axiom} \vdash \neg P$$
-
+$$
+\neg \exists (P, \neg P): \text{Axiom} \vdash P \land \text{Axiom} \vdash \neg P
+$$
 ## 形式化定义
 
 ### 1. 逻辑一致性验证器

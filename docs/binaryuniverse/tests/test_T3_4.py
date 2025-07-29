@@ -435,7 +435,8 @@ class TestT3_4_QuantumTeleportation(VerificationTest):
         fidelities, _ = simulate_complete_teleportation(random_state)
         for fidelity in fidelities:
             self.assertGreaterEqual(fidelity, 0.0, "Fidelity should be non-negative")
-            self.assertLessEqual(fidelity, 1.0, "Fidelity should not exceed 1")
+            # 由于浮点数精度，允许微小的超出
+            self.assertLessEqual(fidelity, 1.0 + 1e-10, "Fidelity should not exceed 1")
         
         # 验证对称性：F(ψ,φ) = F(φ,ψ)
         state1 = np.array([0.6, 0.8], dtype=complex)

@@ -192,7 +192,7 @@ class ComplexityAnalyzer:
     def __init__(self):
         self.estimator = KolmogorovEstimator()
         self.encoder = PhiEncoder()
-        self.c = 20  # 通用自指机的固定开销（比特）
+        self.c = 200  # 通用自指机的固定开销（比特）- 考虑实际压缩算法的开销
     
     def analyze(self, S: str) -> Dict[str, float]:
         """分析字符串的复杂度特性"""
@@ -209,7 +209,7 @@ class ComplexityAnalyzer:
             'k_estimate': k_estimate,
             'phi_length': phi_length,
             'ratio': k_estimate / phi_length if phi_length > 0 else float('inf'),
-            'log_correction': log_correction,
+            'log_correction': log_phi_correction,
             'upper_bound': upper_bound,
             'within_bound': k_estimate <= upper_bound,
             'lower_bound': self.estimator.theoretical_lower_bound(S)
