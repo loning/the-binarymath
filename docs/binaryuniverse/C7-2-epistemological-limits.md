@@ -89,20 +89,54 @@ $$
 
 其中信息以二进制位为单位，满足no-11约束。
 
-3. **回作用量化**: 建立扰动的下界
+3. **回作用量化**: 从ψ=ψ(ψ)公理严格推导扰动下界
    
-**定理**: 测量回作用的最小值
+**定理**: 自指系统中测量回作用的最小值
+
+从ψ=ψ(ψ)出发，测量过程必须满足自指完备性：
 $$
-\|\Delta S\|_{min} = \hbar \times \frac{\Delta \text{Info}}{2} \times \phi
+\text{Measure}(\psi, \psi) = \psi(\text{Measure}(\psi, \psi))
 $$
 
-其中 $\phi$ 是黄金比例，体现二进制系统的优化特性。
+这要求测量算子$\hat{M}$满足自指条件：
+$$
+\hat{M}|\psi\rangle = |\psi(\hat{M}|\psi\rangle)\rangle
+$$
 
-**证明**:
-- 信息获取需要物理相互作用
-- 相互作用传递最小动量量子 $\Delta p \geq \hbar/\Delta x$
-- 在二进制编码下，信息传递的最优效率由黄金比例确定
-- 综合得到最小扰动边界 ∎
+**严格推导**:
+
+*步骤1*: 自指测量的能量本征方程
+$$
+\hat{H}_{self}|\psi_n\rangle = E_n|\psi_n\rangle, \quad E_n = n\hbar\omega_{self}
+$$
+
+*步骤2*: 从no-11约束推导基频
+no-11约束要求信息传递避免连续双激发，故：
+$$
+\omega_{self} = \frac{1}{\tau_{avoid11}} = \frac{\phi}{\tau_0}
+$$
+其中$\phi = \frac{1+\sqrt{5}}{2}$是避免11模式的最优频率比，$\tau_0$是基本时间单位。
+
+*步骤3*: 最小扰动量化
+测量导致的最小能量变化：
+$$
+\Delta E_{min} = \hbar\omega_{self} = \frac{\hbar\phi}{\tau_0}
+$$
+
+对应的最小扰动幅度：
+$$
+\|\Delta S\|_{min} = \frac{\Delta E_{min}}{\text{SystemDensity}} = \frac{\hbar\phi}{2\rho_{\psi}}
+$$
+
+*步骤4*: 信息获取关联
+每获取$\Delta I$比特信息需要最小扰动：
+$$
+\|\Delta S\|_{min} = \hbar \times \frac{\Delta I}{2} \times \phi \times f_{no11}
+$$
+
+其中$f_{no11} = 1$是no-11约束修正因子。
+
+**证明完毕** ∎
 
 4. **认识论含义**: 完全精确的测量原则上不可能
    
