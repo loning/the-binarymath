@@ -9,11 +9,17 @@
 **定理 T11-2** (相变定理): 在自指完备的φ-表示系统中，系统在特定参数下发生相变，满足：
 
 1. **相变条件**: 存在临界参数 $\lambda_c$，当控制参数 $\lambda$ 穿越 $\lambda_c$ 时：
-   $$\lim_{\lambda \to \lambda_c^-} \mathcal{O}(\lambda) \neq \lim_{\lambda \to \lambda_c^+} \mathcal{O}(\lambda)$$
+   
+$$
+\lim_{\lambda \to \lambda_c^-} \mathcal{O}(\lambda) \neq \lim_{\lambda \to \lambda_c^+} \mathcal{O}(\lambda)
+$$
    其中 $\mathcal{O}$ 是序参量，在二进制系统中 $\lambda_c = 1/\phi$
 
 2. **序参量定义**: 系统的宏观状态由序参量刻画：
-   $$\mathcal{O}(S) = \frac{1}{|S|} \sum_{i=1}^{|S|-1} \delta(s_i = s_{i+1})$$
+   
+$$
+\mathcal{O}(S) = \frac{1}{|S|} \sum_{i=1}^{|S|-1} \delta(s_i = s_{i+1})
+$$
    表示相邻位相同的比例
 
 3. **相态分类**: 系统存在三种基本相态：
@@ -78,7 +84,9 @@
 
 ### 推论 T11-2.c (有限尺度效应)
 在有限系统中，相变被平滑化：
-$$\Delta\mathcal{O} \sim L^{-1/\nu} = L^{-\phi}$$
+$$
+\Delta\mathcal{O} \sim L^{-1/\nu} = L^{-\phi}
+$$
 其中 $L$ 是系统尺度
 
 ## 应用示例

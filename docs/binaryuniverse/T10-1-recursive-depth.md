@@ -8,12 +8,14 @@
 
 **定理 T10-1** (递归深度定理): 在自指完备的φ-表示系统中，存在唯一的递归深度函数 $R: \mathcal{S} \to \mathbb{N}$，使得对任意系统状态 $S_t$，其递归深度 $R(S_t)$ 满足：
 
-$$R(S_t) = \max\{n \in \mathbb{N} : S_t = \Xi^n[S_0] \text{ 且 } H(\Xi^n[S_0]) > H(\Xi^{n-1}[S_0])\}$$
-
+$$
+R(S_t) = \max\{n \in \mathbb{N} : S_t = \Xi^n[S_0] \text{ 且 } H(\Xi^n[S_0]) > H(\Xi^{n-1}[S_0])\}
+$$
 其中 $\Xi$ 是collapse算子，$H$ 是系统熵函数，且递归深度遵循φ-量化规律：
 
-$$R(S_t) = \lfloor \log_\phi(H(S_t) + 1) \rfloor$$
-
+$$
+R(S_t) = \lfloor \log_\phi(H(S_t) + 1) \rfloor
+$$
 ## 证明
 
 ### 引理 T10-1.1 (递归深度存在性)
@@ -35,7 +37,10 @@ $$R(S_t) = \lfloor \log_\phi(H(S_t) + 1) \rfloor$$
 2. 由L1-5，Fibonacci结构从约束中涌现
 3. 递归深度与系统复杂度的关系：$R \propto \log(H + 1)$
 4. 由于φ-表示的分形性质，对数底必须为φ：
-   $$R = \lfloor \log_\phi(H + 1) \rfloor$$
+   
+$$
+R = \lfloor \log_\phi(H + 1) \rfloor
+$$
 5. 这确保了递归层级与φ-结构的一致性 ∎
 
 ### 引理 T10-1.3 (深度不变性)
@@ -61,18 +66,23 @@ $$R(S_t) = \lfloor \log_\phi(H(S_t) + 1) \rfloor$$
 
 ### 推论 T10-1.a (最大深度界限)
 任意φ-表示系统的递归深度存在上界：
-$$R_{\max} = \lfloor \log_\phi(2^{L_{\max}} + 1) \rfloor$$
+$$
+R_{\max} = \lfloor \log_\phi(2^{L_{\max}} + 1) \rfloor
+$$
 其中 $L_{\max}$ 是系统最大字符串长度。
 
 ### 推论 T10-1.b (深度分层)
 递归深度将系统状态空间分为有限个层级：
-$$\mathcal{S} = \bigcup_{n=0}^{R_{\max}} \mathcal{S}_n$$
+$$
+\mathcal{S} = \bigcup_{n=0}^{R_{\max}} \mathcal{S}_n
+$$
 其中 $\mathcal{S}_n = \{S : R(S) = n\}$。
 
 ### 推论 T10-1.c (深度跃迁)
 系统状态只能在相邻深度层级间跃迁：
-$$R(S_{t+1}) \in \{R(S_t), R(S_t) + 1\}$$
-
+$$
+R(S_{t+1}) \in \{R(S_t), R(S_t) + 1\}
+$$
 ## 应用示例
 
 ### 示例1：Fibonacci序列的递归深度

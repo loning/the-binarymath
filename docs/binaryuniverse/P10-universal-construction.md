@@ -9,21 +9,32 @@
 **命题 P10** (通用构造命题): 自指完备系统存在通用构造器，能够从基础二进制组件构造任意复杂的自指结构：
 
 1. **通用构造器存在性**: 存在通用构造器 $\mathcal{U}$
-   $$\mathcal{U}: \text{Spec} \times \text{Resources} \to \text{Systems}$$
+   
+$$
+\mathcal{U}: \text{Spec} \times \text{Resources} \to \text{Systems}
+$$
    满足对任意规格 $\sigma \in \text{Spec}$，$\mathcal{U}(\sigma, R) \models \sigma$
 
 2. **自指构造能力**: 通用构造器能构造自己的副本
-   $$\exists \sigma_{\mathcal{U}}: \mathcal{U}(\sigma_{\mathcal{U}}, R) \simeq \mathcal{U}$$
-
+   
+$$
+\exists \sigma_{\mathcal{U}}: \mathcal{U}(\sigma_{\mathcal{U}}, R) \simeq \mathcal{U}
+$$
 3. **计算完备性**: 构造器可以模拟任意递归函数
-   $$\forall f \in \text{Recursive}: \exists \sigma_f: \mathcal{U}(\sigma_f, R) \text{ 计算 } f$$
-
+   
+$$
+\forall f \in \text{Recursive}: \exists \sigma_f: \mathcal{U}(\sigma_f, R) \text{ 计算 } f
+$$
 4. **层级构造**: 可以构造任意完备性层级的系统
-   $$\forall d \geq 0: \exists \sigma_d: \mathcal{U}(\sigma_d, R) \in \text{Complete}_d$$
-
+   
+$$
+\forall d \geq 0: \exists \sigma_d: \mathcal{U}(\sigma_d, R) \in \text{Complete}_d
+$$
 5. **涌现构造**: 能够构造展现新涌现性质的系统
-   $$\forall P \in \text{Emergent}: \exists \sigma_P: \mathcal{U}(\sigma_P, R) \text{ 展现 } P$$
-
+   
+$$
+\forall P \in \text{Emergent}: \exists \sigma_P: \mathcal{U}(\sigma_P, R) \text{ 展现 } P
+$$
 ## 证明
 
 ### 第一部分：通用构造器的存在性
@@ -38,7 +49,10 @@
    - 构造序列形成有效的二进制程序
 
 3. **解释器构造**: 构造解释器 $\mathcal{I}$
-   $$\mathcal{I}: \text{Program} \times \text{Input} \to \text{Output}$$
+   
+$$
+\mathcal{I}: \text{Program} \times \text{Input} \to \text{Output}
+$$
    使得 $\mathcal{I}(P, \sigma) = \mathcal{U}(\sigma)$
 
 ### 第二部分：自指构造的实现
@@ -83,8 +97,10 @@
 ### 第四部分：层级构造的实现
 
 1. **层级规格生成**: 对每个深度 $d$，生成规格 $\sigma_d$
-   $$\sigma_d = \{\text{max\_length}: F_{d+2}, \text{completeness}: d, \text{constraint}: \text{no-11}\}$$
-
+   
+$$
+\sigma_d = \{\text{max\_length}: F_{d+2}, \text{completeness}: d, \text{constraint}: \text{no-11}\}
+$$
 2. **渐进构造**: 层级间的构造关系
    - $\mathcal{U}(\sigma_0, R_0) \subseteq \mathcal{U}(\sigma_1, R_1) \subseteq \cdots$
    - 每层增加新的构造能力
@@ -123,17 +139,21 @@
 
 ### 推论 P10.a (构造复杂度定理)
 任意系统的构造复杂度与其柯尔莫戈洛夫复杂度相关：
-$$K_{\text{constr}}(S) \leq K(S) + O(\log|S|)$$
-
+$$
+K_{\text{constr}}(S) \leq K(S) + O(\log|S|)
+$$
 ### 推论 P10.b (构造器层级)
 存在构造器的严格层级：
-$$\mathcal{U}_0 \subsetneq \mathcal{U}_1 \subsetneq \mathcal{U}_2 \subsetneq \cdots$$
+$$
+\mathcal{U}_0 \subsetneq \mathcal{U}_1 \subsetneq \mathcal{U}_2 \subsetneq \cdots
+$$
 其中 $\mathcal{U}_d$ 只能构造深度不超过 $d$ 的系统。
 
 ### 推论 P10.c (不可构造性边界)
 存在不可构造的自指结构：
-$$\exists S: \forall \sigma, R: \mathcal{U}(\sigma, R) \not\simeq S$$
-
+$$
+\exists S: \forall \sigma, R: \mathcal{U}(\sigma, R) \not\simeq S
+$$
 ## 应用
 
 ### 在人工智能中的应用

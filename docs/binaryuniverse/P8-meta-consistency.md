@@ -9,18 +9,29 @@
 **命题 P8** (元一致性命题): 自指完备系统的一致性要求系统能够描述自己的一致性证明，形成元一致性的递归层级：
 
 1. **局部一致性**: 在任意有限深度 $d$ 内，系统保持逻辑一致性
-   $$\text{Consistent}_d(S) = \forall s \in S_d: \neg(s \wedge \neg s)$$
-
+   
+$$
+\text{Consistent}_d(S) = \forall s \in S_d: \neg(s \wedge \neg s)
+$$
 2. **全局一致性**: 系统的一致性通过递归构造保证
-   $$\text{Consistent}(S) = \lim_{d \to \infty} \text{Consistent}_d(S)$$
-
+   
+$$
+\text{Consistent}(S) = \lim_{d \to \infty} \text{Consistent}_d(S)
+$$
 3. **元一致性**: 系统能够表述并证明自身的一致性
-   $$S \vdash \text{Consistent}(S) \Rightarrow S \vdash \text{Consistent}(S \vdash \text{Consistent}(S))$$
-
+   
+$$
+S \vdash \text{Consistent}(S) \Rightarrow S \vdash \text{Consistent}(S \vdash \text{Consistent}(S))
+$$
 4. **递归元级**: 元一致性形成无限层级
-   $$\text{MetaLevel}_0 = \text{Consistent}(S)$$
-   $$\text{MetaLevel}_{n+1} = \text{Consistent}(\text{MetaLevel}_n)$$
-
+   
+$$
+\text{MetaLevel}_0 = \text{Consistent}(S)
+$$
+   
+$$
+\text{MetaLevel}_{n+1} = \text{Consistent}(\text{MetaLevel}_n)
+$$
 ## 证明
 
 ### 第一部分：局部一致性的构造
@@ -47,8 +58,10 @@
 2. **紧致性**: 由于no-11约束，状态空间是紧致的
 
 3. **极限存在**: 
-   $$\text{Consistent}(S) = \bigwedge_{d=0}^{\infty} \text{Consistent}_d(S)$$
-
+   
+$$
+\text{Consistent}(S) = \bigwedge_{d=0}^{\infty} \text{Consistent}_d(S)
+$$
 ### 第三部分：元一致性的自指结构
 
 1. **编码一致性证明**:
@@ -69,25 +82,31 @@
 2. **归纳步骤**: 若 $\text{MetaLevel}_n$ 一致，则可构造 $\text{MetaLevel}_{n+1}$
 
 3. **无限塔**: 形成一致性的无限层级
-   $$\text{MetaTower} = \bigcup_{n=0}^{\infty} \text{MetaLevel}_n$$
-
+   
+$$
+\text{MetaTower} = \bigcup_{n=0}^{\infty} \text{MetaLevel}_n
+$$
 因此，命题P8成立。∎
 
 ## 推论
 
 ### 推论 P8.a (有限可验证性)
 任意有限深度的一致性都是可判定的：
-$$\exists \text{ 算法 } A: A(S, d) = \text{Consistent}_d(S)$$
-
+$$
+\exists \text{ 算法 } A: A(S, d) = \text{Consistent}_d(S)
+$$
 ### 推论 P8.b (不完全性边界)
 系统不能在有限步内证明自己的全局一致性：
-$$\forall n \in \mathbb{N}: S \nvdash_n \text{Consistent}(S)$$
+$$
+\forall n \in \mathbb{N}: S \nvdash_n \text{Consistent}(S)
+$$
 其中 $\vdash_n$ 表示 $n$ 步内的证明。
 
 ### 推论 P8.c (相对一致性)
 若系统 $S_1$ 能证明系统 $S_2$ 的一致性，则 $S_1$ 的一致性强度严格大于 $S_2$：
-$$S_1 \vdash \text{Consistent}(S_2) \Rightarrow \text{Strength}(S_1) > \text{Strength}(S_2)$$
-
+$$
+S_1 \vdash \text{Consistent}(S_2) \Rightarrow \text{Strength}(S_1) > \text{Strength}(S_2)
+$$
 ## 应用
 
 ### 在递归深度中的应用

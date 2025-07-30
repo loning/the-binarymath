@@ -9,11 +9,17 @@
 **定理 T11-3** (临界现象定理): 在自指完备的二进制系统中，临界点 $\lambda = \lambda_c = 1/\phi$ 展现出特殊的临界现象：
 
 1. **弱标度行为**: 由于no-11约束，系统展现弱标度不变性
-   $$C(r, \lambda_c) \approx A e^{-r/\xi} \cdot r^{-\eta_{eff}}$$
+   
+$$
+C(r, \lambda_c) \approx A e^{-r/\xi} \cdot r^{-\eta_{eff}}
+$$
    其中有效指数 $\eta_{eff} \ll 1$，反映了指数衰减主导
 
 2. **短程关联**: 关联函数快速衰减
-   $$C(r) = \langle s_i s_{i+r} \rangle - \langle s_i \rangle^2$$
+   
+$$
+C(r) = \langle s_i s_{i+r} \rangle - \langle s_i \rangle^2
+$$
    在临界点附近，关联长度 $\xi$ 有限但达到最大值
 
 3. **修正的临界指数**: 考虑到一维系统和no-11约束的特殊性
@@ -25,10 +31,13 @@
    其中 $d=1$ 是维度
 
 4. **有限涨落**: 响应函数在临界点增强但不发散
-   $$\chi(\lambda) \sim \begin{cases}
+   
+$$
+\chi(\lambda) \sim \begin{cases}
    const. & \lambda \neq \lambda_c \\
    \ln L & \lambda = \lambda_c
-   \end{cases}$$
+   \end{cases}
+$$
    其中 $L$ 是系统尺度
 
 ## 证明
@@ -96,7 +105,9 @@
 
 ### 推论 T11-3.a (数据坍缩)
 不同系统尺度的数据可以通过标度变换坍缩到同一普适曲线：
-$$\mathcal{O}(L, t) = L^{-\beta/\nu} f(tL^{1/\nu})$$
+$$
+\mathcal{O}(L, t) = L^{-\beta/\nu} f(tL^{1/\nu})
+$$
 其中 $t = (\lambda - \lambda_c)/\lambda_c$，$f$ 是普适标度函数。
 对于φ-系统，$\beta/\nu = 1$
 
@@ -108,7 +119,9 @@ $$\mathcal{O}(L, t) = L^{-\beta/\nu} f(tL^{1/\nu})$$
 
 ### 推论 T11-3.c (动力学临界现象)
 系统的弛豫时间在临界点发散：
-$$\tau \sim \xi^z \sim |\lambda - \lambda_c|^{-\nu z}$$
+$$
+\tau \sim \xi^z \sim |\lambda - \lambda_c|^{-\nu z}
+$$
 其中 $z$ 是动力学临界指数，对于局域动力学 $z = \phi$
 
 ## 应用示例

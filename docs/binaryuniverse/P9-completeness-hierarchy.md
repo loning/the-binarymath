@@ -9,22 +9,36 @@
 **命题 P9** (完备性层级命题): 自指完备系统形成完备性的严格层级结构，每个层级的完备性由其表达能力决定：
 
 1. **语法完备性层级**: 在深度 $d$ 的语法完备性
-   $$\text{SynComplete}_d = \{s \in \Sigma^* : |s| \leq F_{d+2} \wedge \text{no-11}(s)\}$$
+   
+$$
+\text{SynComplete}_d = \{s \in \Sigma^* : |s| \leq F_{d+2} \wedge \text{no-11}(s)\}
+$$
    其中 $F_{d+2}$ 确保严格层级增长
 
 2. **语义完备性层级**: 在深度 $d$ 的语义完备性
-   $$\text{SemComplete}_d = \{M : M \text{ 可由 } \text{SynComplete}_d \text{ 表达}\}$$
-
+   
+$$
+\text{SemComplete}_d = \{M : M \text{ 可由 } \text{SynComplete}_d \text{ 表达}\}
+$$
 3. **计算完备性层级**: 在深度 $d$ 的计算能力
-   $$\text{CompComplete}_d = \{f : f \text{ 可由深度 } d \text{ 计算}\}$$
+   
+$$
+\text{CompComplete}_d = \{f : f \text{ 可由深度 } d \text{ 计算}\}
+$$
    满足严格包含：$\text{CompComplete}_{d-1} \subsetneq \text{CompComplete}_d$
 
 4. **表达力层级定理**: 
-   $$\text{Express}_d < \text{Express}_{d+1}$$
+   
+$$
+\text{Express}_d < \text{Express}_{d+1}
+$$
    存在深度 $d+1$ 可表达但深度 $d$ 不可表达的性质
 
 5. **完备性收敛**: 
-   $$\text{Complete}_\infty = \bigcup_{d=0}^{\infty} \text{Complete}_d$$
+   
+$$
+\text{Complete}_\infty = \bigcup_{d=0}^{\infty} \text{Complete}_d
+$$
    形成自指完备的极限系统
 
 ## 证明
@@ -75,8 +89,10 @@
 ### 第四部分：表达力的严格增长
 
 1. **表达力度量**: 
-   $$\text{Express}_d = |\{P : P \text{ 可由深度 } d \text{ 表达}\}|$$
-
+   
+$$
+\text{Express}_d = |\{P : P \text{ 可由深度 } d \text{ 表达}\}|
+$$
 2. **增长证明**:
    - 深度 $d+1$ 可以表达"深度为 $d$"这个性质
    - 但深度 $d$ 不能表达自己的深度（自指限制）
@@ -90,7 +106,10 @@
 1. **单调链**: $\text{Complete}_0 \subset \text{Complete}_1 \subset \cdots$
 
 2. **极限存在**: 由于每层都是可数的，极限
-   $$\text{Complete}_\infty = \bigcup_{d=0}^{\infty} \text{Complete}_d$$
+   
+$$
+\text{Complete}_\infty = \bigcup_{d=0}^{\infty} \text{Complete}_d
+$$
    是良定义的
 
 3. **自指完备性**: $\text{Complete}_\infty$ 包含自己的描述
@@ -103,15 +122,19 @@
 
 ### 推论 P9.a (不可跨越性)
 不存在从深度 $d$ 直接跳到深度 $d+k$ ($k>1$) 的完备性提升：
-$$\forall k > 1: \text{Complete}_d \not\simeq \text{Complete}_{d+k}$$
-
+$$
+\forall k > 1: \text{Complete}_d \not\simeq \text{Complete}_{d+k}
+$$
 ### 推论 P9.b (最小完备扩展)
 对任意深度 $d$，存在唯一的最小完备扩展：
-$$\text{MinExtend}(d) = \text{Complete}_{d+1} \setminus \text{Complete}_d$$
-
+$$
+\text{MinExtend}(d) = \text{Complete}_{d+1} \setminus \text{Complete}_d
+$$
 ### 推论 P9.c (完备性度量)
 完备性可以通过Fibonacci数度量：
-$$\text{Measure}(\text{Complete}_d) = \sum_{i=0}^{d} \text{ValidCount}(F_i)$$
+$$
+\text{Measure}(\text{Complete}_d) = \sum_{i=0}^{d} \text{ValidCount}(F_i)
+$$
 其中 $\text{ValidCount}(n)$ 是长度为 $n$ 的有效串数量。
 
 ## 应用

@@ -11,8 +11,9 @@
 基于唯一公理A1和Landauer原理(T5-7)，我们建立信息能量等价关系：
 
 **定义P7.1 (φ-信息能量等价)**：
-$$E_{\text{info}} = k_B T \ln 2 \cdot I_{\text{φ}} \cdot \Phi(n)$$
-
+$$
+E_{\text{info}} = k_B T \ln 2 \cdot I_{\text{φ}} \cdot \Phi(n)
+$$
 其中：
 - $I_{\text{φ}}$是φ-表示的信息量
 - $\Phi(n) = \frac{F_{n+1}}{F_n}$是第n级Fibonacci比值函数
@@ -23,17 +24,20 @@ $$E_{\text{info}} = k_B T \ln 2 \cdot I_{\text{φ}} \cdot \Phi(n)$$
 **定理P7.1 (φ-能级量子化)**：
 在φ-表示系统中，能量呈现离散的φ-量子化：
 
-$$E_n = E_0 \cdot φ^n \cdot (1 - φ^{-2n})$$
-
+$$
+E_n = E_0 \cdot φ^n \cdot (1 - φ^{-2n})
+$$
 其中$E_0$是基础能量单元。
 
 **证明**：
 由于φ-表示的Zeckendorf性质，任何信息量都可以表示为：
-$$I = \sum_{i} a_i F_i, \quad a_i \in \{0,1\}, \text{ no consecutive 1s}$$
-
+$$
+I = \sum_{i} a_i F_i, \quad a_i \in \{0,1\}, \text{ no consecutive 1s}
+$$
 对应的能量为：
-$$E = k_B T \ln 2 \sum_{i} a_i F_i \cdot \frac{F_{i+1}}{F_i} = k_B T \ln 2 \sum_{i} a_i F_{i+1}$$
-
+$$
+E = k_B T \ln 2 \sum_{i} a_i F_i \cdot \frac{F_{i+1}}{F_i} = k_B T \ln 2 \sum_{i} a_i F_{i+1}
+$$
 利用Fibonacci递推关系$F_{i+1} = φF_i - φF_{i-1} + O(φ^{-i})$，得到φ-量子化结构。∎
 
 ### 7.3 能量守恒的信息表述
@@ -42,13 +46,15 @@ $$E = k_B T \ln 2 \sum_{i} a_i F_i \cdot \frac{F_{i+1}}{F_i} = k_B T \ln 2 \sum_
 在φ-表示系统中，能量守恒等价于φ-信息的拓扑守恒。
 
 形式化表述：
-$$\sum_{i} E_i = \text{const} \Leftrightarrow \sum_{i} \text{φ-info}(i) \text{ 在 no-11 约束下守恒}$$
-
+$$
+\sum_{i} E_i = \text{const} \Leftrightarrow \sum_{i} \text{φ-info}(i) \text{ 在 no-11 约束下守恒}
+$$
 ### 7.4 热力学与信息论的统一
 
 **定义P7.2 (φ-熵温度关系)**：
-$$T_{\text{φ}} = \frac{E_{\text{avg}}}{k_B S_{\text{φ}}}$$
-
+$$
+T_{\text{φ}} = \frac{E_{\text{avg}}}{k_B S_{\text{φ}}}
+$$
 其中$S_{\text{φ}}$是φ-表示下的系统熵。
 
 这建立了温度与φ-信息密度的直接关系。
@@ -61,27 +67,31 @@ $$T_{\text{φ}} = \frac{E_{\text{avg}}}{k_B S_{\text{φ}}}$$
 
 **推论P7.1 (量子谐振子的φ-修正)**：
 标准量子谐振子能级：
-$$E_n = \hbar \omega (n + \frac{1}{2})$$
-
+$$
+E_n = \hbar \omega (n + \frac{1}{2})
+$$
 在φ-表示下修正为：
-$$E_n^{(\text{φ})} = \hbar \omega (n + \frac{1}{2}) \cdot \left(1 + \frac{\alpha}{\sqrt{n+1}}\right)$$
-
+$$
+E_n^{(\text{φ})} = \hbar \omega (n + \frac{1}{2}) \cdot \left(1 + \frac{\alpha}{\sqrt{n+1}}\right)
+$$
 其中$\alpha = \frac{1}{\phi^2} \approx 0.382$是φ-修正常数。
 
 ### 7.6 黑洞热力学的φ-解释
 
 **推论P7.2 (黑洞熵的φ-表示)**：
 Bekenstein-Hawking熵在φ-表示下为：
-$$S_{BH}^{(\text{φ})} = \frac{k_B A}{4 l_P^2} \cdot \left(1 + \frac{\ln \phi}{\ln(A/l_P^2)}\right)$$
-
+$$
+S_{BH}^{(\text{φ})} = \frac{k_B A}{4 l_P^2} \cdot \left(1 + \frac{\ln \phi}{\ln(A/l_P^2)}\right)
+$$
 这提供了黑洞信息悖论的新视角。
 
 ### 7.7 能量-信息转换效率
 
 **定理P7.3 (φ-转换效率)**：
 φ-表示系统的信息-能量转换效率为：
-$$\eta_{\text{φ}} = \frac{1}{\phi} \left(1 - \frac{1}{\phi^2}\right) \approx 0.382$$
-
+$$
+\eta_{\text{φ}} = \frac{1}{\phi} \left(1 - \frac{1}{\phi^2}\right) \approx 0.382
+$$
 这是理论上的最高效率，对应黄金比例的本质特性。
 
 ## 生物系统应用
@@ -90,8 +100,9 @@ $$\eta_{\text{φ}} = \frac{1}{\phi} \left(1 - \frac{1}{\phi^2}\right) \approx 0.
 
 **推论P7.3 (ATP的φ-能量量子)**：
 ATP分子的能量释放遵循φ-量子化：
-$$E_{ATP} = E_0 \cdot \phi^3 \approx 4.236 E_0$$
-
+$$
+E_{ATP} = E_0 \cdot \phi^3 \approx 4.236 E_0
+$$
 其中$E_0 \approx 7.3 \text{ kcal/mol}$，给出$E_{ATP} \approx 30.9 \text{ kcal/mol}$，与实验值一致。
 
 ### 7.9 神经元的φ-信息传递
@@ -120,8 +131,9 @@ $$E_{ATP} = E_0 \cdot \phi^3 \approx 4.236 E_0$$
 
 **定理P7.4 (真空能的φ-抑制)**：
 量子真空能的发散通过φ-调节机制得到控制：
-$$\rho_{vac}^{(\text{reg})} = \rho_{vac}^{(\text{bare})} \cdot \exp(-\phi^2 \Lambda/\Lambda_{Planck})$$
-
+$$
+\rho_{vac}^{(\text{reg})} = \rho_{vac}^{(\text{bare})} \cdot \exp(-\phi^2 \Lambda/\Lambda_{Planck})
+$$
 其中$\Lambda$是能量截断，这自然解决了宇宙学常数问题。
 
 ## 技术应用

@@ -9,15 +9,24 @@
 **定理 T10-3** (自相似性定理): 在自指完备的φ-表示系统中，无限回归的周期轨道展现分形自相似性，满足：
 
 1. **尺度不变性**: 存在相似变换 $\mathcal{T}_\lambda$ 使得：
-   $$\mathcal{T}_\lambda[\Xi^n[S]] \sim \Xi^{\lfloor n/\lambda \rfloor}[S]$$
+   
+$$
+\mathcal{T}_\lambda[\Xi^n[S]] \sim \Xi^{\lfloor n/\lambda \rfloor}[S]
+$$
    其中 $\lambda = \phi^k$，$k \in \mathbb{Z}$
 
 2. **有效分形维数**: 在有限状态空间中，周期轨道的有效维数为：
-   $$D_{eff} = \frac{\log(N_{patterns})}{\log(L_{scale})}$$
+   
+$$
+D_{eff} = \frac{\log(N_{patterns})}{\log(L_{scale})}
+$$
    其中 $N_{patterns}$ 是不同模式数，$L_{scale}$ 是观察尺度
 
 3. **递归结构同构**: 对于周期轨道中的任意状态 $S^*$：
-   $$\text{Structure}(S^*) \cong \text{Structure}(\Xi^k[S^*])$$
+   
+$$
+\text{Structure}(S^*) \cong \text{Structure}(\Xi^k[S^*])
+$$
    对所有 $k$ 使得 $\Xi^k[S^*] \in$ 周期轨道
 
 ## 证明
@@ -28,7 +37,10 @@
 *证明*:
 1. 设周期轨道 $\mathcal{O} = \{S_1^*, S_2^*, \ldots, S_p^*\}$
 2. 对任意 $S_i^* \in \mathcal{O}$，定义局部邻域：
-   $$\mathcal{N}_\epsilon(S_i^*) = \{S : \|S - S_i^*\|_\phi < \epsilon\}$$
+   
+$$
+\mathcal{N}_\epsilon(S_i^*) = \{S : \|S - S_i^*\|_\phi < \epsilon\}
+$$
 3. 由T10-2的稳定性，存在映射 $f: \mathcal{N}_\epsilon(S_i^*) \to \mathcal{O}$
 4. 此映射保持拓扑结构：$f$ 是同胚
 5. 因此局部结构反映全局周期性 ∎
@@ -40,7 +52,10 @@
 1. 考虑状态 $S$ 的φ-展开：$S = \sum_{i} a_i \phi^{-i}$
 2. 尺度变换 $\mathcal{T}_\phi: S \mapsto \phi \cdot S$
 3. 在二进制表示中：
-   $$\mathcal{T}_\phi[b_1b_2b_3\ldots] = b_2b_3b_4\ldots \oplus \Phi(b_1)$$
+   
+$$
+\mathcal{T}_\phi[b_1b_2b_3\ldots] = b_2b_3b_4\ldots \oplus \Phi(b_1)
+$$
    其中 $\oplus$ 是φ-结构的组合操作
 4. 由no-11约束的分形性质，变换保持结构不变性
 5. 尺度因子必须是φ的整数幂以保持离散性 ∎
@@ -53,7 +68,10 @@
 2. 尺度 $k$ 下的模式数：$N_k = |\{\text{distinct patterns of length } k\}|$
 3. 自相似性导致：$N_{k+1} \approx \phi \cdot N_k$（近似关系）
 4. 有效维数定义：
-   $$D_{eff} = \frac{\log N_k}{\log k}$$
+   
+$$
+D_{eff} = \frac{\log N_k}{\log k}
+$$
 5. 在周期轨道中，$D_{eff}$ 反映了结构的复杂度而非几何维数 ∎
 
 ### 主定理证明
@@ -69,17 +87,21 @@
 
 ### 推论 T10-3.a (分形编码)
 任意φ-状态可通过其自相似结构递归编码：
-$$S = \mathcal{F}[S_{\text{core}}, \mathcal{T}_{\phi}, \mathcal{T}_{\phi^2}, \ldots]$$
-
+$$
+S = \mathcal{F}[S_{\text{core}}, \mathcal{T}_{\phi}, \mathcal{T}_{\phi^2}, \ldots]
+$$
 ### 推论 T10-3.b (模式复杂度界限)
 有限状态空间中，模式复杂度受Fibonacci增长律限制：
-$$C_{pattern} \leq \log_\phi(F_{L_{max}})$$
+$$
+C_{pattern} \leq \log_\phi(F_{L_{max}})
+$$
 其中 $F_{L_{max}}$ 是对应于最大长度的Fibonacci数。
 
 ### 推论 T10-3.c (多尺度周期性)
 自相似性在多个尺度上产生嵌套的周期结构：
-$$p_{\text{macro}} = \phi^k \cdot p_{\text{micro}}$$
-
+$$
+p_{\text{macro}} = \phi^k \cdot p_{\text{micro}}
+$$
 ## 应用示例
 
 ### 示例1：Fibonacci串的自相似结构

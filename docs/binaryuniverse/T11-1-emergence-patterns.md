@@ -9,15 +9,24 @@
 **定理 T11-1** (涌现模式定理): 在自指完备的φ-表示系统中，从局部相互作用涌现出全局模式，满足：
 
 1. **涌现条件**: 当系统满足结构丰富性条件时：
-   $$\Psi(S) \cdot |S| > \phi^2 \text{ 且 } |S| \geq 5$$
+   
+$$
+\Psi(S) \cdot |S| > \phi^2 \text{ 且 } |S| \geq 5
+$$
    其中 $\Psi(S)$ 是模式丰富度（不同子模式的比例），必然出现不可还原的全局模式
 
 2. **层级涌现**: 涌现模式形成层级结构：
-   $$P_{n+1} = \mathcal{E}[P_n] \oplus \Delta_{emergent}$$
+   
+$$
+P_{n+1} = \mathcal{E}[P_n] \oplus \Delta_{emergent}
+$$
    其中 $\Delta_{emergent}$ 是不可从 $P_n$ 推导的新信息
 
 3. **涌现度量**: 涌现强度定义为：
-   $$E(S) = C(S) \cdot \Psi(S) \cdot \Delta(S)$$
+   
+$$
+E(S) = C(S) \cdot \Psi(S) \cdot \Delta(S)
+$$
    其中：
    - $C(S)$ 是系统复杂度
    - $\Psi(S)$ 是模式丰富度（不同子模式的数量）
@@ -73,15 +82,19 @@
 
 ### 推论 T11-1.a (涌现的不可预测性)
 涌现模式包含的信息不能从低层完全预测：
-$$H(P_{n+1}|P_n) > 0$$
-
+$$
+H(P_{n+1}|P_n) > 0
+$$
 ### 推论 T11-1.b (涌现的φ-缩放)
 涌现强度在不同尺度遵循φ-律：
-$$E(\mathcal{T}_\phi[S]) = \phi \cdot E(S) + O(\log \phi)$$
-
+$$
+E(\mathcal{T}_\phi[S]) = \phi \cdot E(S) + O(\log \phi)
+$$
 ### 推论 T11-1.c (最大涌现原理)
 系统趋向于最大化涌现强度的状态：
-$$S^* = \arg\max_S E(S)$$
+$$
+S^* = \arg\max_S E(S)
+$$
 受约束于能量和信息守恒
 
 ## 应用示例

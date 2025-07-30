@@ -11,11 +11,17 @@
 1. **周期性**: 存在最小周期 $p \geq 1$ 使得 $\Xi^p[S_i^*] = S_i^*$ 对所有 $S_i^* \in \mathcal{S}^*$
 
 2. **收敛性**: 存在 $N$ 使得对所有 $n > N$，$S_n \in \mathcal{S}^*$，且预周期长度满足Fibonacci界限：
-   $$N \leq F_{L+2}$$
+   
+$$
+N \leq F_{L+2}
+$$
    其中 $L$ 是状态空间的特征长度
 
 3. **局部最大熵密度**: 周期轨道中的状态具有局部最大熵密度：
-   $$\rho_H(S^*) = \text{local max}_{S \in \mathcal{N}(S^*)} \frac{H(S)}{|S|_\phi}$$
+   
+$$
+\rho_H(S^*) = \text{local max}_{S \in \mathcal{N}(S^*)} \frac{H(S)}{|S|_\phi}
+$$
    其中 $\mathcal{N}(S^*)$ 是 $S^*$ 的邻域
 
 ## 证明
@@ -78,8 +84,9 @@
 
 ### 推论 T10-2.c (熵增饱和)
 在φ-平衡态，系统的熵增率趋于零：
-$$\lim_{S \to S^*} (H(\Xi[S]) - H(S)) = 0$$
-
+$$
+\lim_{S \to S^*} (H(\Xi[S]) - H(S)) = 0
+$$
 ## 应用示例
 
 ### 示例1：简单二进制串的回归
