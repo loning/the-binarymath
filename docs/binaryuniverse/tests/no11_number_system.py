@@ -139,6 +139,10 @@ class No11Number:
             return self.value == other
         return False
     
+    def __hash__(self) -> int:
+        """使No11Number可哈希，能够用作集合元素或字典键"""
+        return hash(self.value)
+    
     def __lt__(self, other) -> bool:
         if isinstance(other, No11Number):
             return self.value < other.value
