@@ -175,7 +175,7 @@ class FunctionTerm(Term):
         # 组合编码（简化实现）
         combined = func_code.value
         for arg_code in arg_codes:
-            combined = combined * 1000 + arg_code.value
+            combined = (combined * 1000 + arg_code.value) % 10000
         return No11Number(combined)
     
     def __eq__(self, other) -> bool:
