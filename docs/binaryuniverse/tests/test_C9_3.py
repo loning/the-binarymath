@@ -109,6 +109,24 @@ class SelfReferentialGroup:
         
         return order
     
+    def power(self, element: No11Number, n: int) -> No11Number:
+        """计算元素的n次幂"""
+        if element not in self.elements:
+            raise GroupError(f"Element {element} not in group")
+        
+        if n == 0:
+            return self.identity
+        elif n < 0:
+            # 负幂是逆元的正幂
+            inv = self.find_inverse(element)
+            return self.power(inv, -n)
+        else:
+            # 正幂：重复运算
+            result = self.identity
+            for _ in range(n):
+                result = self.operate(result, element)
+            return result
+    
     def is_abelian(self) -> bool:
         """检查群是否交换"""
         for a in self.elements:
