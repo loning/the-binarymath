@@ -145,14 +145,20 @@ $$
 ## 数学形式化要点
 
 1. **广义测量（POVM）**：
-   $$\{E_n\} \text{ 满足 } \sum_n E_n = I, \quad E_n \geq 0$$
-
+   
+$$
+\{E_n\} \text{ 满足 } \sum_n E_n = I, \quad E_n \geq 0
+$$
 2. **Kraus算子表示**：
-   $$\rho' = \sum_k K_k \rho K_k^\dagger, \quad \sum_k K_k^\dagger K_k = I$$
-
+   
+$$
+\rho' = \sum_k K_k \rho K_k^\dagger, \quad \sum_k K_k^\dagger K_k = I
+$$
 3. **互信息**：
-   $$I(S:\mathcal{M}) = S(\rho) + S(\sigma) - S(\rho \otimes \sigma)$$
-
+   
+$$
+I(S:\mathcal{M}) = S(\rho) + S(\sigma) - S(\rho \otimes \sigma)
+$$
 ## 实验预测
 
 1. **信息-扰动权衡**：测量精度与系统扰动满足$\Delta I \cdot \Delta \rho \geq k$（类似不确定性关系）

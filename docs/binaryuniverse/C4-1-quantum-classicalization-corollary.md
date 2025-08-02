@@ -139,14 +139,20 @@ $$
 ## 数学形式化要点
 
 1. **退相干超算子**：
-   $$\mathcal{L}[\rho] = \sum_k \gamma_k (L_k \rho L_k^\dagger - \frac{1}{2}\{L_k^\dagger L_k, \rho\})$$
-
+   
+$$
+\mathcal{L}[\rho] = \sum_k \gamma_k (L_k \rho L_k^\dagger - \frac{1}{2}\{L_k^\dagger L_k, \rho\})
+$$
 2. **主方程**：
-   $$\frac{d\rho}{dt} = -i[H, \rho] + \mathcal{L}[\rho]$$
-
+   
+$$
+\frac{d\rho}{dt} = -i[H, \rho] + \mathcal{L}[\rho]
+$$
 3. **熵增率**：
-   $$\frac{dS}{dt} = -\text{Tr}(\mathcal{L}[\rho] \ln \rho) \geq 0$$
-
+   
+$$
+\frac{dS}{dt} = -\text{Tr}(\mathcal{L}[\rho] \ln \rho) \geq 0
+$$
 ## 实验预测
 
 1. **退相干率的φ-标度**：实验应观察到$\Gamma_{ij} \propto |i-j|^{1/\phi}$

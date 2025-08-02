@@ -147,10 +147,11 @@ $$
 2. **φ-Oracle**：$O_{\phi}(x) = (-1)^{f(x)} \cdot \text{ZeckendorfPhase}(x)$
 3. **φ-扩散**：$D_{\phi} = 2|\psi_0\rangle_{\phi}\langle\psi_0|_{\phi} - I_{\phi}$
 4. **递归迭代**：
-   $$
+   
+$$
    |\psi_{k+1}\rangle_{\phi} = D_{\phi} O_{\phi} |\psi_k\rangle_{\phi}
-   $$
-
+   
+$$
 **关键创新**：φ-Oracle使用Zeckendorf相位编码，确保no-11约束：
 $$
 \text{ZeckendorfPhase}(x) = \exp(i \cdot \text{ZeckendorfSum}(x) / \phi)
