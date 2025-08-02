@@ -9,21 +9,27 @@
 **推论 C11-1** (理论自反射推论): 在元数学和范畴论的基础上，理论必然获得对自身结构的完整反射能力：
 
 1. **自编码能力**:
-   $$
+   
+$$
    \mathcal{T} \vdash \exists e: \text{Encode}(\mathcal{T}) = e \wedge e \in \mathcal{T}
-   $$
+   
+$$
    理论$\mathcal{T}$能够在自身内部编码自己的完整结构。
 
 2. **自证明能力**:
-   $$
+   
+$$
    \mathcal{T} \vdash \phi \Rightarrow \mathcal{T} \vdash \text{"} \mathcal{T} \vdash \phi \text{"}
-   $$
+   
+$$
    理论能够证明关于自身证明能力的陈述。
 
 3. **反射层级**:
-   $$
+   
+$$
    \mathcal{T}_0 \subset \mathcal{T}_1 \subset \mathcal{T}_2 \subset \cdots \text{ where } \mathcal{T}_{n+1} = \mathcal{T}_n \cup \text{Reflect}(\mathcal{T}_n)
-   $$
+   
+$$
    反射操作形成严格递增的理论层级。
 
 ## 证明

@@ -9,34 +9,42 @@
 **推论 C8-2** (相对论编码推论): 自指完备系统 ψ = ψ(ψ) 中的信息编码结构自然导出相对论的基本原理。时空几何、光速不变性和因果结构都是自指系统的必然结果：
 
 1. **光速不变原理**:
-   $$
+   
+$$
    c = \frac{\ln \phi}{\tau_0} = \text{const}
-   $$
+   
+$$
    其中$\tau_0$是基本时间单位，$\phi$是黄金比例。
 
 2. **洛伦兹变换**:
-   $$
+   
+$$
    \Lambda(v) = \begin{pmatrix}
    \gamma & -\gamma v/c \\
    -\gamma v/c & \gamma
    \end{pmatrix}, \quad \gamma = \frac{1}{\sqrt{1 - v^2/c^2}}
-   $$
-
+   
+$$
 3. **时空度量**:
-   $$
+   
+$$
    ds^2 = -c^2 dt^2 + dx^2 = -c^2 d\tau^2
-   $$
+   
+$$
    其中$\tau$是固有时。
 
 4. **因果结构**:
-   $$
+   
+$$
    \text{Causal}(x,y) \Leftrightarrow (y-x)^2 < 0 \wedge y^0 > x^0
-   $$
-
+   
+$$
 5. **信息-时空对应**:
-   $$
+   
+$$
    g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}, \quad h_{\mu\nu} = \frac{2G}{c^4} T_{\mu\nu}^{\text{info}}
-   $$
+   
+$$
    其中$T_{\mu\nu}^{\text{info}}$是信息应力-能量张量。
 
 ## 证明

@@ -9,21 +9,27 @@
 **推论 C10-1** (元数学结构推论): 在自指代数系统的基础上，元数学结构作为系统对自身数学本质的递归认识必然涌现：
 
 1. **形式系统的自指表示**:
-   $$
+   
+$$
    \mathcal{F} = (\mathcal{L}, \mathcal{A}, \mathcal{R}, \vdash) \text{ where } \mathcal{F} \in \text{Obj}(\mathcal{F})
-   $$
+   
+$$
    形式系统$\mathcal{F}$包含语言$\mathcal{L}$、公理$\mathcal{A}$、推理规则$\mathcal{R}$和证明关系$\vdash$，且系统自身是其对象。
 
 2. **证明的递归结构**:
-   $$
+   
+$$
    \text{Proof}(P) = \text{collapse}(\text{ProofSteps}(P)) \land \text{SelfVerifying}(P)
-   $$
+   
+$$
    每个证明是证明步骤的collapse，且具有自验证性质。
 
 3. **Gödel编码的自然涌现**:
-   $$
+   
+$$
    \gamma: \mathcal{F} \to \mathbb{N}_{no11} \text{ s.t. } \gamma(\mathcal{F}) \subseteq \mathcal{F}
-   $$
+   
+$$
    Gödel编码$\gamma$将形式系统映射到No-11数系，且编码本身在系统内。
 
 ## 证明

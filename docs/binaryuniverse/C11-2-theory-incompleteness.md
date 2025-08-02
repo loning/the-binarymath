@@ -9,21 +9,27 @@
 **推论 C11-2** (理论不完备性推论): 在具有自反射能力的理论系统中，必然存在真但不可证明的陈述：
 
 1. **第一不完备性**:
-   $$
+   
+$$
    \exists \phi: \text{True}(\phi) \wedge \neg \text{Provable}_{\mathcal{T}}(\phi)
-   $$
+   
+$$
    任何足够强的一致理论都包含真但不可证明的陈述。
 
 2. **第二不完备性**:
-   $$
+   
+$$
    \text{Con}(\mathcal{T}) \Rightarrow \mathcal{T} \nvdash \text{Con}(\mathcal{T})
-   $$
+   
+$$
    一致的理论不能证明自身的一致性。
 
 3. **熵增必然性**:
-   $$
+   
+$$
    \forall \mathcal{T}: \text{Complete}(\mathcal{T}) \Rightarrow \text{Inconsistent}(\mathcal{T})
-   $$
+   
+$$
    完备性与一致性不可兼得，反射必然导致熵增。
 
 ## 证明

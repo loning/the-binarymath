@@ -6,24 +6,30 @@
 
 ## 推论陈述
 
-**推论 C9-2** (递归数论推论): 在自指完备的算术系统{S, ⊞, ⊙, ⇈}中，数论结构必然作为算术运算的self-collapse模式涌现。素数、因式分解、模运算等数论概念都是自指递归的必然结果：
+**推论 C9-2** (递归数论推论): 在自指完备的算术系统\{S, ⊞, ⊙, ⇈\}中，数论结构必然作为算术运算的self-collapse模式涌现。素数、因式分解、模运算等数论概念都是自指递归的必然结果：
 
 1. **素数的自指定义**:
-   $$
+   
+$$
    \text{Prime}(p) \equiv \text{IrreducibleCollapse}(p) \land \text{MinimalGenerator}(p)
-   $$
+   
+$$
    其中$p$是一个在⊙运算下不可进一步collapse的生成元。
 
 2. **因式分解的递归性质**:
-   $$
+   
+$$
    n = p_1^{\alpha_1} \boxtimes p_2^{\alpha_2} \boxtimes \cdots \boxtimes p_k^{\alpha_k}
-   $$
+   
+$$
    其中$\boxtimes$是no-11约束下的自指组合算符。
 
 3. **模运算的自指实现**:
-   $$
+   
+$$
    a \equiv_{\boxed{m}} b \iff \text{collapse}(a \ominus_{\boxed{m}} b) = \mathbf{0}
-   $$
+   
+$$
    其中$\ominus_{\boxed{m}}$是模$m$的自指减法。
 
 ## 证明

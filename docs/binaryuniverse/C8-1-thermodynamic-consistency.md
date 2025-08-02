@@ -9,32 +9,41 @@
 **推论 C8-1** (热力学一致性推论): 自指完备系统 ψ = ψ(ψ) 中的演化规律与热力学定律完全一致，热力学的基本定律可以从自指公理严格推导：
 
 1. **第零定律 (热平衡传递性)**:
-   $$
+   
+$$
    \text{Equilibrium}(A,B) \wedge \text{Equilibrium}(B,C) \Rightarrow \text{Equilibrium}(A,C)
-   $$
-
+   
+$$
 2. **第一定律 (能量守恒)**:
-   $$
+   
+$$
    dU = \delta Q - \delta W = T dS - P dV
-   $$
+   
+$$
    其中能量U对应于系统的信息容量。
 
 3. **第二定律 (熵增原理)**:
-   $$
+   
+$$
    \Delta S_{\text{universe}} \geq 0
-   $$
+   
+$$
    等号仅在可逆过程中成立。
 
 4. **第三定律 (绝对零度不可达)**:
-   $$
+   
+$$
    \lim_{T \to 0} S = S_0 = k_B \ln(1) = 0
-   $$
+   
+$$
    对应于系统的基态唯一性。
 
 5. **信息-热力学对应**:
-   $$
+   
+$$
    S = k_B \ln \Omega = k_B \sum_i p_i \ln(1/p_i)
-   $$
+   
+$$
    其中$\Omega$是满足no-11约束的微观态数。
 
 ## 证明
@@ -364,7 +373,10 @@ $$
 
 ### 信息几何
 - **Fisher信息度量**: 
-  $$g_{ij} = \int p(x|\theta) \frac{\partial \ln p}{\partial \theta_i} \frac{\partial \ln p}{\partial \theta_j} dx$$
+  
+$$
+g_{ij} = \int p(x|\theta) \frac{\partial \ln p}{\partial \theta_i} \frac{\partial \ln p}{\partial \theta_j} dx
+$$
 - **热力学度量**: Ruppeiner几何
 - **相空间结构**: 辛几何与接触几何
 

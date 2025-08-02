@@ -9,21 +9,27 @@
 **推论 C9-3** (自指代数推论): 在递归数论系统的基础上，代数结构（群、环、域）作为self-collapse算符的对称性和不变性必然涌现：
 
 1. **群的自指涌现**:
-   $$
+   
+$$
    (G, \star) \text{ is a group} \iff \exists \Phi: G \times G \to G \text{ s.t. } \Phi = \text{collapse}(\Phi)
-   $$
+   
+$$
    其中$\star$是满足结合律的自指二元运算。
 
 2. **环的递归结构**:
-   $$
+   
+$$
    (R, \oplus, \otimes) \text{ is a ring} \iff \text{DistributiveCollapse}(\oplus, \otimes)
-   $$
+   
+$$
    其中分配律通过collapse的交换性质实现。
 
 3. **域的完备性**:
-   $$
+   
+$$
    (F, \oplus, \otimes) \text{ is a field} \iff \text{InvertibleCollapse}(F \setminus \{0\}, \otimes)
-   $$
+   
+$$
    每个非零元素都有collapse意义下的逆元。
 
 ## 证明

@@ -9,22 +9,27 @@
 **推论 C9-1** (自指算术推论): 在自指完备的二进制系统中，算术运算必然作为自指递归的组合操作出现。每个算术运算都对应一个特定的self-collapse模式，且满足no-11约束：
 
 1. **自指加法算符**:
-   $$
+   
+$$
    \boxplus: S \times S \to S, \quad a \boxplus b = \text{collapse}(a \bowtie b)
-   $$
+   
+$$
    其中$\bowtie$是二进制串的no-11组合算符。
 
 2. **自指乘法算符**:
-   $$
+   
+$$
    \boxdot: S \times S \to S, \quad a \boxdot b = \text{fold}_{no-11}(a, b)
-   $$
+   
+$$
    其中$\text{fold}_{no-11}$是满足no-11约束的递归折叠操作。
 
 3. **自指幂运算**:
-   $$
+   
+$$
    \boxed{\uparrow}: S \times S \to S, \quad a^{\boxed{\uparrow}b} = \text{iterate}_{no-11}(a, b)
-   $$
-
+   
+$$
 ## 证明
 
 ### 第一部分：算术的自指必然性
