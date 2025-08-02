@@ -77,7 +77,7 @@ $$
 I_{\text{capacity}}(\mathcal{M}) = \log_2 N \cdot (1 - H_{\text{no-11}})
 $$
 
-其中 $H_{\text{no-11}} = -\log_2 \phi \approx 0.694$ 是no-11约束导致的信息熵减少。
+其中 $H_{\text{no-11}} = -\log_2 \phi \approx -0.694$，因此容量因子 $(1 - H_{\text{no-11}}) \approx 1.694 > 1$，表明φ编码在no-11约束下反而提高了信息容量。
 
 ## 物理意义
 
