@@ -230,6 +230,18 @@
 - [`T11-2-phase-transitions.md`](T11-2-phase-transitions.md) - 定理11.2：相变定理
 - [`T11-3-critical-phenomena.md`](T11-3-critical-phenomena.md) - 定理11.3：临界现象定理
 
+### 第18章：多尺度物理统一理论
+
+#### 18.1 多尺度物理定理系列（新增）
+- [`T12-1-quantum-classical-transition.md`](T12-1-quantum-classical-transition.md) - 定理12.1：量子-经典过渡定理
+- [`T12-2-macro-emergence-theorem.md`](T12-2-macro-emergence-theorem.md) - 定理12.2：宏观涌现定理
+- [`T12-3-scale-separation-theorem.md`](T12-3-scale-separation-theorem.md) - 定理12.3：尺度分离定理
+
+#### 18.2 意识涌现推论系列（新增）
+- [`C12-1-primitive-consciousness-emergence.md`](C12-1-primitive-consciousness-emergence.md) - 推论C12-1：原始意识涌现推论
+- [`C12-2-self-model-construction.md`](C12-2-self-model-construction.md) - 推论C12-2：自我模型构建推论
+- [`C12-3-consciousness-hierarchy-differentiation.md`](C12-3-consciousness-hierarchy-differentiation.md) - 推论C12-3：意识层级分化推论
+
 ## 理论推导路线图
 
 ### 从公理到宇宙的逻辑链条
@@ -302,6 +314,7 @@ graph TD
 12. **理论自反射**：自反射机制 → 不完备性定理 → 不动点理论
 13. **递归深化**：递归深度 → 无限回归 → 自相似性
 14. **涌现模式**：涌现模式 → 相变理论 → 临界现象
+15. **多尺度物理统一**：量子-经典过渡 → 宏观涌现 → 尺度分离 → 意识涌现
 
 ## 学习路径指南
 
@@ -391,6 +404,9 @@ pie title 理论体系完整性
   - 递归定理（T10系列）✓
 - **第17章**：涌现模式 ✓（全部完成）
   - 涌现定理（T11系列）✓
+- **第18章**：多尺度物理统一理论 ✓（全部完成）
+  - 多尺度物理定理（T12系列）✓
+  - 意识涌现推论（C12系列）✓
 
 ### 系统架构优势
 
