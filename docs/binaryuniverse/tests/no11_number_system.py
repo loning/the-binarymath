@@ -287,5 +287,48 @@ def test_no11_number_system():
     print(f"\nMax representable value: {No11Number.max_representable_value()}")
 
 
+class No11NumberSystem:
+    """
+    No-11数值系统接口类
+    提供对No11Number功能的封装
+    """
+    
+    def __init__(self):
+        # 确保模式已初始化
+        No11Number._initialize_patterns()
+    
+    def to_zeckendorf(self, n: int) -> List[int]:
+        """转换为Zeckendorf表示（简化版本）"""
+        # 这里返回Fibonacci索引列表
+        if n <= 0:
+            return []
+        
+        # 使用标准Fibonacci数列
+        fibs = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+        indices = []
+        
+        # 贪心算法
+        for i in range(len(fibs) - 1, -1, -1):
+            if fibs[i] <= n:
+                indices.append(i + 1)  # 1-indexed
+                n -= fibs[i]
+                if n == 0:
+                    break
+        
+        return sorted(indices)
+    
+    def is_valid_representation(self, indices: List[int]) -> bool:
+        """检查表示是否满足no-11约束"""
+        # 检查是否有连续的索引
+        for i in range(len(indices) - 1):
+            if indices[i+1] - indices[i] == 1:
+                return False
+        return True
+    
+    def contains_11(self, binary_str: str) -> bool:
+        """检查二进制字符串是否包含11"""
+        return '11' in binary_str
+
+
 if __name__ == '__main__':
     test_no11_number_system()
