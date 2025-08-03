@@ -232,6 +232,29 @@ class PhiReal:
             return False
         return abs(self.decimal_value - other.decimal_value) < 1e-12
     
+    def __lt__(self, other) -> bool:
+        if not isinstance(other, PhiReal):
+            return NotImplemented
+        return self.decimal_value < other.decimal_value
+    
+    def __le__(self, other) -> bool:
+        if not isinstance(other, PhiReal):
+            return NotImplemented
+        return self.decimal_value <= other.decimal_value
+    
+    def __gt__(self, other) -> bool:
+        if not isinstance(other, PhiReal):
+            return NotImplemented
+        return self.decimal_value > other.decimal_value
+    
+    def __ge__(self, other) -> bool:
+        if not isinstance(other, PhiReal):
+            return NotImplemented
+        return self.decimal_value >= other.decimal_value
+    
+    def __ne__(self, other) -> bool:
+        return not self.__eq__(other)
+    
     def __str__(self) -> str:
         return f"PhiReal({self.decimal_value:.6f}, {self.zeckendorf_rep})"
 
