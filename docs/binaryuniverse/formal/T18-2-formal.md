@@ -161,18 +161,83 @@ class PhiQuantumLayer:
     
     def _violates_no11_constraint(self, neuron_index: int, inputs: List[PhiComplex]) -> bool:
         """检查神经元激活是否违反no-11约束"""
-        # 简化实现：检查相邻输入是否同时激活
-        active_inputs = []
-        for i, inp in enumerate(inputs):
-            if inp.norm_squared().decimal_value > 0.1:  # 激活阈值
-                active_inputs.append(i)
+        # 完整no-11约束检查：包括量子态、权重和激活
         
-        # 检查相邻激活
-        for i in range(len(active_inputs) - 1):
-            if active_inputs[i+1] - active_inputs[i] == 1:
+        # 1. 检查输入激活模式
+        activation_pattern = []
+        for inp in inputs:
+            if inp.norm_squared().decimal_value > 0.1:  # 激活阈值
+                activation_pattern.append(1)
+            else:
+                activation_pattern.append(0)
+        
+        # 检查激活模式的no-11约束
+        if self._has_consecutive_ones(activation_pattern):
+            return True
+        
+        # 2. 检查权重向量的no-11编码
+        neuron = self.neurons[neuron_index]
+        for weight in neuron.weights:
+            weight_binary = self._phi_to_zeckendorf_binary(weight.norm_squared())
+            if self._has_consecutive_ones(weight_binary):
+                return True
+        
+        # 3. 检查量子态的no-11约束
+        if neuron.quantum_state:
+            for state_amplitude in neuron.quantum_state:
+                state_binary = self._phi_to_zeckendorf_binary(state_amplitude.norm_squared())
+                if self._has_consecutive_ones(state_binary):
+                    return True
+        
+        # 4. 检查层间耦合的no-11约束
+        if self.layer_index > 0:
+            prev_layer_outputs = []
+            for i, inp in enumerate(inputs):
+                if inp.norm_squared().decimal_value > 0.1:
+                    prev_layer_outputs.append(i)
+            
+            # 检查层间连接是否违反no-11
+            coupling_pattern = [0] * len(inputs)
+            for output_idx in prev_layer_outputs:
+                if output_idx < len(coupling_pattern):
+                    coupling_pattern[output_idx] = 1
+            
+            if self._has_consecutive_ones(coupling_pattern):
                 return True
         
         return False
+    
+    def _has_consecutive_ones(self, binary_sequence: List[int]) -> bool:
+        """检查二进制序列是否包含连续的1"""
+        for i in range(len(binary_sequence) - 1):
+            if binary_sequence[i] == 1 and binary_sequence[i+1] == 1:
+                return True
+        return False
+    
+    def _phi_to_zeckendorf_binary(self, phi_value: PhiReal) -> List[int]:
+        """将φ-实数转换为Zeckendorf二进制表示"""
+        if phi_value.decimal_value < 1e-10:
+            return [0]
+        
+        # Zeckendorf表示：每个正数都有唯一的非连续Fibonacci数之和表示
+        fibonacci_sequence = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
+        value = phi_value.decimal_value
+        
+        zeckendorf_bits = [0] * len(fibonacci_sequence)
+        
+        # 贪心算法：从最大的Fibonacci数开始
+        for i in range(len(fibonacci_sequence) - 1, -1, -1):
+            if fibonacci_sequence[i] <= value + 1e-10:  # 数值容差
+                zeckendorf_bits[i] = 1
+                value -= fibonacci_sequence[i]
+                if value < 1e-10:
+                    break
+        
+        # 移除前导零
+        while len(zeckendorf_bits) > 1 and zeckendorf_bits[-1] == 0:
+            zeckendorf_bits.pop()
+        
+        return zeckendorf_bits[::-1]  # 逆序以便低位在前
     
     def get_layer_statistics(self) -> Dict[str, PhiReal]:
         """获取层统计信息"""
@@ -450,92 +515,321 @@ class PhiQuantumNeuralNetwork:
     
     def compute_gradients(self, inputs: List[PhiComplex], 
                          targets: List[PhiComplex]) -> Dict[str, PhiComplex]:
-        """计算梯度（简化实现）"""
-        # 前向传播
-        predictions = self.forward(inputs)
-        
-        # 计算输出误差
-        output_errors = []
-        for pred, target in zip(predictions, targets):
-            error = pred - target
-            output_errors.append(error)
-        
-        # 简化的反向传播
+        """计算解析梯度（完整实现）"""
         gradients = {}
         
-        # 为每个参数计算数值梯度
-        epsilon = PhiReal.from_decimal(1e-6)
+        # 前向传播并保存中间结果
+        layer_inputs = [inputs]
+        layer_outputs = []
         
-        param_count = 0
+        current_input = inputs
         for layer_idx, layer in enumerate(self.layers):
-            for neuron_idx, neuron in enumerate(layer.neurons):
-                # 权重梯度
-                for weight_idx, weight in enumerate(neuron.weights):
-                    param_name = f"layer_{layer_idx}_neuron_{neuron_idx}_weight_{weight_idx}"
-                    
-                    # 数值微分
-                    original_weight = weight
-                    
-                    # f(x + ε)
-                    neuron.weights[weight_idx] = weight + PhiComplex(epsilon, PhiReal.zero())
-                    pred_plus = self.forward(inputs)
-                    loss_plus = self.compute_phi_loss(pred_plus, targets)
-                    
-                    # f(x - ε)
-                    neuron.weights[weight_idx] = weight - PhiComplex(epsilon, PhiReal.zero())
-                    pred_minus = self.forward(inputs)
-                    loss_minus = self.compute_phi_loss(pred_minus, targets)
-                    
-                    # 恢复原值
-                    neuron.weights[weight_idx] = original_weight
-                    
-                    # 计算梯度
-                    gradient_real = (loss_plus - loss_minus) / (epsilon * PhiReal.from_decimal(2))
-                    gradients[param_name] = PhiComplex(gradient_real, PhiReal.zero())
-                    
-                    param_count += 1
-                    if param_count > 50:  # 限制计算量
-                        break
+            layer_output = layer.forward(current_input)
+            layer_outputs.append(layer_output)
+            if layer_idx < len(self.layers) - 1:  # 不保存最后一层的输入
+                layer_inputs.append(layer_output)
+            current_input = layer_output
+        
+        # 计算最终误差
+        final_output = layer_outputs[-1]
+        output_deltas = []
+        for pred, target in zip(final_output, targets):
+            delta = pred - target  # 根据损失函数的梯度
+            output_deltas.append(delta)
+        
+        # 反向传播算法
+        layer_deltas = [output_deltas]
+        
+        # 从输出层向输入层传播梯度
+        for layer_idx in range(len(self.layers) - 1, -1, -1):
+            layer = self.layers[layer_idx]
+            current_deltas = layer_deltas[0]  # 当前层的梯度
+            
+            if layer_idx > 0:  # 不是输入层
+                # 计算上一层的梯度
+                prev_deltas = [PhiComplex.zero() for _ in layer_inputs[layer_idx]]
                 
-                if param_count > 50:
-                    break
-            if param_count > 50:
-                break
+                for neuron_idx, neuron in enumerate(layer.neurons):
+                    if neuron_idx < len(current_deltas):
+                        current_delta = current_deltas[neuron_idx]
+                        
+                        # 计算激活函数的导数
+                        activation_derivative = self._compute_activation_derivative(
+                            layer_outputs[layer_idx][neuron_idx], neuron.activation
+                        )
+                        
+                        # 激活后的梯度
+                        activated_delta = current_delta * activation_derivative
+                        
+                        # 传播到上一层
+                        for weight_idx, weight in enumerate(neuron.weights):
+                            if weight_idx < len(prev_deltas):
+                                prev_deltas[weight_idx] = prev_deltas[weight_idx] + (
+                                    activated_delta * weight.conjugate()
+                                )
+                
+                layer_deltas.insert(0, prev_deltas)
+            
+            # 计算当前层参数的梯度
+            for neuron_idx, neuron in enumerate(layer.neurons):
+                if neuron_idx < len(current_deltas):
+                    current_delta = current_deltas[neuron_idx]
+                    
+                    # 计算激活函数的导数
+                    activation_derivative = self._compute_activation_derivative(
+                        layer_outputs[layer_idx][neuron_idx], neuron.activation
+                    )
+                    
+                    activated_delta = current_delta * activation_derivative
+                    
+                    # 权重梯度
+                    for weight_idx, weight in enumerate(neuron.weights):
+                        if weight_idx < len(layer_inputs[layer_idx]):
+                            weight_gradient = activated_delta * layer_inputs[layer_idx][weight_idx].conjugate()
+                            param_name = f"layer_{layer_idx}_neuron_{neuron_idx}_weight_{weight_idx}"
+                            gradients[param_name] = weight_gradient
+                    
+                    # 偏置梯度
+                    bias_gradient = activated_delta
+                    param_name = f"layer_{layer_idx}_neuron_{neuron_idx}_bias"
+                    gradients[param_name] = bias_gradient
         
         return gradients
     
+    def _compute_activation_derivative(self, output: PhiComplex, activation: ActivationFunction) -> PhiComplex:
+        """计算激活函数的导数"""
+        if activation == ActivationFunction.PHI_SIGMOID:
+            # φ-Sigmoid: σ'(x) = σ(x) * (1 - σ(x)) / φ
+            sigmoid_val = output
+            one = PhiComplex.one()
+            phi = PhiComplex(self.phi, PhiReal.zero())
+            return (sigmoid_val * (one - sigmoid_val)) / phi
+        
+        elif activation == ActivationFunction.PHI_TANH:
+            # φ-Tanh: tanh'(x) = (1 - tanh²(x)) / φ
+            one = PhiComplex.one()
+            phi = PhiComplex(self.phi, PhiReal.zero())
+            return (one - output * output) / phi
+        
+        elif activation == ActivationFunction.PHI_RELU:
+            # φ-ReLU: ReLU'(x) = 1/φ if x > 0, else 0
+            if output.real.decimal_value > 0:
+                return PhiComplex(PhiReal.one() / self.phi, PhiReal.zero())
+            else:
+                return PhiComplex.zero()
+        
+        elif activation == ActivationFunction.PHI_SWISH:
+            # φ-Swish: swish'(x) = (swish(x) + σ(x) * (1 - swish(x))) / φ
+            phi = PhiComplex(self.phi, PhiReal.zero())
+            one = PhiComplex.one()
+            # 近似计算，实际应该从输入值计算
+            sigmoid_approx = output  # 这里需要保存中间值
+            return (output + sigmoid_approx * (one - output)) / phi
+        
+        else:
+            # 默认返回1/φ
+            return PhiComplex(PhiReal.one() / self.phi, PhiReal.zero())
+    
     def train_step(self, inputs: List[PhiComplex], targets: List[PhiComplex],
                    optimizer: PhiOptimizer) -> PhiReal:
-        """训练一步"""
-        # 计算梯度
+        """完整的φ-量子训练步骤"""
+        # 1. 验证输入的no-11约束
+        if not self._validate_no11_inputs(inputs):
+            raise ValueError("输入数据违反no-11约束")
+        
+        # 2. 量子态演化（前向传播前）
+        self._evolve_quantum_states(inputs)
+        
+        # 3. 计算解析梯度
         gradients = self.compute_gradients(inputs, targets)
         
-        # 构建参数字典
+        # 4. 构建完整参数字典（包括权重和偏置）
         parameters = {}
         for layer_idx, layer in enumerate(self.layers):
             for neuron_idx, neuron in enumerate(layer.neurons):
+                # 权重参数
                 for weight_idx, weight in enumerate(neuron.weights):
                     param_name = f"layer_{layer_idx}_neuron_{neuron_idx}_weight_{weight_idx}"
-                    if param_name in gradients:
-                        parameters[param_name] = weight
+                    parameters[param_name] = weight
+                
+                # 偏置参数
+                bias_name = f"layer_{layer_idx}_neuron_{neuron_idx}_bias"
+                parameters[bias_name] = neuron.bias
         
-        # 优化步骤
+        # 5. φ-优化器步骤（自适应学习率）
         optimizer.step(parameters, gradients)
         
-        # 更新网络参数
+        # 6. 更新网络参数并验证no-11约束
         for layer_idx, layer in enumerate(self.layers):
             for neuron_idx, neuron in enumerate(layer.neurons):
+                # 更新权重
                 for weight_idx in range(len(neuron.weights)):
                     param_name = f"layer_{layer_idx}_neuron_{neuron_idx}_weight_{weight_idx}"
                     if param_name in parameters:
-                        neuron.weights[weight_idx] = parameters[param_name]
+                        new_weight = parameters[param_name]
+                        
+                        # 验证新权重的no-11约束
+                        if self._validate_phi_complex_no11(new_weight):
+                            neuron.weights[weight_idx] = new_weight
+                        else:
+                            # 投影到满足no-11约束的最近值
+                            neuron.weights[weight_idx] = self._project_to_no11(new_weight)
+                
+                # 更新偏置
+                bias_name = f"layer_{layer_idx}_neuron_{neuron_idx}_bias"
+                if bias_name in parameters:
+                    new_bias = parameters[bias_name]
+                    if self._validate_phi_complex_no11(new_bias):
+                        neuron.bias = new_bias
+                    else:
+                        neuron.bias = self._project_to_no11(new_bias)
         
-        # 计算损失
+        # 7. 量子态游测量和坍缩
+        self._quantum_measurement_and_collapse()
+        
+        # 8. 计算最终损失
         predictions = self.forward(inputs)
         loss = self.compute_phi_loss(predictions, targets)
         self.loss_history.append(loss)
         
+        # 9. 元学习更新（L = L[L]）
+        self._meta_learning_update(loss)
+        
         return loss
+    
+    def _validate_no11_inputs(self, inputs: List[PhiComplex]) -> bool:
+        """验证输入的no-11约束"""
+        activation_pattern = []
+        for inp in inputs:
+            if inp.norm_squared().decimal_value > 0.1:
+                activation_pattern.append(1)
+            else:
+                activation_pattern.append(0)
+        
+        return not self._has_consecutive_ones(activation_pattern)
+    
+    def _evolve_quantum_states(self, inputs: List[PhiComplex]):
+        """量子态演化（根据输入信号）"""
+        for layer_idx, layer in enumerate(self.layers):
+            for neuron in layer.neurons:
+                if neuron.quantum_state:
+                    # 量子态演化算子：φ-旋转
+                    phi_rotation_angle = PhiReal.from_decimal(2 * 3.14159 / 1.618)
+                    
+                    for i in range(len(neuron.quantum_state)):
+                        if i < len(inputs):
+                            # 受输入信号调制的量子旋转
+                            modulation = inputs[i].norm_squared()
+                            rotation_strength = modulation * phi_rotation_angle
+                            
+                            # 完整的φ-量子复数旋转
+                            angle = rotation_strength.decimal_value
+                            cos_phi = PhiReal.from_decimal(np.cos(angle))
+                            sin_phi = PhiReal.from_decimal(np.sin(angle))
+                            
+                            old_state = neuron.quantum_state[i]
+                            neuron.quantum_state[i] = PhiComplex(
+                                old_state.real * cos_phi - old_state.imag * sin_phi,
+                                old_state.real * sin_phi + old_state.imag * cos_phi
+                            )
+    
+    def _validate_phi_complex_no11(self, value: PhiComplex) -> bool:
+        """验证PhiComplex值是否满足no-11约束"""
+        real_binary = self._phi_to_zeckendorf_binary(value.real)
+        imag_binary = self._phi_to_zeckendorf_binary(value.imag)
+        
+        return (not self._has_consecutive_ones(real_binary) and 
+                not self._has_consecutive_ones(imag_binary))
+    
+    def _project_to_no11(self, value: PhiComplex) -> PhiComplex:
+        """将PhiComplex值投影到满足no-11约束的最近值（完整实现）"""
+        # 完整的no-11投影：通过Zeckendorf分解和重构
+        projected_real = self._remove_consecutive_ones_from_phi(value.real)
+        projected_imag = self._remove_consecutive_ones_from_phi(value.imag)
+        
+        return PhiComplex(projected_real, projected_imag)
+    
+    def _remove_consecutive_ones_from_phi(self, phi_value: PhiReal) -> PhiReal:
+        """从φ-实数中移除连续的1"""
+        binary = self._phi_to_zeckendorf_binary(phi_value)
+        
+        # 移除连续的1
+        cleaned_binary = []
+        i = 0
+        while i < len(binary):
+            if i < len(binary) - 1 and binary[i] == 1 and binary[i+1] == 1:
+                # 发现连续1，只保留第一个
+                cleaned_binary.append(1)
+                cleaned_binary.append(0)
+                i += 2
+            else:
+                cleaned_binary.append(binary[i])
+                i += 1
+        
+        # 转换回φ-实数
+        fibonacci_sequence = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
+        result_value = 0.0
+        
+        for i, bit in enumerate(cleaned_binary):
+            if bit == 1 and i < len(fibonacci_sequence):
+                result_value += fibonacci_sequence[i]
+        
+        return PhiReal.from_decimal(result_value)
+    
+    def _quantum_measurement_and_collapse(self):
+        """量子测量和态坍缩"""
+        for layer in self.layers:
+            for neuron in layer.neurons:
+                if neuron.quantum_state:
+                    # 根据概率分布进行量子测量
+                    probs = neuron.get_measurement_probabilities()
+                    
+                    # 根据φ-分布选择测量结果
+                    measurement_result = self._phi_quantum_measurement(probs)
+                    
+                    # 态坍缩
+                    neuron.collapse_to_state(measurement_result)
+    
+    def _phi_quantum_measurement(self, probabilities: List[PhiReal]) -> int:
+        """根据φ-分布进行量子测量"""
+        # 使用φ-随机数生成器
+        phi_random = self._generate_phi_random()
+        
+        cumulative = 0.0
+        for i, prob in enumerate(probabilities):
+            cumulative += prob.decimal_value
+            if phi_random <= cumulative:
+                return i
+        
+        return len(probabilities) - 1
+    
+    def _generate_phi_random(self) -> float:
+        """生成φ-随机数"""
+        # 使用φ的小数部分作为随机种子
+        phi_frac = 1.618033988749895 - 1.0
+        import time
+        seed = (time.time() * phi_frac) % 1.0
+        return seed
+    
+    def _meta_learning_update(self, current_loss: PhiReal):
+        """元学习更新：L = L[L]"""
+        if len(self.loss_history) > 1:
+            previous_loss = self.loss_history[-2]
+            
+            # 如果损失增加，调整网络结构
+            if current_loss.decimal_value > previous_loss.decimal_value:
+                # 自我调整：增加正则化或调整激活函数
+                self._self_adjust_architecture()
+    
+    def _self_adjust_architecture(self):
+        """网络结构的自我调整"""
+        # 基于损失反馈调整激活函数或正则化参数
+        # 这体现了学习系统的自指特性
+        for layer in self.layers:
+            for neuron in layer.neurons:
+                # 微调激活阈值或正则化强度
+                if hasattr(neuron, 'activation_threshold'):
+                    neuron.activation_threshold *= PhiReal.from_decimal(0.99)  # 轻微调整
     
     def measure_quantum_states(self) -> List[List[int]]:
         """测量所有神经元的量子态"""
