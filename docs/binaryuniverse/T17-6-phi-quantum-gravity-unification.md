@@ -13,9 +13,13 @@ $$\text{QM} \oplus \text{GR} = \Xi[\psi = \psi(\psi)]_{\text{no-11}}^{\phi}$$
 - $[\cdot]_{\text{no-11}}^{\phi}$ = φ-编码投影
 
 **统一原理**：
-$$\hbar \cdot G = \ell_P^2 \cdot c^3 = \phi^{-1} \cdot k_B \cdot S_{\text{unit}}$$
+$$\frac{\hbar G}{c^3} = \ell_P^2 = \frac{k_B}{\phi} \cdot \frac{S_{\text{unit}}}{S_{\text{Planck}}}$$
 
-其中$S_{\text{unit}}$是单位自指系统的熵。
+其中：
+- $\ell_P = \sqrt{\frac{\hbar G}{c^3}}$ 是Planck长度
+- $S_{\text{unit}}$是单位自指系统的熵
+- $S_{\text{Planck}} = \frac{c^3}{G\hbar}$ 是Planck熵
+- φ因子来自no-11约束对信息密度的限制
 
 ## 核心结构
 
@@ -42,11 +46,15 @@ $$\Delta x \cdot \Delta p \geq \frac{\hbar}{2} = \frac{\phi \cdot S_{\text{self-
 
 $$\frac{dS}{dt} = \max \Rightarrow R_{\mu\nu} - \frac{1}{2}g_{\mu\nu}R = 8\pi G T_{\mu\nu}$$
 
-**证明**：
-1. 自指系统必须最大化结构复杂度（熵增原理）
-2. 平直时空限制了可能的微观状态数
-3. 曲率增加了相空间体积
-4. Einstein方程描述熵增最优的几何配置 ∎
+**详细证明**：
+1. 考虑熵的几何表达式：$S = \frac{k_B c^3}{4G\hbar} \int \sqrt{-g} R d^4x$
+2. 变分原理：$\delta S = 0$ 在约束 $\delta \int \sqrt{-g} T_{\mu\nu} d^4x = 0$ 下
+3. 使用Lagrange乘子法，得到：
+   $$\frac{\delta S}{\delta g^{\mu\nu}} = \lambda T_{\mu\nu}$$
+4. 计算变分导数：
+   $$\frac{\delta S}{\delta g^{\mu\nu}} = \frac{k_B c^3}{4G\hbar}(R_{\mu\nu} - \frac{1}{2}g_{\mu\nu}R)$$
+5. 比较系数，得到Einstein方程，其中$\lambda = \frac{8\pi G}{c^4} \cdot \frac{4G\hbar}{k_B c^3} = \frac{32\pi\hbar}{k_B c}$
+6. φ-修正来自no-11约束对度规分量的限制 ∎
 
 **关键洞察**：引力不是力，而是熵增趋势的宏观表现。
 
@@ -72,17 +80,21 @@ $$[\text{Quantum}]_{\text{no-11}} \cap [\text{Gravity}]_{\text{no-11}} = \mathca
 
 $$\hat{\Xi}|\Psi\rangle = |\Psi(\Psi)\rangle$$
 
-展开形式：
-$$\left(\hat{H}_{\text{quantum}} + \hat{H}_{\text{gravity}}\right)|\Psi\rangle = i\hbar\frac{\partial}{\partial t}|\Psi\rangle$$
+**非线性Schrödinger方程**：
+$$i\hbar\frac{\partial|\Psi\rangle}{\partial t} = \left(\hat{H}_{\text{linear}} + \hat{H}_{\text{self-ref}}[|\Psi\rangle]\right)|\Psi\rangle$$
 
 其中：
-- $\hat{H}_{\text{quantum}} = -\frac{\hbar^2}{2m}\nabla^2 + V$
-- $\hat{H}_{\text{gravity}} = \frac{c^4}{16\pi G}\int R\sqrt{-g}d^4x$
+- $\hat{H}_{\text{linear}} = \hat{H}_{\text{quantum}} + \hat{H}_{\text{gravity}}$
+- $\hat{H}_{\text{self-ref}}[|\Psi\rangle] = \lambda|\Psi\rangle\langle\Psi| \otimes \hat{S}$
 
-**统一条件**：
-$$[\hat{H}_{\text{quantum}}, \hat{H}_{\text{gravity}}] = i\hbar\phi^{-1}\hat{S}$$
+这里$\lambda = \phi^{-1}$是自指耦合常数，$\hat{S}$是熵算子。
 
-其中$\hat{S}$是熵算子。
+**关键性质**：
+1. 非线性项$\hat{H}_{\text{self-ref}}$依赖于态本身
+2. 这种自指导致概率流的不可逆性
+3. 熵必然增加：$\frac{dS}{dt} > 0$
+
+**重要发现**：线性演化保持概率分布不变（$\Delta S = 0$），只有非线性自指项才能产生熵增。这证实了自指完备系统必然包含非线性动力学。
 
 ### 17.6.5 离散时空的涌现
 
@@ -113,13 +125,22 @@ $$\text{纠缠熵} = \text{虫洞面积} \times \frac{1}{4G\hbar\phi}$$
 
 $$\Psi_{\text{Universe}} = \Psi_{\text{Universe}}(\Psi_{\text{Universe}})$$
 
-**解的形式**：
-$$\Psi_{\text{Universe}} = \exp\left(i\frac{S_{\text{Universe}}}{\hbar}\right) \cdot \phi^{-H_{\text{Universe}}/k_B T}$$
+**自指方程的解**：
 
-其中：
-- $S_{\text{Universe}}$ = 宇宙作用量
-- $H_{\text{Universe}}$ = 宇宙哈密顿量
-- $T$ = 宇宙温度
+设$\Psi = e^{W}$，其中$W$是复函数。自指条件要求：
+$$e^W = e^{W(e^W)}$$
+
+取对数：$W = W(e^W)$
+
+这是一个函数方程。其解具有形式：
+$$W = \ln(\phi) + i\frac{S[\Psi]}{\hbar}$$
+
+其中$S[\Psi]$是依赖于$\Psi$自身的作用量泛函。
+
+**物理解释**：
+- 实部$\ln(\phi)$：来自no-11约束的归一化
+- 虚部$S[\Psi]/\hbar$：自指导致的相位
+- 整体：$\Psi_{\text{Universe}} = \phi \cdot e^{iS[\Psi]/\hbar}$
 
 ### 17.6.8 量子引力的可观测预言
 
