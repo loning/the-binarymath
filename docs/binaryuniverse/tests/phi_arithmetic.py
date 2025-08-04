@@ -255,6 +255,10 @@ class PhiReal:
     def __ne__(self, other) -> bool:
         return not self.__eq__(other)
     
+    def __abs__(self) -> 'PhiReal':
+        """绝对值"""
+        return PhiReal.from_decimal(abs(self.decimal_value))
+    
     def __str__(self) -> str:
         return f"PhiReal({self.decimal_value:.6f}, {self.zeckendorf_rep})"
 
@@ -292,6 +296,24 @@ class PhiComplex:
     def __sub__(self, other: 'PhiComplex') -> 'PhiComplex':
         """复数减法"""
         return PhiComplex(self.real - other.real, self.imag - other.imag)
+    
+    def __truediv__(self, other) -> 'PhiComplex':
+        """复数除法"""
+        if isinstance(other, PhiComplex):
+            # (a+bi)/(c+di) = ((ac+bd)+(bc-ad)i)/(c²+d²)
+            denominator = other.real * other.real + other.imag * other.imag
+            if denominator.decimal_value < 1e-16:
+                raise PhiArithmeticError("复数除法：除数不能为零")
+            
+            real_part = (self.real * other.real + self.imag * other.imag) / denominator
+            imag_part = (self.imag * other.real - self.real * other.imag) / denominator
+            return PhiComplex(real_part, imag_part)
+        elif isinstance(other, PhiReal):
+            if abs(other.decimal_value) < 1e-16:
+                raise PhiArithmeticError("复数除法：除数不能为零")
+            return PhiComplex(self.real / other, self.imag / other)
+        else:
+            return NotImplemented
     
     def conjugate(self) -> 'PhiComplex':
         """复共轭"""
