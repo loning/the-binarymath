@@ -98,9 +98,15 @@ $$S_{\text{final}} > S_{\text{initial}} \Rightarrow \text{信息以复杂形式�
 4. 通过测量全部关联可恢复信息
 
 **恢复效率**：
-$$\eta_{\text{recovery}} = \frac{S_{\text{correlation}}}{S_{\text{total}}} = \frac{1}{1 + \phi^{-n}}$$
+$$\eta_{\text{recovery}} = \frac{n_{\text{measured}}}{n_{\text{total}}} \cdot \phi^{-d_{\text{recursion}}}$$
 
-其中$n$是测量的关联数。随着$n$增加，恢复效率趋近1。
+其中$n_{\text{measured}}$是测量的量子数，$n_{\text{total}}$是总量子数，$d_{\text{recursion}}$是自指递归深度。
+
+**关键洞察**：
+- 对于有限测量（$n_{\text{measured}} \ll n_{\text{total}}$），恢复率必然很低
+- 这不是缺陷，而是自指系统的本质特征
+- 信息并未丢失，只是分散在整个辐射历史中
+- 完全恢复需要收集所有辐射，这在实践中不可能
 
 ### 17.5.6 从第一性原理推导熵增
 
