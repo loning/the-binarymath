@@ -65,14 +65,20 @@ $$
 
 **证明**：
 1. 从作用量变分开始：
-   $$\delta S^{\phi} = \int d^4x \partial_{\mu} J^{\mu,\phi}$$
    
+$$
+\delta S^{\phi} = \int d^4x \partial_{\mu} J^{\mu,\phi}
+$$
 2. 由于no-11约束，某些变换被禁止：
-   $$\delta S^{\phi} = \sum_{n \in \text{ValidSet}} \delta S_n^{\phi} + \sum_{m \in \text{ForbiddenSet}} \delta S_m^{\phi}$$
    
+$$
+\delta S^{\phi} = \sum_{n \in \text{ValidSet}} \delta S_n^{\phi} + \sum_{m \in \text{ForbiddenSet}} \delta S_m^{\phi}
+$$
 3. 第二项不能完全消失，导致：
-   $$\partial_{\mu} J^{\mu,\phi} = \Delta^{\phi} \neq 0$$
-
+   
+$$
+\partial_{\mu} J^{\mu,\phi} = \Delta^{\phi} \neq 0
+$$
 ### 定理2：守恒荷的量子化
 
 **定理T15-1.2**：φ-Noether荷必然量子化：
@@ -82,11 +88,15 @@ $$
 
 **证明**：
 1. 守恒荷定义为：
-   $$Q^{\phi} = \int_{\Sigma} J^{0,\phi} d^3x$$
    
+$$
+Q^{\phi} = \int_{\Sigma} J^{0,\phi} d^3x
+$$
 2. 由于$J^{0,\phi}$包含$\delta^{\phi}\psi$，而变换参数量子化：
-   $$\delta^{\phi}\psi = \sum_{n} c_n \phi^{F_n} \delta_n\psi$$
    
+$$
+\delta^{\phi}\psi = \sum_{n} c_n \phi^{F_n} \delta_n\psi
+$$
 3. 积分后得到量子化的荷。
 
 ### 定理3：对称性破缺与熵增

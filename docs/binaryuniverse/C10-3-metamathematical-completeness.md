@@ -28,8 +28,9 @@
 ### 命题1：递归可达性
 
 **命题C10-3.1**：对任意目标状态$S_{\text{target}}$，存在初始状态$S_0$和递归深度$d$，使得：
-$$\Xi^d[S_0] = S_{\text{target}}$$
-
+$$
+\Xi^d[S_0] = S_{\text{target}}
+$$
 **证明**：
 1. 由T10-1，每个状态都有有限递归深度$R(S) < \infty$
 2. 状态空间在no-11约束下是有限的：$|\mathcal{S}_n| = F_{n+2}$
@@ -42,14 +43,17 @@ $$\Xi^d[S_0] = S_{\text{target}}$$
 ### 命题2：表示闭包性
 
 **命题C10-3.2**：φ-系统的表示空间对于允许的运算是闭合的：
-$$\forall S_1, S_2 \in \mathcal{S}: \quad S_1 \oplus_\phi S_2 \in \mathcal{S}$$
-
+$$
+\forall S_1, S_2 \in \mathcal{S}: \quad S_1 \oplus_\phi S_2 \in \mathcal{S}
+$$
 其中$\oplus_\phi$是保持no-11约束的φ-运算。
 
 **证明**：
 1. 定义φ-运算：
-   $$S_1 \oplus_\phi S_2 = \text{normalize}_{11}(S_1 \cdot \phi + S_2)$$
    
+$$
+S_1 \oplus_\phi S_2 = \text{normalize}_{11}(S_1 \cdot \phi + S_2)
+$$
 2. normalize操作确保结果满足no-11约束：
    - 如果出现"11"，替换为"10"（Fibonacci递归规则）
    - 这保持了Zeckendorf表示的唯一性
@@ -65,12 +69,15 @@ $$\forall S_1, S_2 \in \mathcal{S}: \quad S_1 \oplus_\phi S_2 \in \mathcal{S}$$
 ### 命题3：极限存在性
 
 **命题C10-3.3**：φ-度量空间$(\mathcal{S}, d_\phi)$中的任意Cauchy序列都收敛：
-$$\{S_n\} \text{ Cauchy} \Rightarrow \exists S^* \in \mathcal{S}: \lim_{n \to \infty} S_n = S^*$$
-
+$$
+\{S_n\} \text{ Cauchy} \Rightarrow \exists S^* \in \mathcal{S}: \lim_{n \to \infty} S_n = S^*
+$$
 **证明**：
 1. φ-度量定义：
-   $$d_\phi(S_1, S_2) = \sum_{i=1}^{\infty} \frac{|s_1^{(i)} - s_2^{(i)}|}{\phi^i}$$
    
+$$
+d_\phi(S_1, S_2) = \sum_{i=1}^{\infty} \frac{|s_1^{(i)} - s_2^{(i)}|}{\phi^i}
+$$
 2. 由T10-2，任意序列最终进入周期轨道
 3. 周期轨道形成φ-平衡态集合$\mathcal{S}^*$
 4. Cauchy序列的尾部必然落在某个平衡态的$\epsilon$-邻域内
@@ -83,8 +90,9 @@ $$\{S_n\} \text{ Cauchy} \Rightarrow \exists S^* \in \mathcal{S}: \lim_{n \to \i
 ### 1. 自举性质
 
 系统可以完全描述自身：
-$$\exists \mathcal{M} \in \mathcal{S}: \quad \mathcal{M} \text{ encodes } \mathcal{S}$$
-
+$$
+\exists \mathcal{M} \in \mathcal{S}: \quad \mathcal{M} \text{ encodes } \mathcal{S}
+$$
 这是通过递归深度的有界性实现的。
 
 ### 2. 不可判定性边界
@@ -105,11 +113,13 @@ $$\exists \mathcal{M} \in \mathcal{S}: \quad \mathcal{M} \text{ encodes } \mathc
 ### 1. 完备基的构造
 
 **Fibonacci基**：
-$$\mathcal{B} = \{1, \phi, \phi^2, \phi^3, \ldots\} \cap \mathbb{Z}_{\text{no-11}}$$
-
+$$
+\mathcal{B} = \{1, \phi, \phi^2, \phi^3, \ldots\} \cap \mathbb{Z}_{\text{no-11}}
+$$
 任意状态可唯一表示为：
-$$S = \sum_{i \in I} b_i \phi^i, \quad b_i \in \{0,1\}, \text{ no consecutive 1s}$$
-
+$$
+S = \sum_{i \in I} b_i \phi^i, \quad b_i \in \{0,1\}, \text{ no consecutive 1s}
+$$
 ### 2. 运算完备性
 
 基本运算集：

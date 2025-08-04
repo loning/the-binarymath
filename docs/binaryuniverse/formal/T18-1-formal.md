@@ -21,9 +21,9 @@ class TopologicalPhaseType(Enum):
 class TopologicalPhase:
     """拓扑相"""
     phase_type: TopologicalPhaseType
-    topological_rank: int  # 拓扑秩 r_n = F_n
-    energy_gap: PhiReal   # 拓扑能隙 Δ_n = Δ_0 * φ^(-n)
-    coherence_time: PhiReal  # 相干时间 τ = τ_0 * φ^n
+    topological_rank: int  # 拓扑秩 r_n = F_n（其中n为相位指数）
+    energy_gap: PhiReal   # 拓扑能隙 Δ_n = Δ_0 * φ^(-n)（其中n为相位指数）
+    coherence_time: PhiReal  # 相干时间 τ = τ_0 * φ^n（其中n为相位指数）
     phase_index: int      # 相位索引
     
     def __post_init__(self):
@@ -33,7 +33,7 @@ class TopologicalPhase:
             raise ValueError(f"拓扑秩{self.topological_rank}与Fibonacci数{fib_rank}不匹配")
     
     def _fibonacci_number(self, n: int) -> int:
-        """计算第n个Fibonacci数"""
+        """计算第n个Fibonacci数（n为输入索引）"""
         if n <= 1:
             return 1
         a, b = 1, 1
@@ -255,7 +255,7 @@ class TopologicalQuantumComputer:
         return state
     
     def _fibonacci_number(self, n: int) -> int:
-        """计算第n个Fibonacci数"""
+        """计算第n个Fibonacci数（n为输入索引）"""
         if n <= 1:
             return 1
         a, b = 1, 1
@@ -507,8 +507,8 @@ def verify_braiding_group_structure(operations: List[BraidingOperation]) -> bool
 ## 验证条件
 
 1. **拓扑自指性**: T = T[T]
-2. **Fibonacci递归**: r_n = r_{n-1} + r_{n-2}
+2. **Fibonacci递归**: $r_n = r_{n-1} + r_{n-2}$
 3. **no-11约束**: 所有标签和操作序列满足
-4. **φ-统计相位**: θ_{ab} = 2π/φ^{|a-b|}
-5. **能隙标度**: Δ_n = Δ_0 · φ^{-n}
-6. **拓扑熵增**: dS/dt = k_B ln(φ) · n_anyons
+4. **φ-统计相位**: $θ_{ab} = 2π/φ^{|a-b|}$
+5. **能隙标度**: $Δ_n = Δ_0 · φ^{-n}$
+6. **拓扑熵增**: $dS/dt = k_B ln(φ) · n_{anyons}$

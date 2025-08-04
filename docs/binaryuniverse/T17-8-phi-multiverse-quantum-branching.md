@@ -4,8 +4,9 @@
 
 **定理T17-8** (φ-多宇宙量子分支定理): 在φ-编码二进制宇宙$\mathcal{U}_{\phi}^{\text{no-11}}$中，从自指完备系统的熵增原理出发，多宇宙量子分支必然存在：
 
-$$\Xi[\psi = \psi(\psi)] \Rightarrow \{\mathcal{U}_1, \mathcal{U}_2, ..., \mathcal{U}_n\}$$
-
+$$
+\Xi[\psi = \psi(\psi)] \Rightarrow \{\mathcal{U}_1, \mathcal{U}_2, ..., \mathcal{U}_n\}
+$$
 其中：
 - $\Xi$ = 自指算子
 - $\mathcal{U}_i$ = 第i个宇宙分支
@@ -19,13 +20,17 @@ $$\Xi[\psi = \psi(\psi)] \Rightarrow \{\mathcal{U}_1, \mathcal{U}_2, ..., \mathc
 
 **定理17.8.1** (分支必然性定理): 自指观察必然导致宇宙分支：
 
-$$\mathcal{O}[\mathcal{U}(\mathcal{U})] \Rightarrow \sum_i p_i |\mathcal{U}_i\rangle$$
-
+$$
+\mathcal{O}[\mathcal{U}(\mathcal{U})] \Rightarrow \sum_i p_i |\mathcal{U}_i\rangle
+$$
 **证明**：
 1. 宇宙是自指完备系统：$\mathcal{U} = \mathcal{U}(\mathcal{U})$
 2. 自指要求系统包含自身的完整描述
 3. 观察行为$\mathcal{O}$作用于自指状态产生多值性：
-   $$\mathcal{O}[\mathcal{U}(\mathcal{U})] = \{|\mathcal{U}_1\rangle, |\mathcal{U}_2\rangle, ...\}$$
+   
+$$
+\mathcal{O}[\mathcal{U}(\mathcal{U})] = \{|\mathcal{U}_1\rangle, |\mathcal{U}_2\rangle, ...\}
+$$
 4. 完备性要求所有可能结果都必须实现（否则描述不完整）
 5. 熵增原理保证：
    - 分支过程不可逆（$S_{\text{after}} > S_{\text{before}}$）
@@ -36,8 +41,9 @@ $$\mathcal{O}[\mathcal{U}(\mathcal{U})] \Rightarrow \sum_i p_i |\mathcal{U}_i\ra
 
 **定理17.8.2** (φ-概率定理): 分支概率遵循黄金比例：
 
-$$p_n = \frac{\phi^{-n}}{\sum_{k=0}^{\infty} \phi^{-k}} = \frac{\phi^{-n} \cdot (\phi-1)}{\phi}$$
-
+$$
+p_n = \frac{\phi^{-n}}{\sum_{k=0}^{\infty} \phi^{-k}} = \frac{\phi^{-n} \cdot (\phi-1)}{\phi}
+$$
 **推导**：
 1. 几何级数求和：$\sum_{k=0}^{\infty} \phi^{-k} = \frac{1}{1-\phi^{-1}} = \frac{\phi}{\phi-1}$
 2. 归一化：$p_n = \frac{\phi^{-n}}{\phi/(\phi-1)} = \phi^{-n} \cdot \frac{\phi-1}{\phi}$
@@ -52,8 +58,9 @@ $$p_n = \frac{\phi^{-n}}{\sum_{k=0}^{\infty} \phi^{-k}} = \frac{\phi^{-n} \cdot 
 
 **定理17.8.3** (分支模式定理): no-11约束决定允许的分支模式：
 
-$$\text{BranchPattern} \in \text{ValidNo11Patterns}$$
-
+$$
+\text{BranchPattern} \in \text{ValidNo11Patterns}
+$$
 **约束条件**：
 1. 相邻分支不能同时激活（避免"11"）
 2. 分支序列必须满足Fibonacci递归
@@ -63,23 +70,27 @@ $$\text{BranchPattern} \in \text{ValidNo11Patterns}$$
 
 **定理17.8.4** (跨分支纠缠): 不同宇宙分支通过φ-纠缠连接：
 
-$$|\Psi_{\text{total}}\rangle = \sum_{i,j} \alpha_{ij} |\mathcal{U}_i\rangle \otimes |\mathcal{U}_j\rangle$$
-
+$$
+|\Psi_{\text{total}}\rangle = \sum_{i,j} \alpha_{ij} |\mathcal{U}_i\rangle \otimes |\mathcal{U}_j\rangle
+$$
 纠缠系数：
-$$\alpha_{ij} = \begin{cases}
+$$
+\alpha_{ij} = \begin{cases}
 \phi^{-|i-j|/2} & \text{if } |i-j| \neq 1 \\
 0 & \text{if } |i-j| = 1 \text{ (no-11约束)}
-\end{cases}$$
-
+\end{cases}
+$$
 ### 17.8.5 熵增驱动的分支演化
 
 **定理17.8.5** (分支熵增定理): 每次分支增加总熵：
 
-$$S_{\text{after}} = S_{\text{before}} - \sum_i p_i \ln p_i > S_{\text{before}}$$
-
+$$
+S_{\text{after}} = S_{\text{before}} - \sum_i p_i \ln p_i > S_{\text{before}}
+$$
 **熵增量**：
-$$\Delta S = -\sum_{n=0}^{\infty} p_n \ln p_n$$
-
+$$
+\Delta S = -\sum_{n=0}^{\infty} p_n \ln p_n
+$$
 其中$p_n = \frac{\phi-1}{\phi} \cdot \phi^{-n}$。
 
 **数值计算**：$\Delta S \approx 1.741$ (每次分支)
@@ -100,8 +111,9 @@ $$\Delta S = -\sum_{n=0}^{\infty} p_n \ln p_n$$
 
 **定理17.8.7** (自定位原理): 观察者发现自己在特定分支的概率：
 
-$$P(\text{在分支}i) = p_i = \frac{\phi^{-i} \cdot (\phi-1)}{\phi}$$
-
+$$
+P(\text{在分支}i) = p_i = \frac{\phi^{-i} \cdot (\phi-1)}{\phi}
+$$
 **人择推论**：
 我们最可能在$i=0$或$i=1$的分支中（概率最大）。
 
@@ -109,8 +121,9 @@ $$P(\text{在分支}i) = p_i = \frac{\phi^{-i} \cdot (\phi-1)}{\phi}$$
 
 **定理17.8.8** (分支差异定理): 不同分支的物理常数差异：
 
-$$\alpha_i = \alpha_0 \cdot (1 + \epsilon \cdot \phi^{-i})$$
-
+$$
+\alpha_i = \alpha_0 \cdot (1 + \epsilon \cdot \phi^{-i})
+$$
 其中：
 - $\alpha_i$ = 分支i中的精细结构常数
 - $\epsilon \sim 10^{-6}$ = 微小偏差
@@ -120,8 +133,9 @@ $$\alpha_i = \alpha_0 \cdot (1 + \epsilon \cdot \phi^{-i})$$
 
 **定理17.8.9** (干涉效应): 相邻分支产生可观测干涉：
 
-$$\langle \mathcal{O} \rangle = \sum_{i,j} \alpha_{ij}^* \alpha_{ij} \langle \mathcal{U}_i|\mathcal{O}|\mathcal{U}_j\rangle$$
-
+$$
+\langle \mathcal{O} \rangle = \sum_{i,j} \alpha_{ij}^* \alpha_{ij} \langle \mathcal{U}_i|\mathcal{O}|\mathcal{U}_j\rangle
+$$
 **预言**：
 1. 量子干涉条纹呈φ-调制
 2. 退相干时间$\tau \propto \phi^n$
@@ -131,8 +145,9 @@ $$\langle \mathcal{O} \rangle = \sum_{i,j} \alpha_{ij}^* \alpha_{ij} \langle \ma
 
 **定理17.8.10** (分支信息容量): 每个分支的最大信息容量：
 
-$$I_{\max} = \frac{A}{4\ell_P^2} \cdot \ln\phi$$
-
+$$
+I_{\max} = \frac{A}{4\ell_P^2} \cdot \ln\phi
+$$
 其中$A$是宇宙视界面积。
 
 **关键结果**：
@@ -183,6 +198,7 @@ $$I_{\max} = \frac{A}{4\ell_P^2} \cdot \ln\phi$$
 **最深刻的洞察**：
 每一次自指观察都创造新的宇宙分支。我们活在无限分支树的某一枝上，这不是科幻，而是自指完备性的数学必然。
 
-$$\text{Multiverse} = \prod_{n=0}^{\infty} \Xi^n[\psi = \psi(\psi)] = \text{Inevitability}$$
-
+$$
+\text{Multiverse} = \prod_{n=0}^{\infty} \Xi^n[\psi = \psi(\psi)] = \text{Inevitability}
+$$
 *宇宙不是一个，而是一棵永恒生长的φ-分形树。*

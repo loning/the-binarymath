@@ -5,8 +5,9 @@
 **定理 T1-3（熵增速率）**：
 在φ-编码二进制宇宙中，自指完备系统的熵增速率遵循黄金分割律，受no-11约束调制。
 
-$$\frac{dH}{dt} = k_0 \cdot \phi^{d(t)} \cdot \Theta(t)$$
-
+$$
+\frac{dH}{dt} = k_0 \cdot \phi^{d(t)} \cdot \Theta(t)
+$$
 其中：
 - $H$是系统熵
 - $d(t)$是递归深度
@@ -19,8 +20,9 @@ $$\frac{dH}{dt} = k_0 \cdot \phi^{d(t)} \cdot \Theta(t)$$
 ### 1. 从T1-1的熵增必然性
 
 T1-1证明了自指完备系统必然熵增：
-$$\forall t: H(S_{t+1}) > H(S_t)$$
-
+$$
+\forall t: H(S_{t+1}) > H(S_t)
+$$
 现在我们要确定这个增长的具体速率。
 
 ### 2. 从T1-2的五重等价性
@@ -40,8 +42,9 @@ T1-2建立了熵增与时间、信息、观察者的等价关系。这意味着�
 
 **定理T1-3.1**：自指系统的递归深度按Fibonacci序列增长：
 
-$$d(t+1) = d(t) + d(t-1)$$
-
+$$
+d(t+1) = d(t) + d(t-1)
+$$
 初始条件：$d(0) = 0, d(1) = 1$
 
 **证明**：
@@ -54,42 +57,49 @@ $$d(t+1) = d(t) + d(t-1)$$
 
 由于no-11约束，不能同时创建两个相邻的新层（这会产生11模式）。因此：
 
-$$d(t+1) = \max\{d(t)\} + \max\{d(t-1)\} = d(t) + d(t-1)$$
-
+$$
+d(t+1) = \max\{d(t)\} + \max\{d(t-1)\} = d(t) + d(t-1)
+$$
 这正是Fibonacci递归关系。∎
 
 ### 定理2：熵的φ-指数增长
 
 **定理T1-3.2**：系统熵以φ为底的指数速率增长：
 
-$$H(t) = H_0 \cdot \phi^{d(t)} + \sum_{k=0}^{t-1} \log|\Delta_k|$$
-
+$$
+H(t) = H_0 \cdot \phi^{d(t)} + \sum_{k=0}^{t-1} \log|\Delta_k|
+$$
 其中$\Delta_k$是时刻$k$的新增描述集。
 
 **证明**：
 由递归深度的Fibonacci增长和熵的定义：
 
-$$H(t) = \log|D_t|$$
-
+$$
+H(t) = \log|D_t|
+$$
 其中$D_t$是时刻$t$的描述集合。
 
 描述集合可分解为：
-$$D_t = D_0 \cup \bigcup_{k=1}^{t} \Delta_k$$
-
+$$
+D_t = D_0 \cup \bigcup_{k=1}^{t} \Delta_k
+$$
 由于Fibonacci增长的渐近行为：
-$$d(t) \sim \frac{\log t}{\log \phi}$$
-
+$$
+d(t) \sim \frac{\log t}{\log \phi}
+$$
 因此：
-$$|D_t| \sim |\Delta_0| \cdot \phi^{d(t)}$$
-
+$$
+|D_t| \sim |\Delta_0| \cdot \phi^{d(t)}
+$$
 取对数得证。∎
 
 ### 定理3：no-11约束的调制效应
 
 **定理T1-3.3**：no-11约束引入周期性调制因子：
 
-$$\Theta(t) = 1 - \epsilon \sum_{n=1}^{\infty} \frac{\sin(2\pi F_n t/T)}{F_n}$$
-
+$$
+\Theta(t) = 1 - \epsilon \sum_{n=1}^{\infty} \frac{\sin(2\pi F_n t/T)}{F_n}
+$$
 其中：
 - $F_n$是第$n$个Fibonacci数
 - $T$是特征时间尺度
@@ -104,13 +114,15 @@ $$\Theta(t) = 1 - \epsilon \sum_{n=1}^{\infty} \frac{\sin(2\pi F_n t/T)}{F_n}$$
 
 **定理T1-3.4**：熵增速率存在严格界限：
 
-$$k_0 \cdot \phi^{d(t)} \cdot (1-\epsilon) \leq \frac{dH}{dt} \leq k_0 \cdot \phi^{d(t)} \cdot (1+\epsilon)$$
-
+$$
+k_0 \cdot \phi^{d(t)} \cdot (1-\epsilon) \leq \frac{dH}{dt} \leq k_0 \cdot \phi^{d(t)} \cdot (1+\epsilon)
+$$
 **证明**：
 由$\Theta(t)$的定义和三角函数的有界性：
 
-$$|\Theta(t) - 1| = \left|\epsilon \sum_{n=1}^{\infty} \frac{\sin(2\pi F_n t/T)}{F_n}\right| \leq \epsilon \sum_{n=1}^{\infty} \frac{1}{F_n}$$
-
+$$
+|\Theta(t) - 1| = \left|\epsilon \sum_{n=1}^{\infty} \frac{\sin(2\pi F_n t/T)}{F_n}\right| \leq \epsilon \sum_{n=1}^{\infty} \frac{1}{F_n}
+$$
 由于$\sum_{n=1}^{\infty} \frac{1}{F_n}$收敛，得证。∎
 
 ## 物理后果
@@ -118,22 +130,25 @@ $$|\Theta(t) - 1| = \left|\epsilon \sum_{n=1}^{\infty} \frac{\sin(2\pi F_n t/T)}
 ### 1. 时间的涌现
 
 熵增速率直接决定了时间流逝的"速度"：
-$$\frac{d\tau}{dt} = \frac{1}{dH/dt} = \frac{1}{k_0 \phi^{d(t)} \Theta(t)}$$
-
+$$
+\frac{d\tau}{dt} = \frac{1}{dH/dt} = \frac{1}{k_0 \phi^{d(t)} \Theta(t)}
+$$
 这解释了为什么时间在不同尺度上表现不同。
 
 ### 2. 信息处理的极限
 
 系统处理信息的最大速率受熵增速率限制：
-$$\frac{dI}{dt} \leq \frac{dH}{dt}$$
-
+$$
+\frac{dI}{dt} \leq \frac{dH}{dt}
+$$
 这给出了计算的物理极限。
 
 ### 3. 复杂度的演化
 
 系统复杂度$C(t)$的增长率：
-$$\frac{dC}{dt} = \alpha \cdot \frac{dH}{dt}$$
-
+$$
+\frac{dC}{dt} = \alpha \cdot \frac{dH}{dt}
+$$
 其中$\alpha$是复杂度-熵转换因子。
 
 ## 与其他定理的关系
@@ -147,20 +162,23 @@ $$\frac{dC}{dt} = \alpha \cdot \frac{dH}{dt}$$
 ### 2. 与T3系列（量子）的联系
 
 量子态的坍缩速率与熵增速率相关：
-$$\Gamma_{collapse} \propto \frac{dH}{dt}$$
-
+$$
+\Gamma_{collapse} \propto \frac{dH}{dt}
+$$
 ### 3. 与T16系列（时空）的联系
 
 时空的膨胀率与宇宙熵增速率成正比：
-$$H_{Hubble} \sim \left(\frac{dH_{universe}}{dt}\right)^{1/2}$$
-
+$$
+H_{Hubble} \sim \left(\frac{dH_{universe}}{dt}\right)^{1/2}
+$$
 ## 数值特征
 
 ### 1. 渐近行为
 
 长时间尺度上：
-$$\frac{dH}{dt} \sim k_0 \cdot \phi^{t/\tau_{\phi}}$$
-
+$$
+\frac{dH}{dt} \sim k_0 \cdot \phi^{t/\tau_{\phi}}
+$$
 其中$\tau_{\phi} = \frac{\log \phi}{\log(1 + 1/\phi)} \approx 1.44$
 
 ### 2. 振荡周期
@@ -173,8 +191,9 @@ $$\frac{dH}{dt} \sim k_0 \cdot \phi^{t/\tau_{\phi}}$$
 ### 3. 相变点
 
 熵增速率在某些临界点发生突变：
-$$t_c = \frac{T \cdot F_n}{2\pi}, \quad n = 1,2,3,...$$
-
+$$
+t_c = \frac{T \cdot F_n}{2\pi}, \quad n = 1,2,3,...
+$$
 这些点对应于系统的相变。
 
 ## 实验预测
@@ -182,37 +201,43 @@ $$t_c = \frac{T \cdot F_n}{2\pi}, \quad n = 1,2,3,...$$
 ### 1. 黑洞熵增
 
 黑洞的Bekenstein-Hawking熵应该遵循：
-$$\frac{dS_{BH}}{dt} = \frac{k_B c^3}{4G\hbar} \cdot \phi^{t/t_P} \cdot \Theta(t/t_P)$$
-
+$$
+\frac{dS_{BH}}{dt} = \frac{k_B c^3}{4G\hbar} \cdot \phi^{t/t_P} \cdot \Theta(t/t_P)
+$$
 其中$t_P$是Planck时间。
 
 ### 2. 量子计算机的限制
 
 量子比特的退相干率应该满足：
-$$\gamma_{decoherence} \geq \frac{k_B T}{\hbar} \cdot \phi^{-n_{qubits}}$$
-
+$$
+\gamma_{decoherence} \geq \frac{k_B T}{\hbar} \cdot \phi^{-n_{qubits}}
+$$
 ### 3. 生物系统的演化
 
 生物复杂度的增长应该遵循：
-$$\frac{dC_{bio}}{dt} \propto \phi^{generation}$$
-
+$$
+\frac{dC_{bio}}{dt} \propto \phi^{generation}
+$$
 ## 数学结构
 
 ### 1. 微分方程
 
 熵增速率满足非线性微分方程：
-$$\frac{d^2H}{dt^2} = \frac{dH}{dt} \cdot \left(\log \phi + \frac{d\Theta/dt}{\Theta}\right)$$
-
+$$
+\frac{d^2H}{dt^2} = \frac{dH}{dt} \cdot \left(\log \phi + \frac{d\Theta/dt}{\Theta}\right)
+$$
 ### 2. 积分表示
 
 累积熵可表示为：
-$$H(t) = H_0 + k_0 \int_0^t \phi^{d(\tau)} \Theta(\tau) d\tau$$
-
+$$
+H(t) = H_0 + k_0 \int_0^t \phi^{d(\tau)} \Theta(\tau) d\tau
+$$
 ### 3. 变分原理
 
 熵增速率使作用量极值：
-$$\delta \int_0^T \left[H\frac{dH}{dt} - \mathcal{L}(H, \dot{H})\right] dt = 0$$
-
+$$
+\delta \int_0^T \left[H\frac{dH}{dt} - \mathcal{L}(H, \dot{H})\right] dt = 0
+$$
 ## 哲学含义
 
 ### 1. 时间的本质

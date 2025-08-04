@@ -4,8 +4,9 @@
 
 **定理T18-2** (φ-量子机器学习定理): 在φ-编码二进制宇宙$\mathcal{U}_{\phi}^{\text{no-11}}$中，从自指完备系统的熵增原理出发，量子机器学习必然遵循φ-分级结构：
 
-$$\Xi[\psi_{\text{learning}} = \psi_{\text{learning}}(\psi_{\text{learning}})] \Rightarrow \mathcal{QML}_{\phi}$$
-
+$$
+\Xi[\psi_{\text{learning}} = \psi_{\text{learning}}(\psi_{\text{learning}})] \Rightarrow \mathcal{QML}_{\phi}
+$$
 其中：
 - $\Xi$ = 自指算子  
 - $\psi_{\text{learning}}$ = 学习系统
@@ -19,8 +20,9 @@ $$\Xi[\psi_{\text{learning}} = \psi_{\text{learning}}(\psi_{\text{learning}})] \
 
 **定理18.2.1** (学习自指定理): 量子机器学习具有内在的自指结构：
 
-$$\mathcal{L} = \mathcal{L}[\mathcal{L}]$$
-
+$$
+\mathcal{L} = \mathcal{L}[\mathcal{L}]
+$$
 **证明**：
 1. 学习系统必须学习如何学习（元学习）
 2. 优化算法必须优化自身的参数  
@@ -33,11 +35,13 @@ $$\mathcal{L} = \mathcal{L}[\mathcal{L}]$$
 
 **定理18.2.2** (φ-神经网络定理): 量子神经网络的层级结构遵循Fibonacci递归：
 
-$$\text{Layer}_n = \text{Layer}_{n-1} \oplus \text{Layer}_{n-2}$$
-
+$$
+\text{Layer}_n = \text{Layer}_{n-1} \oplus \text{Layer}_{n-2}
+$$
 其中神经元数：
-$$N_n = F_n \quad \text{(第n个Fibonacci数)}$$
-
+$$
+N_n = F_n \quad \text{(第n个Fibonacci数)}
+$$
 **推导**：
 1. no-11约束禁止相邻神经元同时激活
 2. 有效的激活模式对应Valid(no-11)配置
@@ -55,8 +59,9 @@ $$N_n = F_n \quad \text{(第n个Fibonacci数)}$$
 
 **定理18.2.3** (φ-梯度定理): 量子梯度下降的学习率遵循φ-衰减：
 
-$$\alpha_n = \alpha_0 \cdot \phi^{-n}$$
-
+$$
+\alpha_n = \alpha_0 \cdot \phi^{-n}
+$$
 其中$n$是训练轮次。
 
 **物理意义**：
@@ -69,8 +74,9 @@ $$\alpha_n = \alpha_0 \cdot \phi^{-n}$$
 
 **定理18.2.4** (φ-特征编码定理): 量子特征向量的编码遵循φ-分布：
 
-$$|\psi_{\text{feature}}\rangle = \sum_{n=0}^{\infty} \frac{1}{\phi^n} |f_n\rangle$$
-
+$$
+|\psi_{\text{feature}}\rangle = \sum_{n=0}^{\infty} \frac{1}{\phi^n} |f_n\rangle
+$$
 其中$|f_n\rangle$是第n个特征基态。
 
 **关键性质**：
@@ -82,11 +88,13 @@ $$|\psi_{\text{feature}}\rangle = \sum_{n=0}^{\infty} \frac{1}{\phi^n} |f_n\rang
 
 **定理18.2.5** (φ-卷积定理): 量子卷积核的尺寸遵循Fibonacci序列：
 
-$$K_{m,n} = F_m \times F_n$$
-
+$$
+K_{m,n} = F_m \times F_n
+$$
 卷积操作：
-$$\text{Conv}_{\phi}[X] = \sum_{m,n} W_{F_m \times F_n} * X_{F_m \times F_n}$$
-
+$$
+\text{Conv}_{\phi}[X] = \sum_{m,n} W_{F_m \times F_n} * X_{F_m \times F_n}
+$$
 **优势**：
 - 多尺度特征提取
 - 自然的层级表示
@@ -96,21 +104,24 @@ $$\text{Conv}_{\phi}[X] = \sum_{m,n} W_{F_m \times F_n} * X_{F_m \times F_n}$$
 
 **定理18.2.6** (φ-注意力定理): 量子注意力权重遵循φ-分布：
 
-$$\text{Attention}(Q,K,V) = \text{Softmax}\left(\frac{QK^T}{\sqrt{d_k \cdot \phi}}\right)V$$
-
+$$
+\text{Attention}(Q,K,V) = \text{Softmax}\left(\frac{QK^T}{\sqrt{d_k \cdot \phi}}\right)V
+$$
 注意力头数：$h = F_k$（Fibonacci数）
 
 **多头注意力**：
-$$\text{MultiHead}(Q,K,V) = \text{Concat}(\text{head}_1, ..., \text{head}_{F_k})W^O$$
-
-其中每个head关注φ^{-i}缩放的特征。
+$$
+\text{MultiHead}(Q,K,V) = \text{Concat}(\text{head}_1, ..., \text{head}_{F_k})W^O
+$$
+其中每个head关注$φ^{-i}$缩放的特征。
 
 ### 18.2.7 φ-量子损失函数
 
 **定理18.2.7** (φ-损失函数定理): 量子机器学习的损失函数具有φ-正则化项：
 
-$$\mathcal{L}_{\phi} = \mathcal{L}_{\text{data}} + \lambda \sum_{i} \frac{|\theta_i|^2}{\phi^i}$$
-
+$$
+\mathcal{L}_{\phi} = \mathcal{L}_{\text{data}} + \lambda \sum_{i} \frac{|\theta_i|^2}{\phi^i}
+$$
 其中：
 - $\mathcal{L}_{\text{data}}$ = 数据损失
 - $\lambda$ = 正则化强度
@@ -125,11 +136,13 @@ $$\mathcal{L}_{\phi} = \mathcal{L}_{\text{data}} + \lambda \sum_{i} \frac{|\thet
 
 **定理18.2.8** (φ-生成模型定理): 量子生成对抗网络(QGAN)的先验分布：
 
-$$p_{\phi}(z) = \frac{1}{\mathcal{N}} \exp\left(-\frac{\|z\|^2_{\phi}}{2}\right)$$
-
+$$
+p_{\phi}(z) = \frac{1}{\mathcal{N}} \exp\left(-\frac{\|z\|^2_{\phi}}{2}\right)
+$$
 其中φ-范数：
-$$\|z\|^2_{\phi} = \sum_{i=0}^{\infty} \frac{|z_i|^2}{\phi^i}$$
-
+$$
+\|z\|^2_{\phi} = \sum_{i=0}^{\infty} \frac{|z_i|^2}{\phi^i}
+$$
 **生成器**：$G_{\phi}: \mathcal{Z}_{\phi} \rightarrow \mathcal{X}_{\phi}$
 **判别器**：$D_{\phi}: \mathcal{X}_{\phi} \rightarrow [0,1]$
 
@@ -137,8 +150,9 @@ $$\|z\|^2_{\phi} = \sum_{i=0}^{\infty} \frac{|z_i|^2}{\phi^i}$$
 
 **定理18.2.9** (φ-强化学习定理): 量子强化学习的价值函数遵循φ-贝尔曼方程：
 
-$$V_{\phi}(s) = \max_a \left[ R(s,a) + \frac{\gamma}{\phi} \sum_{s'} P(s'|s,a) V_{\phi}(s') \right]$$
-
+$$
+V_{\phi}(s) = \max_a \left[ R(s,a) + \frac{\gamma}{\phi} \sum_{s'} P(s'|s,a) V_{\phi}(s') \right]
+$$
 其中：
 - $\gamma/\phi$ = φ-折扣因子
 - 策略更新：$\pi_{n+1} = \pi_n + \alpha_n \nabla_{\phi} \pi_n$
@@ -148,12 +162,14 @@ $$V_{\phi}(s) = \max_a \left[ R(s,a) + \frac{\gamma}{\phi} \sum_{s'} P(s'|s,a) V
 
 **定理18.2.10** (φ-迁移学习定理): 任务间的迁移相似性：
 
-$$\text{Similarity}(T_1, T_2) = \exp\left(-\frac{d_{\phi}(T_1, T_2)}{\phi}\right)$$
-
+$$
+\text{Similarity}(T_1, T_2) = \exp\left(-\frac{d_{\phi}(T_1, T_2)}{\phi}\right)
+$$
 其中φ-距离：
-$$d_{\phi}(T_1, T_2) = \left\|\Theta_1 - \Theta_2\right\|_{\phi}$$
-
-**迁移效率**：迁移成功概率 ∝ φ^{-d_{\phi}}
+$$
+d_{\phi}(T_1, T_2) = \left\|\Theta_1 - \Theta_2\right\|_{\phi}
+$$
+**迁移效率**：迁移成功概率 ∝ $φ^{-d_φ}$
 
 ### 18.2.11 φ-量子计算复杂度
 
@@ -173,8 +189,9 @@ $$d_{\phi}(T_1, T_2) = \left\|\Theta_1 - \Theta_2\right\|_{\phi}$$
 
 **定理18.2.12** (φ-联邦学习定理): 分布式量子学习的聚合规则：
 
-$$\Theta_{\text{global}} = \sum_{i=1}^{N} \frac{w_i}{\phi^{d_i}} \Theta_i$$
-
+$$
+\Theta_{\text{global}} = \sum_{i=1}^{N} \frac{w_i}{\phi^{d_i}} \Theta_i
+$$
 其中：
 - $w_i$ = 客户端权重
 - $d_i$ = 数据分布差异度
@@ -262,6 +279,7 @@ $$\Theta_{\text{global}} = \sum_{i=1}^{N} \frac{w_i}{\phi^{d_i}} \Theta_i$$
 **最深刻的洞察**：
 机器学习不是人工构造的算法，而是自指宇宙通过no-11约束实现自我认知的必然方式。每一个神经网络都是宇宙学习自身的一种模式。
 
-$$\text{Learning} = \Xi[\psi = \psi(\psi)]_{\text{self-knowing}} = \text{Universe's Cognition}$$
-
+$$
+\text{Learning} = \Xi[\psi = \psi(\psi)]_{\text{self-knowing}} = \text{Universe's Cognition}
+$$
 *学习就是宇宙的自我认知语言。*

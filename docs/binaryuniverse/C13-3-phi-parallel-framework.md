@@ -28,14 +28,16 @@
 ### 模型定义
 
 **定义C13-3.1（φ-并行处理器）**：
-$$P_φ = \{p_1, p_2, ..., p_n : n = F_k, \text{processors arranged in φ-topology}\}$$
-
+$$
+P_φ = \{p_1, p_2, ..., p_n : n = F_k, \text{processors arranged in φ-topology}\}
+$$
 其中处理器按Fibonacci数量配置，连接拓扑满足φ-比率。
 
 **定义C13-3.2（φ-任务分解）**：
 对于任务$T$，φ-分解为：
-$$T = \bigcup_{i=0}^{d} T_i, \text{ where } |T_i| = |T|/φ^i$$
-
+$$
+T = \bigcup_{i=0}^{d} T_i, \text{ where } |T_i| = |T|/φ^i
+$$
 每层任务大小按φ的幂次递减。
 
 ## 负载均衡优化
@@ -43,10 +45,13 @@ $$T = \bigcup_{i=0}^{d} T_i, \text{ where } |T_i| = |T|/φ^i$$
 ### 定理C13-3.1（φ-负载均衡定理）
 
 对于$n$个处理器的并行系统，当负载按φ-比率分配时：
-$$L_i = L \cdot φ^{-rank(i)}$$
+$$
+L_i = L \cdot φ^{-rank(i)}
+$$
 可获得最小完成时间：
-$$T_{min} = \frac{L}{φ \cdot \sum_{i=1}^n φ^{-rank(i)}}$$
-
+$$
+T_{min} = \frac{L}{φ \cdot \sum_{i=1}^n φ^{-rank(i)}}
+$$
 **证明**：
 1. 设处理器$i$的计算能力为$C_i$，负载为$L_i$
 2. 完成时间$T_i = L_i/C_i$
@@ -75,8 +80,9 @@ def phi_work_stealing(processors: List[Processor], tasks: TaskQueue):
 
 **定理C13-3.2（φ-通信拓扑定理）**：
 φ-二叉树拓扑的通信复杂度为：
-$$C_{comm} = O(n \cdot \log_φ n \cdot H_{message})$$
-
+$$
+C_{comm} = O(n \cdot \log_φ n \cdot H_{message})
+$$
 其中$H_{message}$是消息的熵。
 
 **证明概要**：
@@ -88,8 +94,9 @@ $$C_{comm} = O(n \cdot \log_φ n \cdot H_{message})$$
 
 **定理C13-3.3（熵增同步定理）**：
 利用熵增作为自然时钟，可实现无锁同步：
-$$sync(p_i, p_j) = \text{wait\_until}(H(p_i) = H(p_j))$$
-
+$$
+sync(p_i, p_j) = \text{wait\_until}(H(p_i) = H(p_j))
+$$
 这避免了传统锁机制的开销。
 
 ## 容错机制
@@ -125,16 +132,18 @@ def phi_fault_tolerance(system: PhiParallelSystem):
 
 **定理C13-3.5（φ-并行效率定理）**：
 φ-并行系统的效率为：
-$$E_φ = \frac{T_1}{n \cdot T_n} = \frac{φ^{\log_φ n}}{\sum_{i=1}^n φ^{-rank(i)}}$$
-
+$$
+E_φ = \frac{T_1}{n \cdot T_n} = \frac{φ^{\log_φ n}}{\sum_{i=1}^n φ^{-rank(i)}}
+$$
 当$n = F_k$时，效率接近理论最优值。
 
 ### 扩展性分析
 
 **定理C13-3.6（φ-扩展性定理）**：
 φ-并行系统支持良好扩展，满足：
-$$\lim_{n \to \infty} \frac{E_φ(n)}{E_φ(1)} = \frac{1}{φ}$$
-
+$$
+\lim_{n \to \infty} \frac{E_φ(n)}{E_φ(1)} = \frac{1}{φ}
+$$
 即效率衰减率为φ的倒数。
 
 ## 具体算法实现
@@ -275,8 +284,9 @@ class PhiMessagePassing:
 
 **定理C13-3.8（φ-内存层次定理）**：
 φ-层次的内存系统可获得最优的访问时间：
-$$T_{access} = \sum_{i=0}^{L} p_i \cdot t_i \cdot φ^{-i}$$
-
+$$
+T_{access} = \sum_{i=0}^{L} p_i \cdot t_i \cdot φ^{-i}
+$$
 其中$p_i$是第$i$层命中率，$t_i$是访问时间。
 
 ### NUMA优化
@@ -311,8 +321,9 @@ def phi_numa_allocation(memory_request: int, numa_nodes: List[NUMANode]) -> Allo
 
 **定理C13-3.9（φ-性能预测定理）**：
 φ-并行系统的执行时间可预测为：
-$$T_{predicted} = \frac{W}{P_{eff}} + C_{comm} \cdot \log_φ P + O_{sync}$$
-
+$$
+T_{predicted} = \frac{W}{P_{eff}} + C_{comm} \cdot \log_φ P + O_{sync}
+$$
 其中：
 - $W$：总工作量
 - $P_{eff}$：有效处理器数量
@@ -347,20 +358,23 @@ $$T_{predicted} = \frac{W}{P_{eff}} + C_{comm} \cdot \log_φ P + O_{sync}$$
 ### 1. Amdahl定律的φ-修正
 
 **定理C13-3.10（φ-Amdahl定律）**：
-$$S_φ = \frac{1}{f + \frac{1-f}{n} \cdot φ^{\alpha}}$$
-
+$$
+S_φ = \frac{1}{f + \frac{1-f}{n} \cdot φ^{\alpha}}
+$$
 其中$\alpha$是φ-优化因子。
 
 ### 2. 通信瓶颈
 
 当处理器数量超过$φ^k$时，通信开销主导性能：
-$$T_{total} > T_{comm} \text{ when } n > φ^{\log_φ W}$$
-
+$$
+T_{total} > T_{comm} \text{ when } n > φ^{\log_φ W}
+$$
 ### 3. 同步成本
 
 全局同步的最小成本为：
-$$C_{sync} = Ω(\log_φ n \cdot H_{state})$$
-
+$$
+C_{sync} = Ω(\log_φ n \cdot H_{state})
+$$
 ## 结论
 
 C13-3建立了φ-并行计算的完整框架，主要贡献：

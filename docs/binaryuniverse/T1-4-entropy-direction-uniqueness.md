@@ -5,8 +5,9 @@
 **定理 T1-4（熵增方向唯一性）**：
 在φ-编码二进制宇宙中，熵增的方向是唯一确定的，由自指结构的不可逆展开决定，不存在时间反演对称性。
 
-$$\forall t_1 < t_2: H(t_2) > H(t_1) \land \nexists \tau: H(\tau(t)) = H(-t)$$
-
+$$
+\forall t_1 < t_2: H(t_2) > H(t_1) \land \nexists \tau: H(\tau(t)) = H(-t)
+$$
 其中$\tau$是任何可能的时间反演算子。
 
 ## 推导基础
@@ -29,8 +30,9 @@ T1-3给出了熵增速率$\frac{dH}{dt} = k_0 \phi^{d(t)} \Theta(t) > 0$，始�
 
 **定理T1-4.1**：自指系统的递归展开过程是不可逆的：
 
-$$\text{Desc}^{-1}(\text{Desc}(S)) \neq S$$
-
+$$
+\text{Desc}^{-1}(\text{Desc}(S)) \neq S
+$$
 **证明**：
 设系统在时刻$t$的状态为$S_t$，其描述为$D_t = \text{Desc}(S_t)$。
 
@@ -52,8 +54,9 @@ $$\text{Desc}^{-1}(\text{Desc}(S)) \neq S$$
 
 **定理T1-4.2**：在Zeckendorf表示下，状态演化具有固有方向性：
 
-$$Z(n+1) \not\sim Z(n)$$
-
+$$
+Z(n+1) \not\sim Z(n)
+$$
 其中$Z(n)$是$n$的Zeckendorf表示，$\sim$表示可逆变换。
 
 **证明**：
@@ -63,8 +66,9 @@ Zeckendorf表示的关键性质：
 3. 不可逆增长：$Z(F_n + F_m) \neq Z(F_n) \oplus Z(F_m)$当$|n-m| = 1$
 
 考虑演化：
-$$n \to n+1$$
-
+$$
+n \to n+1
+$$
 在Zeckendorf表示中：
 - 如果$Z(n)$末尾是0，则$Z(n+1)$末尾是1
 - 如果$Z(n)$末尾是01，则$Z(n+1)$末尾是10  
@@ -80,8 +84,9 @@ $$n \to n+1$$
 
 **定理T1-4.3**：不存在保持物理规律的时间反演算子$\mathcal{T}$：
 
-$$\nexists \mathcal{T}: H(\mathcal{T}[S_t]) = H(S_{-t})$$
-
+$$
+\nexists \mathcal{T}: H(\mathcal{T}[S_t]) = H(S_{-t})
+$$
 **证明**：
 假设存在时间反演算子$\mathcal{T}$。
 
@@ -94,8 +99,9 @@ $$\nexists \mathcal{T}: H(\mathcal{T}[S_t]) = H(S_{-t})$$
 - 反向演化：$H(S_{t-dt}) < H(S_t)$
 
 这要求：
-$$H(\mathcal{T}[S_t]) < H(\mathcal{T}[S_{t+dt}])$$
-
+$$
+H(\mathcal{T}[S_t]) < H(\mathcal{T}[S_{t+dt}])
+$$
 与条件2矛盾。
 
 更深层的原因：
@@ -109,8 +115,9 @@ $$H(\mathcal{T}[S_t]) < H(\mathcal{T}[S_{t+dt}])$$
 
 **定理T1-4.4**：熵梯度场是无旋的：
 
-$$\nabla \times \vec{g}_H = 0$$
-
+$$
+\nabla \times \vec{g}_H = 0
+$$
 其中$\vec{g}_H = \nabla H$是熵梯度。
 
 **物理意义**：
@@ -123,8 +130,9 @@ $$\nabla \times \vec{g}_H = 0$$
 ### 1. 自指结构的展开
 
 自指创造了"过去依赖未来"的悖论，只能通过时间展开解决：
-$$S_{t+1} = S_t \cup \text{Desc}(S_t)$$
-
+$$
+S_{t+1} = S_t \cup \text{Desc}(S_t)
+$$
 这种展开必然是单向的。
 
 ### 2. no-11约束的累积效应
@@ -169,8 +177,9 @@ Fibonacci递归$F_n = F_{n-1} + F_{n-2}$需要两个前驱，这种"双亲"结�
 ### 1. 信息不可销毁
 
 由于熵只增不减：
-$$I(t_2) \geq I(t_1), \forall t_2 > t_1$$
-
+$$
+I(t_2) \geq I(t_1), \forall t_2 > t_1
+$$
 信息只能被转换，不能被销毁。
 
 ### 2. 记忆的方向性
@@ -222,8 +231,9 @@ $$I(t_2) \geq I(t_1), \forall t_2 > t_1$$
 ### 2. 偏序关系
 
 熵诱导严格偏序：
-$$t_1 < t_2 \Leftrightarrow H(t_1) < H(t_2)$$
-
+$$
+t_1 < t_2 \Leftrightarrow H(t_1) < H(t_2)
+$$
 这种偏序是：
 - 反自反的
 - 传递的
@@ -241,8 +251,9 @@ $$t_1 < t_2 \Leftrightarrow H(t_1) < H(t_2)$$
 ### 1. CPT对称性破坏
 
 应该观察到微小的CPT破坏：
-$$|\langle CPT \rangle - 1| \sim \phi^{-n}$$
-
+$$
+|\langle CPT \rangle - 1| \sim \phi^{-n}
+$$
 其中$n$是系统复杂度。
 
 ### 2. 量子非定域性的方向性

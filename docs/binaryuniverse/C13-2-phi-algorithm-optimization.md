@@ -29,8 +29,9 @@
 
 **定理C13-2.1（φ-分治定理）**：
 对于满足递归关系的问题，当分解比率为φ时达到最优复杂度：
-$$T(n) = T(n/\phi) + T(n/\phi^2) + O(f(n))$$
-
+$$
+T(n) = T(n/\phi) + T(n/\phi^2) + O(f(n))
+$$
 其中$n/\phi + n/\phi^2 = n$（由$1/\phi + 1/\phi^2 = 1$）。
 
 **证明**：
@@ -43,8 +44,9 @@ $$T(n) = T(n/\phi) + T(n/\phi^2) + O(f(n))$$
 
 **定理C13-2.2（熵增优化定理）**：
 在多个算法路径中，选择单位时间熵增率最大的路径可获得最优性能：
-$$\text{opt\_path} = \arg\max_p \frac{\Delta H_p}{\Delta t_p}$$
-
+$$
+\text{opt\_path} = \arg\max_p \frac{\Delta H_p}{\Delta t_p}
+$$
 **证明**：
 1. 由唯一公理，计算必然导致熵增
 2. 高熵增率意味着信息处理效率高
@@ -125,24 +127,27 @@ def phi_search(space):
 ### 规则3：动态规划的φ-压缩
 
 状态压缩比率：
-$$\text{compression\_ratio} = \frac{2^n}{F_{n+2}} \approx \frac{2^n}{\phi^{n+2}/\sqrt{5}}$$
-
+$$
+\text{compression\_ratio} = \frac{2^n}{F_{n+2}} \approx \frac{2^n}{\phi^{n+2}/\sqrt{5}}
+$$
 ## 性能界限
 
 ### 最优加速比
 
 **定理C13-2.6（加速比界限）**：
 φ-优化算法相对于标准算法的最大加速比为：
-$$\text{speedup} \leq \phi^{\log_\phi n} = n$$
-
+$$
+\text{speedup} \leq \phi^{\log_\phi n} = n
+$$
 这在分治算法中可以达到。
 
 ### 空间优化界限
 
 **定理C13-2.7（空间压缩界限）**：
 利用no-11约束的最大空间压缩比为：
-$$\text{compression} = \lim_{n \to \infty} \frac{F_{n+2}}{2^n} = \frac{\phi^2}{\sqrt{5} \cdot 2}$$
-
+$$
+\text{compression} = \lim_{n \to \infty} \frac{F_{n+2}}{2^n} = \frac{\phi^2}{\sqrt{5} \cdot 2}
+$$
 ## 实例分析
 
 ### 1. 排序算法的φ-优化

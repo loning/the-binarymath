@@ -5,8 +5,9 @@
 **定理 T16-3（φ-黑洞几何）**：
 在φ-编码二进制宇宙中，黑洞是递归自指结构的极限态，其几何由满足no-11约束的φ-Schwarzschild度量描述，事件视界对应递归深度的发散点，黑洞熵正比于视界面积的φ-编码。
 
-$$r_h^{\phi} = 2M^{\phi} \Leftrightarrow \text{RecursiveDepth}^{\phi} \to \infty$$
-
+$$
+r_h^{\phi} = 2M^{\phi} \Leftrightarrow \text{RecursiveDepth}^{\phi} \to \infty
+$$
 其中$r_h^{\phi}$是φ-编码的事件视界半径，$M^{\phi}$是φ-编码的黑洞质量。
 
 ## 推导基础
@@ -14,18 +15,21 @@ $$r_h^{\phi} = 2M^{\phi} \Leftrightarrow \text{RecursiveDepth}^{\phi} \to \infty
 ### 1. 从T16-1的φ-度量张量
 
 基于T16-1的时空度量φ-编码框架，考虑球对称静态解：
-$$ds^2_{\phi} = -f^{\phi}(r)dt^2 + \frac{1}{f^{\phi}(r)}dr^2 + r^2(d\theta^2 + \sin^2\theta d\varphi^2)$$
-
+$$
+ds^2_{\phi} = -f^{\phi}(r)dt^2 + \frac{1}{f^{\phi}(r)}dr^2 + r^2(d\theta^2 + \sin^2\theta d\varphi^2)
+$$
 其中$f^{\phi}(r)$必须满足no-11约束。
 
 ### 2. φ-Einstein方程的真空解
 
 从T16-1的φ-Einstein方程：
-$$G_{\mu\nu}^{\phi} = 0 \quad \text{(真空情况)}$$
-
+$$
+G_{\mu\nu}^{\phi} = 0 \quad \text{(真空情况)}
+$$
 通过φ-数域中的计算，得到：
-$$f^{\phi}(r) = 1^{\phi} - \frac{2M^{\phi}}{r^{\phi}}$$
-
+$$
+f^{\phi}(r) = 1^{\phi} - \frac{2M^{\phi}}{r^{\phi}}
+$$
 其中所有运算保持no-11约束。
 
 ## 核心定理
@@ -34,8 +38,9 @@ $$f^{\phi}(r) = 1^{\phi} - \frac{2M^{\phi}}{r^{\phi}}$$
 
 **定理T16-3.1**：φ-编码的Schwarzschild度量具有形式：
 
-$$ds^2_{\phi} = -\left(1^{\phi} - \frac{2M^{\phi}}{r^{\phi}}\right)dt^2 + \left(1^{\phi} - \frac{2M^{\phi}}{r^{\phi}}\right)^{-1}dr^2 + r^{\phi 2}d\Omega^2$$
-
+$$
+ds^2_{\phi} = -\left(1^{\phi} - \frac{2M^{\phi}}{r^{\phi}}\right)dt^2 + \left(1^{\phi} - \frac{2M^{\phi}}{r^{\phi}}\right)^{-1}dr^2 + r^{\phi 2}d\Omega^2
+$$
 其中：
 - $1^{\phi} = \phi^0$ (φ-编码的单位元)
 - 所有分量满足Zeckendorf表示的no-11约束
@@ -50,11 +55,13 @@ $$ds^2_{\phi} = -\left(1^{\phi} - \frac{2M^{\phi}}{r^{\phi}}\right)dt^2 + \left(
 
 **定理T16-3.2**：φ-黑洞的事件视界位于：
 
-$$r_h^{\phi} = 2M^{\phi}$$
-
+$$
+r_h^{\phi} = 2M^{\phi}
+$$
 在此处递归深度发散：
-$$\lim_{r \to r_h^{\phi}} \text{RecursiveDepth}^{\phi}(r) = \infty$$
-
+$$
+\lim_{r \to r_h^{\phi}} \text{RecursiveDepth}^{\phi}(r) = \infty
+$$
 **物理意义**：
 1. 事件视界是信息因果断开的边界
 2. 递归深度的发散对应自指结构的无限嵌套
@@ -64,19 +71,22 @@ $$\lim_{r \to r_h^{\phi}} \text{RecursiveDepth}^{\phi}(r) = \infty$$
 
 **定理T16-3.3**：φ-黑洞的Bekenstein-Hawking熵为：
 
-$$S_{BH}^{\phi} = \frac{A_h^{\phi}}{4G^{\phi}} = \pi (r_h^{\phi})^2 / G^{\phi}$$
-
+$$
+S_{BH}^{\phi} = \frac{A_h^{\phi}}{4G^{\phi}} = \pi (r_h^{\phi})^2 / G^{\phi}
+$$
 其中$A_h^{\phi} = 4\pi (r_h^{\phi})^2$是φ-编码的视界面积。
 
 **φ-量子化条件**：
-$$S_{BH}^{\phi} = N \cdot \phi^{-F_k}, \quad N \in \mathbb{Z}, k \in \mathcal{F}$$
-
+$$
+S_{BH}^{\phi} = N \cdot \phi^{-F_k}, \quad N \in \mathbb{Z}, k \in \mathcal{F}
+$$
 ### 定理4：φ-奇点结构
 
 **定理T16-3.4**：φ-黑洞中心的奇点具有离散结构：
 
-$$\lim_{r^{\phi} \to 0} g_{\mu\nu}^{\phi} = \text{Undefined in } \mathbb{F}_{\phi}$$
-
+$$
+\lim_{r^{\phi} \to 0} g_{\mu\nu}^{\phi} = \text{Undefined in } \mathbb{F}_{\phi}
+$$
 由于φ-数域的离散性，奇点不是连续意义下的点，而是递归结构的终结态。
 
 ## φ-黑洞的几何性质
@@ -84,8 +94,9 @@ $$\lim_{r^{\phi} \to 0} g_{\mu\nu}^{\phi} = \text{Undefined in } \mathbb{F}_{\ph
 ### 1. φ-测地线方程
 
 粒子在φ-Schwarzschild时空中的运动：
-$$\frac{d^2x^{\mu}}{d\tau^2} + \Gamma_{\rho\sigma}^{\mu,\phi} \frac{dx^{\rho}}{d\tau}\frac{dx^{\sigma}}{d\tau} = 0$$
-
+$$
+\frac{d^2x^{\mu}}{d\tau^2} + \Gamma_{\rho\sigma}^{\mu,\phi} \frac{dx^{\rho}}{d\tau}\frac{dx^{\sigma}}{d\tau} = 0
+$$
 守恒量：
 - 能量：$E^{\phi} = \left(1^{\phi} - \frac{2M^{\phi}}{r^{\phi}}\right)\frac{dt}{d\tau}$
 - 角动量：$L^{\phi} = (r^{\phi})^2 \frac{d\varphi}{d\tau}$
@@ -93,15 +104,17 @@ $$\frac{d^2x^{\mu}}{d\tau^2} + \Gamma_{\rho\sigma}^{\mu,\phi} \frac{dx^{\rho}}{d
 ### 2. φ-光线偏折
 
 光线经过黑洞的偏折角：
-$$\Delta\varphi^{\phi} = \frac{4M^{\phi}}{b^{\phi}} + \mathcal{O}\left(\frac{M^{\phi}}{b^{\phi}}\right)^2$$
-
+$$
+\Delta\varphi^{\phi} = \frac{4M^{\phi}}{b^{\phi}} + \mathcal{O}\left(\frac{M^{\phi}}{b^{\phi}}\right)^2
+$$
 其中$b^{\phi}$是φ-编码的碰撞参数。
 
 ### 3. φ-潮汐力
 
 径向潮汐力的φ-编码：
-$$\mathcal{K}_{rr}^{\phi} = -\frac{2M^{\phi}}{(r^{\phi})^3} \cdot \phi^{-F_{\text{tidal}}}$$
-
+$$
+\mathcal{K}_{rr}^{\phi} = -\frac{2M^{\phi}}{(r^{\phi})^3} \cdot \phi^{-F_{\text{tidal}}}
+$$
 其中$F_{\text{tidal}}$取决于观察者的运动状态。
 
 ## φ-Kerr度量（旋转黑洞）
@@ -110,10 +123,15 @@ $$\mathcal{K}_{rr}^{\phi} = -\frac{2M^{\phi}}{(r^{\phi})^3} \cdot \phi^{-F_{\tex
 
 **定理T16-3.5**：旋转φ-黑洞的度量为：
 
-$$ds^2_{\phi} = -\frac{\Delta^{\phi} - a^{\phi 2}\sin^2\theta}{\Sigma^{\phi}}dt^2 + \frac{\Sigma^{\phi}}{\Delta^{\phi}}dr^2 + \Sigma^{\phi}d\theta^2$$
-$$+ \frac{(r^{\phi 2} + a^{\phi 2})^2 - a^{\phi 2}\Delta^{\phi}\sin^2\theta}{\Sigma^{\phi}}\sin^2\theta d\varphi^2$$
-$$- \frac{2a^{\phi}r^{\phi}\sin^2\theta}{\Sigma^{\phi}}dtd\varphi$$
-
+$$
+ds^2_{\phi} = -\frac{\Delta^{\phi} - a^{\phi 2}\sin^2\theta}{\Sigma^{\phi}}dt^2 + \frac{\Sigma^{\phi}}{\Delta^{\phi}}dr^2 + \Sigma^{\phi}d\theta^2
+$$
+$$
++ \frac{(r^{\phi 2} + a^{\phi 2})^2 - a^{\phi 2}\Delta^{\phi}\sin^2\theta}{\Sigma^{\phi}}\sin^2\theta d\varphi^2
+$$
+$$
+- \frac{2a^{\phi}r^{\phi}\sin^2\theta}{\Sigma^{\phi}}dtd\varphi
+$$
 其中：
 - $\Delta^{\phi} = (r^{\phi})^2 - 2M^{\phi}r^{\phi} + (a^{\phi})^2$
 - $\Sigma^{\phi} = (r^{\phi})^2 + (a^{\phi})^2\cos^2\theta$
@@ -122,11 +140,13 @@ $$- \frac{2a^{\phi}r^{\phi}\sin^2\theta}{\Sigma^{\phi}}dtd\varphi$$
 ### φ-能层与φ-Penrose过程
 
 能层边界：
-$$r_{\text{ergo}}^{\phi} = M^{\phi} + \sqrt{(M^{\phi})^2 - (a^{\phi})^2\cos^2\theta}$$
-
+$$
+r_{\text{ergo}}^{\phi} = M^{\phi} + \sqrt{(M^{\phi})^2 - (a^{\phi})^2\cos^2\theta}
+$$
 Penrose过程的φ-能量提取：
-$$E_{\text{extract}}^{\phi} \leq E_{\text{in}}^{\phi} \cdot \phi^{-F_{\text{Penrose}}}$$
-
+$$
+E_{\text{extract}}^{\phi} \leq E_{\text{in}}^{\phi} \cdot \phi^{-F_{\text{Penrose}}}
+$$
 ## 黑洞的φ-拓扑结构
 
 ### 1. φ-Penrose图
@@ -139,15 +159,17 @@ $$E_{\text{extract}}^{\phi} \leq E_{\text{in}}^{\phi} \cdot \phi^{-F_{\text{Penr
 ### 2. φ-因果结构
 
 事件视界的φ-定义：
-$$H^{\phi} = \partial J^{-}(\mathcal{I}^{+,\phi})$$
-
+$$
+H^{\phi} = \partial J^{-}(\mathcal{I}^{+,\phi})
+$$
 其中$J^{-}$是过去因果域的φ-编码。
 
 ### 3. φ-捕获面
 
 边缘捕获面的φ-条件：
-$$\theta_{+}^{\phi} = 0, \quad \theta_{-}^{\phi} < 0$$
-
+$$
+\theta_{+}^{\phi} = 0, \quad \theta_{-}^{\phi} < 0
+$$
 其中$\theta_{\pm}^{\phi}$是外向/内向零测地线束的φ-展开率。
 
 ## no-11约束的几何体现
@@ -155,22 +177,25 @@ $$\theta_{+}^{\phi} = 0, \quad \theta_{-}^{\phi} < 0$$
 ### 1. 视界附近的约束
 
 在$r \approx r_h^{\phi}$处：
-$$g_{tt}^{\phi} \approx -\frac{r^{\phi} - r_h^{\phi}}{(r_h^{\phi})^2} \cdot \phi^{F_{\text{near}}}$$
-
+$$
+g_{tt}^{\phi} \approx -\frac{r^{\phi} - r_h^{\phi}}{(r_h^{\phi})^2} \cdot \phi^{F_{\text{near}}}
+$$
 $F_{\text{near}}$必须满足no-11约束。
 
 ### 2. 坐标变换的限制
 
 从Schwarzschild到Eddington-Finkelstein坐标：
-$$v^{\phi} = t + r^{*,\phi}$$
-
+$$
+v^{\phi} = t + r^{*,\phi}
+$$
 其中$r^{*,\phi}$的积分必须保持no-11约束。
 
 ### 3. 黑洞合并的φ-约束
 
 两个黑洞合并：
-$$M_{\text{final}}^{\phi} = M_1^{\phi} + M_2^{\phi} - E_{\text{GW}}^{\phi}$$
-
+$$
+M_{\text{final}}^{\phi} = M_1^{\phi} + M_2^{\phi} - E_{\text{GW}}^{\phi}
+$$
 引力波能量$E_{\text{GW}}^{\phi}$受no-11约束限制。
 
 ## 与其他理论的联系
@@ -189,8 +214,9 @@ $$M_{\text{final}}^{\phi} = M_1^{\phi} + M_2^{\phi} - E_{\text{GW}}^{\phi}$$
 ### 3. 熵增原理的体现
 
 黑洞面积定理的φ-版本：
-$$\frac{dA_h^{\phi}}{dt} \geq 0$$
-
+$$
+\frac{dA_h^{\phi}}{dt} \geq 0
+$$
 直接体现了唯一公理：自指完备系统必然熵增。
 
 ## 观测预测
@@ -198,20 +224,23 @@ $$\frac{dA_h^{\phi}}{dt} \geq 0$$
 ### 1. 黑洞阴影的φ-修正
 
 黑洞阴影半径：
-$$r_{\text{shadow}}^{\phi} = 3\sqrt{3}M^{\phi} \cdot (1 + \epsilon^{\phi})$$
-
+$$
+r_{\text{shadow}}^{\phi} = 3\sqrt{3}M^{\phi} \cdot (1 + \epsilon^{\phi})
+$$
 其中$\epsilon^{\phi} \sim \phi^{-F_{\text{obs}}}$是可观测的φ-修正。
 
 ### 2. 吸积盘的φ-结构
 
 最内稳定圆轨道（ISCO）：
-$$r_{\text{ISCO}}^{\phi} = 6M^{\phi} \cdot \phi^{F_{\text{ISCO}}/F_{\text{max}}}$$
-
+$$
+r_{\text{ISCO}}^{\phi} = 6M^{\phi} \cdot \phi^{F_{\text{ISCO}}/F_{\text{max}}}
+$$
 ### 3. 黑洞喷流的φ-特征
 
 Blandford-Znajek机制的φ-功率：
-$$P_{\text{jet}}^{\phi} = \frac{(B^{\phi})^2(a^{\phi})^2(M^{\phi})^2}{c^3} \cdot \phi^{-F_{\text{jet}}}$$
-
+$$
+P_{\text{jet}}^{\phi} = \frac{(B^{\phi})^2(a^{\phi})^2(M^{\phi})^2}{c^3} \cdot \phi^{-F_{\text{jet}}}
+$$
 ## 数学结构
 
 ### 1. φ-黑洞唯一性定理
@@ -224,8 +253,9 @@ $$P_{\text{jet}}^{\phi} = \frac{(B^{\phi})^2(a^{\phi})^2(M^{\phi})^2}{c^3} \cdot
 ### 2. φ-正能量定理
 
 ADM质量满足：
-$$M_{\text{ADM}}^{\phi} \geq 0$$
-
+$$
+M_{\text{ADM}}^{\phi} \geq 0
+$$
 等号成立当且仅当时空是平坦的。
 
 ### 3. φ-黑洞力学定律

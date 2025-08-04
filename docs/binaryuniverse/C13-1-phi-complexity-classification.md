@@ -28,22 +28,26 @@
 ### 基础类定义
 
 **定义C13-1.1（φ-P类）**：
-$$P_\phi^{(d)} = \{L : \exists \text{ TM } M, \forall x \in L, \text{time}_M(x) \leq |x|^d \cdot \phi^{R(x)}\}$$
-
+$$
+P_\phi^{(d)} = \{L : \exists \text{ TM } M, \forall x \in L, \text{time}_M(x) \leq |x|^d \cdot \phi^{R(x)}\}
+$$
 其中$R(x)$是输入$x$的递归深度。
 
 **定义C13-1.2（φ-NP类）**：
-$$NP_\phi^{(d)} = \{L : \exists \text{ NTM } N, \forall x \in L, \text{time}_N(x) \leq |x|^d \cdot \phi^{R(x)}\}$$
-
+$$
+NP_\phi^{(d)} = \{L : \exists \text{ NTM } N, \forall x \in L, \text{time}_N(x) \leq |x|^d \cdot \phi^{R(x)}\}
+$$
 **定义C13-1.3（φ-PSPACE类）**：
-$$PSPACE_\phi = \{L : \exists \text{ TM } M, \forall x \in L, \text{space}_M(x) \leq |x| \cdot \log_\phi |x|\}$$
-
+$$
+PSPACE_\phi = \{L : \exists \text{ TM } M, \forall x \in L, \text{space}_M(x) \leq |x| \cdot \log_\phi |x|\}
+$$
 ### 塌缩定理
 
 **定理C13-1.1（深度参数化塌缩）**：
 对于递归深度$d < d_{\text{critical}} = \log_\phi n$：
-$$NP_\phi^{(d)} = P_\phi^{(d+\log_\phi d)}$$
-
+$$
+NP_\phi^{(d)} = P_\phi^{(d+\log_\phi d)}
+$$
 **证明**：
 1. 由T10-5，深度d的搜索空间可压缩到$\phi^{d+\log_\phi d}$
 2. no-11约束导致的稀疏性允许高效枚举
@@ -53,8 +57,9 @@ $$NP_\phi^{(d)} = P_\phi^{(d+\log_\phi d)}$$
 ### 熵增复杂性类
 
 **定义C13-1.4（熵增类）**：
-$$EC_\phi^{(k)} = \{L : \forall x \in L, H(\text{compute}(x)) - H(x) \geq k \cdot |x|\}$$
-
+$$
+EC_\phi^{(k)} = \{L : \forall x \in L, H(\text{compute}(x)) - H(x) \geq k \cdot |x|\}
+$$
 这些类按计算过程的熵增量分类。
 
 ## 复杂性类层次结构
@@ -63,8 +68,9 @@ $$EC_\phi^{(k)} = \{L : \forall x \in L, H(\text{compute}(x)) - H(x) \geq k \cdo
 
 **定理C13-1.2（φ-层次定理）**：
 存在严格的复杂性类层次：
-$$P_\phi^{(0)} \subsetneq P_\phi^{(1)} \subsetneq \cdots \subsetneq P_\phi^{(\log_\phi n)} \subsetneq PSPACE_\phi$$
-
+$$
+P_\phi^{(0)} \subsetneq P_\phi^{(1)} \subsetneq \cdots \subsetneq P_\phi^{(\log_\phi n)} \subsetneq PSPACE_\phi
+$$
 **证明概要**：
 1. 使用对角化论证
 2. 构造在深度d+1可解但深度d不可解的问题
@@ -74,8 +80,9 @@ $$P_\phi^{(0)} \subsetneq P_\phi^{(1)} \subsetneq \cdots \subsetneq P_\phi^{(\lo
 
 **定理C13-1.3（相对化塌缩）**：
 存在oracle $A$使得：
-$$P_\phi^A = NP_\phi^A = PSPACE_\phi^A$$
-
+$$
+P_\phi^A = NP_\phi^A = PSPACE_\phi^A
+$$
 但也存在oracle $B$使得层次严格分离。
 
 ## 具体复杂性类
@@ -105,7 +112,7 @@ $$P_\phi^A = NP_\phi^A = PSPACE_\phi^A$$
 ### φ-SAT问题
 
 **定义C13-1.5**：
-φ-SAT = {φ：φ是满足no-11约束的可满足布尔公式}
+φ-SAT = \{φ：φ是满足no-11约束的可满足布尔公式\}
 
 **定理C13-1.4**：
 φ-SAT在$NP_\phi^{(1)}$中完全，但当变量数$n < \phi^d$时，可在$P_\phi^{(d)}$时间内求解。
@@ -113,7 +120,7 @@ $$P_\phi^A = NP_\phi^A = PSPACE_\phi^A$$
 ### φ-回路值问题
 
 **定义C13-1.6**：
-φ-CIRCUIT = {(C,x)：电路C在输入x上输出1，且C满足φ-稀疏性}
+φ-CIRCUIT = \{(C,x)：电路C在输入x上输出1，且C满足φ-稀疏性\}
 
 **定理C13-1.5**：
 φ-CIRCUIT对$P_\phi^{(\log n)}$完全。
@@ -121,7 +128,7 @@ $$P_\phi^A = NP_\phi^A = PSPACE_\phi^A$$
 ### φ-博弈问题
 
 **定义C13-1.7**：
-φ-GAME = {G：存在必胜策略的φ-编码博弈}
+φ-GAME = \{G：存在必胜策略的φ-编码博弈\}
 
 **定理C13-1.6**：
 φ-GAME对$PSPACE_\phi$完全。
@@ -132,8 +139,9 @@ $$P_\phi^A = NP_\phi^A = PSPACE_\phi^A$$
 
 **定理C13-1.7（φ-最优性）**：
 对于递归可分解问题，分解比率为φ时达到最优复杂度：
-$$T(n) = T(n/\phi) + T(n/\phi^2) + O(n)$$
-
+$$
+T(n) = T(n/\phi) + T(n/\phi^2) + O(n)
+$$
 解为$T(n) = O(n^{\log_\phi \phi}) = O(n)$。
 
 ### 算法设计原则
@@ -154,11 +162,12 @@ $$T(n) = T(n/\phi) + T(n/\phi^2) + O(n)$$
 ### 可满足性阈值
 
 对于随机φ-SAT实例：
-$$\lim_{n \to \infty} P[\text{satisfiable}] = \begin{cases}
+$$
+\lim_{n \to \infty} P[\text{satisfiable}] = \begin{cases}
 1 & \text{if } m/n < 2.36... \\
 0 & \text{if } m/n > 2.36...
-\end{cases}$$
-
+\end{cases}
+$$
 其中阈值$2.36... = \phi^2 - 1/\phi$。
 
 ## 近似复杂性
@@ -166,8 +175,9 @@ $$\lim_{n \to \infty} P[\text{satisfiable}] = \begin{cases}
 ### 近似类定义
 
 **定义C13-1.8（φ-APX）**：
-$$APX_\phi = \{L : \exists \text{ poly-time } A, \forall x, \frac{A(x)}{OPT(x)} \geq 1/\phi\}$$
-
+$$
+APX_\phi = \{L : \exists \text{ poly-time } A, \forall x, \frac{A(x)}{OPT(x)} \geq 1/\phi\}
+$$
 ### 不可近似性
 
 **定理C13-1.9**：
@@ -178,8 +188,9 @@ $$APX_\phi = \{L : \exists \text{ poly-time } A, \forall x, \frac{A(x)}{OPT(x)} 
 ### φ-BQP类
 
 **定义C13-1.9**：
-$$BQP_\phi = \{L : \exists \text{ quantum circuit } Q, P[Q \text{ accepts}] \geq 1 - 1/\phi^n\}$$
-
+$$
+BQP_\phi = \{L : \exists \text{ quantum circuit } Q, P[Q \text{ accepts}] \geq 1 - 1/\phi^n\}
+$$
 ### 量子加速
 
 **定理C13-1.10**：

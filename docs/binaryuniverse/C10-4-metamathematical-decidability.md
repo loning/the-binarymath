@@ -38,8 +38,9 @@ T10-1给出的递归深度界限为判定算法提供了终止条件。
 ### 层次2：轨道可判定性质
 
 **定理C10-4.2**：以下性质在指数时间内可判定：
-$$\text{Decidable}_{\exp} = \{P : \exists k, \text{time}(P) \leq F_{k \cdot n}\}$$
-
+$$
+\text{Decidable}_{\exp} = \{P : \exists k, \text{time}(P) \leq F_{k \cdot n}\}
+$$
 包括：
 - 状态$S$是否进入周期轨道
 - 两个状态是否在同一轨道上

@@ -4,8 +4,9 @@
 
 **定理T17-7** (φ-暗物质暗能量定理): 在φ-编码二进制宇宙$\mathcal{U}_{\phi}^{\text{no-11}}$中，从自指完备系统的熵增原理出发，暗物质和暗能量必然存在：
 
-$$\Xi[\psi = \psi(\psi)] \Rightarrow \{\Omega_{\text{DM}}, \Omega_{\Lambda}\}$$
-
+$$
+\Xi[\psi = \psi(\psi)] \Rightarrow \{\Omega_{\text{DM}}, \Omega_{\Lambda}\}
+$$
 其中：
 - $\Xi$ = 自指算子
 - $\Omega_{\text{DM}} \approx 0.27$ = 暗物质密度参数
@@ -19,11 +20,13 @@ $$\Xi[\psi = \psi(\psi)] \Rightarrow \{\Omega_{\text{DM}}, \Omega_{\Lambda}\}$$
 
 **定理17.7.1** (暗能量熵增定理): 自指系统的熵增需求导致宇宙加速膨胀：
 
-$$\frac{dS_{\text{Universe}}}{dt} > 0 \Rightarrow \Lambda = \frac{8\pi G}{c^4} \cdot \rho_{\Lambda}$$
-
+$$
+\frac{dS_{\text{Universe}}}{dt} > 0 \Rightarrow \Lambda = \frac{8\pi G}{c^4} \cdot \rho_{\Lambda}
+$$
 其中暗能量密度：
-$$\rho_{\Lambda} = \frac{c^4}{8\pi G} \cdot \frac{1}{\phi^{120}} \cdot \rho_P$$
-
+$$
+\rho_{\Lambda} = \frac{c^4}{8\pi G} \cdot \frac{1}{\phi^{120}} \cdot \rho_P
+$$
 这里$\rho_P = \frac{c^5}{\hbar G^2}$是Planck密度。
 
 **证明**：
@@ -43,12 +46,14 @@ $$\rho_{\Lambda} = \frac{c^4}{8\pi G} \cdot \frac{1}{\phi^{120}} \cdot \rho_P$$
 
 **定理17.7.2** (暗物质隐藏自由度定理): no-11约束产生的隐藏自由度表现为暗物质：
 
-$$\text{no-11约束} \Rightarrow \text{隐藏态} \Rightarrow \text{暗物质}$$
-
+$$
+\text{no-11约束} \Rightarrow \text{隐藏态} \Rightarrow \text{暗物质}
+$$
 **数学表述**：
 设标准物质场为$\psi_{\text{visible}}$，完整的场必须包含隐藏分量：
-$$\Psi_{\text{total}} = \psi_{\text{visible}} \oplus \psi_{\text{hidden}}$$
-
+$$
+\Psi_{\text{total}} = \psi_{\text{visible}} \oplus \psi_{\text{hidden}}
+$$
 其中$\psi_{\text{hidden}}$满足：
 1. 与$\psi_{\text{visible}}$的直接耦合被no-11约束禁止
 2. 只通过引力相互作用
@@ -66,8 +71,9 @@ $$\Psi_{\text{total}} = \psi_{\text{visible}} \oplus \psi_{\text{hidden}}$$
 
 **定理17.7.3** (φ-暗物质质量谱): 暗物质粒子质量遵循φ-分级：
 
-$$m_n = m_0 \cdot \phi^n$$
-
+$$
+m_n = m_0 \cdot \phi^n
+$$
 其中：
 - $m_0 = m_P/\phi^{60} \approx 100$ GeV（最轻暗物质粒子）
 - $n = 0, 1, 2, ...$（离散谱级）
@@ -81,8 +87,9 @@ $$m_n = m_0 \cdot \phi^n$$
 
 **定理17.7.4** (暗能量动力学): 暗能量状态方程参数：
 
-$$w = \frac{p}{\rho c^2} = -1 + \frac{\delta}{3\phi^3}$$
-
+$$
+w = \frac{p}{\rho c^2} = -1 + \frac{\delta}{3\phi^3}
+$$
 其中$\delta$是量子涨落参数。
 
 **关键性质**：
@@ -94,8 +101,9 @@ $$w = \frac{p}{\rho c^2} = -1 + \frac{\delta}{3\phi^3}$$
 
 **定理17.7.5** (暗扇区耦合): 暗物质和暗能量通过自指结构耦合：
 
-$$\mathcal{L}_{\text{int}} = \frac{g}{\phi} \cdot \rho_{\text{DM}} \cdot \rho_{\Lambda}$$
-
+$$
+\mathcal{L}_{\text{int}} = \frac{g}{\phi} \cdot \rho_{\text{DM}} \cdot \rho_{\Lambda}
+$$
 耦合强度：$g \sim \phi^{-2} \sim 0.38$
 
 **物理效应**：
@@ -108,11 +116,13 @@ $$\mathcal{L}_{\text{int}} = \frac{g}{\phi} \cdot \rho_{\text{DM}} \cdot \rho_{\
 **定理17.7.6** (宇宙巧合解决): 为何$\Omega_{\text{DM}} \sim \Omega_{\Lambda}$在当前纪元？
 
 **解答**：自指系统的临界点条件
-$$\frac{dS_{\text{total}}}{dt} = \frac{dS_{\text{DM}}}{dt} + \frac{dS_{\Lambda}}{dt} = \max$$
-
+$$
+\frac{dS_{\text{total}}}{dt} = \frac{dS_{\text{DM}}}{dt} + \frac{dS_{\Lambda}}{dt} = \max
+$$
 当两项贡献相当时熵增率最大，这发生在：
-$$\Omega_{\text{DM}} = \phi^{-2} \cdot \Omega_{\Lambda}$$
-
+$$
+\Omega_{\text{DM}} = \phi^{-2} \cdot \Omega_{\Lambda}
+$$
 **推导**：
 1. 暗物质熵贡献：$S_{\text{DM}} = k_B N_{\text{DM}} \ln(V/V_0)$
 2. 暗能量熵贡献：$S_{\Lambda} = \frac{4\pi k_B c^3}{3G\hbar} V \rho_{\Lambda}$
@@ -142,19 +152,22 @@ $$\Omega_{\text{DM}} = \phi^{-2} \cdot \Omega_{\Lambda}$$
 
 **定理17.7.8** (原初暗物质生成): 暴涨结束时的再加热产生暗物质：
 
-$$\Gamma_{\text{reheat}} \to \text{SM} + \text{DM}$$
-
+$$
+\Gamma_{\text{reheat}} \to \text{SM} + \text{DM}
+$$
 分支比：
-$$\frac{n_{\text{DM}}}{n_{\text{SM}}} = \phi^{-1}$$
-
+$$
+\frac{n_{\text{DM}}}{n_{\text{SM}}} = \phi^{-1}
+$$
 这自然解释了当前的暗物质丰度。
 
 ### 17.7.9 暗物质结构形成
 
 **定理17.7.9** (φ-晕层级): 暗物质晕遵循φ-分形结构：
 
-$$M_{n+1}/M_n = \phi^k$$
-
+$$
+M_{n+1}/M_n = \phi^k
+$$
 其中$k$取决于结构层级跨度。
 
 **观测的层级结构**：
@@ -210,6 +223,7 @@ $$M_{n+1}/M_n = \phi^k$$
 **最深刻的洞察**：
 宇宙95%的"暗"成分不是缺陷而是特征——它们是自指完备系统通过no-11约束表达熵增需求的必然方式。
 
-$$\text{Dark Universe} = \Xi[\psi = \psi(\psi)]_{\text{no-11}} = \text{Necessity}$$
-
+$$
+\text{Dark Universe} = \Xi[\psi = \psi(\psi)]_{\text{no-11}} = \text{Necessity}
+$$
 *暗，不是因为看不见，而是因为它们是系统自指的影子。*

@@ -76,11 +76,15 @@ $$
 
 **证明**：
 1. 从递归关系出发：
-   $$Q: \psi^{(n)} \to \psi^{(n+1)}$$
    
+$$
+Q: \psi^{(n)} \to \psi^{(n+1)}
+$$
 2. 反对易关系来自递归的自洽性：
-   $$QQ^{\dagger} + Q^{\dagger}Q = 2\psi(\psi^{\dagger}(\psi))$$
    
+$$
+QQ^{\dagger} + Q^{\dagger}Q = 2\psi(\psi^{\dagger}(\psi))
+$$
 3. no-11约束确保代数封闭。
 
 ### 定理2：弦的临界维度
@@ -94,8 +98,10 @@ $$
 
 **证明**：
 1. 弦的Virasoro代数中心荷：
-   $$c = \frac{D}{2} - \sum_{n \in \text{Forbidden}} c_n$$
    
+$$
+c = \frac{D}{2} - \sum_{n \in \text{Forbidden}} c_n
+$$
 2. 量子一致性要求$c = 26$（玻色弦）或$c = 15$（超弦）
    
 3. no-11约束移除某些振动模式，修正临界维度

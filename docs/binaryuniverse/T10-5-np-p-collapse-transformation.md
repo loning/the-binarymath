@@ -5,8 +5,9 @@
 **定理 T10-5（NP-P Collapse转化）**：
 在φ-编码二进制宇宙中，计算复杂性类NP和P在特定递归深度下发生部分坍缩，满足：
 
-$$\text{NP}_{\phi}^{(d)} = \text{P}_{\phi}^{(d+\log_{\phi} d)} \quad \text{当} \quad d < d_{\text{critical}}$$
-
+$$
+\text{NP}_{\phi}^{(d)} = \text{P}_{\phi}^{(d+\log_{\phi} d)} \quad \text{当} \quad d < d_{\text{critical}}
+$$
 其中$d$是递归深度，$d_{\text{critical}} = \phi^{\sqrt{n}}$，$n$是问题规模。
 
 ## 推导基础
@@ -33,8 +34,9 @@ T10-3的自相似性允许某些NP问题被递归分解为P子问题。
 
 **定理T10-5.1**：在φ-编码系统中，NP问题的搜索空间被no-11约束压缩：
 
-$$|\Omega_{\text{NP}}^{\phi}| = |\Omega_{\text{NP}}| \cdot \phi^{-\gamma n}$$
-
+$$
+|\Omega_{\text{NP}}^{\phi}| = |\Omega_{\text{NP}}| \cdot \phi^{-\gamma n}
+$$
 其中$\gamma \approx 0.306$是no-11约束的压缩因子。
 
 **证明**：
@@ -51,8 +53,9 @@ $$|\Omega_{\text{NP}}^{\phi}| = |\Omega_{\text{NP}}| \cdot \phi^{-\gamma n}$$
 
 **定理T10-5.2**：当问题实例的递归深度$d < d_{\text{critical}}$时：
 
-$$\text{TIME}_{\phi}(2^n) \subseteq \text{TIME}_{\phi}(n^{d \cdot \log \phi})$$
-
+$$
+\text{TIME}_{\phi}(2^n) \subseteq \text{TIME}_{\phi}(n^{d \cdot \log \phi})
+$$
 **证明**：
 利用递归深度的自然分层：
 
@@ -60,7 +63,10 @@ $$\text{TIME}_{\phi}(2^n) \subseteq \text{TIME}_{\phi}(n^{d \cdot \log \phi})$$
 2. 每个子问题的规模为$n/\phi^d$
 3. 由自相似性，子问题结构相同
 4. 总时间复杂度：
-   $$T(n) = \phi^d \cdot T(n/\phi^d) + O(n)$$
+   
+$$
+T(n) = \phi^d \cdot T(n/\phi^d) + O(n)
+$$
 5. 解递归方程得：$T(n) = O(n^{d \cdot \log \phi})$
 
 当$d < \log_{\phi} n$时，指数时间坍缩为多项式时间。∎
@@ -69,8 +75,9 @@ $$\text{TIME}_{\phi}(2^n) \subseteq \text{TIME}_{\phi}(n^{d \cdot \log \phi})$$
 
 **定理T10-5.3**：在φ-系统中，某些NP问题展现验证-搜索对称性：
 
-$$\text{Verify}_{\phi}(x, \text{cert}) \leftrightarrow \text{Search}_{\phi}(x, \text{pattern})$$
-
+$$
+\text{Verify}_{\phi}(x, \text{cert}) \leftrightarrow \text{Search}_{\phi}(x, \text{pattern})
+$$
 其中时间复杂度相同。
 
 **证明**：
@@ -96,8 +103,9 @@ $$\text{Verify}_{\phi}(x, \text{cert}) \leftrightarrow \text{Search}_{\phi}(x, \
 ### 1. SAT问题的φ-转化
 
 **3-SAT在φ-系统中**：
-$$\text{3-SAT}_{\phi}(n, m) \in \text{P} \quad \text{当} \quad m < n \cdot \phi$$
-
+$$
+\text{3-SAT}_{\phi}(n, m) \in \text{P} \quad \text{当} \quad m < n \cdot \phi
+$$
 原因：no-11约束限制了子句之间的冲突模式。
 
 **算法**：
@@ -122,8 +130,9 @@ $$\text{3-SAT}_{\phi}(n, m) \in \text{P} \quad \text{当} \quad m < n \cdot \phi
 ### 3. 旅行商问题（TSP）
 
 **φ-TSP性质**：
-$$\text{TSP}_{\phi}(n) \in \text{P} \quad \text{当城市分布满足} \quad D_{\text{fractal}} < \log \phi$$
-
+$$
+\text{TSP}_{\phi}(n) \in \text{P} \quad \text{当城市分布满足} \quad D_{\text{fractal}} < \log \phi
+$$
 其中$D_{\text{fractal}}$是城市分布的分形维数。
 
 ## 算法框架
@@ -170,15 +179,19 @@ def phi_decompose(problem):
 对于具体NP问题$\Pi$，检验是否满足坍缩条件：
 
 1. **搜索空间压缩**：
-   $$\frac{|\Omega_{\Pi}^{\phi}|}{|\Omega_{\Pi}|} < \frac{1}{\text{poly}(n)}$$
-
+   
+$$
+\frac{|\Omega_{\Pi}^{\phi}|}{|\Omega_{\Pi}|} < \frac{1}{\text{poly}(n)}
+$$
 2. **递归可分解性**：
    存在分解$\Pi = \Pi_1 \oplus \Pi_2 \oplus \cdots \oplus \Pi_k$
    其中$k = O(\phi^d)$
 
 3. **自相似结构**：
-   $$\text{Structure}(\Pi_i) \cong \text{Structure}(\Pi_j)$$
-
+   
+$$
+\text{Structure}(\Pi_i) \cong \text{Structure}(\Pi_j)
+$$
 ### 2. 复杂度证明
 
 对于声称在P中的问题，需要：
@@ -191,8 +204,9 @@ def phi_decompose(problem):
 ### 1. 计算熵力
 
 在φ-宇宙中，计算过程受"熵力"驱动：
-$$F_{\text{comp}} = -\nabla H_{\text{computational}}$$
-
+$$
+F_{\text{comp}} = -\nabla H_{\text{computational}}
+$$
 这提供了自然的优化方向。
 
 ### 2. 量子类比
@@ -219,13 +233,15 @@ $$F_{\text{comp}} = -\nabla H_{\text{computational}}$$
 ### 2. 复杂度分类
 
 新的复杂度类层级：
-$$\text{P}_{\phi} \subseteq \text{NP}_{\phi}^{<d_c} \subseteq \text{NP}_{\phi} \subseteq \text{EXP}_{\phi}$$
-
+$$
+\text{P}_{\phi} \subseteq \text{NP}_{\phi}^{<d_c} \subseteq \text{NP}_{\phi} \subseteq \text{EXP}_{\phi}
+$$
 ### 3. 实际加速比
 
 对于满足坍缩条件的问题：
-$$\text{Speedup} = \frac{2^n}{n^{d \log \phi}} \approx 2^{n(1-\epsilon)}$$
-
+$$
+\text{Speedup} = \frac{2^n}{n^{d \log \phi}} \approx 2^{n(1-\epsilon)}
+$$
 其中$\epsilon > 0$依赖于问题结构。
 
 ## 开放问题

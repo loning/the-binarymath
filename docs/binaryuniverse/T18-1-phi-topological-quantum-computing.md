@@ -4,8 +4,9 @@
 
 **定理T18-1** (φ-拓扑量子计算定理): 在φ-编码二进制宇宙$\mathcal{U}_{\phi}^{\text{no-11}}$中，从自指完备系统的熵增原理出发，拓扑量子计算必然遵循φ-结构：
 
-$$\Xi[\psi_{\text{topology}} = \psi_{\text{topology}}(\psi_{\text{topology}})] \Rightarrow \mathcal{TQC}_{\phi}$$
-
+$$
+\Xi[\psi_{\text{topology}} = \psi_{\text{topology}}(\psi_{\text{topology}})] \Rightarrow \mathcal{TQC}_{\phi}
+$$
 其中：
 - $\Xi$ = 自指算子
 - $\psi_{\text{topology}}$ = 拓扑系统
@@ -19,8 +20,9 @@ $$\Xi[\psi_{\text{topology}} = \psi_{\text{topology}}(\psi_{\text{topology}})] \
 
 **定理18.1.1** (拓扑自指定理): 拓扑量子系统具有内在的自指结构：
 
-$$\mathcal{T} = \mathcal{T}[\mathcal{T}]$$
-
+$$
+\mathcal{T} = \mathcal{T}[\mathcal{T}]
+$$
 **证明**：
 1. 拓扑不变量依赖于系统的全局几何结构
 2. 系统的几何结构包含其自身的拓扑性质
@@ -32,11 +34,13 @@ $$\mathcal{T} = \mathcal{T}[\mathcal{T}]$$
 
 **定理18.1.2** (φ-拓扑相定理): 拓扑相的分类遵循Fibonacci递归：
 
-$$\text{TopPhase}_n = \text{TopPhase}_{n-1} \oplus \text{TopPhase}_{n-2}$$
-
+$$
+\text{TopPhase}_n = \text{TopPhase}_{n-1} \oplus \text{TopPhase}_{n-2}
+$$
 其中拓扑秩：
-$$r_n = F_n \quad \text{(第n个Fibonacci数)}$$
-
+$$
+r_n = F_n \quad \text{(第n个Fibonacci数)}
+$$
 **推导**：
 1. no-11约束禁止相邻的拓扑激发同时存在
 2. 有效的拓扑配置对应Valid(no-11)模式
@@ -54,8 +58,9 @@ $$r_n = F_n \quad \text{(第n个Fibonacci数)}$$
 
 **定理18.1.3** (φ-任意子定理): 任意子的统计相位遵循φ-分布：
 
-$$\theta_{ab} = \frac{2\pi}{\phi^{|a-b|}}$$
-
+$$
+\theta_{ab} = \frac{2\pi}{\phi^{|a-b|}}
+$$
 其中$a, b$是任意子标签。
 
 **物理意义**：
@@ -67,38 +72,46 @@ $$\theta_{ab} = \frac{2\pi}{\phi^{|a-b|}}$$
 
 **定理18.1.4** (编织Fibonacci定理): 任意子编织群同构于Fibonacci群：
 
-$$B_n \cong \text{Fib}_n$$
-
+$$
+B_n \cong \text{Fib}_n
+$$
 编织生成元满足：
-$$\sigma_i \sigma_{i+1} \sigma_i = \sigma_{i+1} \sigma_i \sigma_{i+1}$$
-$$\sigma_i \sigma_j = \sigma_j \sigma_i \quad |i-j| > 1$$
-
+$$
+\sigma_i \sigma_{i+1} \sigma_i = \sigma_{i+1} \sigma_i \sigma_{i+1}
+$$
+$$
+\sigma_i \sigma_j = \sigma_j \sigma_i \quad |i-j| > 1
+$$
 **关键约束**：编织路径不能包含"连续两次相同操作"，对应no-11约束。
 
 ### 18.1.5 拓扑保护的φ-能隙
 
 **定理18.1.5** (φ-能隙定理): 拓扑保护的能隙遵循φ-标度：
 
-$$\Delta_n = \Delta_0 \cdot \phi^{-n}$$
-
+$$
+\Delta_n = \Delta_0 \cdot \phi^{-n}
+$$
 其中：
 - $\Delta_0$ = 基本能隙
 - $n$ = 拓扑激发数
 
 **退相干时间**：
-$$\tau_{\text{coh}} = \frac{\hbar}{\Delta_n} = \tau_0 \cdot \phi^n$$
-
+$$
+\tau_{\text{coh}} = \frac{\hbar}{\Delta_n} = \tau_0 \cdot \phi^n
+$$
 **关键洞察**：能隙随激发数指数衰减，但相干时间指数增长。
 
 ### 18.1.6 量子门的Fibonacci分解
 
 **定理18.1.6** (Fibonacci门定理): 所有拓扑量子门可分解为Fibonacci基：
 
-$$U = \prod_{k=0}^{L-1} F_k(\theta_k)$$
-
+$$
+U = \prod_{k=0}^{L-1} F_k(\theta_k)
+$$
 其中$F_k$是第k阶Fibonacci门：
-$$F_0 = I, \quad F_1 = X, \quad F_k = F_{k-1} \otimes F_{k-2}$$
-
+$$
+F_0 = I, \quad F_1 = X, \quad F_k = F_{k-1} \otimes F_{k-2}
+$$
 **门复杂度**：
 实现任意$n$量子比特门的Fibonacci门数：$G_n = \phi^n$
 
@@ -106,11 +119,13 @@ $$F_0 = I, \quad F_1 = X, \quad F_k = F_{k-1} \otimes F_{k-2}$$
 
 **定理18.1.7** (拓扑纠错定理): 拓扑纠错码的稳定子满足no-11约束：
 
-$$S_i S_{i+1} = 0 \quad \forall i$$
-
+$$
+S_i S_{i+1} = 0 \quad \forall i
+$$
 **码距离**：
-$$d = \min\{|E| : E \text{ is logical error, } E \text{ satisfies no-11}\}$$
-
+$$
+d = \min\{|E| : E \text{ is logical error, } E \text{ satisfies no-11}\}
+$$
 **阈值**：
 拓扑码的容错阈值：$p_{\text{th}} = (\phi-1)/\phi \approx 0.382$
 
@@ -118,22 +133,25 @@ $$d = \min\{|E| : E \text{ is logical error, } E \text{ satisfies no-11}\}$$
 
 **定理18.1.8** (φ-融合定理): 任意子融合系数遵循φ-递归：
 
-$$N_{ab}^c = N_{a,b-1}^{c-1} + N_{a-1,b}^{c-1}$$
-
+$$
+N_{ab}^c = N_{a,b-1}^{c-1} + N_{a-1,b}^{c-1}
+$$
 **融合矩阵**：
-$$[N_a]_{bc} = N_{ab}^c = \begin{cases}
+$$
+[N_a]_{bc} = N_{ab}^c = \begin{cases}
 1 & \text{if } |b-c| \leq a \leq b+c \text{ and } a+b+c \text{ even} \\
 0 & \text{otherwise}
-\end{cases}$$
-
+\end{cases}
+$$
 满足no-11约束：相邻标签不能同时非零。
 
 ### 18.1.9 拓扑熵的φ-增长
 
 **定理18.1.9** (拓扑熵增定理): 拓扑演化的熵增率：
 
-$$\frac{dS_{\text{top}}}{dt} = k_B \ln\phi \cdot n_{\text{anyons}}$$
-
+$$
+\frac{dS_{\text{top}}}{dt} = k_B \ln\phi \cdot n_{\text{anyons}}
+$$
 其中$n_{\text{anyons}}$是任意子数量。
 
 **证明**：
@@ -146,8 +164,9 @@ $$\frac{dS_{\text{top}}}{dt} = k_B \ln\phi \cdot n_{\text{anyons}}$$
 
 **定理18.1.10** (φ-相变定理): 拓扑相变的临界指数：
 
-$$\xi \sim |T - T_c|^{-\nu}, \quad \nu = \frac{\ln\phi}{\ln 2}$$
-
+$$
+\xi \sim |T - T_c|^{-\nu}, \quad \nu = \frac{\ln\phi}{\ln 2}
+$$
 其中$\xi$是关联长度。
 
 **关键结果**：
@@ -224,6 +243,7 @@ $$\xi \sim |T - T_c|^{-\nu}, \quad \nu = \frac{\ln\phi}{\ln 2}$$
 **最深刻的洞察**：
 拓扑量子计算不是人工构造，而是自指宇宙通过no-11约束实现容错计算的必然方式。每一个拓扑相都是宇宙计算自身的一种模式。
 
-$$\text{Topology} = \Xi[\psi = \psi(\psi)]_{\text{computing}} = \text{Universe's Algorithm}$$
-
+$$
+\text{Topology} = \Xi[\psi = \psi(\psi)]_{\text{computing}} = \text{Universe's Algorithm}
+$$
 *拓扑就是宇宙的计算语言。*
