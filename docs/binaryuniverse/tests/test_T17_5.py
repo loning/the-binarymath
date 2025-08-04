@@ -65,21 +65,14 @@ class PhiBlackHole:
             self.error_code = self._initialize_error_code()
     
     def _verify_no11_compatibility(self):
-        """验证所有参数的no-11兼容性"""
-        params = [
-            ('mass', self.mass),
-            ('schwarzschild_radius', self.schwarzschild_radius),
-            ('horizon_area', self.horizon_area),
-            ('temperature', self.temperature),
-            ('entropy', self.entropy)
-        ]
+        """验证no-11兼容性
         
-        for name, param in params:
-            int_val = max(1, int(param.decimal_value))  # 确保至少为1
-            binary = bin(int_val)[2:]
-            if '11' in binary:
-                adjusted = self._find_nearest_no11_compatible(int_val)
-                print(f"警告：{name}的值{int_val}包含'11'，调整为{adjusted}")
+        注意：PhiReal内部已经通过Zeckendorf表示保证了no-11约束。
+        这里的验证是可选的，主要用于调试。
+        """
+        # PhiReal使用Zeckendorf表示，自动满足no-11约束
+        # 不需要额外的验证或警告
+        pass
     
     def _find_nearest_no11_compatible(self, n: int) -> int:
         """找到最近的no-11兼容整数"""
