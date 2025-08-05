@@ -10,17 +10,23 @@
 
 1. **自指完备性**: $\Psi(s) = \Psi(\Psi(s))$，即 $\psi = \psi(\psi)$
 2. **φ-量化collapse**: collapse深度遵循φ-分级：
-   $$
+   
+$$
    d_{collapse}(s) = \lfloor \log_\phi(H(\Psi(s)) - H(s) + 1) \rfloor
-   $$
+   
+$$
 3. **熵增必然性**: 每次collapse必然增加系统熵：
-   $$
+   
+$$
    H(\Psi(s)) > H(s) + \frac{1}{\phi^{d_{collapse}(s)}}
-   $$
+   
+$$
 4. **trace不变性**: 存在trace函数 $\tau: \mathcal{S} \to \mathcal{T}$ 使得：
-   $$
+   
+$$
    \tau(\Psi(s)) = \phi \cdot \tau(s) \bmod F_{k+2}
-   $$
+   
+$$
    其中 $F_{k+2}$ 是对应的Fibonacci数
 
 ## 证明
@@ -34,9 +40,11 @@
 3. 定义collapse操作：$\Psi(s) = s \oplus \Phi(s)$
    其中 $\Phi(s)$ 是s的φ-自指表示
 4. 对于Zeckendorf编码 $s = \sum_{i} a_i F_i$（$a_i \in \{0,1\}$, no-11）：
-   $$
+   
+$$
    \Phi(s) = \sum_{i} a_i F_{i+1} \bmod \text{no-11}
-   $$
+   
+$$
 5. collapse操作增加系统复杂度：$|\Psi(s)| \geq |s|$
 6. 由no-11约束的唯一性，collapse操作唯一确定 ∎
 
@@ -48,9 +56,11 @@ collapse操作满足 $\psi = \psi(\psi)$。
 2. 需证明：$s_2 = s_1$（达到不动点）或周期性
 3. 由T10-2无限回归定理，序列必进入周期轨道
 4. 对于周期轨道 $\{s_1^*, s_2^*, \ldots, s_p^*\}$：
-   $$
+   
+$$
    \Psi(s_i^*) = s_{(i \bmod p)+1}^*
-   $$
+   
+$$
 5. 在周期内，每个状态都满足：$s_i^* = \Psi^p(s_i^*)$
 6. 这实现了广义的自指：$\psi = \psi(\psi)$ 在周期意义下成立 ∎
 
@@ -60,14 +70,18 @@ trace函数在collapse下保持φ-结构。
 *证明*:
 1. 定义trace函数：$\tau(s) = \sum_{i} i \cdot a_i$（Zeckendorf权重和）
 2. 对于 $s = \sum_{i} a_i F_i$，有：
-   $$
+   
+$$
    \tau(\Psi(s)) = \sum_{i} (i+1) \cdot a_i = \tau(s) + \sum_{i} a_i = \tau(s) + |s|_1
-   $$
+   
+$$
 3. 其中 $|s|_1$ 是s中1的个数
 4. 由φ-性质：$F_{i+1}/F_i \to \phi$，因此：
-   $$
+   
+$$
    \tau(\Psi(s)) \approx \phi \cdot \tau(s) + \text{correction terms}
-   $$
+   
+$$
 5. 在模$F_{k+2}$意义下，保持φ-结构不变 ∎
 
 ### 主定理证明

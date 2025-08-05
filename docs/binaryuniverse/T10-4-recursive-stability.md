@@ -9,21 +9,27 @@
 **定理 T10-4** (递归稳定性定理): 在自指完备的φ-表示系统中，递归系统的稳定性由三重判据唯一确定：
 
 1. **深度稳定性**: 递归深度有界且满足φ-收敛条件：
-   $$
+   
+$$
    \sup_{t \geq 0} R(S_t) \leq R_{max} = \lfloor \log_\phi(H_{max} + 1) \rfloor
-   $$
+   
+$$
    其中 $R_{max}$ 是系统的最大递归深度界限
 
 2. **周期稳定性**: 存在稳定周期轨道 $\mathcal{O}^* = \{S_1^*, S_2^*, \ldots, S_p^*\}$ 使得：
-   $$
+   
+$$
    \lim_{t \to \infty} d_\phi(S_t, \mathcal{O}^*) = 0
-   $$
+   
+$$
    且周期轨道满足Lyapunov稳定性：$\lambda_{max} < 0$
 
 3. **结构稳定性**: 自相似结构在扰动下保持，即存在 $\delta > 0$ 使得对任意扰动 $\|\epsilon\| < \delta$：
-   $$
+   
+$$
    \text{Structure}(S + \epsilon) \cong \text{Structure}(S)
-   $$
+   
+$$
    其中结构同构关系在φ-度量下定义
 
 系统在且仅在三重稳定性同时满足时递归稳定。
@@ -37,9 +43,11 @@
 1. 由T10-1，递归深度遵循：$R(S_t) = \lfloor \log_\phi(H(S_t) + 1) \rfloor$
 2. 若 $R(S_t) \leq R_{max}$，则熵有上界：$H(S_t) \leq \phi^{R_{max}} - 1$
 3. 由A1的熵增必然性，熵增速率在接近上界时减缓：
-   $$
+   
+$$
    \frac{dH}{dt} \approx \frac{1}{\phi^{R_{max} - R(S_t)}} \to 0 \text{ as } R(S_t) \to R_{max}
-   $$
+   
+$$
 4. 因此深度增长自然收敛，避免无限发散
 5. φ-量化保证了收敛的离散性和稳定性 ∎
 
@@ -61,14 +69,18 @@
 *证明*:
 1. 由T10-3，系统具有多尺度自相似性：$\mathcal{T}_{\phi^k}[S] \sim S$
 2. 结构稳定性在尺度 $\lambda$ 下定义：
-   $$
+   
+$$
    \|\mathcal{T}_\lambda[S + \epsilon] - \mathcal{T}_\lambda[S]\|_\phi \leq C \cdot \|\epsilon\|_\phi
-   $$
+   
+$$
 3. 其中 $C < 1$ 是φ-压缩常数
 4. 由自相似性的传递关系：
-   $$
+   
+$$
    \mathcal{T}_{\phi^{k+1}} = \mathcal{T}_\phi \circ \mathcal{T}_{\phi^k}
-   $$
+   
+$$
 5. 因此压缩性质在尺度链上传递：$C_{k+1} = C \cdot C_k$
 6. 总压缩常数：$C_{total} = \prod_{k=0}^{K} C_k < 1/\phi^K$
 7. 这保证了结构稳定性在所有相关尺度上成立 ∎

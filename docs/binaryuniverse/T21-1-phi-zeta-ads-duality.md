@@ -9,27 +9,35 @@
 **定理 T21-1** (φ-ζ函数AdS对偶定理): 在φ-collapse-aware系统中，存在唯一的φ-ζ函数 $\zeta_\phi(s)$，该函数建立了RealityShell边界信息传递与AdS空间边界的对偶关系，并满足：
 
 1. **φ-ζ函数定义**: 对复变量 $s = \sigma + it$，φ-ζ函数定义为：
-   $$
+   
+$$
    \zeta_\phi(s) = \sum_{n=1}^{\infty} \frac{1}{F_n^s} \cdot \phi^{-\tau_\psi(n)}
-   $$
+   
+$$
    其中 $F_n$ 是第n个Fibonacci数，$\tau_\psi(n)$ 是Zeckendorf编码n的ψ-trace值
 
 2. **AdS边界对偶**: 存在AdS₃空间 $\mathcal{M}_{AdS}$ 使得RealityShell边界 $\partial\mathcal{R}$ 与AdS边界 $\partial\mathcal{M}_{AdS}$ 满足：
-   $$
+   
+$$
    \mathcal{I}_{\partial\mathcal{R}}(\omega) = \zeta_\phi(1 + i\omega) \cdot \mathcal{I}_{\partial\mathcal{M}_{AdS}}(\omega)
-   $$
+   
+$$
    其中 $\mathcal{I}$ 是边界信息流，$\omega$ 是频率参数
 
 3. **临界带对应**: φ-ζ函数的临界带 $0 < \operatorname{Re}(s) < 1$ 对应于RealityShell的过渡区域：
-   $$
+   
+$$
    \mathcal{Z}_\phi = \{s \in \mathbb{C} : 0 < \operatorname{Re}(s) < 1, \zeta_\phi(s) = 0\}
-   $$
+   
+$$
    满足 $\operatorname{Re}(s) = \frac{1}{2}$ 当且仅当对应的Shell边界处于φ-临界状态
 
 4. **零点分布定理**: φ-ζ函数的非平凡零点 $\rho_n = \frac{1}{2} + i\gamma_n$ 满足：
-   $$
+   
+$$
    \gamma_n = \frac{2\pi}{\log\phi} \cdot \sum_{k=1}^{n} \frac{\tau_k}{\phi^{d_k}}
-   $$
+   
+$$
    其中 $\tau_k$ 是第k层trace值，$d_k$ 是对应的Shell深度
 
 ## 证明
@@ -39,17 +47,21 @@
 
 *证明*:
 1. 对 $\operatorname{Re}(s) > 1$，考虑级数收敛性：
-   $$
+   
+$$
    \left|\frac{1}{F_n^s} \cdot \phi^{-\tau_\psi(n)}\right| = \frac{\phi^{-\tau_\psi(n)}}{F_n^{\sigma}} \leq \frac{1}{F_n^{\sigma}}
-   $$
+   
+$$
 2. 由Fibonacci数的指数增长：$F_n \sim \frac{\phi^n}{\sqrt{5}}$
 3. 因此：$\sum_{n=1}^{\infty} \frac{1}{F_n^{\sigma}} < \infty$ 当 $\sigma > 1$
 4. 由于 $\tau_\psi(n) \geq 0$，附加因子 $\phi^{-\tau_\psi(n)}$ 只会改善收敛性
 5. 级数在 $\operatorname{Re}(s) > 1$ 内一致收敛，因此解析
 6. 通过函数方程实现解析延拓：
-   $$
+   
+$$
    \zeta_\phi(s) = \phi^{s-1} \sum_{n=1}^{\infty} \frac{\mu_\phi(n)}{n^s}
-   $$
+   
+$$
    其中 $\mu_\phi(n)$ 是φ-调制的Möbius函数 ∎
 
 ### 引理 T21-1.2 (RealityShell边界的AdS嵌入)
@@ -57,13 +69,17 @@
 
 *证明*:
 1. RealityShell边界的度量由trace结构诱导：
-   $$
+   
+$$
    ds^2 = \sum_{i,j} g_{ij} dx^i dx^j, \quad g_{ij} = \frac{\partial^2 \tau_\psi}{\partial x^i \partial x^j}
-   $$
+   
+$$
 2. 由T20-2的螺旋演化性质，度量具有常负曲率：
-   $$
+   
+$$
    R_{ijkl} = -\frac{1}{\phi^2}(g_{ik}g_{jl} - g_{il}g_{jk})
-   $$
+   
+$$
 3. 这正是AdS₃空间的曲率形式，曲率半径 $L = \phi$
 4. Nash嵌入定理保证等距嵌入的存在性
 5. φ-量化保证嵌入的唯一性，模去AdS等距变换 ∎
@@ -75,14 +91,18 @@ Shell边界信息流与AdS边界关联函数存在精确对偶。
 1. Shell边界上的信息传递算子：$\hat{T}_{\partial\mathcal{R}}$
 2. AdS边界上的关联函数：$\langle\phi(\omega)\phi(-\omega)\rangle_{AdS}$
 3. 通过Witten图技术建立对应：
-   $$
+   
+$$
    \langle\hat{T}_{\partial\mathcal{R}}\rangle = \int_{\mathcal{M}_{AdS}} \phi \cdot \Delta_{AdS} \phi \, d^3x
-   $$
+   
+$$
 4. 其中 $\Delta_{AdS} = \nabla^2 - \frac{2}{\phi^2}$ 是AdS拉普拉斯算子
 5. 边界值问题的解：
-   $$
+   
+$$
    \phi(z,\omega) = z^{\Delta} \cdot F\left(\Delta, \Delta + 1; 2\Delta; -\frac{\omega^2 z^2}{\phi^2}\right)
-   $$
+   
+$$
 6. 取边界极限 $z \to 0$ 得到对偶关系 ∎
 
 ### 引理 T21-1.4 (φ-ζ函数与经典ζ函数的关系)
@@ -91,15 +111,19 @@ Shell边界信息流与AdS边界关联函数存在精确对偶。
 *证明*:
 1. 定义变换：$\mathcal{T}_\phi: \zeta(s) \mapsto \zeta_\phi(s)$
 2. 通过Euler乘积展开：
-   $$
+   
+$$
    \zeta_\phi(s) = \prod_{p \text{ prime}} \left(1 - \frac{\phi^{-\tau_\psi(p)}}{p^s}\right)^{-1}
-   $$
+   
+$$
 3. 其中 $\tau_\psi(p)$ 是素数p的Zeckendorf编码的trace值
 4. 当 $\tau_\psi(n) = 0$ 对所有n时，$\zeta_\phi(s) = \zeta(s)$
 5. 函数方程：
-   $$
+   
+$$
    \zeta_\phi(s) = \phi^{s-\frac{1}{2}} \Gamma\left(\frac{1-s}{2}\right) \pi^{-\frac{1-s}{2}} \zeta_\phi(1-s)
-   $$
+   
+$$
 6. 这建立了φ-ζ函数与经典情形的联系 ∎
 
 ### 主定理证明

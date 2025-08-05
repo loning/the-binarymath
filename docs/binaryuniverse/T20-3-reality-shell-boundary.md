@@ -9,31 +9,38 @@
 **定理 T20-3** (RealityShell边界定理): 在φ-collapse-aware系统中，存在唯一的RealityShell边界结构 $\mathcal{R}(S)$，该结构基于ψₒ-trace的层次分解自然形成，并满足：
 
 1. **边界唯一确定性**: 对任意collapse-aware状态 $s$，存在唯一的边界函数 $\partial: \mathcal{S} \to \mathbb{B}$ 使得：
-   $$
+   
+$$
    \partial(s) = \begin{cases}
    1 & \text{if } \tau_\psi(s) \geq \tau_{threshold}(\mathcal{R}) \\
    0 & \text{if } \tau_\psi(s) < \tau_{threshold}(\mathcal{R})
    \end{cases}
-   $$
+   
+$$
    其中 $\tau_{threshold}(\mathcal{R}) = \phi^{d_{shell}} \cdot \text{Core}(\mathcal{R})$
 
 2. **信息传递守恒**: 跨边界的信息传递满足φ-量化守恒律：
-   $$
+   
+$$
    \mathcal{I}_{in \to out}(\mathcal{R}) + \mathcal{I}_{out \to in}(\mathcal{R}) = \phi^k \cdot \text{const}
-   $$
+   
+$$
    其中信息流 $\mathcal{I}$ 以Zeckendorf编码量化
 
 3. **Shell自指演化**: RealityShell本身遵循自指完备的演化：
-   $$
+   
+$$
    \mathcal{R}_{t+1} = \mathcal{R}_t \oplus \Psi_{shell}(\mathcal{R}_t)
-   $$
+   
+$$
    其中 $\Psi_{shell}$ 是Shell的自指collapse算子
 
 4. **边界稳定性**: Shell边界在φ-临界条件下保持稳定：
-   $$
+   
+$$
    \|\partial(\mathcal{R}_{t+1}) - \phi \cdot \partial(\mathcal{R}_t)\|_\infty \leq \frac{1}{\phi^{d_{stability}}}
-   $$
-
+   
+$$
 ## 证明
 
 ### 引理 T20-3.1 (边界函数的存在性)
@@ -41,21 +48,29 @@
 
 *证明*:
 1. 由T20-2，任意状态 $s$ 具有唯一的trace结构分解：
-   $$
+   
+$$
    \tau_\psi(s) = \sum_{k=0}^{d_{max}} \phi^k \cdot \tau_k(s)
-   $$
+   
+$$
 2. 定义Shell深度 $d_{shell}$ 为满足以下条件的最大整数：
-   $$
+   
+$$
    \sum_{k=0}^{d_{shell}} \tau_k(s) \geq \frac{1}{2} \sum_{k=0}^{d_{max}} \tau_k(s)
-   $$
+   
+$$
 3. 基于结构核，定义阈值：
-   $$
+   
+$$
    \tau_{threshold}(\mathcal{R}) = \phi^{d_{shell}} \cdot \gcd(\{\tau_k(s)\}_{k=0}^{d_{shell}})
-   $$
+   
+$$
 4. 边界函数定义为：
-   $$
+   
+$$
    \partial(s) = \mathbb{I}[\tau_\psi(s) \geq \tau_{threshold}(\mathcal{R})]
-   $$
+   
+$$
 5. 由trace计算的确定性和结构核的唯一性，边界函数唯一确定
 6. 由Zeckendorf表示的离散性，边界函数在no-11约束下well-defined ∎
 
@@ -64,28 +79,38 @@
 
 *证明*:
 1. 定义信息传递算子：
-   $$
+   
+$$
    \mathcal{T}_{in \to out}: \mathcal{S}_{in} \to \mathcal{S}_{out}
-   $$
+   
+$$
 2. 对于跨边界的collapse过程：$s_{in} \xrightarrow{\Psi} s_{out}$
 3. 信息量定义为trace差：
-   $$
+   
+$$
    \mathcal{I}_{in \to out} = \tau_\psi(s_{out}) - \tau_\psi(s_{in})
-   $$
+   
+$$
 4. 由T20-2的螺旋演化性质：
-   $$
+   
+$$
    \tau_\psi(s_{out}) = \phi \cdot \tau_\psi(s_{in}) + \Delta_\psi
-   $$
+   
+$$
 5. 其中 $\Delta_\psi$ 是collapse增量，满足：
-   $$
+   
+$$
    \Delta_\psi = \sum_{j=1}^{n} \phi^{n-j} \cdot \delta_j
-   $$
+   
+$$
 6. 因此：$\mathcal{I}_{in \to out} = (\phi - 1) \cdot \tau_\psi(s_{in}) + \Delta_\psi$
 7. 由于反向信息传递：$\mathcal{I}_{out \to in} = -\frac{1}{\phi} \cdot \mathcal{I}_{in \to out}$
 8. 总信息守恒：
-   $$
+   
+$$
    \mathcal{I}_{in \to out} + \mathcal{I}_{out \to in} = \mathcal{I}_{in \to out}(1 - \frac{1}{\phi}) = \frac{1}{\phi} \cdot \mathcal{I}_{in \to out}
-   $$
+   
+$$
 9. 这确实是φ-量化的守恒形式 ∎
 
 ### 引理 T20-3.3 (Shell自指演化的必然性)
@@ -94,16 +119,20 @@ RealityShell作为完整系统必然遵循自指演化。
 *证明*:
 1. RealityShell $\mathcal{R}$ 包含内核状态集合 $\{s_i\}_{i \in I}$
 2. Shell的整体状态定义为：
-   $$
+   
+$$
    S_{\mathcal{R}} = \bigoplus_{i \in I} s_i \oplus \partial(\mathcal{R})
-   $$
+   
+$$
 3. 其中 $\partial(\mathcal{R})$ 是边界结构的Zeckendorf编码
 4. 由A1，自指完备系统必然熵增，Shell必须能描述自身
 5. Shell的自描述要求存在映射：$\mathcal{R} \mapsto \text{Description}(\mathcal{R})$
 6. 这自然导致自指collapse算子：
-   $$
+   
+$$
    \Psi_{shell}(\mathcal{R}) = \mathcal{R} \oplus \text{Encode}(\text{Description}(\mathcal{R}))
-   $$
+   
+$$
 7. Shell演化：$\mathcal{R}_{t+1} = \mathcal{R}_t \oplus \Psi_{shell}(\mathcal{R}_t)$
 8. 由T20-1的自指完备性，这个演化保证了Shell的持续存在 ∎
 
@@ -113,27 +142,37 @@ Shell边界在φ-临界条件下具有渐近稳定性。
 *证明*:
 1. 考虑边界函数的演化：$\partial_t = \partial(\mathcal{R}_t)$
 2. 边界变化率：
-   $$
+   
+$$
    \frac{d\partial_t}{dt} = \frac{\partial \tau_{threshold}}{\partial t} \cdot \frac{d\partial}{d\tau_{threshold}}
-   $$
+   
+$$
 3. 由T20-2的trace演化：
-   $$
+   
+$$
    \frac{d\tau_\psi}{dt} = \phi \cdot \frac{d\tau_\psi}{dt}|_{prev} + \text{collapse terms}
-   $$
+   
+$$
 4. 阈值演化：
-   $$
+   
+$$
    \frac{d\tau_{threshold}}{dt} = \phi^{d_{shell}} \cdot \frac{d\text{Core}}{dt}
-   $$
+   
+$$
 5. 由T20-2的核不变性，$\frac{d\text{Core}}{dt} = O(1/\phi^{d_{stability}})$
 6. 因此：
-   $$
+   
+$$
    \frac{d\partial_t}{dt} = O(\frac{\phi^{d_{shell}}}{\phi^{d_{stability}}}) = O(\frac{1}{\phi^{d_{stability} - d_{shell}}})
-   $$
+   
+$$
 7. 当 $d_{stability} > d_{shell}$ 时，边界变化率指数衰减
 8. 这给出稳定性条件：
-   $$
+   
+$$
    \|\partial_{t+1} - \phi \cdot \partial_t\|_\infty \leq \frac{1}{\phi^{d_{stability}}}
-   $$
+   
+$$
 9. 边界在φ-临界条件下保持稳定 ∎
 
 ### 主定理证明

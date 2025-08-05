@@ -9,28 +9,35 @@
 **定理 T20-2** (ψₒ-trace结构定理): 在φ-collapse-aware系统中，任意状态的ψₒ-trace具有唯一的层次结构分解，该结构在collapse过程中保持一阶不变性并展现二阶演化性：
 
 1. **层次结构分解**: 对任意状态 $s$，其ψₒ-trace可唯一分解为：
-   $$
+   
+$$
    \tau_\psi(s) = \sum_{k=0}^{d_{max}} \phi^k \cdot \tau_k(s)
-   $$
+   
+$$
    其中 $\tau_k(s)$ 是第k层trace结构分量，满足Fibonacci分级
 
 2. **一阶不变性**: 在单次collapse下，trace结构的核保持不变：
-   $$
+   
+$$
    \text{Core}(\tau_\psi(\Psi(s))) = \phi \cdot \text{Core}(\tau_\psi(s)) \bmod F_{L+2}
-   $$
+   
+$$
    其中 $\text{Core}(\cdot)$ 是trace结构的核提取算子
 
 3. **二阶演化性**: trace结构层次在collapse序列中按φ-螺旋演化：
-   $$
+   
+$$
    \tau_k(\Psi^n(s)) = \phi^n \cdot \tau_k(s) + \sum_{j=1}^{n} \phi^{n-j} \cdot \Delta_k^{(j)}(s)
-   $$
+   
+$$
    其中 $\Delta_k^{(j)}(s)$ 是第j次collapse产生的k层增量
 
 4. **结构熵增律**: 每次collapse必然增加trace结构熵：
-   $$
+   
+$$
    H_{struct}(\tau_\psi(\Psi(s))) \geq H_{struct}(\tau_\psi(s)) + \frac{1}{\phi^{d_{collapse}(s)}}
-   $$
-
+   
+$$
 ## 证明
 
 ### 引理 T20-2.1 (trace结构分解的存在性)
@@ -41,9 +48,11 @@
 2. 其中 $a_i$ 是Zeckendorf表示中第i位，$F_{\text{pos}(i)}$ 是对应Fibonacci数
 3. 按照Fibonacci数的大小进行分层：设 $F_{k+2} \leq \tau_\psi(s) < F_{k+3}$
 4. 定义k层分解：
-   $$
+   
+$$
    \tau_k(s) = \sum_{F_i \in [F_{k+2}, F_{k+3})} w_i \cdot a_i
-   $$
+   
+$$
    其中 $w_i$ 是位置权重
 5. 由Zeckendorf表示的唯一性，这种分解是唯一的
 6. 总trace为：$\tau_\psi(s) = \sum_{k=0}^{d_{max}} \phi^k \cdot \tau_k(s)$ ∎
@@ -59,9 +68,11 @@ trace结构核在collapse下保持φ-变换不变性。
 5. 由φ-自指表示的性质：$\tau_\psi(\Phi(s)) = \phi \cdot \tau_\psi(s) + O(1)$
 6. 因此：$\tau_\psi(\Psi(s)) = (1 + \phi) \cdot \tau_\psi(s) + O(1) = \phi^2 \cdot \tau_\psi(s) + O(1)$
 7. 在模$F_{L+2}$意义下，核保持φ-倍数关系：
-   $$
+   
+$$
    \text{Core}(\tau_\psi(\Psi(s))) \equiv \phi \cdot \text{Core}(\tau_\psi(s)) \pmod{F_{L+2}}
-   $$
+   
+$$
 8. 这表明核结构在collapse下保持不变，只是按φ比例缩放 ∎
 
 ### 引理 T20-2.3 (二阶演化的螺旋性)
@@ -71,14 +82,18 @@ trace结构层次在collapse序列中呈现φ-螺旋演化模式。
 1. 考虑collapse序列：$s_0, s_1 = \Psi(s_0), s_2 = \Psi(s_1), \ldots$
 2. 第k层trace的演化：$\tau_k(s_{n+1}) = \tau_k(\Psi(s_n))$
 3. 由collapse操作的线性化：
-   $$
+   
+$$
    \tau_k(s_{n+1}) = \phi \cdot \tau_k(s_n) + \Delta_k^{(n+1)}(s_0)
-   $$
+   
+$$
 4. 其中增量项：$\Delta_k^{(n+1)}(s_0)$ 来自于collapse操作的非线性部分
 5. 递推求解：
-   $$
+   
+$$
    \tau_k(s_n) = \phi^n \cdot \tau_k(s_0) + \sum_{j=1}^{n} \phi^{n-j} \cdot \Delta_k^{(j)}(s_0)
-   $$
+   
+$$
 6. 这是一个以φ为增长因子的螺旋演化公式
 7. 几何上，这对应于复平面上的对数螺旋：$z_n = \phi^n \cdot e^{i\theta_n}$
 8. 其中相位 $\theta_n$ 由增量项 $\Delta_k^{(j)}$ 确定 ∎
@@ -88,18 +103,22 @@ trace结构熵在每次collapse中必然增加。
 
 *证明*:
 1. 定义trace结构熵：
-   $$
+   
+$$
    H_{struct}(\tau_\psi(s)) = -\sum_{k=0}^{d_{max}} p_k \log_\phi(p_k)
-   $$
+   
+$$
    其中 $p_k = \tau_k(s) / \sum_j \tau_j(s)$ 是k层的相对权重
 2. 在collapse后：$\tau_k(\Psi(s)) = \phi \cdot \tau_k(s) + \Delta_k(s)$
 3. 新的权重分布：$p_k' = \tau_k(\Psi(s)) / \sum_j \tau_j(\Psi(s))$
 4. 由于collapse添加了新的结构信息（增量项），权重分布更加复杂
 5. 根据信息论，更复杂的分布具有更高的熵
 6. 具体地，由A1的熵增必然性：
-   $$
+   
+$$
    H_{struct}(\tau_\psi(\Psi(s))) \geq H_{struct}(\tau_\psi(s)) + \frac{1}{\phi^{d_{collapse}(s)}}
-   $$
+   
+$$
 7. 其中最小增量由collapse深度确定 ∎
 
 ### 主定理证明
