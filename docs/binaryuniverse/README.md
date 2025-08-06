@@ -227,6 +227,9 @@
 - [`T8-1-entropic-arrow.md`](T8-1-entropic-arrow.md) - 定理8.1：熵增箭头定理
 - [`T8-2-spacetime-encoding.md`](T8-2-spacetime-encoding.md) - 定理8.2：时空编码定理
 - [`T8-3-holographic-principle.md`](T8-3-holographic-principle.md) - 定理8.3：全息原理定理
+- [`T8-4-time-reverse-collapse-path.md`](T8-4-time-reverse-collapse-path.md) - 定理8.4：时间反向collapse-path存在性定理
+- [`T8-5-time-reverse-path-decision.md`](T8-5-time-reverse-path-decision.md) - 定理8.5：时间反向路径判定机制定理
+- [`T8-6-structural-backflow-tension-conservation.md`](T8-6-structural-backflow-tension-conservation.md) - 定理8.6：结构倒流张力守恒定律
 
 ### 第10章：理论扩展 - 生命意识理论
 
