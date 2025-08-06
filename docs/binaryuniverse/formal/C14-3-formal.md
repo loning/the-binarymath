@@ -28,16 +28,21 @@
 
 ### 扰动动力学
 **定义C14-3.1**: 扰动演化方程
-$$\delta x(t+1) = \mathcal{P}_{\varphi} \delta x(t)$$
-
+$$
+\delta x(t+1) = \mathcal{P}_{\varphi} \delta x(t)
+$$
 其中$\mathcal{P}_{\varphi}$是φ-转移算子，满足：
-$$\rho(\mathcal{P}_{\varphi}) = \varphi^{-1}$$
-
+$$
+\rho(\mathcal{P}_{\varphi}) = \varphi^{-1}
+$$
 ### Lyapunov稳定性
 **定义C14-3.2**: Lyapunov函数
-$$V: \mathcal{X} \to \mathbb{R}_{\geq 0}$$
-$$V(x) = \sum_{i=1}^N \varphi^{-d_i} ||x_i - x_i^*||^2$$
-
+$$
+V: \mathcal{X} \to \mathbb{R}_{\geq 0}
+$$
+$$
+V(x) = \sum_{i=1}^N \varphi^{-d_i} ||x_i - x_i^*||^2
+$$
 满足：
 1. $V(x^*) = 0$
 2. $V(x) > 0, \forall x \neq x^*$
@@ -48,8 +53,9 @@ $$V(x) = \sum_{i=1}^N \varphi^{-d_i} ||x_i - x_i^*||^2$$
 ### 推论C14-3.1：扰动指数衰减
 
 **陈述**: 对任意小扰动$\delta x_0 \in \Delta\mathcal{X}$：
-$$||\delta x(t)|| \leq ||\delta x_0|| \cdot \varphi^{-\alpha t}$$
-
+$$
+||\delta x(t)|| \leq ||\delta x_0|| \cdot \varphi^{-\alpha t}
+$$
 其中$\alpha = -\ln\rho(\mathcal{P}_{\varphi})/\ln\varphi > 0$。
 
 **证明要素**:
@@ -60,38 +66,48 @@ $$||\delta x(t)|| \leq ||\delta x_0|| \cdot \varphi^{-\alpha t}$$
 ### 推论C14-3.2：渗流黄金分割
 
 **陈述**: 网络渗流临界概率
-$$p_c = \varphi^{-2} = \frac{1}{\varphi + 1} \approx 0.382$$
-
+$$
+p_c = \varphi^{-2} = \frac{1}{\varphi + 1} \approx 0.382
+$$
 **验证条件**:
-$$\lim_{n \to \infty} \frac{F_n}{F_{n+2}} = \varphi^{-2}$$
-
+$$
+\lim_{n \to \infty} \frac{F_n}{F_{n+2}} = \varphi^{-2}
+$$
 ### 推论C14-3.3：韧性Fibonacci递归
 
 **陈述**: k轮攻击后的韧性
-$$R_k = R_0 \cdot \prod_{i=1}^k \frac{F_{n-i+2}}{F_{n-i+3}}$$
-
+$$
+R_k = R_0 \cdot \prod_{i=1}^k \frac{F_{n-i+2}}{F_{n-i+3}}
+$$
 **极限行为**:
-$$\lim_{k \to \infty} R_k^{1/k} = \varphi^{-1}$$
-
+$$
+\lim_{k \to \infty} R_k^{1/k} = \varphi^{-1}
+$$
 ### 推论C14-3.4：Lyapunov指数谱
 
 **陈述**: Lyapunov指数满足
-$$\lambda_{\max} = -\ln\varphi$$
-$$\lambda_i \leq \lambda_{\max}, \forall i$$
-
+$$
+\lambda_{\max} = -\ln\varphi
+$$
+$$
+\lambda_i \leq \lambda_{\max}, \forall i
+$$
 **稳定性判据**:
-$$\lambda_{\max} < 0 \Rightarrow \text{渐近稳定}$$
-
+$$
+\lambda_{\max} < 0 \Rightarrow \text{渐近稳定}
+$$
 ### 推论C14-3.5：恢复时间缩放
 
 **陈述**: 从扰动恢复的时间
-$$T_{recovery} = T_0 \cdot \log_{\varphi} N$$
-
+$$
+T_{recovery} = T_0 \cdot \log_{\varphi} N
+$$
 其中$T_0 = \varphi$是特征时间。
 
 **精确形式**:
-$$T_{recovery} = \frac{\ln N}{\ln\varphi} + O(1)$$
-
+$$
+T_{recovery} = \frac{\ln N}{\ln\varphi} + O(1)
+$$
 ## 算法规范
 
 ### Algorithm: StabilityAnalysis
@@ -141,20 +157,25 @@ function analyze_stability(A, delta_x0, T):
 ## 验证条件
 
 ### V1: 扰动衰减验证
-$$\frac{||\delta x_{t+1}||}{||\delta x_t||} \leq \varphi^{-\alpha} + \epsilon$$
-
+$$
+\frac{||\delta x_{t+1}||}{||\delta x_t||} \leq \varphi^{-\alpha} + \epsilon
+$$
 ### V2: 渗流阈值验证
-$$|p_c^{empirical} - \varphi^{-2}| < 0.05$$
-
+$$
+|p_c^{empirical} - \varphi^{-2}| < 0.05
+$$
 ### V3: 韧性递归验证
-$$\left|\frac{R_{k+1}}{R_k} - \varphi^{-1}\right| < 0.1$$
-
+$$
+\left|\frac{R_{k+1}}{R_k} - \varphi^{-1}\right| < 0.1
+$$
 ### V4: Lyapunov函数递减
-$$V(x_{t+1}) - V(x_t) < 0, \forall x_t \neq x^*$$
-
+$$
+V(x_{t+1}) - V(x_t) < 0, \forall x_t \neq x^*
+$$
 ### V5: 恢复时间缩放
-$$\frac{T_{recovery}(2N)}{T_{recovery}(N)} \approx \frac{\log_{\varphi}(2N)}{\log_{\varphi}(N)}$$
-
+$$
+\frac{T_{recovery}(2N)}{T_{recovery}(N)} \approx \frac{\log_{\varphi}(2N)}{\log_{\varphi}(N)}
+$$
 ## 复杂度分析
 
 ### 时间复杂度
@@ -172,15 +193,18 @@ $$\frac{T_{recovery}(2N)}{T_{recovery}(N)} \approx \frac{\log_{\varphi}(2N)}{\lo
 ## 数值稳定性
 
 ### 条件数界
-$$\kappa(\mathcal{P}_{\varphi}) \leq \varphi \cdot \kappa(A)$$
-
+$$
+\kappa(\mathcal{P}_{\varphi}) \leq \varphi \cdot \kappa(A)
+$$
 ### 误差传播
-$$||e_{t+1}|| \leq \varphi^{-1} ||e_t|| + \epsilon_{machine}$$
-
+$$
+||e_{t+1}|| \leq \varphi^{-1} ||e_t|| + \epsilon_{machine}
+$$
 ### 数值格式
 推荐隐式欧拉：
-$$x_{t+1} = (I - \Delta t \cdot J_{\varphi})^{-1} x_t$$
-
+$$
+x_{t+1} = (I - \Delta t \cdot J_{\varphi})^{-1} x_t
+$$
 其中$J_{\varphi}$是φ-调制Jacobian。
 
 ## 实现要求

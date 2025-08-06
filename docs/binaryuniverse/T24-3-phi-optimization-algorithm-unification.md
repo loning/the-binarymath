@@ -10,18 +10,27 @@
 **定理 T24-3** (φ-优化算法统一定理): 在Zeckendorf编码的二进制宇宙中，所有一阶优化算法都统一为φ-结构：
 
 1. **算法等价性**: 标准优化算法在Zeckendorf约束下等价于φ-调制版本：
-   $$\text{Algorithm}_{\mathcal{Z}} = \varphi^{-1} \cdot \text{Algorithm}_{\text{standard}} + O(\varphi^{-2})$$
-
+   
+$$
+\text{Algorithm}_{\mathcal{Z}} = \varphi^{-1} \cdot \text{Algorithm}_{\text{standard}} + O(\varphi^{-2})
+$$
 2. **动量项的φ-表示**: 带动量的算法自然产生Fibonacci加权：
-   $$v_{n+1} = \frac{F_n}{F_{n+1}} v_n + \frac{F_{n-1}}{F_{n+1}} \nabla f(x_n)$$
+   
+$$
+v_{n+1} = \frac{F_n}{F_{n+1}} v_n + \frac{F_{n-1}}{F_{n+1}} \nabla f(x_n)
+$$
    其中$F_n$是第n个Fibonacci数
 
 3. **自适应学习率**: 最优学习率遵循黄金分割：
-   $$\alpha_{\text{optimal}} = \alpha_0 \cdot \varphi^{-k} \prod_{i=1}^{k} \left(1 + \frac{1}{F_i}\right)$$
-
+   
+$$
+\alpha_{\text{optimal}} = \alpha_0 \cdot \varphi^{-k} \prod_{i=1}^{k} \left(1 + \frac{1}{F_i}\right)
+$$
 4. **随机梯度的φ-方差**: 随机优化中的方差缩减因子：
-   $$\text{Var}[g_{\mathcal{Z}}] = \varphi^{-1} \cdot \text{Var}[g_{\text{standard}}]$$
-
+   
+$$
+\text{Var}[g_{\mathcal{Z}}] = \varphi^{-1} \cdot \text{Var}[g_{\text{standard}}]
+$$
 5. **算法层次结构**: 优化算法形成φ-分形层次：
    - 0阶：梯度下降 → φ-梯度下降
    - 1阶：动量方法 → Fibonacci动量
@@ -33,28 +42,33 @@
 ### 第一步：建立算法的Zeckendorf表示
 
 考虑一般的迭代优化算法：
-$$x_{k+1} = \mathcal{A}(x_k, \nabla f(x_k), \mathcal{H}_k)$$
-
+$$
+x_{k+1} = \mathcal{A}(x_k, \nabla f(x_k), \mathcal{H}_k)
+$$
 其中$\mathcal{H}_k$是历史信息。
 
 在Zeckendorf约束下，每个操作必须保持无11条件：
-$$x_{k+1} = \text{Proj}_{\mathcal{Z}}(\mathcal{A}(x_k, \nabla f(x_k), \mathcal{H}_k))$$
-
+$$
+x_{k+1} = \text{Proj}_{\mathcal{Z}}(\mathcal{A}(x_k, \nabla f(x_k), \mathcal{H}_k))
+$$
 **关键引理**：投影操作引入φ^{-1}缩放
-$$\text{Proj}_{\mathcal{Z}}(x + \Delta x) = x + \varphi^{-1} \Delta x + O(||\Delta x||^2)$$
-
+$$
+\text{Proj}_{\mathcal{Z}}(x + \Delta x) = x + \varphi^{-1} \Delta x + O(||\Delta x||^2)
+$$
 证明：当$\Delta x$可能产生11模式时，投影将其转换为100模式，长度比为2:3 ≈ 1/φ。
 
 ### 第二步：推导动量项的Fibonacci结构
 
 标准动量方法：
-$$v_{k+1} = \beta v_k + (1-\beta) \nabla f(x_k)$$
-
+$$
+v_{k+1} = \beta v_k + (1-\beta) \nabla f(x_k)
+$$
 在Zeckendorf约束下，权重必须满足无11条件。最优权重序列是Fibonacci比例：
 
 **定理（动量最优性）**：使得收敛最快的动量系数为：
-$$\beta_k = \frac{F_k}{F_{k+1}}, \quad 1-\beta_k = \frac{F_{k-1}}{F_{k+1}}$$
-
+$$
+\beta_k = \frac{F_k}{F_{k+1}}, \quad 1-\beta_k = \frac{F_{k-1}}{F_{k+1}}
+$$
 证明：这些系数满足：
 1. $\beta_k + (1-\beta_k) = 1$ （归一化）
 2. $\beta_k \to 1/\varphi$ （渐近最优）
@@ -63,22 +77,27 @@ $$\beta_k = \frac{F_k}{F_{k+1}}, \quad 1-\beta_k = \frac{F_{k-1}}{F_{k+1}}$$
 ### 第三步：自适应学习率的黄金分割
 
 考虑自适应学习率算法（如AdaGrad, Adam）。累积梯度信息：
-$$G_k = \sum_{i=1}^k g_i \otimes g_i$$
-
+$$
+G_k = \sum_{i=1}^k g_i \otimes g_i
+$$
 在Zeckendorf约束下，有效累积为：
-$$G_k^{\mathcal{Z}} = \sum_{i=1}^k \varphi^{-(k-i)} g_i \otimes g_i$$
-
+$$
+G_k^{\mathcal{Z}} = \sum_{i=1}^k \varphi^{-(k-i)} g_i \otimes g_i
+$$
 这产生自适应学习率：
-$$\alpha_k = \frac{\alpha_0}{\sqrt{G_k^{\mathcal{Z}} + \epsilon}} = \alpha_0 \cdot \varphi^{-k/2} \cdot \text{correction}$$
-
+$$
+\alpha_k = \frac{\alpha_0}{\sqrt{G_k^{\mathcal{Z}} + \epsilon}} = \alpha_0 \cdot \varphi^{-k/2} \cdot \text{correction}
+$$
 ### 第四步：随机优化的方差缩减
 
 在随机梯度下降(SGD)中，小批量梯度估计：
-$$g_k = \frac{1}{|B|} \sum_{i \in B} \nabla f_i(x_k)$$
-
+$$
+g_k = \frac{1}{|B|} \sum_{i \in B} \nabla f_i(x_k)
+$$
 Zeckendorf约束限制了可能的批次配置，导致：
-$$\text{Var}[g_k^{\mathcal{Z}}] = \varphi^{-1} \text{Var}[g_k^{\text{standard}}]$$
-
+$$
+\text{Var}[g_k^{\mathcal{Z}}] = \varphi^{-1} \text{Var}[g_k^{\text{standard}}]
+$$
 这是因为有效样本空间被缩减到原来的$\varphi^{-1} \approx 0.618$。
 
 **意外好处**：方差缩减提高了算法稳定性，部分补偿了收敛速度的降低。
@@ -92,8 +111,9 @@ $$\text{Var}[g_k^{\mathcal{Z}}] = \varphi^{-1} \text{Var}[g_k^{\text{standard}}]
 - $\mathcal{A}_n$：使用n阶Taylor展开
 
 **分形定理**：在Zeckendorf约束下：
-$$\mathcal{A}_n^{\mathcal{Z}} = \varphi^{-n} \mathcal{A}_n^{\text{standard}} + \sum_{k=1}^{n-1} \varphi^{-k} \mathcal{A}_k^{\mathcal{Z}}$$
-
+$$
+\mathcal{A}_n^{\mathcal{Z}} = \varphi^{-n} \mathcal{A}_n^{\text{standard}} + \sum_{k=1}^{n-1} \varphi^{-k} \mathcal{A}_k^{\mathcal{Z}}
+$$
 这表明高阶算法包含所有低阶算法的φ-调制版本，形成自相似结构。
 
 **结论**：所有优化算法在Zeckendorf约束下统一为φ-调制版本，黄金比例不是设计选择而是结构必然。∎

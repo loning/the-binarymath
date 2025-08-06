@@ -21,8 +21,9 @@
 ## 形式系统
 
 ### 投影算子
-$$\text{Proj}_{\mathcal{Z}}: \mathcal{B}_n \to \mathcal{Z}_n$$
-
+$$
+\text{Proj}_{\mathcal{Z}}: \mathcal{B}_n \to \mathcal{Z}_n
+$$
 **性质**:
 1. **非扩张性**: $\|\text{Proj}_{\mathcal{Z}}(x) - \text{Proj}_{\mathcal{Z}}(y)\| \leq \|x - y\|$
 2. **幂等性**: $\text{Proj}_{\mathcal{Z}}(\text{Proj}_{\mathcal{Z}}(x)) = \text{Proj}_{\mathcal{Z}}(x)$
@@ -31,8 +32,9 @@ $$\text{Proj}_{\mathcal{Z}}: \mathcal{B}_n \to \mathcal{Z}_n$$
 ### 优化问题结构
 
 **问题P**: 在Zeckendorf约束下优化目标函数$f$:
-$$\min_{x \in \mathcal{Z}_n} f(x)$$
-
+$$
+\min_{x \in \mathcal{Z}_n} f(x)
+$$
 **假设**:
 1. $f: \mathbb{R}^n \to \mathbb{R}$是$L$-光滑的: $\|\nabla f(x) - \nabla f(y)\| \leq L\|x-y\|$
 2. $f$在$\mathcal{Z}_n$上是$\mu$-强凸的: $f(y) \geq f(x) + \langle \nabla f(x), y-x \rangle + \frac{\mu}{2}\|y-x\|^2$
@@ -43,10 +45,13 @@ $$\min_{x \in \mathcal{Z}_n} f(x)$$
 ### 定理T24-2.1：收敛速率界
 
 **陈述**: 投影梯度算法
-$$x_{k+1} = \text{Proj}_{\mathcal{Z}}(x_k - \alpha_k \nabla f(x_k))$$
+$$
+x_{k+1} = \text{Proj}_{\mathcal{Z}}(x_k - \alpha_k \nabla f(x_k))
+$$
 满足收敛速率:
-$$\|x_k - x^*\| \leq \frac{1}{\varphi^k} \|x_0 - x^*\|$$
-
+$$
+\|x_k - x^*\| \leq \frac{1}{\varphi^k} \|x_0 - x^*\|
+$$
 **证明要素**:
 1. 收缩映射分析
 2. φ-调制效应
@@ -55,33 +60,41 @@ $$\|x_k - x^*\| \leq \frac{1}{\varphi^k} \|x_0 - x^*\|$$
 ### 定理T24-2.2：迭代复杂度
 
 **陈述**: 达到$\epsilon$-精度所需迭代次数:
-$$N(\epsilon) = \lceil \log_\varphi \left(\frac{\|x_0 - x^*\|}{\epsilon}\right) \rceil$$
-
+$$
+N(\epsilon) = \lceil \log_\varphi \left(\frac{\|x_0 - x^*\|}{\epsilon}\right) \rceil
+$$
 **推论**: 复杂度为$O(\log_\varphi(1/\epsilon)) = O(1.44 \log(1/\epsilon))$
 
 ### 定理T24-2.3：Fibonacci步长最优性
 
 **陈述**: 最优步长序列满足:
-$$\alpha_k = \frac{F_k}{F_{k+1}} \xrightarrow{k \to \infty} \frac{1}{\varphi}$$
-
+$$
+\alpha_k = \frac{F_k}{F_{k+1}} \xrightarrow{k \to \infty} \frac{1}{\varphi}
+$$
 **证明**: 步长递归关系
-$$\alpha_{k+1} + \alpha_k = \alpha_{k-1}$$
+$$
+\alpha_{k+1} + \alpha_k = \alpha_{k-1}
+$$
 的解为Fibonacci比例。
 
 ### 定理T24-2.4：梯度范数递减
 
 **陈述**: 梯度范数满足:
-$$\|\nabla f(x_k)\| \leq \frac{L}{\varphi^{k/2}} \|\nabla f(x_0)\|$$
-
+$$
+\|\nabla f(x_k)\| \leq \frac{L}{\varphi^{k/2}} \|\nabla f(x_0)\|
+$$
 **意义**: 梯度以$\varphi^{-1/2} \approx 0.786$的速率递减。
 
 ### 定理T24-2.5：Zeckendorf投影保证
 
 **陈述**: 每次迭代后的投影保持收敛性:
-$$x_k \in \mathcal{Z}_n \implies x_{k+1} \in \mathcal{Z}_n$$
+$$
+x_k \in \mathcal{Z}_n \implies x_{k+1} \in \mathcal{Z}_n
+$$
 且
-$$f(x_{k+1}) \leq f(x_k) - \frac{\alpha_k}{2}\|\nabla f(x_k)\|^2$$
-
+$$
+f(x_{k+1}) \leq f(x_k) - \frac{\alpha_k}{2}\|\nabla f(x_k)\|^2
+$$
 ## 算法规范
 
 ### Algorithm: PhiConvergenceOptimizer
@@ -107,27 +120,34 @@ $$f(x_{k+1}) \leq f(x_k) - \frac{\alpha_k}{2}\|\nabla f(x_k)\|^2$$
 ## 验证条件
 
 ### V1: Fibonacci递归验证
-$$F_n = F_{n-1} + F_{n-2}, \quad n \geq 2$$
-
+$$
+F_n = F_{n-1} + F_{n-2}, \quad n \geq 2
+$$
 ### V2: 投影算子正确性
-$$x \in \mathcal{Z} \iff \text{Proj}_{\mathcal{Z}}(x) = x$$
-
+$$
+x \in \mathcal{Z} \iff \text{Proj}_{\mathcal{Z}}(x) = x
+$$
 ### V3: 收敛速率验证
-$$\frac{\|x_{k+1} - x^*\|}{\|x_k - x^*\|} \leq \frac{1}{\varphi} + \delta$$
+$$
+\frac{\|x_{k+1} - x^*\|}{\|x_k - x^*\|} \leq \frac{1}{\varphi} + \delta
+$$
 其中$\delta$是数值误差容限。
 
 ### V4: 梯度范数递减验证
-$$\frac{\|\nabla f(x_{k+1})\|}{\|\nabla f(x_k)\|} \leq \frac{1}{\sqrt{\varphi}} + \delta$$
-
+$$
+\frac{\|\nabla f(x_{k+1})\|}{\|\nabla f(x_k)\|} \leq \frac{1}{\sqrt{\varphi}} + \delta
+$$
 ### V5: 目标函数单调性
-$$f(x_{k+1}) \leq f(x_k), \quad \forall k$$
-
+$$
+f(x_{k+1}) \leq f(x_k), \quad \forall k
+$$
 ## 数值稳定性
 
 ### 条件数分析
 投影操作的条件数受φ调制:
-$$\text{cond}(\text{Proj}_{\mathcal{Z}}) \leq \varphi$$
-
+$$
+\text{cond}(\text{Proj}_{\mathcal{Z}}) \leq \varphi
+$$
 ### 舍入误差传播
 舍入误差以$O(1/\varphi^k)$速率衰减，保证数值稳定性。
 

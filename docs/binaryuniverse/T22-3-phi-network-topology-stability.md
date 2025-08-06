@@ -11,22 +11,36 @@
 **定理 T22-3** (φ-网络拓扑稳定性定理): 基于T22-1和T22-2的网络演化，φ-网络的拓扑稳定性遵循严格的熵增平衡条件：
 
 1. **拓扑稳定性条件**: 网络拓扑稳定当且仅当
-   $$\frac{\Delta S_{\text{add}}}{\Delta S_{\text{remove}}} = \phi$$
+   
+$$
+\frac{\Delta S_{\text{add}}}{\Delta S_{\text{remove}}} = \phi
+$$
    其中$\Delta S_{\text{add}}$是添加连接的熵增，$\Delta S_{\text{remove}}$是移除连接的熵减
 
 2. **φ-特征值稳定性**: 网络邻接矩阵的主特征值$\lambda_1$满足
-   $$\lambda_1 \leq \phi \cdot \sqrt{N}$$
+   
+$$
+\lambda_1 \leq \phi \cdot \sqrt{N}
+$$
    其中$N$是网络节点数
 
 3. **连通分量稳定性**: 网络的连通分量数$K$满足Fibonacci约束
-   $$K \in \{F_i : i \geq 1\} \text{ and } K \leq \lfloor N/\phi \rfloor$$
-
+   
+$$
+K \in \{F_i : i \geq 1\} \text{ and } K \leq \lfloor N/\phi \rfloor
+$$
 4. **拓扑熵守恒**: 稳定网络的拓扑熵满足
-   $$H_{\text{topo}} = \sum_{i=1}^N \frac{\log(d_i + 1)}{\phi} + K \log(\phi)$$
+   
+$$
+H_{\text{topo}} = \sum_{i=1}^N \frac{\log(d_i + 1)}{\phi} + K \log(\phi)
+$$
    其中$d_i$是节点$i$的度数，$K$是连通分量数
 
 5. **扰动稳定性**: 对于小扰动$\epsilon$，稳定网络满足
-   $$\|\Delta \mathbf{A}\|_F \leq \frac{\epsilon}{\phi} \Rightarrow \|\Delta \mathbf{λ}\|_2 \leq \epsilon$$
+   
+$$
+\|\Delta \mathbf{A}\|_F \leq \frac{\epsilon}{\phi} \Rightarrow \|\Delta \mathbf{λ}\|_2 \leq \epsilon
+$$
    其中$\mathbf{A}$是邻接矩阵，$\mathbf{λ}$是特征值向量
 
 ## 证明
@@ -34,31 +48,37 @@
 ### 第一步：从熵增原理推导拓扑稳定条件
 
 由唯一公理，网络处于稳定态意味着熵增速率最小化但非零：
-$$\frac{dH}{dt} = \min\{\Delta S > 0\}$$
-
+$$
+\frac{dH}{dt} = \min\{\Delta S > 0\}
+$$
 考虑网络中添加边$(i,j)$和移除边$(k,l)$的熵变：
 - 添加边：$\Delta S_{\text{add}} = S(G + e_{ij}) - S(G)$
 - 移除边：$\Delta S_{\text{remove}} = S(G) - S(G - e_{kl})$
 
 稳定态要求这两个过程达到动态平衡。由φ-系统的内在时间尺度，平衡比率为：
-$$\frac{\Delta S_{\text{add}}}{\Delta S_{\text{remove}}} = \phi$$
-
+$$
+\frac{\Delta S_{\text{add}}}{\Delta S_{\text{remove}}} = \phi
+$$
 ### 第二步：推导特征值稳定性界限
 
 网络的邻接矩阵$\mathbf{A}$的最大特征值$\lambda_1$控制网络的传播动力学。
 
 在φ-网络中，每个节点的度数受Fibonacci约束，因此：
-$$\sum_{i=1}^N d_i \leq N \cdot F_k \text{ for some } k$$
-
+$$
+\sum_{i=1}^N d_i \leq N \cdot F_k \text{ for some } k
+$$
 由Perron-Frobenius定理和φ-约束：
-$$\lambda_1 \leq \max_i d_i \leq \phi \cdot \text{average degree}$$
-
+$$
+\lambda_1 \leq \max_i d_i \leq \phi \cdot \text{average degree}
+$$
 而平均度数在φ-网络中满足：
-$$\langle d \rangle \leq \sqrt{N}$$
-
+$$
+\langle d \rangle \leq \sqrt{N}
+$$
 因此：
-$$\lambda_1 \leq \phi \cdot \sqrt{N}$$
-
+$$
+\lambda_1 \leq \phi \cdot \sqrt{N}
+$$
 ### 第三步：验证连通分量的Fibonacci约束
 
 网络的连通分量反映了拓扑的基本结构单元。在φ-网络中，每个分量必须独立满足熵增条件。
@@ -66,14 +86,17 @@ $$\lambda_1 \leq \phi \cdot \sqrt{N}$$
 设网络有$K$个连通分量，分别包含$n_1, n_2, \ldots, n_K$个节点，其中$\sum_{i=1}^K n_i = N$。
 
 每个分量的最小尺寸由Zeckendorf约束决定：
-$$n_i \geq F_j \text{ for some } j \geq 1$$
-
+$$
+n_i \geq F_j \text{ for some } j \geq 1
+$$
 总的分量数受限于：
-$$K \leq \lfloor N/F_1 \rfloor = \lfloor N/1 \rfloor = N$$
-
+$$
+K \leq \lfloor N/F_1 \rfloor = \lfloor N/1 \rfloor = N
+$$
 但更严格的φ-约束要求：
-$$K \leq \lfloor N/\phi \rfloor$$
-
+$$
+K \leq \lfloor N/\phi \rfloor
+$$
 同时，$K$本身必须可Zeckendorf表示，因此$K \in \{F_i : i \geq 1\}$。
 
 ### 第四步：推导拓扑熵守恒公式
@@ -83,19 +106,23 @@ $$K \leq \lfloor N/\phi \rfloor$$
 2. 连通性结构熵：$K \log(\phi)$
 
 由φ-系统的内在时间尺度$1/\phi$，节点贡献按$1/\phi$缩放：
-$$H_{\text{topo}} = \frac{1}{\phi}\sum_{i=1}^N \log(d_i + 1) + K \log(\phi)$$
-
+$$
+H_{\text{topo}} = \frac{1}{\phi}\sum_{i=1}^N \log(d_i + 1) + K \log(\phi)
+$$
 ### 第五步：证明扰动稳定性
 
 考虑邻接矩阵的小扰动$\Delta \mathbf{A}$。特征值的变化由Weyl不等式控制：
-$$|\lambda_i(\mathbf{A} + \Delta \mathbf{A}) - \lambda_i(\mathbf{A})| \leq \|\Delta \mathbf{A}\|_2$$
-
+$$
+|\lambda_i(\mathbf{A} + \Delta \mathbf{A}) - \lambda_i(\mathbf{A})| \leq \|\Delta \mathbf{A}\|_2
+$$
 在φ-网络中，由于连接权重的φ-量化，扰动的影响被φ因子调制：
-$$\|\Delta \mathbf{λ}\|_2 \leq \phi \cdot \|\Delta \mathbf{A}\|_F$$
-
+$$
+\|\Delta \mathbf{λ}\|_2 \leq \phi \cdot \|\Delta \mathbf{A}\|_F
+$$
 因此，当$\|\Delta \mathbf{A}\|_F \leq \epsilon/\phi$时：
-$$\|\Delta \mathbf{λ}\|_2 \leq \epsilon$$
-
+$$
+\|\Delta \mathbf{λ}\|_2 \leq \epsilon
+$$
 这完成了证明。∎
 
 ## 数学形式化

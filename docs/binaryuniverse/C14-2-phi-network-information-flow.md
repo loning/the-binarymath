@@ -11,22 +11,36 @@
 **推论 C14-2** (φ-网络信息流推论): 在Zeckendorf编码的φ-网络中，信息流动必然呈现黄金比例特征：
 
 1. **传播速度的φ-调制**: 信息传播速度
-   $$v_{info} = v_0 \cdot \varphi^{-t}$$
+   
+$$
+v_{info} = v_0 \cdot \varphi^{-t}
+$$
    其中$t$是传播时间步
 
 2. **信息容量的Fibonacci限制**: 网络信息容量
-   $$C_{network} = \sum_{i=1}^N \log_2 F_{d_i+2}$$
+   
+$$
+C_{network} = \sum_{i=1}^N \log_2 F_{d_i+2}
+$$
    其中$d_i$是节点$i$的度
 
 3. **扩散核的φ-衰减**: 信息扩散核
-   $$K(r, t) = \frac{1}{(2\pi t)^{d/2}} \exp\left(-\frac{r}{\varphi t}\right)$$
+   
+$$
+K(r, t) = \frac{1}{(2\pi t)^{d/2}} \exp\left(-\frac{r}{\varphi t}\right)
+$$
    其中$d$是网络维度
 
 4. **信息熵流的黄金分割**: 熵流速率
-   $$\frac{dS}{dt} = S_0 \cdot \varphi^{-1} \cdot (1 - S/S_{max})$$
-
+   
+$$
+\frac{dS}{dt} = S_0 \cdot \varphi^{-1} \cdot (1 - S/S_{max})
+$$
 5. **同步临界值**: 网络同步的临界耦合强度
-   $$\lambda_c = \frac{1}{\varphi \cdot \lambda_{max}}$$
+   
+$$
+\lambda_c = \frac{1}{\varphi \cdot \lambda_{max}}
+$$
    其中$\lambda_{max}$是邻接矩阵最大特征值
 
 ## 证明
@@ -35,14 +49,16 @@
 
 在φ-网络中，信息从节点$i$传到节点$j$必须通过Zeckendorf编码的路径。考虑信息包$I$的传播：
 
-$$I(t+1) = \sum_{j \in N(i)} P_{ij} \cdot I_j(t)$$
-
+$$
+I(t+1) = \sum_{j \in N(i)} P_{ij} \cdot I_j(t)
+$$
 其中$P_{ij} = F_{|i-j|}/F_{|i-j|+2}$（由C14-1确定）。
 
 **传播速度分析**：
 每一步传播，信息强度按$P_{ij}$衰减。平均衰减率：
-$$\langle P \rangle = \frac{1}{|E|} \sum_{(i,j) \in E} P_{ij} = \varphi^{-1}$$
-
+$$
+\langle P \rangle = \frac{1}{|E|} \sum_{(i,j) \in E} P_{ij} = \varphi^{-1}
+$$
 因此传播速度：$v(t) = v_0 \cdot \varphi^{-t}$
 
 ### 第二步：信息容量的Fibonacci结构
@@ -50,41 +66,49 @@ $$\langle P \rangle = \frac{1}{|E|} \sum_{(i,j) \in E} P_{ij} = \varphi^{-1}$$
 节点$i$能存储的信息量受其Zeckendorf编码限制。度为$d_i$的节点有$F_{d_i+2}$种有效连接模式（无11条件）。
 
 信息容量：
-$$C_i = \log_2 F_{d_i+2} \approx (d_i + 2) \cdot \log_2 \varphi$$
-
+$$
+C_i = \log_2 F_{d_i+2} \approx (d_i + 2) \cdot \log_2 \varphi
+$$
 网络总容量：
-$$C_{network} = \sum_{i=1}^N C_i = \sum_{i=1}^N \log_2 F_{d_i+2}$$
-
+$$
+C_{network} = \sum_{i=1}^N C_i = \sum_{i=1}^N \log_2 F_{d_i+2}
+$$
 ### 第三步：扩散过程的φ-核
 
 信息扩散遵循修正的扩散方程：
-$$\frac{\partial I}{\partial t} = D_\varphi \nabla^2 I - \gamma I$$
-
-其中$D_\varphi = D_0/\varphi$是φ-调制扩散系数，$\gamma = 1 - 1/\varphi$是衰减率。
+$$
+\frac{\partial I}{\partial t} = D_\varphi \nabla^2 I - \gamma I
+$$
+其中$D_\varphi = D_0/\varphi$是$φ$-调制扩散系数，$\gamma = 1 - 1/\varphi$是衰减率。
 
 Green函数解：
-$$K(r, t) = \frac{1}{(2\pi D_\varphi t)^{d/2}} \exp\left(-\frac{r^2}{4D_\varphi t} - \gamma t\right)$$
-
+$$
+K(r, t) = \frac{1}{(2\pi D_\varphi t)^{d/2}} \exp\left(-\frac{r^2}{4D_\varphi t} - \gamma t\right)
+$$
 简化后得到φ-衰减核。
 
 ### 第四步：熵流的黄金分割
 
 根据唯一公理，系统熵增。但Zeckendorf约束限制最大熵：
-$$S_{max} = N \cdot \log_2 \varphi$$
-
+$$
+S_{max} = N \cdot \log_2 \varphi
+$$
 熵增速率受可用状态数限制：
-$$\frac{dS}{dt} = k \cdot (S_{max} - S) \cdot \varphi^{-1}$$
-
+$$
+\frac{dS}{dt} = k \cdot (S_{max} - S) \cdot \varphi^{-1}
+$$
 这产生逻辑斯蒂增长的φ-调制版本。
 
 ### 第五步：同步的临界耦合
 
 考虑Kuramoto模型的φ-网络版本：
-$$\dot{\theta}_i = \omega_i + \lambda \sum_{j} A_{ij} \sin(\theta_j - \theta_i)$$
-
+$$
+\dot{\theta}_i = \omega_i + \lambda \sum_{j} A_{ij} \sin(\theta_j - \theta_i)
+$$
 线性稳定性分析表明，同步临界点：
-$$\lambda_c = \frac{1}{\varphi \cdot \text{Re}(\lambda_{max})}$$
-
+$$
+\lambda_c = \frac{1}{\varphi \cdot \text{Re}(\lambda_{max})}
+$$
 这比标准网络的临界值小$\varphi^{-1}$倍。
 
 **结论**：信息流的所有方面都被φ调制，这是Zeckendorf编码约束的必然结果。∎

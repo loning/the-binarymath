@@ -10,14 +10,20 @@
 **推论 C15-2** (φ-策略演化推论): 在Zeckendorf编码的二进制宇宙中，由于唯一公理(自指完备系统必然熵增)的约束，策略演化必然呈现以下模式：
 
 1. **演化动力学的熵贡献调制**: 策略频率演化方程
-   $$\dot{x}_i = x_i[f_i(x) - \bar{f}(x)] \cdot \eta_i(x)$$
+   
+$$
+\dot{x}_i = x_i[f_i(x) - \bar{f}(x)] \cdot \eta_i(x)
+$$
    其中$\eta_i(x) = \frac{|\partial H/\partial x_i|}{\sum_j |\partial H/\partial x_j|}$是归一化的熵贡献因子
 
 2. **稳定分布的数值确定**: 稳定策略分布
    由数值演化决定，不是先验理论假设
 
 3. **Zeckendorf突变约束**: 最优突变率
-   $$\mu^* = \varphi^{-2} \approx 0.382$$
+   
+$$
+\mu^* = \varphi^{-2} \approx 0.382
+$$
    由信息论极值原理确定
 
 4. **熵增引导的分化模式**: 演化走向
@@ -36,17 +42,21 @@
 - 总熵必须单调递增
 
 策略$s_i$的Zeckendorf编码：
-$$s_i = \sum_{k \in S_i} F_k, \quad \text{其中} \ S_i \text{满足无连续性}$$
-
+$$
+s_i = \sum_{k \in S_i} F_k, \quad \text{其中} \ S_i \text{满足无连续性}
+$$
 **关键洞察**：演化速度不是被距离调制，而是被**熵贡献**调制。策略$i$对系统总熵的贡献为：
-$$H_i = -x_i \log x_i$$
-
+$$
+H_i = -x_i \log x_i
+$$
 因此正确的演化方程是：
-$$\dot{x}_i = x_i[f_i(x) - \bar{f}(x)] \cdot \frac{|\partial H/\partial x_i|}{\sum_j |\partial H/\partial x_j|}$$
-
+$$
+\dot{x}_i = x_i[f_i(x) - \bar{f}(x)] \cdot \frac{|\partial H/\partial x_i|}{\sum_j |\partial H/\partial x_j|}
+$$
 其中Shannon熵的偏导数为：
-$$\frac{\partial H}{\partial x_i} = -(\log x_i + 1)$$
-
+$$
+\frac{\partial H}{\partial x_i} = -(\log x_i + 1)
+$$
 使用绝对值和归一化确保调制因子为正且和为1。
 
 ### 第二步：Zeckendorf约束下的稳定性
@@ -54,11 +64,13 @@ $$\frac{\partial H}{\partial x_i} = -(\log x_i + 1)$$
 ESS的稳定性不是来自任意的Jacobian，而是来自Zeckendorf编码的**信息约束**。
 
 在Zeckendorf系统中，可能的扰动必须保持编码有效性。这意味着扰动$\delta x$必须满足：
-$$\delta x_i \text{的支持集合只能在Zeckendorf-兼容位置}$$
-
+$$
+\delta x_i \text{的支持集合只能在Zeckendorf-兼容位置}
+$$
 **重要发现**：最稳定的策略分布是**Fibonacci权重分布**：
-$$x_i^* = \frac{F_i}{\sum_j F_j}$$
-
+$$
+x_i^* = \frac{F_i}{\sum_j F_j}
+$$
 这是因为Fibonacci数列本身就是Zeckendorf系统中的"自然权重"，满足递归关系$F_{n+1} = F_n + F_{n-1}$。
 
 ### 第三步：策略多样性的动态平衡
@@ -71,11 +83,13 @@ $$x_i^* = \frac{F_i}{\sum_j F_j}$$
 3. Zeckendorf约束限制了可行的策略转换
 
 实际观察到的模式：
-$$N_{eff}(t) \approx N_{equilibrium} \pm \sqrt{N_{equilibrium}}$$
-
+$$
+N_{eff}(t) \approx N_{equilibrium} \pm \sqrt{N_{equilibrium}}
+$$
 其中$N_{equilibrium}$由**熵产生率**和**约束强度**的平衡决定：
-$$N_{equilibrium} = \min(N_{initial}, \lfloor\log_\varphi(\mu^* \cdot \tau_{selection})\rfloor)$$
-
+$$
+N_{equilibrium} = \min(N_{initial}, \lfloor\log_\varphi(\mu^* \cdot \tau_{selection})\rfloor)
+$$
 ### 第四步：Zeckendorf突变的约束
 
 突变不能是任意的，必须保持Zeckendorf编码的有效性。
@@ -88,7 +102,9 @@ $$N_{equilibrium} = \min(N_{initial}, \lfloor\log_\varphi(\mu^* \cdot \tau_{sele
 3. 将连续的两个Fibonacci数替换为下一个更大的（$F_k + F_{k+1} = F_{k+2}$）
 
 最优突变率来自**信息论极值原理**：
-$$\mu^* = \arg\max_\mu I(S;E) - C(\mu)$$
+$$
+\mu^* = \arg\max_\mu I(S;E) - C(\mu)
+$$
 其中$I(S;E)$是策略-环境互信息，$C(\mu)$是突变代价。
 
 在Zeckendorf系统中，这给出：$\mu^* = \varphi^{-2}$
@@ -104,8 +120,9 @@ $$\mu^* = \arg\max_\mu I(S;E) - C(\mu)$$
 4. **局部稳定性**：在吸引子内部，分布相对稳定
 
 **数学描述**：长期分布$x^*(t \to \infty)$是随机变量，其期望和方差为：
-$$\mathbb{E}[x_i^*] = \frac{\Phi_i}{\sum_j \Phi_j}, \quad \text{Var}[x_i^*] = \sigma_i^2$$
-
+$$
+\mathbb{E}[x_i^*] = \frac{\Phi_i}{\sum_j \Phi_j}, \quad \text{Var}[x_i^*] = \sigma_i^2
+$$
 其中$\Phi_i$是策略$i$的**有效权重**，由以下因子决定：
 - Hamming距离：$\varphi^{-d_i}$  
 - 支付矩阵结构：$A_{ii}$

@@ -27,25 +27,31 @@
 
 ### 信息传播算子
 **定义C14-2.1**: φ-传播算子
-$$\mathcal{T}_{\varphi}: \mathcal{I} \to \mathcal{I}$$
-$$[\mathcal{T}_{\varphi}I]_i = \sum_{j \in N(i)} P_{ij}^{\varphi} I_j$$
-
+$$
+\mathcal{T}_{\varphi}: \mathcal{I} \to \mathcal{I}
+$$
+$$
+[\mathcal{T}_{\varphi}I]_i = \sum_{j \in N(i)} P_{ij}^{\varphi} I_j
+$$
 其中$P_{ij}^{\varphi} = W_{ij}/\sum_k W_{ik}$是φ-转移概率。
 
 ### 信息容量函数
 **定义C14-2.2**: 节点容量
-$$C_i = \log_2 F_{d_i+2}$$
-
+$$
+C_i = \log_2 F_{d_i+2}
+$$
 网络总容量：
-$$C_{total} = \sum_{i=1}^N C_i = \sum_{i=1}^N \log_2 F_{d_i+2}$$
-
+$$
+C_{total} = \sum_{i=1}^N C_i = \sum_{i=1}^N \log_2 F_{d_i+2}
+$$
 ## 主要陈述
 
 ### 推论C14-2.1：传播速度φ-衰减
 
 **陈述**: 信息强度的时间演化
-$$||I(t)|| = ||I_0|| \cdot \varphi^{-t/\tau}$$
-
+$$
+||I(t)|| = ||I_0|| \cdot \varphi^{-t/\tau}
+$$
 **证明要素**:
 1. 谱半径 $\rho(\mathcal{T}_{\varphi}) = \varphi^{-1}$
 2. Perron-Frobenius定理应用
@@ -54,41 +60,49 @@ $$||I(t)|| = ||I_0|| \cdot \varphi^{-t/\tau}$$
 ### 推论C14-2.2：容量Fibonacci界
 
 **陈述**: 网络信息容量满足
-$$C_{total} \leq N \cdot \log_2\varphi \cdot \langle d \rangle$$
-
+$$
+C_{total} \leq N \cdot \log_2\varphi \cdot \langle d \rangle
+$$
 其中$\langle d \rangle$是平均度。
 
 **严格形式**:
-$$\sum_{i=1}^N \log_2 F_{d_i+2} \leq \log_2 \prod_{i=1}^N F_{d_i+2} = \log_2 F_{\sum_i(d_i+2)}$$
-
+$$
+\sum_{i=1}^N \log_2 F_{d_i+2} \leq \log_2 \prod_{i=1}^N F_{d_i+2} = \log_2 F_{\sum_i(d_i+2)}
+$$
 ### 推论C14-2.3：扩散核φ-形式
 
 **陈述**: 信息扩散Green函数
-$$G(x, y; t) = \frac{1}{(4\pi D_{\varphi}t)^{d/2}} \exp\left(-\frac{||x-y||^2}{4D_{\varphi}t}\right)$$
-
+$$
+G(x, y; t) = \frac{1}{(4\pi D_{\varphi}t)^{d/2}} \exp\left(-\frac{||x-y||^2}{4D_{\varphi}t}\right)
+$$
 其中$D_{\varphi} = D_0/\varphi$。
 
 **谱展开**:
-$$G = \sum_{n=0}^{\infty} e^{-\lambda_n t/\varphi} \psi_n(x)\psi_n^*(y)$$
-
+$$
+G = \sum_{n=0}^{\infty} e^{-\lambda_n t/\varphi} \psi_n(x)\psi_n^*(y)
+$$
 ### 推论C14-2.4：熵流方程
 
 **陈述**: 信息熵演化
-$$\frac{dS}{dt} = \varphi^{-1} S(1 - S/S_{max}) + \sigma$$
-
+$$
+\frac{dS}{dt} = \varphi^{-1} S(1 - S/S_{max}) + \sigma
+$$
 其中$\sigma$是熵产生率。
 
 **Lyapunov函数**:
-$$V(S) = S_{max}\ln(S/S_{max}) - S + S_{max}$$
-
+$$
+V(S) = S_{max}\ln(S/S_{max}) - S + S_{max}
+$$
 ### 推论C14-2.5：同步临界条件
 
 **陈述**: Kuramoto同步的临界耦合
-$$\lambda_c = \frac{1}{\varphi \cdot \lambda_{max}(A)}$$
-
+$$
+\lambda_c = \frac{1}{\varphi \cdot \lambda_{max}(A)}
+$$
 **线性稳定性**:
-$$\text{Re}(\mu_{max}) < 0 \iff \lambda > \lambda_c$$
-
+$$
+\text{Re}(\mu_{max}) < 0 \iff \lambda > \lambda_c
+$$
 ## 算法规范
 
 ### Algorithm: PhiInformationPropagation
@@ -130,20 +144,25 @@ function propagate_step(I_current, P_phi, t):
 ## 验证条件
 
 ### V1: 传播速度验证
-$$\left|\frac{||I_{t+1}||}{||I_t||} - \varphi^{-1/\tau}\right| < \epsilon$$
-
+$$
+\left|\frac{||I_{t+1}||}{||I_t||} - \varphi^{-1/\tau}\right| < \epsilon
+$$
 ### V2: 容量界验证
-$$C_{total} \leq N \cdot \log_2\varphi \cdot \bar{d} + O(\log N)$$
-
+$$
+C_{total} \leq N \cdot \log_2\varphi \cdot \bar{d} + O(\log N)
+$$
 ### V3: 扩散核归一化
-$$\int_{\mathcal{X}} G(x, y; t) dy = 1, \forall x, t$$
-
+$$
+\int_{\mathcal{X}} G(x, y; t) dy = 1, \forall x, t
+$$
 ### V4: 熵单调性
-$$S_{t+1} - S_t \geq 0, \forall t$$
-
+$$
+S_{t+1} - S_t \geq 0, \forall t
+$$
 ### V5: 同步阈值
-$$|\lambda_c^{empirical} - \lambda_c^{theory}| < 0.1 \lambda_c^{theory}$$
-
+$$
+|\lambda_c^{empirical} - \lambda_c^{theory}| < 0.1 \lambda_c^{theory}
+$$
 ## 复杂度分析
 
 ### 时间复杂度
@@ -159,23 +178,27 @@ $$|\lambda_c^{empirical} - \lambda_c^{theory}| < 0.1 \lambda_c^{theory}$$
 - 轨迹存储: $O(T \cdot N)$
 
 ### 并行化潜力
-$$\text{Speedup} \leq \min(N, P) \cdot \varphi^{-1}$$
-
+$$
+\text{Speedup} \leq \min(N, P) \cdot \varphi^{-1}
+$$
 其中$P$是处理器数。
 
 ## 数值稳定性
 
 ### 条件数
 转移矩阵条件数：
-$$\kappa(P_{\varphi}) \leq \varphi \cdot \kappa(A)$$
-
+$$
+\kappa(P_{\varphi}) \leq \varphi \cdot \kappa(A)
+$$
 ### 误差传播
-$$||e_{t+1}|| \leq \varphi^{-1} ||e_t|| + \epsilon_{machine}$$
-
+$$
+||e_{t+1}|| \leq \varphi^{-1} ||e_t|| + \epsilon_{machine}
+$$
 ### 数值格式
 推荐使用隐式格式：
-$$I_{t+1} = (I - \Delta t \cdot L_{\varphi})^{-1} I_t$$
-
+$$
+I_{t+1} = (I - \Delta t \cdot L_{\varphi})^{-1} I_t
+$$
 其中$L_{\varphi}$是φ-调制Laplacian。
 
 ## 实现要求

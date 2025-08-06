@@ -11,18 +11,29 @@
 **定理 T23-2** (φ-博弈均衡存在性定理): 基于T23-1的φ-策略空间和熵增动力学，任何有限φ-博弈系统必定存在至少一个φ-Nash均衡，且该均衡满足严格的熵守恒性质：
 
 1. **φ-Nash均衡的存在性**: 对于$n$个参与者的φ-博弈系统$G = (N, \{S_i\}, \{U_i\})$，其中策略空间$S_i$满足T23-1的φ-量化条件，存在混合策略组合$\boldsymbol{p}^* = (p_1^*, ..., p_n^*)$使得：
-   $$\forall i \in N, \forall s_i \in S_i: \quad U_i(p_i^*, \boldsymbol{p}_{-i}^*) \geq U_i(s_i, \boldsymbol{p}_{-i}^*) - \frac{\epsilon}{\phi}$$
+   
+$$
+\forall i \in N, \forall s_i \in S_i: \quad U_i(p_i^*, \boldsymbol{p}_{-i}^*) \geq U_i(s_i, \boldsymbol{p}_{-i}^*) - \frac{\epsilon}{\phi}
+$$
    其中$\epsilon$是φ-调制的均衡容忍度
 
 2. **熵守恒的均衡条件**: φ-Nash均衡$\boldsymbol{p}^*$必须满足博弈熵的守恒分解：
-   $$H_{\text{equilibrium}} = \sum_{i=1}^n \frac{H_i^{\text{strategy}}(\boldsymbol{p}^*)}{φ} + \sum_{i<j} H_{ij}^{\text{interaction}}(\boldsymbol{p}^*) + n \log(φ)$$
-
+   
+$$
+H_{\text{equilibrium}} = \sum_{i=1}^n \frac{H_i^{\text{strategy}}(\boldsymbol{p}^*)}{φ} + \sum_{i<j} H_{ij}^{\text{interaction}}(\boldsymbol{p}^*) + n \log(φ)
+$$
 3. **固定点的φ-不动条件**: 均衡策略分布满足φ-不动点方程：
-   $$p_i^*(s) = \frac{\exp\left(\frac{\partial H_{\text{game}}}{\partial p_i(s)}\right)}{\sum_{s' \in S_i} \exp\left(\frac{\partial H_{\text{game}}}{\partial p_i(s')}\right)} \cdot \frac{1}{\phi^{d_{i,s}}}$$
+   
+$$
+p_i^*(s) = \frac{\exp\left(\frac{\partial H_{\text{game}}}{\partial p_i(s)}\right)}{\sum_{s' \in S_i} \exp\left(\frac{\partial H_{\text{game}}}{\partial p_i(s')}\right)} \cdot \frac{1}{\phi^{d_{i,s}}}
+$$
    其中$d_{i,s}$是策略$s$在参与者$i$策略空间中的φ-深度
 
 4. **均衡唯一性的φ-条件**: 当收益矩阵满足严格φ-对角优势时：
-   $$\sum_{j \neq i} |U_{ij}| < \phi \cdot \min_s \frac{F_k}{φ^d} \quad \text{其中} \quad s = \frac{F_k}{φ^d} \in S_i$$
+   
+$$
+\sum_{j \neq i} |U_{ij}| < \phi \cdot \min_s \frac{F_k}{φ^d} \quad \text{其中} \quad s = \frac{F_k}{φ^d} \in S_i
+$$
    φ-Nash均衡是唯一的
 
 5. **均衡稳定性**: φ-Nash均衡对于扰动$\|\Delta U\| \leq \frac{1}{\phi^2}$保持$\frac{1}{\phi}$-稳定
@@ -32,16 +43,19 @@
 ### 第一步：从熵增原理构建φ-最优反应映射
 
 由T23-1，每个参与者的策略更新遵循熵增驱动：
-$$\frac{dp_i(s)}{dt} = \frac{1}{φ} p_i(s) \left[\max\left(0, \frac{\partial H_{\text{game}}}{\partial p_i(s)}\right) + \epsilon\right]$$
-
+$$
+\frac{dp_i(s)}{dt} = \frac{1}{φ} p_i(s) \left[\max\left(0, \frac{\partial H_{\text{game}}}{\partial p_i(s)}\right) + \epsilon\right]
+$$
 在均衡状态，策略分布不再变化：$\frac{dp_i(s)}{dt} = 0$。
 
 这要求对于所有$p_i^*(s) > 0$的策略$s$：
-$$\frac{\partial H_{\text{game}}}{\partial p_i(s)}\bigg|_{\boldsymbol{p}=\boldsymbol{p}^*} = \text{常数} \quad \forall s \in \text{support}(p_i^*)$$
-
+$$
+\frac{\partial H_{\text{game}}}{\partial p_i(s)}\bigg|_{\boldsymbol{p}=\boldsymbol{p}^*} = \text{常数} \quad \forall s \in \text{support}(p_i^*)
+$$
 定义**φ-最优反应映射**$BR_i: \Delta(S_{-i}) \to \Delta(S_i)$：
-$$BR_i(\boldsymbol{p}_{-i})(s) \propto \exp\left(\frac{1}{\phi} \frac{\partial U_i(s, \boldsymbol{p}_{-i})}{\partial s}\right)$$
-
+$$
+BR_i(\boldsymbol{p}_{-i})(s) \propto \exp\left(\frac{1}{\phi} \frac{\partial U_i(s, \boldsymbol{p}_{-i})}{\partial s}\right)
+$$
 其中$\Delta(S_i)$是策略空间$S_i$上的概率单纯形。
 
 由于$S_i$是有限的φ-量化集合，$BR_i$将紧凸集$\Delta(S_{-i})$映射到紧凸集$\Delta(S_i)$。
@@ -54,8 +68,9 @@ $$BR_i(\boldsymbol{p}_{-i})(s) \propto \exp\left(\frac{1}{\phi} \frac{\partial U
 设$\{\boldsymbol{p}_{-i}^{(k)}\}$收敛到$\boldsymbol{p}_{-i}$。需证明$BR_i(\boldsymbol{p}_{-i}^{(k)})$收敛到$BR_i(\boldsymbol{p}_{-i})$。
 
 由于收益函数$U_i(s, \boldsymbol{p}_{-i})$关于$\boldsymbol{p}_{-i}$连续（多线性函数），且指数函数连续，有：
-$$\lim_{k \to \infty} \exp\left(\frac{1}{\phi} \frac{\partial U_i(s, \boldsymbol{p}_{-i}^{(k)})}{\partial s}\right) = \exp\left(\frac{1}{\phi} \frac{\partial U_i(s, \boldsymbol{p}_{-i})}{\partial s}\right)$$
-
+$$
+\lim_{k \to \infty} \exp\left(\frac{1}{\phi} \frac{\partial U_i(s, \boldsymbol{p}_{-i}^{(k)})}{\partial s}\right) = \exp\left(\frac{1}{\phi} \frac{\partial U_i(s, \boldsymbol{p}_{-i})}{\partial s}\right)
+$$
 因此归一化后的$BR_i(\boldsymbol{p}_{-i}^{(k)})$逐点收敛到$BR_i(\boldsymbol{p}_{-i})$。
 
 由于$S_i$有限，逐点收敛等价于一致收敛，故$BR_i$连续。∎
@@ -63,9 +78,12 @@ $$\lim_{k \to \infty} \exp\left(\frac{1}{\phi} \frac{\partial U_i(s, \boldsymbol
 ### 第三步：构造组合最优反应映射的不动点
 
 定义**组合φ-最优反应映射**：
-$$\boldsymbol{BR}: \Delta(S_1) \times ... \times \Delta(S_n) \to \Delta(S_1) \times ... \times \Delta(S_n)$$
-$$\boldsymbol{BR}(\boldsymbol{p}) = (BR_1(\boldsymbol{p}_{-1}), ..., BR_n(\boldsymbol{p}_{-n}))$$
-
+$$
+\boldsymbol{BR}: \Delta(S_1) \times ... \times \Delta(S_n) \to \Delta(S_1) \times ... \times \Delta(S_n)
+$$
+$$
+\boldsymbol{BR}(\boldsymbol{p}) = (BR_1(\boldsymbol{p}_{-1}), ..., BR_n(\boldsymbol{p}_{-n}))
+$$
 由第二步，$\boldsymbol{BR}$是连续映射。
 
 **应用Brouwer不动点定理**：
@@ -73,19 +91,22 @@ $$\boldsymbol{BR}(\boldsymbol{p}) = (BR_1(\boldsymbol{p}_{-1}), ..., BR_n(\bolds
 - $\boldsymbol{BR}$将此凸集连续映射到自身
 
 因此存在$\boldsymbol{p}^* \in \Delta(S_1) \times ... \times \Delta(S_n)$使得：
-$$\boldsymbol{BR}(\boldsymbol{p}^*) = \boldsymbol{p}^*$$
-
+$$
+\boldsymbol{BR}(\boldsymbol{p}^*) = \boldsymbol{p}^*
+$$
 这意味着：$\forall i: \quad BR_i(\boldsymbol{p}_{-i}^*) = p_i^*$
 
 **φ-Nash均衡性验证**：
 对于任何$s_i \in S_i$和$p_i^*(s_i) > 0$，由φ-最优反应的定义：
-$$\frac{\partial U_i(s_i, \boldsymbol{p}_{-i}^*)}{\partial s_i} = \text{常数}$$
-
+$$
+\frac{\partial U_i(s_i, \boldsymbol{p}_{-i}^*)}{\partial s_i} = \text{常数}
+$$
 因此$U_i(s_i, \boldsymbol{p}_{-i}^*) = U_i(\tilde{s}_i, \boldsymbol{p}_{-i}^*)$对所有$\tilde{s}_i \in \text{support}(p_i^*)$成立。
 
 对于$p_i^*(s_i) = 0$的策略，有：
-$$U_i(s_i, \boldsymbol{p}_{-i}^*) \leq \max_{\tilde{s}_i \in \text{support}(p_i^*)} U_i(\tilde{s}_i, \boldsymbol{p}_{-i}^*) + \frac{\epsilon}{\phi}$$
-
+$$
+U_i(s_i, \boldsymbol{p}_{-i}^*) \leq \max_{\tilde{s}_i \in \text{support}(p_i^*)} U_i(\tilde{s}_i, \boldsymbol{p}_{-i}^*) + \frac{\epsilon}{\phi}
+$$
 这正是φ-Nash均衡的定义。
 
 ### 第四步：验证熵守恒性质
@@ -93,23 +114,28 @@ $$U_i(s_i, \boldsymbol{p}_{-i}^*) \leq \max_{\tilde{s}_i \in \text{support}(p_i^
 在φ-Nash均衡$\boldsymbol{p}^*$处，系统达到熵增动力学的平衡态。
 
 **策略熵**：
-$$H_i^{\text{strategy}}(\boldsymbol{p}^*) = -\sum_{s \in S_i} p_i^*(s) \log p_i^*(s)$$
-
+$$
+H_i^{\text{strategy}}(\boldsymbol{p}^*) = -\sum_{s \in S_i} p_i^*(s) \log p_i^*(s)
+$$
 **交互熵**：
 对于每对参与者$(i,j)$，定义联合策略分布：
-$$p_{ij}^*(s_i, s_j) = p_i^*(s_i) \cdot p_j^*(s_j) \cdot \frac{U_{ij}(s_i, s_j)}{\sum_{s_i', s_j'} U_{ij}(s_i', s_j')}$$
-
+$$
+p_{ij}^*(s_i, s_j) = p_i^*(s_i) \cdot p_j^*(s_j) \cdot \frac{U_{ij}(s_i, s_j)}{\sum_{s_i', s_j'} U_{ij}(s_i', s_j')}
+$$
 交互熵为：
-$$H_{ij}^{\text{interaction}}(\boldsymbol{p}^*) = -\sum_{s_i, s_j} p_{ij}^*(s_i, s_j) \log \frac{p_{ij}^*(s_i, s_j)}{p_i^*(s_i) p_j^*(s_j)}$$
-
+$$
+H_{ij}^{\text{interaction}}(\boldsymbol{p}^*) = -\sum_{s_i, s_j} p_{ij}^*(s_i, s_j) \log \frac{p_{ij}^*(s_i, s_j)}{p_i^*(s_i) p_j^*(s_j)}
+$$
 **结构熵**：
 由于系统包含$n$个φ-调制的参与者：
-$$H^{\text{structure}} = n \log(φ)$$
-
+$$
+H^{\text{structure}} = n \log(φ)
+$$
 **熵守恒验证**：
 在均衡状态，总博弈熵满足：
-$$H_{\text{equilibrium}} = \sum_{i=1}^n \frac{H_i^{\text{strategy}}(\boldsymbol{p}^*)}{φ} + \sum_{i<j} H_{ij}^{\text{interaction}}(\boldsymbol{p}^*) + n \log(φ)$$
-
+$$
+H_{\text{equilibrium}} = \sum_{i=1}^n \frac{H_i^{\text{strategy}}(\boldsymbol{p}^*)}{φ} + \sum_{i<j} H_{ij}^{\text{interaction}}(\boldsymbol{p}^*) + n \log(φ)
+$$
 由于均衡时$\frac{dH_{\text{game}}}{dt} = 0$（但不违反$H$的累积增长），此分解是严格成立的。
 
 ### 第五步：建立φ-不动点方程
@@ -117,40 +143,51 @@ $$H_{\text{equilibrium}} = \sum_{i=1}^n \frac{H_i^{\text{strategy}}(\boldsymbol{
 在φ-Nash均衡处，每个参与者的策略分布由熵最优化条件决定：
 
 **拉格朗日优化**：
-$$\mathcal{L}_i = \sum_{s \in S_i} p_i(s) U_i(s, \boldsymbol{p}_{-i}^*) + \frac{1}{\phi} H_i^{\text{strategy}}(p_i) - \lambda_i \left(\sum_{s} p_i(s) - 1\right)$$
-
+$$
+\mathcal{L}_i = \sum_{s \in S_i} p_i(s) U_i(s, \boldsymbol{p}_{-i}^*) + \frac{1}{\phi} H_i^{\text{strategy}}(p_i) - \lambda_i \left(\sum_{s} p_i(s) - 1\right)
+$$
 一阶条件：
-$$\frac{\partial \mathcal{L}_i}{\partial p_i(s)} = U_i(s, \boldsymbol{p}_{-i}^*) - \frac{1}{\phi}(\log p_i(s) + 1) - \lambda_i = 0$$
-
+$$
+\frac{\partial \mathcal{L}_i}{\partial p_i(s)} = U_i(s, \boldsymbol{p}_{-i}^*) - \frac{1}{\phi}(\log p_i(s) + 1) - \lambda_i = 0
+$$
 解得：
-$$p_i^*(s) = \exp\left(\phi U_i(s, \boldsymbol{p}_{-i}^*) - \phi(\lambda_i + \frac{1}{\phi})\right)$$
-
+$$
+p_i^*(s) = \exp\left(\phi U_i(s, \boldsymbol{p}_{-i}^*) - \phi(\lambda_i + \frac{1}{\phi})\right)
+$$
 归一化条件$\sum_s p_i^*(s) = 1$给出：
-$$p_i^*(s) = \frac{\exp(\phi U_i(s, \boldsymbol{p}_{-i}^*))}{\sum_{s' \in S_i} \exp(\phi U_i(s', \boldsymbol{p}_{-i}^*))}$$
-
+$$
+p_i^*(s) = \frac{\exp(\phi U_i(s, \boldsymbol{p}_{-i}^*))}{\sum_{s' \in S_i} \exp(\phi U_i(s', \boldsymbol{p}_{-i}^*))}
+$$
 **φ-深度调制**：
 由于策略$s = \frac{F_k}{φ^d}$，引入φ-深度权重：
-$$p_i^*(s) = \frac{\exp(\phi U_i(s, \boldsymbol{p}_{-i}^*)) \cdot \frac{1}{φ^d}}{\sum_{s' \in S_i} \exp(\phi U_i(s', \boldsymbol{p}_{-i}^*)) \cdot \frac{1}{φ^{d'}}}$$
-
+$$
+p_i^*(s) = \frac{\exp(\phi U_i(s, \boldsymbol{p}_{-i}^*)) \cdot \frac{1}{φ^d}}{\sum_{s' \in S_i} \exp(\phi U_i(s', \boldsymbol{p}_{-i}^*)) \cdot \frac{1}{φ^{d'}}}
+$$
 这确立了φ-不动点方程。
 
 ### 第六步：证明唯一性条件
 
 当收益矩阵满足**严格φ-对角优势**时：
-$$\sum_{j \neq i} |U_{ij}| < φ \cdot \min_{s \in S_i} s$$
-
+$$
+\sum_{j \neq i} |U_{ij}| < φ \cdot \min_{s \in S_i} s
+$$
 **反证法证明唯一性**：
 假设存在两个不同的φ-Nash均衡$\boldsymbol{p}^{(1)}$和$\boldsymbol{p}^{(2)}$。
 
 由φ-不动点方程，对于任何参与者$i$和策略$s$：
-$$p_i^{(1)}(s) = \frac{\exp(\phi U_i(s, \boldsymbol{p}_{-i}^{(1)}))}{\text{normalization}} \cdot \frac{1}{φ^d}$$
-$$p_i^{(2)}(s) = \frac{\exp(\phi U_i(s, \boldsymbol{p}_{-i}^{(2)}))}{\text{normalization}} \cdot \frac{1}{φ^d}$$
-
+$$
+p_i^{(1)}(s) = \frac{\exp(\phi U_i(s, \boldsymbol{p}_{-i}^{(1)}))}{\text{normalization}} \cdot \frac{1}{φ^d}
+$$
+$$
+p_i^{(2)}(s) = \frac{\exp(\phi U_i(s, \boldsymbol{p}_{-i}^{(2)}))}{\text{normalization}} \cdot \frac{1}{φ^d}
+$$
 由于$U_i$的多线性性和严格φ-对角优势条件：
-$$|U_i(s, \boldsymbol{p}_{-i}^{(1)}) - U_i(s, \boldsymbol{p}_{-i}^{(2)})| \leq \sum_{j \neq i} |U_{ij}| \cdot \|\boldsymbol{p}_j^{(1)} - \boldsymbol{p}_j^{(2)}\|_1$$
-
-$$< φ \cdot \min_{s \in S_i} s \cdot \|\boldsymbol{p}_j^{(1)} - \boldsymbol{p}_j^{(2)}\|_1$$
-
+$$
+|U_i(s, \boldsymbol{p}_{-i}^{(1)}) - U_i(s, \boldsymbol{p}_{-i}^{(2)})| \leq \sum_{j \neq i} |U_{ij}| \cdot \|\boldsymbol{p}_j^{(1)} - \boldsymbol{p}_j^{(2)}\|_1
+$$
+$$
+< φ \cdot \min_{s \in S_i} s \cdot \|\boldsymbol{p}_j^{(1)} - \boldsymbol{p}_j^{(2)}\|_1
+$$
 这导致$p_i^{(1)}$和$p_i^{(2)}$之间的差异被φ-因子压缩，与它们不同的假设矛盾。
 
 因此在严格φ-对角优势下，φ-Nash均衡唯一。
@@ -163,13 +200,15 @@ $$< φ \cdot \min_{s \in S_i} s \cdot \|\boldsymbol{p}_j^{(1)} - \boldsymbol{p}_
 设$\boldsymbol{p}^*$是原系统的φ-Nash均衡，$\tilde{\boldsymbol{p}}^*$是扰动系统的φ-Nash均衡。
 
 由φ-不动点方程的连续性：
-$$\|\tilde{\boldsymbol{p}}^* - \boldsymbol{p}^*\| \leq L(\phi) \cdot \|\Delta U\|$$
-
+$$
+\|\tilde{\boldsymbol{p}}^* - \boldsymbol{p}^*\| \leq L(\phi) \cdot \|\Delta U\|
+$$
 其中$L(\phi) = \frac{\phi}{1 + \min_s s}$是Lipschitz常数。
 
 当$\|\Delta U\| \leq \frac{1}{\phi^2}$时：
-$$\|\tilde{\boldsymbol{p}}^* - \boldsymbol{p}^*\| \leq \frac{\phi}{\phi^2} = \frac{1}{\phi}$$
-
+$$
+\|\tilde{\boldsymbol{p}}^* - \boldsymbol{p}^*\| \leq \frac{\phi}{\phi^2} = \frac{1}{\phi}
+$$
 这证明了$\frac{1}{\phi}$-稳定性。∎
 
 ## 数学形式化

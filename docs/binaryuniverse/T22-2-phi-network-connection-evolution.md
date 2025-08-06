@@ -11,47 +11,64 @@
 **定理 T22-2** (φ-网络连接演化定理): 基于T22-1的节点涌现，网络连接的演化过程遵循严格的φ-动力学：
 
 1. **连接权重的φ-量化**: 所有连接权重必须满足
-   $$w_{ij} = \frac{F_k}{\phi^d}, \quad k \in \mathbb{N}, d \geq 0$$
+   
+$$
+w_{ij} = \frac{F_k}{\phi^d}, \quad k \in \mathbb{N}, d \geq 0
+$$
    其中$F_k$是第k个Fibonacci数
 
 2. **熵增驱动连接**: 连接概率遵循熵增梯度
-   $$\frac{dP_{ij}}{dt} = \frac{1}{\phi} \nabla_{\text{entropy}} S_{ij}(t)$$
-
+   
+$$
+\frac{dP_{ij}}{dt} = \frac{1}{\phi} \nabla_{\text{entropy}} S_{ij}(t)
+$$
 3. **连接密度界限**: 网络连接密度上界为
-   $$\rho_{\text{max}} = \frac{1}{\phi} \approx 0.618$$
-
+   
+$$
+\rho_{\text{max}} = \frac{1}{\phi} \approx 0.618
+$$
 4. **小世界涌现**: 平均路径长度满足
-   $$\langle L \rangle \sim \log_\phi(N) + C$$
+   
+$$
+\langle L \rangle \sim \log_\phi(N) + C
+$$
    其中$C$是与网络结构相关的常数
 
 5. **连接稳定性**: 稳定连接满足熵增平衡
-   $$\Delta S_{ij}^{\text{forward}} = \phi \cdot \Delta S_{ij}^{\text{backward}}$$
-
+   
+$$
+\Delta S_{ij}^{\text{forward}} = \phi \cdot \Delta S_{ij}^{\text{backward}}
+$$
 ## 证明
 
 ### 第一步：从熵增推导连接权重量化
 
 由唯一公理，系统演化必然增加熵：
-$$H(t+1) > H(t)$$
-
+$$
+H(t+1) > H(t)
+$$
 连接权重作为系统状态的一部分，必须在Zeckendorf编码框架内表示。
 
 设连接权重为$w$，则其Zeckendorf表示为：
-$$w = \sum_{i} b_i F_i, \quad b_i \in \{0,1\}, \quad b_i \cdot b_{i+1} = 0$$
-
+$$
+w = \sum_{i} b_i F_i, \quad b_i \in \{0,1\}, \quad b_i \cdot b_{i+1} = 0
+$$
 考虑到φ-表示的连续性，权重还必须包含φ的幂：
-$$w_{ij} = \frac{F_k}{\phi^d}$$
-
+$$
+w_{ij} = \frac{F_k}{\phi^d}
+$$
 这确保了权重既满足离散约束，又体现连续演化。
 
 ### 第二步：推导熵增驱动的连接演化
 
 连接$i \leftrightarrow j$的熵贡献为：
-$$S_{ij} = -w_{ij} \log w_{ij} + \text{structural terms}$$
-
+$$
+S_{ij} = -w_{ij} \log w_{ij} + \text{structural terms}
+$$
 由熵增原理，连接概率的时间演化为：
-$$\frac{dP_{ij}}{dt} = \alpha \frac{\partial S_{\text{total}}}{\partial w_{ij}}$$
-
+$$
+\frac{dP_{ij}}{dt} = \alpha \frac{\partial S_{\text{total}}}{\partial w_{ij}}
+$$
 其中$\alpha = \frac{1}{\phi}$来自φ-系统的内在时间尺度。
 
 ### 第三步：证明连接密度上界
@@ -63,11 +80,13 @@ $$\frac{dP_{ij}}{dt} = \alpha \frac{\partial S_{\text{total}}}{\partial w_{ij}}$
 3. 连接概率的时间演化受1/φ因子调制
 
 在平衡态下，连接建立速率与连接断裂速率平衡：
-$$\frac{1}{\phi} \cdot P_{\text{connect}} = P_{\text{disconnect}}$$
-
+$$
+\frac{1}{\phi} \cdot P_{\text{connect}} = P_{\text{disconnect}}
+$$
 由于φ-系统的黄金比率性质，最大稳定密度为：
-$$\rho_{\text{max}} = \frac{1}{\phi} \approx 0.618$$
-
+$$
+\rho_{\text{max}} = \frac{1}{\phi} \approx 0.618
+$$
 这确保了网络既能保持连通性，又不会过度连接导致系统不稳定。
 
 ### 第四步：推导小世界效应
@@ -90,8 +109,9 @@ $$\rho_{\text{max}} = \frac{1}{\phi} \approx 0.618$$
 反向熵增：$\Delta S_{ij}^{\text{backward}} = S_{i|j} - S_i$
 
 由φ-系统的自相似性：
-$$\frac{\Delta S_{ij}^{\text{forward}}}{\Delta S_{ij}^{\text{backward}}} = \phi$$
-
+$$
+\frac{\Delta S_{ij}^{\text{forward}}}{\Delta S_{ij}^{\text{backward}}} = \phi
+$$
 这完成了证明。∎
 
 ## 数学形式化

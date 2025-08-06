@@ -11,22 +11,34 @@
 **定理 T23-1** (φ-博弈策略涌现定理): 基于T22的φ-网络理论，当多个节点在网络中交互时，博弈策略的涌现遵循严格的熵增约束：
 
 1. **策略空间的φ-结构**: 每个博弈参与者的策略空间$S_i$必须满足φ-量化条件
-   $$S_i = \left\{\frac{F_k}{φ^d} : k ∈ ℕ, d ≥ 0, \text{Zeckendorf}(F_k) \text{ valid}\right\}$$
-
+   
+$$
+S_i = \left\{\frac{F_k}{φ^d} : k ∈ ℕ, d ≥ 0, \text{Zeckendorf}(F_k) \text{ valid}\right\}
+$$
 2. **策略选择的熵增驱动**: 策略概率更新遵循熵增约束
-   $$\frac{dp_i(s)}{dt} = \frac{1}{φ} p_i(s) \left[\frac{\partial H_{\text{game}}}{\partial p_i(s)} + \lambda_i\right]$$
+   
+$$
+\frac{dp_i(s)}{dt} = \frac{1}{φ} p_i(s) \left[\frac{\partial H_{\text{game}}}{\partial p_i(s)} + \lambda_i\right]
+$$
    其中$\lambda_i$是确保概率归一化的拉格朗日乘数，且更新方向确保$\frac{dH_{\text{game}}}{dt} > 0$
 
 3. **φ-收益矩阵的动态演化**: 博弈收益矩阵$U(t)$随策略分布演化
-   $$\frac{dU_{ij}}{dt} = \frac{1}{φ} \sum_{s,s'} p_i(s) p_j(s') \nabla_{U} H_{\text{interaction}}(s,s')$$
+   
+$$
+\frac{dU_{ij}}{dt} = \frac{1}{φ} \sum_{s,s'} p_i(s) p_j(s') \nabla_{U} H_{\text{interaction}}(s,s')
+$$
    其中基础收益为$U_{ij}^{\text{base}} = \sum_{k} \frac{F_k ⋅ Z_i ⋅ Z_j}{φ^{d_{ij}}}$，$Z_i, Z_j$是Zeckendorf编码向量
 
 4. **策略进化的φ-动力学**: 策略分布$p_i(s)$的演化满足
-   $$\frac{∂p_i}{∂t} = \frac{1}{φ} \left[\frac{∂²H}{\partial s_i ∂s_j} p_j - \frac{∂H}{\partial s_i} p_i\right]$$
-
+   
+$$
+\frac{∂p_i}{∂t} = \frac{1}{φ} \left[\frac{∂²H}{\partial s_i ∂s_j} p_j - \frac{∂H}{\partial s_i} p_i\right]
+$$
 5. **博弈熵守恒**: 总博弈熵满足分解公式
-   $$H_{\text{game}} = \sum_{i=1}^n \frac{H_i^{\text{strategy}}}{φ} + \sum_{i<j} H_{ij}^{\text{interaction}} + n \log(φ)$$
-
+   
+$$
+H_{\text{game}} = \sum_{i=1}^n \frac{H_i^{\text{strategy}}}{φ} + \sum_{i<j} H_{ij}^{\text{interaction}} + n \log(φ)
+$$
 ## 证明
 
 ### 第一步：从自指完备性推导策略空间结构
@@ -42,29 +54,35 @@
 - 被识别能力：$s_i$能被其他节点的策略所识别
 
 由于系统运行在Zeckendorf编码的二进制宇宙中，策略表示必须满足no-11约束。结合φ-网络的连续演化需求，策略空间必须采用φ-量化形式：
-$$S_i = \left\{\frac{F_k}{φ^d} : k ∈ ℕ, d ≥ 0, \text{Zeckendorf}(F_k) \text{ valid}\right\}$$
-
+$$
+S_i = \left\{\frac{F_k}{φ^d} : k ∈ ℕ, d ≥ 0, \text{Zeckendorf}(F_k) \text{ valid}\right\}
+$$
 ### 第二步：推导策略选择的熵增机制
 
 考虑玩家$i$的策略概率分布$p_i(s)$的变化对系统总熵的影响：
-$$\frac{dH_{\text{game}}}{dt} = \sum_i \sum_s \frac{\partial H_{\text{game}}}{\partial p_i(s)} \frac{dp_i(s)}{dt}$$
-
+$$
+\frac{dH_{\text{game}}}{dt} = \sum_i \sum_s \frac{\partial H_{\text{game}}}{\partial p_i(s)} \frac{dp_i(s)}{dt}
+$$
 由唯一公理，必须$\frac{dH_{\text{game}}}{dt} > 0$。
 
 策略分布的熵贡献为：
-$$H_i^{\text{strategy}} = -\sum_s p_i(s) \log p_i(s)$$
-
+$$
+H_i^{\text{strategy}} = -\sum_s p_i(s) \log p_i(s)
+$$
 其对概率的偏导数为：
-$$\frac{\partial H_i^{\text{strategy}}}{\partial p_i(s)} = -\log p_i(s) - 1$$
-
+$$
+\frac{\partial H_i^{\text{strategy}}}{\partial p_i(s)} = -\log p_i(s) - 1
+$$
 为确保熵增，策略更新必须遵循：
-$$\frac{dp_i(s)}{dt} = \frac{1}{φ} p_i(s) \left[\max\left(0, \frac{\partial H_{\text{game}}}{\partial p_i(s)}\right) + \epsilon\right]$$
-
+$$
+\frac{dp_i(s)}{dt} = \frac{1}{φ} p_i(s) \left[\max\left(0, \frac{\partial H_{\text{game}}}{\partial p_i(s)}\right) + \epsilon\right]
+$$
 其中$\epsilon > 0$是确保严格熵增的小正数，φ因子确保与网络演化同步。
 
 概率归一化通过拉格朗日乘数$\lambda_i$实现：
-$$\sum_s \frac{dp_i(s)}{dt} = 0$$
-
+$$
+\sum_s \frac{dp_i(s)}{dt} = 0
+$$
 ### 第三步：构造φ-收益矩阵的动态演化
 
 在自指完备系统中，博弈收益不是固定的，而是随着策略分布的演化而动态调整，以确保系统总熵增。
@@ -72,27 +90,32 @@ $$\sum_s \frac{dp_i(s)}{dt} = 0$$
 **基础收益矩阵**：
 设节点$i$的Zeckendorf向量为$Z_i$，节点$j$的为$Z_j$，交互深度为$d_{ij}$。
 基础收益为：
-$$U_{ij}^{\text{base}} = \sum_{k} \frac{F_k \cdot Z_i \cdot Z_j}{φ^{d_{ij}}}$$
-
+$$
+U_{ij}^{\text{base}} = \sum_{k} \frac{F_k \cdot Z_i \cdot Z_j}{φ^{d_{ij}}}
+$$
 **动态收益演化**：
 考虑策略分布$p_i(s), p_j(s')$对交互熵的影响：
-$$H_{\text{interaction}}^{ij} = \sum_{s,s'} p_i(s) p_j(s') \log\left(\frac{w(s,s')}{U_{ij}}\right)$$
-
+$$
+H_{\text{interaction}}^{ij} = \sum_{s,s'} p_i(s) p_j(s') \log\left(\frac{w(s,s')}{U_{ij}}\right)
+$$
 其中$w(s,s')$是策略对$(s,s')$的交互权重。
 
 为确保总熵增，收益矩阵必须动态调整：
-$$\frac{dU_{ij}}{dt} = \frac{1}{φ} \frac{\partial H_{\text{total}}}{\partial U_{ij}}$$
-
+$$
+\frac{dU_{ij}}{dt} = \frac{1}{φ} \frac{\partial H_{\text{total}}}{\partial U_{ij}}
+$$
 这样，当策略分布变化时，收益矩阵自适应调整以维持熵增方向。
 
 ### 第四步：推导策略进化动力学
 
 策略分布$p_i(s)$描述节点$i$采用策略$s$的概率。系统总熵为：
-$$H_{\text{game}} = -\sum_i \sum_s p_i(s) \log p_i(s) + \text{interaction terms}$$
-
+$$
+H_{\text{game}} = -\sum_i \sum_s p_i(s) \log p_i(s) + \text{interaction terms}
+$$
 应用最大熵原理和φ-约束，分布的演化方程为：
-$$\frac{\partial p_i}{\partial t} = \frac{1}{φ} \left[\frac{\partial²H}{\partial s_i \partial s_j} p_j - \frac{\partial H}{\partial s_i} p_i\right]$$
-
+$$
+\frac{\partial p_i}{\partial t} = \frac{1}{φ} \left[\frac{\partial²H}{\partial s_i \partial s_j} p_j - \frac{\partial H}{\partial s_i} p_i\right]
+$$
 这确保了演化过程的熵增性质。
 
 ### 第五步：验证博弈熵守恒
@@ -100,16 +123,21 @@ $$\frac{\partial p_i}{\partial t} = \frac{1}{φ} \left[\frac{\partial²H}{\parti
 总博弈熵包含三个组分：
 
 1. **策略熵**：每个参与者的策略不确定性
-   $$H_i^{\text{strategy}} = -\sum_s p_i(s) \log p_i(s)$$
-
+   
+$$
+H_i^{\text{strategy}} = -\sum_s p_i(s) \log p_i(s)
+$$
 2. **交互熵**：参与者之间的相互作用
-   $$H_{ij}^{\text{interaction}} = -\sum_{s_i,s_j} p_{ij}(s_i,s_j) \log \frac{p_{ij}(s_i,s_j)}{p_i(s_i)p_j(s_j)}$$
-
+   
+$$
+H_{ij}^{\text{interaction}} = -\sum_{s_i,s_j} p_{ij}(s_i,s_j) \log \frac{p_{ij}(s_i,s_j)}{p_i(s_i)p_j(s_j)}
+$$
 3. **系统结构熵**：$n \log(φ)$项源于φ-系统的内在结构
 
 由φ-动力学的$1/φ$时间尺度，策略熵按$1/φ$缩放：
-$$H_{\text{game}} = \sum_{i=1}^n \frac{H_i^{\text{strategy}}}{φ} + \sum_{i<j} H_{ij}^{\text{interaction}} + n \log(φ)$$
-
+$$
+H_{\text{game}} = \sum_{i=1}^n \frac{H_i^{\text{strategy}}}{φ} + \sum_{i<j} H_{ij}^{\text{interaction}} + n \log(φ)
+$$
 这完成了证明。∎
 
 ## 数学形式化

@@ -9,26 +9,33 @@
 **推论 C20-1** (collapse-aware观测推论): 从T20系列定理可推导出，任何观测行为都是系统内部的collapse过程，满足：
 
 1. **观测者内嵌性**: 观测者 $O$ 作为系统 $S$ 的子系统，其状态满足：
-   $$
+   
+$$
    O \subseteq S \Rightarrow \psi_O = \mathcal{P}_S(\psi_S)
-   $$
+   
+$$
    其中 $\mathcal{P}_S$ 是从系统到观测者的投影算子
 
 2. **观测collapse等价**: 观测行为等价于受控collapse序列：
-   $$
+   
+$$
    \text{Observe}(s) \equiv \{\psi_s \xrightarrow{O} \psi'_s : \Delta S > 0\}
-   $$
+   
+$$
    观测必然导致熵增
 
 3. **反作用原理**: 观测者状态的改变量与被观测系统的改变量满足φ-比例关系：
-   $$
+   
+$$
    \|\Delta\psi_O\| = \phi^{-1} \cdot \|\Delta\psi_s\|
-   $$
-
+   
+$$
 4. **观测精度界限**: 存在基本观测精度限制：
-   $$
+   
+$$
    \Delta I_{obs} \cdot \Delta t_{obs} \geq \log\phi
-   $$
+   
+$$
    其中 $I_{obs}$ 是观测信息量，$t_{obs}$ 是观测时间
 
 ## 证明

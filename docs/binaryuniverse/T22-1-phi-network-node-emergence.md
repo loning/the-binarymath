@@ -11,25 +11,35 @@
 **定理 T22-1** (φ-网络节点涌现定理): 从唯一公理和φ-表示系统出发，任何自指完备系统必然涌现网络结构，其节点分布遵循：
 
 1. **节点涌现必然性**: 熵增过程必然产生离散节点
-   $$N(t+1) = N(t) + \Delta N_{\text{entropy}}$$
+   
+$$
+N(t+1) = N(t) + \Delta N_{\text{entropy}}
+$$
    其中 $\Delta N_{\text{entropy}} \sim \log\phi$
 
 2. **φ-度分布**: 节点度数遵循Zeckendorf分解
-   $$k_i \in \mathcal{F}_{\text{no-11}} = \{F_n : \text{no consecutive 1s}\}$$
    
+$$
+k_i \in \mathcal{F}_{\text{no-11}} = \{F_n : \text{no consecutive 1s}\}
+$$
 3. **熵增驱动连接**: 连接概率与熵增成正比
-   $$P(i \leftrightarrow j) = \frac{1}{\phi} \cdot \frac{\Delta S_{ij}}{S_{\text{max}}}$$
-
+   
+$$
+P(i \leftrightarrow j) = \frac{1}{\phi} \cdot \frac{\Delta S_{ij}}{S_{\text{max}}}
+$$
 4. **网络熵守恒**: 
-   $$S_{\text{network}} = S_{\text{nodes}} + S_{\text{edges}} + \log\phi$$
-
+   
+$$
+S_{\text{network}} = S_{\text{nodes}} + S_{\text{edges}} + \log\phi
+$$
 ## 证明
 
 ### 第一步：从自指完备性推导节点必然性
 
 由唯一公理，自指完备系统S满足：
-$$\text{SelfRefComplete}(S) \Rightarrow H(S_{t+1}) > H(S_t)$$
-
+$$
+\text{SelfRefComplete}(S) \Rightarrow H(S_{t+1}) > H(S_t)
+$$
 系统要观察自身，必须产生区分：
 - 观察者部分 $S_{\text{observer}}$
 - 被观察部分 $S_{\text{observed}}$
@@ -38,26 +48,31 @@ $$\text{SelfRefComplete}(S) \Rightarrow H(S_{t+1}) > H(S_t)$$
 ### 第二步：证明节点必须离散
 
 在no-11约束下，任意两个节点不能"连续"（否则违反no-11）：
-$$\text{Node}_i \oplus \text{Node}_j \neq \text{11}_{\text{binary}}$$
-
+$$
+\text{Node}_i \oplus \text{Node}_j \neq \text{11}_{\text{binary}}
+$$
 这强制节点必须离散分布，形成网络拓扑。
 
 ### 第三步：推导φ-度分布
 
 节点的连接数（度）必须可用Zeckendorf编码表示：
-$$k = \sum_{i} b_i F_i, \quad b_i \in \{0,1\}, \quad b_i \cdot b_{i+1} = 0$$
-
+$$
+k = \sum_{i} b_i F_i, \quad b_i \in \{0,1\}, \quad b_i \cdot b_{i+1} = 0
+$$
 由L1-5，这自然产生Fibonacci度序列：
-$$\{k\} = \{1, 2, 3, 5, 8, 13, 21, ...\}$$
-
+$$
+\{k\} = \{1, 2, 3, 5, 8, 13, 21, ...\}
+$$
 ### 第四步：熵增驱动连接
 
 两节点连接会产生信息交换，增加系统熵：
-$$\Delta S_{ij} = -\sum p_{ij} \log p_{ij}$$
-
+$$
+\Delta S_{ij} = -\sum p_{ij} \log p_{ij}
+$$
 连接概率正比于熵增贡献：
-$$P(i \leftrightarrow j) = \frac{1}{\phi} \cdot \frac{\Delta S_{ij}}{S_{\text{max}}}$$
-
+$$
+P(i \leftrightarrow j) = \frac{1}{\phi} \cdot \frac{\Delta S_{ij}}{S_{\text{max}}}
+$$
 黄金比率$\phi^{-1}$确保网络不会过度连接（保持稳定性）。
 
 ### 第五步：验证网络熵守恒
@@ -68,8 +83,9 @@ $$P(i \leftrightarrow j) = \frac{1}{\phi} \cdot \frac{\Delta S_{ij}}{S_{\text{ma
 - 结构熵增：$\log\phi$（来自自指结构）
 
 因此：
-$$S_{\text{network}} = S_{\text{nodes}} + S_{\text{edges}} + \log\phi$$
-
+$$
+S_{\text{network}} = S_{\text{nodes}} + S_{\text{edges}} + \log\phi
+$$
 这完成了证明。∎
 
 ## 数学形式化

@@ -10,47 +10,64 @@
 **推论 C14-3** (φ-网络稳定性推论): 在Zeckendorf编码的φ-网络中，稳定性必然呈现黄金比例特征：
 
 1. **扰动衰减的φ-指数**: 小扰动的衰减率
-   $$||\delta x(t)|| \leq ||\delta x_0|| \cdot \varphi^{-\alpha t}$$
+   
+$$
+||\delta x(t)|| \leq ||\delta x_0|| \cdot \varphi^{-\alpha t}
+$$
    其中$\alpha > 0$是稳定性指数
 
 2. **渗流阈值的黄金分割**: 网络渗流临界概率
-   $$p_c = \frac{1}{\varphi + 1} = \varphi^2 \approx 0.382$$
-
+   
+$$
+p_c = \frac{1}{\varphi + 1} = \varphi^2 \approx 0.382
+$$
 3. **韧性的Fibonacci层次**: 网络韧性指数
-   $$R_k = \frac{F_{k+2}}{F_{k+3}} \to \varphi^{-1}$$
+   
+$$
+R_k = \frac{F_{k+2}}{F_{k+3}} \to \varphi^{-1}
+$$
    其中k是攻击轮次
 
 4. **Lyapunov函数的φ-形式**: 稳定性函数
-   $$V(x) = \sum_{i=1}^N \varphi^{-d_i} ||x_i||^2$$
+   
+$$
+V(x) = \sum_{i=1}^N \varphi^{-d_i} ||x_i||^2
+$$
    其中$d_i$是节点i到平衡点的距离
 
 5. **恢复时间的φ-缩放**: 系统恢复时间
-   $$T_{recovery} = T_0 \cdot \log_\varphi(N)$$
-
+   
+$$
+T_{recovery} = T_0 \cdot \log_\varphi(N)
+$$
 ## 证明
 
 ### 第一步：扰动传播的Zeckendorf约束
 
 考虑网络状态$x$受到小扰动$\delta x$。在φ-网络中，扰动通过Zeckendorf编码路径传播：
 
-$$\delta x_{i}(t+1) = \sum_{j \in N(i)} P_{ij}^{\varphi} \delta x_j(t)$$
-
+$$
+\delta x_{i}(t+1) = \sum_{j \in N(i)} P_{ij}^{\varphi} \delta x_j(t)
+$$
 其中$P_{ij}^{\varphi} = F_{|i-j|}/F_{|i-j|+2}$（由C14-1确定）。
 
 **稳定性分析**：
 转移矩阵的谱半径$\rho(P^{\varphi}) = \varphi^{-1} < 1$，因此：
-$$||\delta x(t)|| \leq \rho(P^{\varphi})^t ||\delta x_0|| = \varphi^{-t} ||\delta x_0||$$
-
+$$
+||\delta x(t)|| \leq \rho(P^{\varphi})^t ||\delta x_0|| = \varphi^{-t} ||\delta x_0||
+$$
 ### 第二步：渗流的黄金分割点
 
 网络渗流研究随机删除边或节点后的连通性。在Zeckendorf约束下，有效连接模式数为$F_{n+2}$（n位编码）。
 
 临界概率满足：
-$$p_c \cdot F_{n+2} = F_n$$
-
+$$
+p_c \cdot F_{n+2} = F_n
+$$
 当$n \to \infty$：
-$$p_c = \lim_{n \to \infty} \frac{F_n}{F_{n+2}} = \varphi^{-2} \approx 0.382$$
-
+$$
+p_c = \lim_{n \to \infty} \frac{F_n}{F_{n+2}} = \varphi^{-2} \approx 0.382
+$$
 这恰好是$1 - \varphi^{-1}$，即黄金分割的补。
 
 ### 第三步：韧性的Fibonacci递归
@@ -58,21 +75,25 @@ $$p_c = \lim_{n \to \infty} \frac{F_n}{F_{n+2}} = \varphi^{-2} \approx 0.382$$
 网络韧性定义为在k轮攻击后保持功能的能力。每轮攻击删除最重要的节点。
 
 在Zeckendorf约束下，第k轮后剩余的有效配置数：
-$$N_k = F_{n-k+2}$$
-
+$$
+N_k = F_{n-k+2}
+$$
 韧性指数：
-$$R_k = \frac{N_k}{N_{k-1}} = \frac{F_{n-k+2}}{F_{n-k+3}} \to \varphi^{-1}$$
-
+$$
+R_k = \frac{N_k}{N_{k-1}} = \frac{F_{n-k+2}}{F_{n-k+3}} \to \varphi^{-1}
+$$
 ### 第四步：Lyapunov稳定性
 
 定义Lyapunov函数：
-$$V(x) = \sum_{i=1}^N w_i ||x_i - x_i^*||^2$$
-
+$$
+V(x) = \sum_{i=1}^N w_i ||x_i - x_i^*||^2
+$$
 其中权重$w_i = \varphi^{-d_i}$，$d_i$是节点i的度。
 
 时间导数：
-$$\dot{V} = -\sum_{i,j} P_{ij}^{\varphi} ||x_i - x_j||^2 \leq -\varphi^{-1} V$$
-
+$$
+\dot{V} = -\sum_{i,j} P_{ij}^{\varphi} ||x_i - x_j||^2 \leq -\varphi^{-1} V
+$$
 因此$V(t) \leq V(0) e^{-t/\varphi}$，保证指数稳定。
 
 ### 第五步：恢复时间的对数缩放
@@ -80,8 +101,9 @@ $$\dot{V} = -\sum_{i,j} P_{ij}^{\varphi} ||x_i - x_j||^2 \leq -\varphi^{-1} V$$
 系统从大扰动恢复需要信息在网络中传播。由C14-2，信息传播距离$\sim \log_\varphi N$。
 
 恢复时间：
-$$T_{recovery} = \frac{\text{网络直径}}{\text{传播速度}} = \frac{\log_\varphi N}{\varphi^{-1}} = \varphi \log_\varphi N$$
-
+$$
+T_{recovery} = \frac{\text{网络直径}}{\text{传播速度}} = \frac{\log_\varphi N}{\varphi^{-1}} = \varphi \log_\varphi N
+$$
 **结论**：φ-网络的稳定性在所有尺度上都展现黄金比例特征，这是Zeckendorf编码约束的必然结果。∎
 
 ## 数学形式化

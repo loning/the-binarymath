@@ -29,56 +29,66 @@
 
 ### 策略空间约束
 **定义C15-1.1**: Zeckendorf混合策略
-$$p \in \Delta_{\mathcal{Z}}^n : p_i = \frac{\sum_{k \in S_i} F_k}{\sum_{j=1}^n \sum_{k \in S_j} F_k}$$
-
+$$
+p \in \Delta_{\mathcal{Z}}^n : p_i = \frac{\sum_{k \in S_i} F_k}{\sum_{j=1}^n \sum_{k \in S_j} F_k}
+$$
 其中$S_i$满足无连续元素条件。
 
 ### 支付矩阵结构
 **定义C15-1.2**: Fibonacci支付矩阵
-$$A_{ij} = \frac{F_{|i-j|+1}}{F_{|i-j|+3}}$$
-
+$$
+A_{ij} = \frac{F_{|i-j|+1}}{F_{|i-j|+3}}
+$$
 满足递归关系：
-$$A_{i,j} + A_{i,j+2} = A_{i,j+1} \cdot \varphi$$
-
+$$
+A_{i,j} + A_{i,j+2} = A_{i,j+1} \cdot \varphi
+$$
 ## 主要陈述
 
 ### 推论C15-1.1：混合策略φ-分配
 
 **陈述**: 对称n策略博弈的纳什均衡混合策略
-$$p_i^* = \frac{\varphi^{-i}}{\sum_{j=1}^n \varphi^{-j}} = \frac{\varphi^{-i}(1-\varphi^{-1})}{1-\varphi^{-n}}$$
-
+$$
+p_i^* = \frac{\varphi^{-i}}{\sum_{j=1}^n \varphi^{-j}} = \frac{\varphi^{-i}(1-\varphi^{-1})}{1-\varphi^{-n}}
+$$
 **极限形式**: 
-$$\lim_{n \to \infty} p_i^* = \varphi^{-i+1}(1-\varphi^{-1})$$
-
+$$
+\lim_{n \to \infty} p_i^* = \varphi^{-i+1}(1-\varphi^{-1})
+$$
 ### 推论C15-1.2：支付矩阵谱
 
 **陈述**: Fibonacci支付矩阵的特征值
-$$\lambda_k = \varphi^{-k}, \quad k = 1, ..., n$$
-
+$$
+\lambda_k = \varphi^{-k}, \quad k = 1, ..., n
+$$
 **谱半径**: $\rho(A) = \varphi^{-1}$
 
 ### 推论C15-1.3：两策略均衡
 
 **陈述**: 对称2×2博弈的均衡策略
-$$x^* = \varphi^{-1} = \frac{\sqrt{5}-1}{2} \approx 0.618$$
-
+$$
+x^* = \varphi^{-1} = \frac{\sqrt{5}-1}{2} \approx 0.618
+$$
 **稳定性条件**: $\frac{\partial^2 u}{\partial x^2} < 0$
 
 ### 推论C15-1.4：策略熵界
 
 **陈述**: n策略混合策略的熵上界
-$$H(p) \leq \log_2 F_{n+2} = n \cdot \log_2 \varphi + O(\log n)$$
-
+$$
+H(p) \leq \log_2 F_{n+2} = n \cdot \log_2 \varphi + O(\log n)
+$$
 **熵密度**: $\lim_{n \to \infty} \frac{H_{max}}{n} = \log_2 \varphi \approx 0.694$
 
 ### 推论C15-1.5：收敛速度
 
 **陈述**: 复制动态的收敛率
-$$||x(t) - x^*|| \leq ||x(0) - x^*|| \cdot e^{-t/\varphi}$$
-
+$$
+||x(t) - x^*|| \leq ||x(0) - x^*|| \cdot e^{-t/\varphi}
+$$
 离散时间：
-$$||x_k - x^*|| \leq ||x_0 - x^*|| \cdot \varphi^{-k}$$
-
+$$
+||x_k - x^*|| \leq ||x_0 - x^*|| \cdot \varphi^{-k}
+$$
 ## 算法规范
 
 ### Algorithm: FindPhiEquilibrium
@@ -132,21 +142,26 @@ function find_equilibrium(n, epsilon):
 ## 验证条件
 
 ### V1: 均衡策略验证
-$$\max_j (Ax^*)_j - x^* \cdot Ax^* < \epsilon$$
-
+$$
+\max_j (Ax^*)_j - x^* \cdot Ax^* < \epsilon
+$$
 ### V2: φ-分配验证
 对称博弈：
-$$\left|\frac{x_i^*}{x_{i+1}^*} - \varphi\right| < \delta$$
-
+$$
+\left|\frac{x_i^*}{x_{i+1}^*} - \varphi\right| < \delta
+$$
 ### V3: 熵界验证
-$$H(x^*) \leq \log_2 F_{n+2} + \epsilon$$
-
+$$
+H(x^*) \leq \log_2 F_{n+2} + \epsilon
+$$
 ### V4: 收敛速度验证
-$$\frac{||x_{k+1} - x^*||}{||x_k - x^*||} \leq \varphi^{-1} + \epsilon$$
-
+$$
+\frac{||x_{k+1} - x^*||}{||x_k - x^*||} \leq \varphi^{-1} + \epsilon
+$$
 ### V5: 支付矩阵谱验证
-$$|\lambda_{\max}(A) - \varphi^{-1}| < \epsilon$$
-
+$$
+|\lambda_{\max}(A) - \varphi^{-1}| < \epsilon
+$$
 ## 复杂度分析
 
 ### 时间复杂度
@@ -161,20 +176,24 @@ $$|\lambda_{\max}(A) - \varphi^{-1}| < \epsilon$$
 - 轨迹存储: $O(T \cdot n)$
 
 ### 收敛复杂度
-$$T_{conv} = O(\varphi \log(1/\epsilon))$$
-
+$$
+T_{conv} = O(\varphi \log(1/\epsilon))
+$$
 ## 数值稳定性
 
 ### 条件数
-$$\kappa(A) \leq \varphi^n$$
-
+$$
+\kappa(A) \leq \varphi^n
+$$
 ### 舍入误差
-$$||x_{computed} - x_{exact}|| = O(\epsilon_{machine} \cdot \varphi^n)$$
-
+$$
+||x_{computed} - x_{exact}|| = O(\epsilon_{machine} \cdot \varphi^n)
+$$
 ### 数值格式
 推荐投影梯度法：
-$$x_{k+1} = \Pi_{\Delta_{\mathcal{Z}}}(x_k - \alpha_k \nabla u(x_k))$$
-
+$$
+x_{k+1} = \Pi_{\Delta_{\mathcal{Z}}}(x_k - \alpha_k \nabla u(x_k))
+$$
 ## 实现要求
 
 ### 数据结构

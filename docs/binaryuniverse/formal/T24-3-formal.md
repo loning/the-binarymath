@@ -28,22 +28,26 @@
 
 ### 算法映射
 **定义**: 优化算法是映射
-$$\mathcal{A}: \mathcal{X} \times \mathcal{G} \times \mathcal{H} \to \mathcal{X}$$
-
+$$
+\mathcal{A}: \mathcal{X} \times \mathcal{G} \times \mathcal{H} \to \mathcal{X}
+$$
 **Zeckendorf约束算法**:
-$$\mathcal{A}_{\mathcal{Z}} = \text{Proj}_{\mathcal{Z}} \circ \mathcal{A}$$
-
+$$
+\mathcal{A}_{\mathcal{Z}} = \text{Proj}_{\mathcal{Z}} \circ \mathcal{A}
+$$
 ### 算法等价关系
 **定义**: 两个算法$\mathcal{A}_1, \mathcal{A}_2$等价当且仅当
-$$\lim_{k \to \infty} ||\mathcal{A}_1^k(x_0) - \mathcal{A}_2^k(x_0)|| = 0, \forall x_0$$
-
+$$
+\lim_{k \to \infty} ||\mathcal{A}_1^k(x_0) - \mathcal{A}_2^k(x_0)|| = 0, \forall x_0
+$$
 ## 主要定理
 
 ### 定理T24-3.1：算法φ-等价性
 
 **陈述**: 对任意标准算法$\mathcal{A}$，存在φ-调制算法$\mathcal{A}_\varphi$使得
-$$\mathcal{A}_{\mathcal{Z}} \sim \varphi^{-1} \cdot \mathcal{A} + O(\varphi^{-2})$$
-
+$$
+\mathcal{A}_{\mathcal{Z}} \sim \varphi^{-1} \cdot \mathcal{A} + O(\varphi^{-2})
+$$
 **证明要素**:
 1. 投影算子的Taylor展开
 2. φ-缩放的普遍性
@@ -52,8 +56,9 @@ $$\mathcal{A}_{\mathcal{Z}} \sim \varphi^{-1} \cdot \mathcal{A} + O(\varphi^{-2}
 ### 定理T24-3.2：Fibonacci动量结构
 
 **陈述**: 最优动量更新规则为
-$$v_{k+1} = \frac{F_k}{F_{k+1}} v_k + \frac{F_{k-1}}{F_{k+1}} g_k$$
-
+$$
+v_{k+1} = \frac{F_k}{F_{k+1}} v_k + \frac{F_{k-1}}{F_{k+1}} g_k
+$$
 满足:
 1. **归一化**: $\frac{F_k}{F_{k+1}} + \frac{F_{k-1}}{F_{k+1}} = 1$
 2. **收敛性**: $\lim_{k \to \infty} \frac{F_k}{F_{k+1}} = \varphi^{-1}$
@@ -62,8 +67,9 @@ $$v_{k+1} = \frac{F_k}{F_{k+1}} v_k + \frac{F_{k-1}}{F_{k+1}} g_k$$
 ### 定理T24-3.3：自适应学习率黄金分割
 
 **陈述**: 最优学习率序列满足
-$$\alpha_k = \alpha_0 \cdot \varphi^{-k} \prod_{i=1}^k \left(1 + \frac{1}{F_i}\right)$$
-
+$$
+\alpha_k = \alpha_0 \cdot \varphi^{-k} \prod_{i=1}^k \left(1 + \frac{1}{F_i}\right)
+$$
 **性质**:
 1. **单调递减**: $\alpha_{k+1} < \alpha_k$
 2. **收敛速度**: $\alpha_k = O(\varphi^{-k})$
@@ -72,16 +78,19 @@ $$\alpha_k = \alpha_0 \cdot \varphi^{-k} \prod_{i=1}^k \left(1 + \frac{1}{F_i}\r
 ### 定理T24-3.4：随机优化方差缩减
 
 **陈述**: Zeckendorf约束下的随机梯度方差
-$$\text{Var}[g_{\mathcal{Z}}] = \varphi^{-1} \cdot \text{Var}[g]$$
-
+$$
+\text{Var}[g_{\mathcal{Z}}] = \varphi^{-1} \cdot \text{Var}[g]
+$$
 **证明**: 有效样本空间缩减
-$$|\mathcal{S}_{\mathcal{Z}}| = \varphi^{-1} \cdot |\mathcal{S}|$$
-
+$$
+|\mathcal{S}_{\mathcal{Z}}| = \varphi^{-1} \cdot |\mathcal{S}|
+$$
 ### 定理T24-3.5：算法层次分形结构
 
 **陈述**: n阶算法的Zeckendorf表示
-$$\mathcal{A}_n^{\mathcal{Z}} = \sum_{k=0}^n \varphi^{-k} \mathcal{A}_k \circ \Pi_k$$
-
+$$
+\mathcal{A}_n^{\mathcal{Z}} = \sum_{k=0}^n \varphi^{-k} \mathcal{A}_k \circ \Pi_k
+$$
 其中$\Pi_k$是k阶投影算子。
 
 **分形维数**: $d_f = \log_\varphi(n) \approx 1.44 \log n$
@@ -127,17 +136,21 @@ function unified_update(x_k, g_k, H_k, type):
 ## 验证条件
 
 ### V1: 算法等价性验证
-$$||\mathcal{A}_{\mathcal{Z}}^k(x_0) - \varphi^{-k}\mathcal{A}^k(x_0)|| < \delta_k$$
-
+$$
+||\mathcal{A}_{\mathcal{Z}}^k(x_0) - \varphi^{-k}\mathcal{A}^k(x_0)|| < \delta_k
+$$
 ### V2: Fibonacci权重验证
-$$\left|\frac{F_k}{F_{k+1}} - \varphi^{-1}\right| < k^{-1}$$
-
+$$
+\left|\frac{F_k}{F_{k+1}} - \varphi^{-1}\right| < k^{-1}
+$$
 ### V3: 方差缩减验证
-$$\frac{\text{Var}[g_{\mathcal{Z}}]}{\text{Var}[g]} \in [\varphi^{-1} - \delta, \varphi^{-1} + \delta]$$
-
+$$
+\frac{\text{Var}[g_{\mathcal{Z}}]}{\text{Var}[g]} \in [\varphi^{-1} - \delta, \varphi^{-1} + \delta]
+$$
 ### V4: 分形结构验证
-$$\mathcal{A}_n^{\mathcal{Z}} = \sum_{k=0}^n c_k \mathcal{A}_k, \quad |c_k - \varphi^{-k}| < \epsilon$$
-
+$$
+\mathcal{A}_n^{\mathcal{Z}} = \sum_{k=0}^n c_k \mathcal{A}_k, \quad |c_k - \varphi^{-k}| < \epsilon
+$$
 ### V5: 收敛统一性
 所有算法收敛率$\rho \in [\varphi^{-1} - \delta, \varphi^{-1} + \delta]$
 
@@ -155,17 +168,20 @@ $$\mathcal{A}_n^{\mathcal{Z}} = \sum_{k=0}^n c_k \mathcal{A}_k, \quad |c_k - \va
 - 2阶方法: $O(n^2)$
 
 ### 通信复杂度（分布式）
-$$C_{\text{comm}} = O(\varphi^{-1} \cdot C_{\text{standard}})$$
-
+$$
+C_{\text{comm}} = O(\varphi^{-1} \cdot C_{\text{standard}})
+$$
 ## 数值稳定性
 
 ### 条件数分析
 Zeckendorf约束改善条件数：
-$$\kappa_{\mathcal{Z}} \leq \varphi \cdot \kappa_{\text{standard}}$$
-
+$$
+\kappa_{\mathcal{Z}} \leq \varphi \cdot \kappa_{\text{standard}}
+$$
 ### 舍入误差传播
-$$\epsilon_{k+1} \leq \varphi^{-1} \epsilon_k + O(\epsilon_{\text{machine}})$$
-
+$$
+\epsilon_{k+1} \leq \varphi^{-1} \epsilon_k + O(\epsilon_{\text{machine}})
+$$
 ## 实现要求
 
 ### 数据结构

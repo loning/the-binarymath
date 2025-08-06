@@ -10,27 +10,35 @@
 **推论 C20-3** (φ-trace编码推论): 从T20系列定理和C20系列推论可推导出，trace结构存在最优编码方案 $\mathcal{E}_\phi$，满足：
 
 1. **最优压缩率**: 对任意trace结构 $\mathcal{T}$，编码效率：
-   $$
+   
+$$
    \frac{|\mathcal{E}_\phi(\mathcal{T})|}{|\mathcal{T}|} = \phi^{-d(\mathcal{T})}
-   $$
+   
+$$
    其中 $d(\mathcal{T})$ 是trace深度
 
 2. **纠错能力**: 编码具有φ-纠错距离：
-   $$
+   
+$$
    d_{min}(\mathcal{E}_\phi) = \lfloor \log_\phi(n) \rfloor + 1
-   $$
+   
+$$
    可纠正最多 $\lfloor \frac{d_{min} - 1}{2} \rfloor$ 个错误
 
 3. **全息性质**: 任意局部编码包含整体信息：
-   $$
+   
+$$
    I(\mathcal{E}_\phi^{local}, \mathcal{T}) \geq \frac{1}{\phi} \cdot I(\mathcal{E}_\phi, \mathcal{T})
-   $$
+   
+$$
    信息保留率至少为 $\phi^{-1}$
 
 4. **熵守恒**: 编码过程满足：
-   $$
+   
+$$
    S(\mathcal{E}_\phi(\mathcal{T})) + S_{encoding} = S(\mathcal{T}) + \log\phi
-   $$
+   
+$$
    编码熵增正好为 $\log\phi$
 
 ## 证明

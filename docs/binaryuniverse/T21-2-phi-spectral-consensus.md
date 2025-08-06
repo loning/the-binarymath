@@ -9,28 +9,35 @@
 **定理 T21-2** (φ-谱共识定理): 在φ-collapse-aware系统中，存在唯一的谱共识机制 $\mathcal{S}_\phi$，使得多个RealityShell通过频谱分解达成信息共识，并满足：
 
 1. **频谱分解定理**: 任意RealityShell状态 $|\psi\rangle$ 可分解为φ-本征态：
-   $$
+   
+$$
    |\psi\rangle = \sum_{n=0}^{\infty} c_n \cdot \phi^{-n/2} |\phi_n\rangle
-   $$
+   
+$$
    其中 $|\phi_n\rangle$ 是第n个φ-本征态，系数满足Zeckendorf约束
 
 2. **共识算子定义**: 存在共识算子 $\hat{C}_\phi$ 使得：
-   $$
+   
+$$
    \hat{C}_\phi |\psi_1\rangle \otimes |\psi_2\rangle = \sum_{\rho \in \mathcal{Z}_\phi} \frac{e^{i\gamma_\rho t}}{\zeta'_\phi(\rho)} |\psi_{consensus}\rangle
-   $$
+   
+$$
    其中 $\mathcal{Z}_\phi$ 是φ-ζ函数的零点集，$\gamma_\rho$ 是零点虚部
 
 3. **谱共识条件**: 两个Shell达成共识当且仅当：
-   $$
+   
+$$
    \mathcal{F}[\tau_1](\omega) \cdot \mathcal{F}[\tau_2]^*(\omega) = \phi^{i\omega} \cdot \delta(\omega - \omega_\phi)
-   $$
+   
+$$
    其中 $\mathcal{F}$ 是Fourier变换，$\tau_i$ 是Shell的trace结构，$\omega_\phi = 2\pi/\log\phi$
 
 4. **熵增驱动的共识收敛**: 共识过程满足熵增定律：
-   $$
+   
+$$
    S[\mathcal{S}_\phi(t+dt)] - S[\mathcal{S}_\phi(t)] = \phi \cdot \left|\langle\psi_1|\psi_2\rangle\right|^2 dt > 0
-   $$
-
+   
+$$
 ## 证明
 
 ### 引理 T21-2.1 (φ-本征态的完备性)
@@ -52,9 +59,11 @@
 2. 时间演化因子：$e^{i\gamma_k t}$ 产生频率 $\omega_k = \gamma_k$
 3. 零点密度：$N(\gamma) \sim \frac{\gamma \log\phi}{2\pi}\log\gamma$
 4. 振荡模式的叠加：
-   $$
+   
+$$
    A(t) = \sum_k \frac{1}{\zeta'_\phi(\rho_k)} e^{i\gamma_k t}
-   $$
+   
+$$
 5. 由Riemann-Siegel公式的φ-推广，振幅收敛
 6. 产生准周期的共识模式 ∎
 
@@ -63,17 +72,23 @@ trace结构的Fourier变换具有φ-标度不变性。
 
 *证明*:
 1. trace结构 $\tau(n)$ 的Fourier变换：
-   $$
+   
+$$
    \hat{\tau}(\omega) = \sum_{n=1}^{\infty} \tau(n) e^{-i\omega n}
-   $$
+   
+$$
 2. 由Zeckendorf编码的自相似性：
-   $$
+   
+$$
    \tau(\phi n) = \phi \cdot \tau(n) + O(1)
-   $$
+   
+$$
 3. 变换的标度性质：
-   $$
+   
+$$
    \hat{\tau}(\phi\omega) = \phi^{-1} \hat{\tau}(\omega) + \delta(\omega - \omega_\phi)
-   $$
+   
+$$
 4. 特征频率 $\omega_\phi = 2\pi/\log\phi$ 是不动点
 5. 功率谱：$|\hat{\tau}(\omega)|^2 \sim \omega^{-2+1/\phi}$
 6. 满足φ-标度不变性 ∎
@@ -85,9 +100,11 @@ trace结构的Fourier变换具有φ-标度不变性。
 1. 初始态：两个独立Shell的熵 $S_1 + S_2$
 2. 相互作用Hamiltonian：$\hat{H}_{int} = g\phi \cdot \hat{O}_1 \otimes \hat{O}_2$
 3. von Neumann熵演化：
-   $$
+   
+$$
    \frac{dS}{dt} = -\text{Tr}[\rho \log\rho, \hat{H}_{int}]
-   $$
+   
+$$
 4. 由于纠缠产生：$S_{12} > S_1 + S_2$
 5. 熵增率：$\dot{S} = \phi \cdot |\langle\psi_1|\psi_2\rangle|^2$
 6. φ因子保证熵增为正（唯一公理） ∎

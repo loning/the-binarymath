@@ -9,27 +9,35 @@
 **推论 C20-2** (ψₒ自指映射推论): 从T20系列定理可推导出，自指结构ψ = ψ(ψ)存在唯一的映射机制 $\mathcal{M}_\psi$，满足：
 
 1. **不动点存在性**: 存在唯一不动点 $\psi^*$ 使得：
-   $$
+   
+$$
    \mathcal{M}_\psi(\psi^*) = \psi^* \text{ 且 } \psi^* = \psi^*(\psi^*)
-   $$
+   
+$$
    不动点的Zeckendorf表示为Fibonacci数
 
 2. **递归深度定理**: 对任意初始状态 $\psi_0$，递归深度 $d$ 与熵增满足：
-   $$
+   
+$$
    S(\psi_d) - S(\psi_0) = d \cdot \log\phi + O(\log d)
-   $$
+   
+$$
    其中 $\psi_d = \mathcal{M}_\psi^d(\psi_0)$
 
 3. **自指循环周期**: 存在最小周期 $T_\psi$ 使得：
-   $$
+   
+$$
    \mathcal{M}_\psi^{T_\psi}(\psi) = \psi \cdot \phi^{T_\psi} \text{ (模 Zeckendorf)}
-   $$
+   
+$$
    周期与黄金比率的幂次相关
 
 4. **映射收敛速率**: 向不动点的收敛满足：
-   $$
+   
+$$
    \|\psi_{n+1} - \psi^*\| \leq \phi^{-1} \cdot \|\psi_n - \psi^*\|
-   $$
+   
+$$
    收敛速率由黄金比率倒数决定
 
 ## 证明

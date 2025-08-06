@@ -28,17 +28,19 @@
 
 ### 节点编码
 **定义C14-1.1**: 网络节点的Zeckendorf表示
-$$v_i \in \mathcal{Z}_n : v_i = \sum_{k \in S_i} F_k, \quad S_i \cap (S_i - 1) = \emptyset$$
-
+$$
+v_i \in \mathcal{Z}_n : v_i = \sum_{k \in S_i} F_k, \quad S_i \cap (S_i - 1) = \emptyset
+$$
 其中$S_i$是Fibonacci索引集合，无连续元素。
 
 ### 连接概率
 **定义C14-1.2**: 节点间连接概率
-$$P_{ij} = \begin{cases}
+$$
+P_{ij} = \begin{cases}
 \varphi^{-d_H(v_i, v_j)} & \text{if } d_H(v_i, v_j) = F_k \text{ for some } k \\
 \varphi^{-2d_H(v_i, v_j)} & \text{otherwise}
-\end{cases}$$
-
+\end{cases}
+$$
 其中$d_H$是Hamming距离。
 
 ## 主要陈述
@@ -46,36 +48,43 @@ $$P_{ij} = \begin{cases}
 ### 推论C14-1.1：度分布φ-幂律
 
 **陈述**: 网络节点度分布遵循
-$$P(k) = c \cdot k^{-\log_2\varphi}$$
-
+$$
+P(k) = c \cdot k^{-\log_2\varphi}
+$$
 其中$c$是归一化常数。
 
 **验证条件**:
-$$\left|\frac{\log P(k)}{\log k} + \log_2\varphi\right| < \epsilon$$
-
+$$
+\left|\frac{\log P(k)}{\log k} + \log_2\varphi\right| < \epsilon
+$$
 ### 推论C14-1.2：聚类系数φ-调制
 
 **陈述**: 距离网络中心$d$的节点聚类系数
-$$C(d) = C_0 \cdot \varphi^{-d}$$
-
+$$
+C(d) = C_0 \cdot \varphi^{-d}
+$$
 **递归关系**:
-$$C(d+1) = \varphi^{-1} \cdot C(d)$$
-
+$$
+C(d+1) = \varphi^{-1} \cdot C(d)
+$$
 ### 推论C14-1.3：小世界性质
 
 **陈述**: 平均路径长度
-$$L = \log_\varphi N + O(1)$$
-
+$$
+L = \log_\varphi N + O(1)
+$$
 **精确形式**:
-$$L = \frac{\ln N}{\ln \varphi} + \gamma$$
-
+$$
+L = \frac{\ln N}{\ln \varphi} + \gamma
+$$
 其中$\gamma$是网络依赖常数。
 
 ### 推论C14-1.4：连接概率Fibonacci递归
 
 **陈述**: 节点$i,j$的连接概率
-$$P_{ij} = \frac{F_{|i-j|}}{F_{|i-j|+2}}$$
-
+$$
+P_{ij} = \frac{F_{|i-j|}}{F_{|i-j|+2}}
+$$
 **性质**:
 1. $\sum_j P_{ij} = 1$ (归一化)
 2. $\lim_{|i-j| \to \infty} P_{ij} = 0$ (局部性)
@@ -84,11 +93,13 @@ $$P_{ij} = \frac{F_{|i-j|}}{F_{|i-j|+2}}$$
 ### 推论C14-1.5：网络熵上界
 
 **陈述**: 网络结构熵
-$$H_{network} \leq N \cdot \log_2\varphi$$
-
+$$
+H_{network} \leq N \cdot \log_2\varphi
+$$
 **证明要素**:
-$$H = -\sum_{i=1}^N p_i \log_2 p_i \leq \log_2 F_{N+2} \approx N \cdot \log_2\varphi$$
-
+$$
+H = -\sum_{i=1}^N p_i \log_2 p_i \leq \log_2 F_{N+2} \approx N \cdot \log_2\varphi
+$$
 ## 算法规范
 
 ### Algorithm: PhiNetworkGenerator
@@ -130,20 +141,25 @@ function generate_phi_network(N):
 ## 验证条件
 
 ### V1: 度分布验证
-$$\text{KS-statistic}(P_{empirical}(k), k^{-\log_2\varphi}) < \alpha$$
-
+$$
+\text{KS-statistic}(P_{empirical}(k), k^{-\log_2\varphi}) < \alpha
+$$
 ### V2: 聚类系数衰减
-$$\left|C(d) - C_0 \cdot \varphi^{-d}\right| < \delta \cdot C_0$$
-
+$$
+\left|C(d) - C_0 \cdot \varphi^{-d}\right| < \delta \cdot C_0
+$$
 ### V3: 小世界验证
-$$\left|L - \log_\varphi N\right| < \sqrt{\log N}$$
-
+$$
+\left|L - \log_\varphi N\right| < \sqrt{\log N}
+$$
 ### V4: Fibonacci连接概率
-$$\left|P_{ij} - \frac{F_{|i-j|}}{F_{|i-j|+2}}\right| < \epsilon$$
-
+$$
+\left|P_{ij} - \frac{F_{|i-j|}}{F_{|i-j|+2}}\right| < \epsilon
+$$
 ### V5: 熵界验证
-$$H_{network} \leq N \cdot \log_2\varphi + O(\log N)$$
-
+$$
+H_{network} \leq N \cdot \log_2\varphi + O(\log N)
+$$
 ## 复杂度分析
 
 ### 时间复杂度
@@ -159,21 +175,25 @@ $$H_{network} \leq N \cdot \log_2\varphi + O(\log N)$$
 - 距离矩阵: $O(N^2)$
 
 ### 通信复杂度（分布式）
-$$C_{comm} = O(\varphi^{-1} \cdot N \log N)$$
-
+$$
+C_{comm} = O(\varphi^{-1} \cdot N \log N)
+$$
 ## 数值稳定性
 
 ### 概率计算精度
 连接概率的数值稳定性：
-$$P_{ij} = \exp(-d_{ij} \ln \varphi)$$
-
+$$
+P_{ij} = \exp(-d_{ij} \ln \varphi)
+$$
 避免下溢的对数形式：
-$$\log P_{ij} = -d_{ij} \ln \varphi$$
-
+$$
+\log P_{ij} = -d_{ij} \ln \varphi
+$$
 ### 度分布拟合
 使用最大似然估计：
-$$\hat{\gamma} = 1 + N \left[\sum_{i=1}^N \ln \frac{k_i}{k_{min}}\right]^{-1}$$
-
+$$
+\hat{\gamma} = 1 + N \left[\sum_{i=1}^N \ln \frac{k_i}{k_{min}}\right]^{-1}
+$$
 理论值：$\gamma = \log_2\varphi \approx 0.694$
 
 ## 实现要求

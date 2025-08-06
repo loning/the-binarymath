@@ -10,22 +10,34 @@
 **推论 C15-1** (φ-博弈均衡推论): 在Zeckendorf编码的二进制宇宙中，博弈均衡必然呈现黄金比例特征：
 
 1. **混合策略的φ-分配**: 纳什均衡混合策略
-   $$p^* = \left(\varphi^{-1}, \varphi^{-2}, \varphi^{-3}, ...\right) / Z$$
+   
+$$
+p^* = \left(\varphi^{-1}, \varphi^{-2}, \varphi^{-3}, ...\right) / Z
+$$
    其中Z是归一化常数
 
 2. **支付矩阵的Fibonacci结构**: 最优支付矩阵元素
-   $$a_{ij} = \frac{F_{|i-j|+1}}{F_{|i-j|+3}}$$
-
+   
+$$
+a_{ij} = \frac{F_{|i-j|+1}}{F_{|i-j|+3}}
+$$
 3. **均衡点的黄金分割**: 对称博弈的均衡策略
-   $$x^* = \varphi^{-1} \approx 0.618$$
-
+   
+$$
+x^* = \varphi^{-1} \approx 0.618
+$$
 4. **策略熵的上界**: 混合策略熵
-   $$H(p) \leq \log_2 F_{n+2} \approx n \cdot \log_2 \varphi$$
+   
+$$
+H(p) \leq \log_2 F_{n+2} \approx n \cdot \log_2 \varphi
+$$
    其中n是策略数
 
 5. **收敛速度的φ-调制**: 趋向均衡的速度
-   $$||x_t - x^*|| \leq ||x_0 - x^*|| \cdot \varphi^{-t}$$
-
+   
+$$
+||x_t - x^*|| \leq ||x_0 - x^*|| \cdot \varphi^{-t}
+$$
 ## 证明
 
 ### 第一步：策略空间的Zeckendorf约束
@@ -33,8 +45,9 @@
 在二进制宇宙中，n个策略的编码必须满足无11条件。可行策略配置数为$F_{n+2}$。
 
 混合策略$p = (p_1, ..., p_n)$的有效表示：
-$$p_i = \frac{\sum_{k \in S_i} F_k}{\sum_{j=1}^n \sum_{k \in S_j} F_k}$$
-
+$$
+p_i = \frac{\sum_{k \in S_i} F_k}{\sum_{j=1}^n \sum_{k \in S_j} F_k}
+$$
 其中$S_i$是策略i的Zeckendorf编码索引集。
 
 ### 第二步：支付矩阵的涌现
@@ -42,17 +55,19 @@ $$p_i = \frac{\sum_{k \in S_i} F_k}{\sum_{j=1}^n \sum_{k \in S_j} F_k}$$
 考虑两玩家博弈，支付矩阵$A$。在Zeckendorf约束下，支付必须用Zeckendorf编码表示。对于策略对$(i,j)$，支付值必须避免连续11模式。
 
 对于两策略博弈，为使均衡点精确等于$\varphi^{-1}$，支付矩阵必须满足：
-$$A = \begin{pmatrix}
+$$
+A = \begin{pmatrix}
 0 & 1 \\
 \varphi & 0
-\end{pmatrix}$$
-
+\end{pmatrix}
+$$
 对于多策略博弈，φ-调制的Fibonacci支付矩阵：
-$$a_{ij} = \begin{cases}
+$$
+a_{ij} = \begin{cases}
 \varphi^{-|i-j|} \cdot \frac{F_{min(i,j)+1}}{F_{max(i,j)+1}} & \text{if } |i-j| \leq 1 \\
 0 & \text{otherwise}
-\end{cases}$$
-
+\end{cases}
+$$
 这确保了：
 1. 所有支付值可用Zeckendorf编码表示
 2. 相邻策略间有非零交互
@@ -61,37 +76,45 @@ $$a_{ij} = \begin{cases}
 ### 第三步：纳什均衡的黄金分割
 
 对于对称两策略博弈，设混合策略$(p, 1-p)$。期望支付：
-$$U(p) = p^2 a_{11} + p(1-p)(a_{12} + a_{21}) + (1-p)^2 a_{22}$$
-
+$$
+U(p) = p^2 a_{11} + p(1-p)(a_{12} + a_{21}) + (1-p)^2 a_{22}
+$$
 对于上述支付矩阵，均衡条件$\frac{\partial U}{\partial p} = 0$给出：
-$$p^* = \frac{a_{22} - a_{21}}{a_{11} + a_{22} - a_{12} - a_{21}} = \frac{0 - \varphi}{0 + 0 - 1 - \varphi} = \frac{-\varphi}{-\varphi^2} = \varphi^{-1}$$
-
+$$
+p^* = \frac{a_{22} - a_{21}}{a_{11} + a_{22} - a_{12} - a_{21}} = \frac{0 - \varphi}{0 + 0 - 1 - \varphi} = \frac{-\varphi}{-\varphi^2} = \varphi^{-1}
+$$
 这里使用了黄金比例的基本性质：$\varphi^2 = \varphi + 1$
 
 ### 第四步：策略熵的限制
 
 n个策略的混合策略熵：
-$$H(p) = -\sum_{i=1}^n p_i \log_2 p_i$$
-
+$$
+H(p) = -\sum_{i=1}^n p_i \log_2 p_i
+$$
 由于Zeckendorf约束，有效概率分布数为$F_{n+2}$，因此：
-$$H_{max} = \log_2 F_{n+2} \approx n \cdot \log_2 \varphi \approx 0.694n$$
-
+$$
+H_{max} = \log_2 F_{n+2} \approx n \cdot \log_2 \varphi \approx 0.694n
+$$
 这比标准的$\log_2 n$小，反映了约束的影响。
 
 ### 第五步：演化动力学的φ-收敛
 
 复制动态方程：
-$$\dot{x}_i = x_i[f_i(x) - \bar{f}(x)]$$
-
+$$
+\dot{x}_i = x_i[f_i(x) - \bar{f}(x)]
+$$
 在Zeckendorf约束下，Jacobian矩阵的特征值被φ-调制：
-$$|\lambda_i| \leq \varphi^{-1}$$
-
+$$
+|\lambda_i| \leq \varphi^{-1}
+$$
 因此收敛速度：
-$$||x_t - x^*|| \leq ||x_0 - x^*|| \cdot e^{-t/\varphi}$$
-
+$$
+||x_t - x^*|| \leq ||x_0 - x^*|| \cdot e^{-t/\varphi}
+$$
 离散时间下：
-$$||x_t - x^*|| \leq ||x_0 - x^*|| \cdot \varphi^{-t}$$
-
+$$
+||x_t - x^*|| \leq ||x_0 - x^*|| \cdot \varphi^{-t}
+$$
 **结论**：博弈均衡的所有方面都被黄金比例调制，这是Zeckendorf编码约束的必然结果。∎
 
 ## 数学形式化

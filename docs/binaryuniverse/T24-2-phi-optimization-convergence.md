@@ -10,35 +10,50 @@
 **定理 T24-2** (φ-优化收敛保证定理): 在Zeckendorf编码的二进制宇宙中，优化算法的收敛速率受φ调制：
 
 1. **收敛速率界**: 对于满足Zeckendorf约束的优化问题，误差收敛速率为：
-   $$\|x_{n+1} - x^*\| \leq \frac{1}{\varphi^n} \|x_0 - x^*\|$$
+   
+$$
+\|x_{n+1} - x^*\| \leq \frac{1}{\varphi^n} \|x_0 - x^*\|
+$$
    其中$x^*$是最优解，$\varphi = \frac{1+\sqrt{5}}{2}$
 
 2. **迭代复杂度**: 达到$\epsilon$精度所需迭代次数：
-   $$N(\epsilon) = \lceil \log_\varphi \left(\frac{\|x_0 - x^*\|}{\epsilon}\right) \rceil$$
-
+   
+$$
+N(\epsilon) = \lceil \log_\varphi \left(\frac{\|x_0 - x^*\|}{\epsilon}\right) \rceil
+$$
 3. **Fibonacci步长序列**: 最优步长序列遵循Fibonacci递归：
-   $$\alpha_n = \frac{F_n}{F_{n+1}} \approx \frac{1}{\varphi}$$
+   
+$$
+\alpha_n = \frac{F_n}{F_{n+1}} \approx \frac{1}{\varphi}
+$$
    其中$F_n$是第n个Fibonacci数
 
 4. **梯度范数递减**: 梯度范数以φ的幂次递减：
-   $$\|\nabla f(x_n)\| \leq \frac{L}{\varphi^{n/2}} \|\nabla f(x_0)\|$$
+   
+$$
+\|\nabla f(x_n)\| \leq \frac{L}{\varphi^{n/2}} \|\nabla f(x_0)\|
+$$
    其中$L$是Lipschitz常数
 
 5. **Zeckendorf投影保证**: 每次迭代后投影到Zeckendorf可行域保持收敛性：
-   $$\text{Proj}_\mathcal{Z}(x_n) \to x^* \in \mathcal{Z}$$
-
+   
+$$
+\text{Proj}_\mathcal{Z}(x_n) \to x^* \in \mathcal{Z}
+$$
 ## 证明
 
 ### 第一步：建立Zeckendorf约束下的收缩映射
 
 考虑优化迭代：
-$$x_{n+1} = \text{Proj}_\mathcal{Z}(x_n - \alpha_n \nabla f(x_n))$$
-
+$$
+x_{n+1} = \text{Proj}_\mathcal{Z}(x_n - \alpha_n \nabla f(x_n))
+$$
 其中$\mathcal{Z}$是Zeckendorf可行域（无连续11的配置空间）。
 
 **引理1**: 投影算子$\text{Proj}_\mathcal{Z}$是非扩张的：
-$$\|\text{Proj}_\mathcal{Z}(x) - \text{Proj}_\mathcal{Z}(y)\| \leq \|x - y\|$$
-
+$$
+\|\text{Proj}_\mathcal{Z}(x) - \text{Proj}_\mathcal{Z}(y)\| \leq \|x - y\|
+$$
 证明：这是凸集投影的标准性质，虽然$\mathcal{Z}$是离散的，但在放松到连续域后仍然成立。
 
 ### 第二步：分析收缩因子
@@ -50,49 +65,60 @@ $$\|\text{Proj}_\mathcal{Z}(x) - \text{Proj}_\mathcal{Z}(y)\| \leq \|x - y\|$$
 - 有效步长缩放：$\alpha_{\text{eff}} = \alpha / \varphi$
 
 **关键观察**：平均而言，约$1/\varphi^2 \approx 0.382$的位置对需要调整，导致：
-$$\mathbb{E}[\alpha_{\text{eff}}] = \alpha \cdot \left(1 - \frac{1}{\varphi^2} + \frac{1}{\varphi^2} \cdot \frac{1}{\varphi}\right) = \frac{\alpha}{\varphi}$$
-
+$$
+\mathbb{E}[\alpha_{\text{eff}}] = \alpha \cdot \left(1 - \frac{1}{\varphi^2} + \frac{1}{\varphi^2} \cdot \frac{1}{\varphi}\right) = \frac{\alpha}{\varphi}
+$$
 ### 第三步：证明收敛速率
 
 定义Lyapunov函数：
-$$V_n = \|x_n - x^*\|^2$$
-
+$$
+V_n = \|x_n - x^*\|^2
+$$
 在强凸条件下（由Zeckendorf约束诱导）：
-$$V_{n+1} \leq \left(1 - \frac{2\mu}{\varphi L}\right) V_n$$
-
+$$
+V_{n+1} \leq \left(1 - \frac{2\mu}{\varphi L}\right) V_n
+$$
 其中$\mu$是强凸参数，$L$是Lipschitz常数。
 
 设置最优步长$\alpha = 1/L$，得到：
-$$V_{n+1} \leq \left(1 - \frac{2\mu}{\varphi L}\right) V_n \leq \frac{1}{\varphi^2} V_n$$
-
+$$
+V_{n+1} \leq \left(1 - \frac{2\mu}{\varphi L}\right) V_n \leq \frac{1}{\varphi^2} V_n
+$$
 因此：
-$$\|x_n - x^*\| \leq \frac{1}{\varphi^n} \|x_0 - x^*\|$$
-
+$$
+\|x_n - x^*\| \leq \frac{1}{\varphi^n} \|x_0 - x^*\|
+$$
 ### 第四步：Fibonacci步长序列的最优性
 
 考虑步长序列$\{\alpha_n\}$。在Zeckendorf约束下，最优步长满足：
 
-$$\alpha_{n+1} + \alpha_n = \alpha_{n-1}$$
-
+$$
+\alpha_{n+1} + \alpha_n = \alpha_{n-1}
+$$
 这正是Fibonacci递归的倒数形式！
 
 解得：
-$$\alpha_n = \frac{c}{\varphi^n}$$
-
+$$
+\alpha_n = \frac{c}{\varphi^n}
+$$
 归一化后：
-$$\alpha_n = \frac{F_n}{F_{n+1}} \xrightarrow{n \to \infty} \frac{1}{\varphi}$$
-
+$$
+\alpha_n = \frac{F_n}{F_{n+1}} \xrightarrow{n \to \infty} \frac{1}{\varphi}
+$$
 ### 第五步：梯度范数的递减率
 
 利用光滑性和Zeckendorf投影的性质：
-$$\|\nabla f(x_{n+1})\| \leq L \|x_{n+1} - x_n\|$$
-
+$$
+\|\nabla f(x_{n+1})\| \leq L \|x_{n+1} - x_n\|
+$$
 结合收敛速率：
-$$\|x_{n+1} - x_n\| \leq \frac{2}{\varphi^{n/2}} \|x_1 - x_0\|$$
-
+$$
+\|x_{n+1} - x_n\| \leq \frac{2}{\varphi^{n/2}} \|x_1 - x_0\|
+$$
 因此：
-$$\|\nabla f(x_n)\| \leq \frac{L}{\varphi^{n/2}} \|\nabla f(x_0)\|$$
-
+$$
+\|\nabla f(x_n)\| \leq \frac{L}{\varphi^{n/2}} \|\nabla f(x_0)\|
+$$
 **结论**：优化收敛速率受φ调制是Zeckendorf编码的必然结果。∎
 
 ## 数学形式化

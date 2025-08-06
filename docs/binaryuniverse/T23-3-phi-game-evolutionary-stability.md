@@ -11,22 +11,36 @@
 **定理 T23-3** (φ-博弈演化稳定性定理): 基于T23-2的φ-Nash均衡理论，演化稳定策略(ESS)在φ-博弈系统中必须满足严格的熵增稳定性条件：
 
 1. **φ-ESS的定义**: 策略$s^* \in S$是演化稳定的，当且仅当对任何入侵策略$s' \neq s^*$，存在入侵阈值$\epsilon_{\phi} = \frac{1}{\phi^2}$，使得当入侵比例$\epsilon < \epsilon_{\phi}$时：
-   $$U(s^*, (1-\epsilon)s^* + \epsilon s') > U(s', (1-\epsilon)s^* + \epsilon s')$$
-
+   
+$$
+U(s^*, (1-\epsilon)s^* + \epsilon s') > U(s', (1-\epsilon)s^* + \epsilon s')
+$$
 2. **熵增稳定性条件**: φ-ESS必须满足局部熵最大化：
-   $$\frac{\partial^2 H}{\partial s^2}\bigg|_{s=s^*} < -\frac{1}{\phi} \quad \text{(严格凹性)}$$
+   
+$$
+\frac{\partial^2 H}{\partial s^2}\bigg|_{s=s^*} < -\frac{1}{\phi} \quad \text{(严格凹性)}
+$$
    其中$H$是策略分布的熵
 
 3. **演化动力学的φ-调制**: 复制动力学方程在φ-系统中修正为：
-   $$\frac{dx_i}{dt} = \frac{x_i}{\phi} \left[f_i(\mathbf{x}) - \bar{f}(\mathbf{x}) + \frac{\partial H}{\partial x_i}\right]$$
+   
+$$
+\frac{dx_i}{dt} = \frac{x_i}{\phi} \left[f_i(\mathbf{x}) - \bar{f}(\mathbf{x}) + \frac{\partial H}{\partial x_i}\right]
+$$
    其中$x_i$是策略$i$的频率，$f_i$是适应度，熵梯度项确保熵增
 
 4. **稳定性半径**: φ-ESS的稳定性半径为：
-   $$r_{stable} = \frac{1}{\phi} \cdot \min_{s' \neq s^*} \left\|\frac{F_{k'}}{φ^{d'}} - \frac{F_k}{φ^d}\right\|$$
+   
+$$
+r_{stable} = \frac{1}{\phi} \cdot \min_{s' \neq s^*} \left\|\frac{F_{k'}}{φ^{d'}} - \frac{F_k}{φ^d}\right\|
+$$
    其中策略表示为$s = F_k/φ^d$（Fibonacci数的φ-幂）
 
 5. **演化收敛时间**: 从任意初始分布收敛到ESS的时间满足：
-   $$T_{converge} \leq \phi^2 \cdot \log\left(\frac{1}{\delta}\right)$$
+   
+$$
+T_{converge} \leq \phi^2 \cdot \log\left(\frac{1}{\delta}\right)
+$$
    其中$\delta$是收敛精度
 
 ## 证明
@@ -34,25 +48,31 @@
 ### 第一步：从熵增原理推导ESS条件
 
 由唯一公理，自指完备系统必然熵增。在演化博弈中，策略分布的演化必须满足：
-$$\frac{dH}{dt} > 0$$
-
+$$
+\frac{dH}{dt} > 0
+$$
 考虑策略分布$\mathbf{p} = (p_1, ..., p_n)$的熵：
-$$H(\mathbf{p}) = -\sum_{i=1}^n p_i \log p_i$$
-
+$$
+H(\mathbf{p}) = -\sum_{i=1}^n p_i \log p_i
+$$
 对于候选ESS策略$s^*$（纯策略或混合策略），定义入侵后的分布：
-$$\mathbf{p}_{\epsilon} = (1-\epsilon)\mathbf{p}^* + \epsilon \mathbf{p}'$$
-
+$$
+\mathbf{p}_{\epsilon} = (1-\epsilon)\mathbf{p}^* + \epsilon \mathbf{p}'
+$$
 其中$\mathbf{p}^*$是ESS分布，$\mathbf{p}'$是入侵分布。
 
 **熵增要求**：
-$$H(\mathbf{p}_{\epsilon}) - H(\mathbf{p}^*) > 0 \quad \text{for small } \epsilon > 0$$
-
+$$
+H(\mathbf{p}_{\epsilon}) - H(\mathbf{p}^*) > 0 \quad \text{for small } \epsilon > 0
+$$
 泰勒展开到二阶：
-$$H(\mathbf{p}_{\epsilon}) = H(\mathbf{p}^*) + \epsilon \nabla H \cdot (\mathbf{p}' - \mathbf{p}^*) + \frac{\epsilon^2}{2}(\mathbf{p}' - \mathbf{p}^*)^T \nabla^2 H (\mathbf{p}' - \mathbf{p}^*)$$
-
+$$
+H(\mathbf{p}_{\epsilon}) = H(\mathbf{p}^*) + \epsilon \nabla H \cdot (\mathbf{p}' - \mathbf{p}^*) + \frac{\epsilon^2}{2}(\mathbf{p}' - \mathbf{p}^*)^T \nabla^2 H (\mathbf{p}' - \mathbf{p}^*)
+$$
 由于$\mathbf{p}^*$是局部最大值的候选，一阶项为零。二阶项必须为负（严格凹性）：
-$$\nabla^2 H\bigg|_{\mathbf{p}^*} < -\frac{1}{\phi} I$$
-
+$$
+\nabla^2 H\bigg|_{\mathbf{p}^*} < -\frac{1}{\phi} I
+$$
 这确保了熵的局部最大性，是φ-ESS的必要条件。
 
 ### 第二步：建立演化稳定性的φ-条件
@@ -63,40 +83,48 @@ $$\nabla^2 H\bigg|_{\mathbf{p}^*} < -\frac{1}{\phi} I$$
 
 **φ-ESS扩展**：
 在φ-系统中，收益函数包含熵贡献：
-$$U_{\phi}(s, s') = U(s, s') + \frac{1}{\phi} H(s|s')$$
-
+$$
+U_{\phi}(s, s') = U(s, s') + \frac{1}{\phi} H(s|s')
+$$
 其中$H(s|s')$是条件熵，反映策略$s$在面对$s'$时的不确定性。
 
 对于Zeckendorf编码的策略$s = F_k/φ^d$，条件熵为：
-$$H(s|s') = -\sum_{i: z_i=1} \frac{1}{φ^i} \log \frac{1}{φ^i}$$
-
+$$
+H(s|s') = -\sum_{i: z_i=1} \frac{1}{φ^i} \log \frac{1}{φ^i}
+$$
 其中$z_i$是Zeckendorf表示的第$i$位。
 
 **φ-ESS判据**：
 策略$s^*$是φ-ESS当且仅当：
 1. $U_{\phi}(s^*, s^*) \geq U_{\phi}(s', s^*)$ 对所有$s' \neq s^*$
 2. 存在$\epsilon_{\phi} = 1/φ^2$使得对$\epsilon < \epsilon_{\phi}$：
-   $$U_{\phi}(s^*, (1-\epsilon)s^* + \epsilon s') > U_{\phi}(s', (1-\epsilon)s^* + \epsilon s')$$
-
+   
+$$
+U_{\phi}(s^*, (1-\epsilon)s^* + \epsilon s') > U_{\phi}(s', (1-\epsilon)s^* + \epsilon s')
+$$
 ### 第三步：推导演化动力学的φ-修正
 
 标准复制动力学：
-$$\frac{dx_i}{dt} = x_i(f_i - \bar{f})$$
-
+$$
+\frac{dx_i}{dt} = x_i(f_i - \bar{f})
+$$
 在φ-系统中，考虑熵增约束，动力学修正为：
-$$\frac{dx_i}{dt} = \frac{x_i}{\phi} \left[f_i(\mathbf{x}) - \bar{f}(\mathbf{x}) + \frac{\partial H}{\partial x_i}\right]$$
-
+$$
+\frac{dx_i}{dt} = \frac{x_i}{\phi} \left[f_i(\mathbf{x}) - \bar{f}(\mathbf{x}) + \frac{\partial H}{\partial x_i}\right]
+$$
 熵梯度项：
-$$\frac{\partial H}{\partial x_i} = -\log x_i - 1$$
-
+$$
+\frac{\partial H}{\partial x_i} = -\log x_i - 1
+$$
 这确保了演化过程中的熵增。时间尺度因子$1/φ$反映了φ-系统的内在时间结构。
 
 **Lyapunov函数**：
 定义$V(\mathbf{x}) = -H(\mathbf{x}) + \frac{1}{\phi} \sum_i x_i \log f_i(\mathbf{x})$
 
 沿轨迹的导数：
-$$\frac{dV}{dt} = -\frac{1}{\phi} \sum_i x_i \left(\frac{\partial H}{\partial x_i}\right)^2 < 0$$
-
+$$
+\frac{dV}{dt} = -\frac{1}{\phi} \sum_i x_i \left(\frac{\partial H}{\partial x_i}\right)^2 < 0
+$$
 这证明了φ-ESS的渐近稳定性。
 
 ### 第四步：计算稳定性半径
@@ -104,32 +132,39 @@ $$\frac{dV}{dt} = -\frac{1}{\phi} \sum_i x_i \left(\frac{\partial H}{\partial x_
 对于φ-策略$s^* = F_k/φ^d$，考虑邻近策略$s' = F_{k'}/φ^{d'}$。
 
 策略距离（在φ-度量下）：
-$$d_{\phi}(s^*, s') = \left|\frac{F_k}{φ^d} - \frac{F_{k'}}{φ^{d'}}\right|$$
-
+$$
+d_{\phi}(s^*, s') = \left|\frac{F_k}{φ^d} - \frac{F_{k'}}{φ^{d'}}\right|
+$$
 **稳定性半径定理**：
 φ-ESS $s^*$能抵抗所有满足$d_{\phi}(s^*, s') > r_{stable}$的入侵策略，其中：
-$$r_{stable} = \frac{1}{\phi} \cdot \min_{s' \neq s^*} d_{\phi}(s^*, s')$$
-
+$$
+r_{stable} = \frac{1}{\phi} \cdot \min_{s' \neq s^*} d_{\phi}(s^*, s')
+$$
 证明：考虑入侵动力学
-$$\frac{d\epsilon}{dt} = \epsilon(1-\epsilon)[U_{\phi}(s', \mathbf{p}_{\epsilon}) - U_{\phi}(s^*, \mathbf{p}_{\epsilon})]$$
-
+$$
+\frac{d\epsilon}{dt} = \epsilon(1-\epsilon)[U_{\phi}(s', \mathbf{p}_{\epsilon}) - U_{\phi}(s^*, \mathbf{p}_{\epsilon})]
+$$
 当$d_{\phi}(s^*, s') > r_{stable}$时，括号内的项对小$\epsilon$为负，因此$\epsilon \to 0$。
 
 ### 第五步：演化收敛时间分析
 
 从初始分布$\mathbf{x}(0)$到φ-ESS $\mathbf{x}^*$的收敛由以下估计给出：
 
-$$\|\mathbf{x}(t) - \mathbf{x}^*\| \leq \|\mathbf{x}(0) - \mathbf{x}^*\| \cdot \exp\left(-\frac{t}{\phi^2}\right)$$
-
+$$
+\|\mathbf{x}(t) - \mathbf{x}^*\| \leq \|\mathbf{x}(0) - \mathbf{x}^*\| \cdot \exp\left(-\frac{t}{\phi^2}\right)
+$$
 要达到精度$\delta$：
-$$\|\mathbf{x}(T) - \mathbf{x}^*\| < \delta$$
-
+$$
+\|\mathbf{x}(T) - \mathbf{x}^*\| < \delta
+$$
 需要时间：
-$$T_{converge} = \phi^2 \cdot \log\left(\frac{\|\mathbf{x}(0) - \mathbf{x}^*\|}{\delta}\right)$$
-
+$$
+T_{converge} = \phi^2 \cdot \log\left(\frac{\|\mathbf{x}(0) - \mathbf{x}^*\|}{\delta}\right)
+$$
 由于$\|\mathbf{x}(0) - \mathbf{x}^*\| \leq 1$（概率单纯形内），得：
-$$T_{converge} \leq \phi^2 \cdot \log\left(\frac{1}{\delta}\right)$$
-
+$$
+T_{converge} \leq \phi^2 \cdot \log\left(\frac{1}{\delta}\right)
+$$
 这完成了证明。∎
 
 ## 数学形式化

@@ -28,14 +28,16 @@
 
 ### Zeckendorf策略编码
 **定义C15-2.1**: 策略的Zeckendorf表示
-$$s_i = \sum_{k \in S_i} F_k, \quad S_i \subset \mathbb{N}, \quad |S_i \cap (S_i + 1)| = 0$$
-
+$$
+s_i = \sum_{k \in S_i} F_k, \quad S_i \subset \mathbb{N}, \quad |S_i \cap (S_i + 1)| = 0
+$$
 其中$F_k$是第k个Fibonacci数，$S_i$满足无连续性约束。
 
 ### 熵贡献调制复制动态
 **定义C15-2.2**: 熵调制复制动态系统
-$$\dot{x}_i = x_i [f_i(x) - \bar{f}(x)] \cdot \eta_i(x)$$
-
+$$
+\dot{x}_i = x_i [f_i(x) - \bar{f}(x)] \cdot \eta_i(x)
+$$
 其中：
 - $f_i(x)$: 策略i的适应度
 - $\bar{f}(x) = \sum_j x_j f_j(x)$: 平均适应度
@@ -47,8 +49,9 @@ $$\dot{x}_i = x_i [f_i(x) - \bar{f}(x)] \cdot \eta_i(x)$$
 ### 推论C15-2.1：复制动态的熵调制
 
 **陈述**: Zeckendorf约束下的复制动态必然熵贡献调制：
-$$\frac{d x_i}{d t} = x_i(f_i - \bar{f}) \eta_i(x)$$
-
+$$
+\frac{d x_i}{d t} = x_i(f_i - \bar{f}) \eta_i(x)
+$$
 **不变量**: 
 1. $\sum_i x_i = 1$ (概率守恒)
 2. $\frac{d}{dt}H(x) \geq 0$ (熵增)
@@ -58,18 +61,21 @@ $$\frac{d x_i}{d t} = x_i(f_i - \bar{f}) \eta_i(x)$$
 ### 推论C15-2.2：ESS吸引域
 
 **陈述**: 演化稳定策略的吸引域半径
-$$r_{ESS}(k) = \varphi^{-k}$$
-
+$$
+r_{ESS}(k) = \varphi^{-k}
+$$
 其中k是策略复杂度级别。
 
 **稳定性条件**:
-$$\max_i |\lambda_i(J_{ESS})| \leq \varphi^{-1}$$
-
+$$
+\max_i |\lambda_i(J_{ESS})| \leq \varphi^{-1}
+$$
 ### 推论C15-2.3：策略多样性递减
 
 **陈述**: 有效策略数的Fibonacci递减律
-$$N_{eff}(t) = F_{n_0 - \lfloor t/\tau \rfloor}$$
-
+$$
+N_{eff}(t) = F_{n_0 - \lfloor t/\tau \rfloor}
+$$
 其中：
 - $n_0$: 初始策略数
 - $\tau = \varphi$: 特征时间尺度
@@ -77,16 +83,19 @@ $$N_{eff}(t) = F_{n_0 - \lfloor t/\tau \rfloor}$$
 ### 推论C15-2.4：最优突变率
 
 **陈述**: 黄金分割突变率
-$$\mu^* = \varphi^{-2} = \frac{1}{\varphi + 1} \approx 0.382$$
-
+$$
+\mu^* = \varphi^{-2} = \frac{1}{\varphi + 1} \approx 0.382
+$$
 **优化条件**:
-$$\mu^* = \arg\max_\mu [H(\mu) - D_{KL}(p_\mu \| p_0)]$$
-
+$$
+\mu^* = \arg\max_\mu [H(\mu) - D_{KL}(p_\mu \| p_0)]
+$$
 ### 推论C15-2.5：长期演化收敛
 
 **陈述**: 极限策略分布
-$$\lim_{t \to \infty} x_i(t) = \frac{\varphi^{-r_i}}{\sum_j \varphi^{-r_j}}$$
-
+$$
+\lim_{t \to \infty} x_i(t) = \frac{\varphi^{-r_i}}{\sum_j \varphi^{-r_j}}
+$$
 其中$r_i$是策略i的等级排序。
 
 ## 算法规范
@@ -148,22 +157,27 @@ function phi_replicator_evolution(x0, F, dt, T):
 ## 验证条件
 
 ### V1: 复制动态φ-调制验证
-$$\left|\frac{\dot{x}_i}{x_i(f_i - \bar{f})} - \varphi^{-d_i}\right| < \epsilon$$
-
+$$
+\left|\frac{\dot{x}_i}{x_i(f_i - \bar{f})} - \varphi^{-d_i}\right| < \epsilon
+$$
 ### V2: ESS吸引域验证
 对于ESS $x^*$和扰动$\delta x$，$||\delta x|| < r_{ESS}$：
-$$\lim_{t \to \infty} ||x(t) - x^*|| = 0$$
-
+$$
+\lim_{t \to \infty} ||x(t) - x^*|| = 0
+$$
 ### V3: 多样性递减验证
-$$\left|N_{eff}(t) - F_{n_0 - \lfloor t/\varphi \rfloor}\right| \leq 1$$
-
+$$
+\left|N_{eff}(t) - F_{n_0 - \lfloor t/\varphi \rfloor}\right| \leq 1
+$$
 ### V4: 突变率优化验证
-$$|\mu^* - \varphi^{-2}| < 0.01$$
-
+$$
+|\mu^* - \varphi^{-2}| < 0.01
+$$
 ### V5: 极限分布验证
 对于长期演化（$t \gg \varphi^n$）：
-$$\left|\frac{x_i}{x_{i+1}} - \varphi\right| < \delta$$
-
+$$
+\left|\frac{x_i}{x_{i+1}} - \varphi\right| < \delta
+$$
 ## 复杂度分析
 
 ### 时间复杂度
@@ -187,21 +201,32 @@ $$\left|\frac{x_i}{x_{i+1}} - \varphi\right| < \delta$$
 
 ### 条件数
 复制动态Jacobian的条件数：
-$$\kappa(J) \leq \varphi^{\max_i d_i}$$
-
+$$
+\kappa(J) \leq \varphi^{\max_i d_i}
+$$
 ### 舍入误差
-$$||x_{computed} - x_{exact}|| = O(\epsilon_{machine} \cdot \varphi^d)$$
-
+$$
+||x_{computed} - x_{exact}|| = O(\epsilon_{machine} \cdot \varphi^d)
+$$
 其中d是最大Hamming距离。
 
 ### 数值格式
 推荐Runge-Kutta 4阶方法：
-$$k_1 = f(t_n, x_n)$$
-$$k_2 = f(t_n + \Delta t/2, x_n + \Delta t k_1/2)$$
-$$k_3 = f(t_n + \Delta t/2, x_n + \Delta t k_2/2)$$
-$$k_4 = f(t_n + \Delta t, x_n + \Delta t k_3)$$
-$$x_{n+1} = x_n + \frac{\Delta t}{6}(k_1 + 2k_2 + 2k_3 + k_4)$$
-
+$$
+k_1 = f(t_n, x_n)
+$$
+$$
+k_2 = f(t_n + \Delta t/2, x_n + \Delta t k_1/2)
+$$
+$$
+k_3 = f(t_n + \Delta t/2, x_n + \Delta t k_2/2)
+$$
+$$
+k_4 = f(t_n + \Delta t, x_n + \Delta t k_3)
+$$
+$$
+x_{n+1} = x_n + \frac{\Delta t}{6}(k_1 + 2k_2 + 2k_3 + k_4)
+$$
 ## 实现要求
 
 ### 数据结构

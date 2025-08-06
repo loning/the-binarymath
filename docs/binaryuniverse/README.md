@@ -137,9 +137,9 @@
   - 优化目标从约束中自然涌现
   - φ不是设计参数而是结构特征
 - [`T24-2-phi-optimization-convergence.md`](T24-2-phi-optimization-convergence.md) - 定理24.2：φ-优化收敛保证定理
-  - 收敛速率||x_n - x*|| ≤ (1/φ^n)||x_0 - x*||
+  - 收敛速率$||x_n - x^*|| ≤ (1/φ^n)||x_0 - x^*||$
   - Fibonacci步长序列最优性
-  - 梯度范数以φ^{-n/2}速率递减
+  - 梯度范数以$φ^{-n/2}$速率递减
 - [`T24-3-phi-optimization-algorithm-unification.md`](T24-3-phi-optimization-algorithm-unification.md) - 定理24.3：φ-优化算法统一定理
   - 所有一阶算法统一为φ-调制版本
   - 动量项遵循Fibonacci加权
