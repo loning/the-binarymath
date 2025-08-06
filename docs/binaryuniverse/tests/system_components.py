@@ -7,7 +7,7 @@
 import numpy as np
 from typing import List, Dict, Optional, Tuple
 from dataclasses import dataclass
-from .zeckendorf import ZeckendorfEncoder, GoldenConstants, EntropyCalculator
+from zeckendorf import ZeckendorfEncoder, GoldenConstants, EntropyCalculator
 
 
 @dataclass

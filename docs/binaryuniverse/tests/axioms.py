@@ -7,7 +7,7 @@
 import numpy as np
 from typing import Any, Callable, List, Optional
 from abc import ABC, abstractmethod
-from .zeckendorf import GoldenConstants
+from zeckendorf import GoldenConstants
 
 
 class Axiom:
