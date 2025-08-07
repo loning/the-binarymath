@@ -15,11 +15,13 @@
 
 则黎曼猜想的RealityShell概率重述为：
 
-$$\\text{RH}_{\\mathcal{RS}} \\iff \\rho_{\\text{boundary}}(Z(\\zeta)) \\geq 0.95$$
-
+$$
+\\text{RH}_{\\mathcal{RS}} \\iff \\rho_{\\text{boundary}}(Z(\\zeta)) \\geq 0.95
+$$
 其中边界集中度定义为：
-$$\\rho_{\\text{boundary}}(Z) = \\frac{|\\{s \\in Z : \\mathcal{M}_{\\mathcal{Z}}(s) = \\text{Boundary}_{\\mathcal{Z}}\\}|}{|Z|}$$
-
+$$
+\\rho_{\\text{boundary}}(Z) = \\frac{|\\{s \\in Z : \\mathcal{M}_{\\mathcal{Z}}(s) = \\text{Boundary}_{\\mathcal{Z}}\\}|}{|Z|}
+$$
 ## 核心算法规范
 
 ### 算法 C21-1-1：零点RealityShell状态分类器

@@ -11,10 +11,12 @@
 
 则存在完备的变换对：
 
-$$\mathcal{F}_φ[f](ω) = \sum_{n=0}^{∞} f(F_n) \cdot e^{-i\phi ω F_n} \cdot \phi^{-n/2}$$
-
-$$\mathcal{F}_φ^{-1}[F](t) = \frac{1}{2π\sqrt{\phi}} \int_{-∞}^{∞} F(ω) \cdot e^{i\phi ω t} \, dω$$
-
+$$
+\mathcal{F}_φ[f](ω) = \sum_{n=0}^{∞} f(F_n) \cdot e^{-i\phi ω F_n} \cdot \phi^{-n/2}
+$$
+$$
+\mathcal{F}_φ^{-1}[F](t) = \frac{1}{2π\sqrt{\phi}} \int_{-∞}^{∞} F(ω) \cdot e^{i\phi ω t} \, dω
+$$
 满足Zeckendorf编码的无11约束和φ-Parseval等式。
 
 ## 核心数据结构规范

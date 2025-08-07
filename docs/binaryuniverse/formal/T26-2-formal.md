@@ -11,8 +11,9 @@
 
 则存在唯一常数 $e \in \mathbb{R}^+$，满足：
 
-$$\forall s \in S: \lim_{n \to \infty} \left(1 + \frac{H(\Omega s)}{n}\right)^n = e^{H(\Omega s)}$$
-
+$$
+\forall s \in S: \lim_{n \to \infty} \left(1 + \frac{H(\Omega s)}{n}\right)^n = e^{H(\Omega s)}
+$$
 其中 $e = 2.718281828...$ 是欧拉常数。
 
 ## 核心算法规范

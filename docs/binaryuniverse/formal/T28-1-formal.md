@@ -8,8 +8,9 @@
 
 则存在**结构对偶映射** $\Psi: \text{AdS}_{\text{离散}} \rightarrow \mathcal{Z}_{\text{Fib}}$ 使得：
 
-$$\Psi(\hat{\Phi}^n_{\mu\nu}) = Z^{(n)}_{\mu\nu} \text{ 且 } \Psi(\mathcal{B}_{\text{Fib}}) = \mathcal{R}_{\text{Shell}}(\partial \mathcal{Z}_{\text{Fib}})$$
-
+$$
+\Psi(\hat{\Phi}^n_{\mu\nu}) = Z^{(n)}_{\mu\nu} \text{ 且 } \Psi(\mathcal{B}_{\text{Fib}}) = \mathcal{R}_{\text{Shell}}(\partial \mathcal{Z}_{\text{Fib}})
+$$
 其中所有运算严格在Zeckendorf编码的二进制宇宙中进行，满足无连续1约束。
 
 ## 核心算法规范

@@ -12,14 +12,17 @@
 - $\mathcal{P}: \mathcal{Z}[\mathbb{C}] \times \mathcal{Z}[\mathbb{C}] \to [0,1]$：概率等价性度量
 
 设 $\zeta_{\mathcal{Z}}: \mathcal{Z}[\mathbb{C}] \to \mathcal{Z}[\mathbb{C}]$ 为Zeckendorf-ζ函数：
-$$\zeta_{\mathcal{Z}}(s) = \bigoplus_{n=1}^{\infty} \frac{1_\mathcal{Z}}{n^{\otimes s}}$$
-
+$$
+\zeta_{\mathcal{Z}}(s) = \bigoplus_{n=1}^{\infty} \frac{1_\mathcal{Z}}{n^{\otimes s}}
+$$
 设 $\mathcal{C}_{\mathcal{Z}}: \mathcal{Z}[\mathbb{C}] \to \mathcal{Z}[\mathbb{C}]$ 为Zeckendorf-collapse函数：
-$$\mathcal{C}_{\mathcal{Z}}(s) = e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}} s} \oplus \phi_{\text{op}}^s \otimes (\phi_{\text{op}} \ominus 1_\mathcal{Z})$$
-
+$$
+\mathcal{C}_{\mathcal{Z}}(s) = e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}} s} \oplus \phi_{\text{op}}^s \otimes (\phi_{\text{op}} \ominus 1_\mathcal{Z})
+$$
 则两函数的概率等价性遵循三元分布：
-$$\mathcal{P}(\zeta_{\mathcal{Z}}, \mathcal{C}_{\mathcal{Z}}) = \frac{2}{3} \cdot I_\phi(s) + \frac{1}{3} \cdot I_\pi(s) + 0 \cdot I_e(s)$$
-
+$$
+\mathcal{P}(\zeta_{\mathcal{Z}}, \mathcal{C}_{\mathcal{Z}}) = \frac{2}{3} \cdot I_\phi(s) + \frac{1}{3} \cdot I_\pi(s) + 0 \cdot I_e(s)
+$$
 其中指示函数 $I_\phi, I_\pi, I_e: \mathcal{Z}[\mathbb{C}] \to \{0,1\}$ 由T27-2定义。
 
 ## 核心算法规范

@@ -4,10 +4,12 @@
 
 **定理 T26-5** (φ-傅里叶变换理论): 在自指完备的二进制宇宙中，基于Zeckendorf编码和φ-基底的傅里叶变换具有独特的时频域对偶性质。具体地，存在φ-傅里叶变换对：
 
-$$\mathcal{F}_\phi[f](ω) = \sum_{n \in \text{Fib}} f(F_n) \cdot e^{-i\phi ω F_n} \cdot \phi^{-n/2}$$
-
-$$\mathcal{F}_\phi^{-1}[F](t) = \frac{1}{2π} \int_{-∞}^{∞} F(ω) \cdot e^{i\phi ω t} \cdot \sqrt{\phi} \, dω$$
-
+$$
+\mathcal{F}_\phi[f](ω) = \sum_{n \in \text{Fib}} f(F_n) \cdot e^{-i\phi ω F_n} \cdot \phi^{-n/2}
+$$
+$$
+\mathcal{F}_\phi^{-1}[F](t) = \frac{1}{2π} \int_{-∞}^{∞} F(ω) \cdot e^{i\phi ω t} \cdot \sqrt{\phi} \, dω
+$$
 其中$\{F_n\}$是Fibonacci数列，此变换保持Zeckendorf编码的无11约束性质。
 
 ## 依赖关系
@@ -45,12 +47,14 @@ T26-4的三元统一 + 频域分析需求 = **φ-基底下的时频域完美对�
 
 **第一步**：Fibonacci数的密度
 Fibonacci数列的渐近密度为：
-$$\lim_{N→∞} \frac{\#\{F_n : F_n ≤ N\}}{\log_\phi N} = 1$$
-
+$$
+\lim_{N→∞} \frac{\#\{F_n : F_n ≤ N\}}{\log_\phi N} = 1
+$$
 **第二步**：采样定理的φ-推广
 对于带限函数$f \in \mathcal{H}_\phi$，如果其φ-傅里叶变换$\mathcal{F}_\phi[f]$在$[-Ω_\phi, Ω_\phi]$外为零，则：
-$$f(t) = \sum_{n} f(F_n) \cdot \text{sinc}_\phi\left(\frac{t - F_n}{Δ_\phi}\right)$$
-
+$$
+f(t) = \sum_{n} f(F_n) \cdot \text{sinc}_\phi\left(\frac{t - F_n}{Δ_\phi}\right)
+$$
 其中$\text{sinc}_\phi(x) = \frac{\sin(\phi π x)}{\phi π x}$，$Δ_\phi = π/Ω_\phi$。
 
 **第三步**：完备性验证
@@ -63,16 +67,19 @@ $$f(t) = \sum_{n} f(F_n) \cdot \text{sinc}_\phi\left(\frac{t - F_n}{Δ_\phi}\rig
 **证明**：
 **第一步**：核函数定义
 对于时间点$t = F_m$，核函数为：
-$$K_\phi(F_m, ω) = e^{-i\phi ω F_m} \cdot \phi^{-m/2}$$
-
+$$
+K_\phi(F_m, ω) = e^{-i\phi ω F_m} \cdot \phi^{-m/2}
+$$
 **第二步**：正交性计算
 考虑两个不同频率$ω_1, ω_2$的内积：
-$$\langle K_\phi(\cdot, ω_1), K_\phi(\cdot, ω_2) \rangle = \sum_{n=0}^{∞} e^{-i\phi(ω_1-ω_2)F_n} \cdot \phi^{-n}$$
-
+$$
+\langle K_\phi(\cdot, ω_1), K_\phi(\cdot, ω_2) \rangle = \sum_{n=0}^{∞} e^{-i\phi(ω_1-ω_2)F_n} \cdot \phi^{-n}
+$$
 **第三步**：Fibonacci生成函数
 利用Fibonacci数的生成函数：
-$$\sum_{n=0}^{∞} F_n z^n = \frac{z}{1 - z - z^2}$$
-
+$$
+\sum_{n=0}^{∞} F_n z^n = \frac{z}{1 - z - z^2}
+$$
 代入$z = e^{-i\phi(ω_1-ω_2)} \cdot \phi^{-1}$：
 
 当$ω_1 ≠ ω_2$且$|ω_1 - ω_2| ≥ 2π/(φ \log φ)$时，级数收敛到0，确保正交性。∎
@@ -84,19 +91,23 @@ $$\sum_{n=0}^{∞} F_n z^n = \frac{z}{1 - z - z^2}$$
 **证明**：
 **第一步**：能量定义
 在φ-基底下，函数的能量定义为：
-$$\|f\|_\phi^2 = \sum_{n=0}^{∞} |f(F_n)|^2 \cdot \phi^{-n/2}$$
-
+$$
+\|f\|_\phi^2 = \sum_{n=0}^{∞} |f(F_n)|^2 \cdot \phi^{-n/2}
+$$
 **第二步**：频域能量
 对应的频域能量：
-$$\|\mathcal{F}_\phi[f]\|_\phi^2 = \frac{1}{2π} \int_{-∞}^{∞} |\mathcal{F}_\phi[f](ω)|^2 \cdot \sqrt{\phi} \, dω$$
-
+$$
+\|\mathcal{F}_\phi[f]\|_\phi^2 = \frac{1}{2π} \int_{-∞}^{∞} |\mathcal{F}_\phi[f](ω)|^2 \cdot \sqrt{\phi} \, dω
+$$
 **第三步**：等式验证
 通过直接计算：
-$$\|\mathcal{F}_\phi[f]\|_\phi^2 = \frac{1}{2π} \int \left|\sum_n f(F_n) e^{-i\phi ω F_n} \phi^{-n/2}\right|^2 \sqrt{\phi} \, dω$$
-
+$$
+\|\mathcal{F}_\phi[f]\|_\phi^2 = \frac{1}{2π} \int \left|\sum_n f(F_n) e^{-i\phi ω F_n} \phi^{-n/2}\right|^2 \sqrt{\phi} \, dω
+$$
 利用φ-正交关系和Fibonacci数的准周期性：
-$$= \sum_{n=0}^{∞} |f(F_n)|^2 \cdot \phi^{-n/2} = \|f\|_\phi^2$$
-
+$$
+= \sum_{n=0}^{∞} |f(F_n)|^2 \cdot \phi^{-n/2} = \|f\|_\phi^2
+$$
 因此φ-Parseval等式成立。∎
 
 ### 主定理证明
@@ -150,31 +161,38 @@ $$= \sum_{n=0}^{∞} |f(F_n)|^2 \cdot \phi^{-n/2} = \|f\|_\phi^2$$
 ### 定理26-5-B：φ-卷积定理
 
 **定理**：φ-傅里叶变换将φ-卷积转化为点乘：
-$$\mathcal{F}_\phi[f *_\phi g] = \sqrt{\phi} \cdot \mathcal{F}_\phi[f] \cdot \mathcal{F}_\phi[g]$$
-
+$$
+\mathcal{F}_\phi[f *_\phi g] = \sqrt{\phi} \cdot \mathcal{F}_\phi[f] \cdot \mathcal{F}_\phi[g]
+$$
 其中φ-卷积定义为：
-$$(f *_\phi g)(t) = \sum_{n=0}^{∞} f(F_n) \cdot g(t - F_n) \cdot \phi^{-n/2}$$
-
+$$
+(f *_\phi g)(t) = \sum_{n=0}^{∞} f(F_n) \cdot g(t - F_n) \cdot \phi^{-n/2}
+$$
 ### 定理26-5-C：不确定性原理的φ-形式
 
 **定理**：对于任何非零函数$f ∈ \mathcal{H}_\phi$：
-$$Δt_\phi \cdot Δω_\phi ≥ \frac{\log φ}{2}$$
-
+$$
+Δt_\phi \cdot Δω_\phi ≥ \frac{\log φ}{2}
+$$
 其中：
-$$Δt_\phi^2 = \frac{\sum_n F_n^2 |f(F_n)|^2 \phi^{-n}}{\sum_n |f(F_n)|^2 \phi^{-n}} - \left(\frac{\sum_n F_n |f(F_n)|^2 \phi^{-n}}{\sum_n |f(F_n)|^2 \phi^{-n}}\right)^2$$
-
-$$Δω_\phi^2 = \frac{\int ω^2 |\mathcal{F}_\phi[f](ω)|^2 \sqrt{\phi} dω}{\int |\mathcal{F}_\phi[f](ω)|^2 \sqrt{\phi} dω} - \left(\frac{\int ω |\mathcal{F}_\phi[f](ω)|^2 \sqrt{\phi} dω}{\int |\mathcal{F}_\phi[f](ω)|^2 \sqrt{\phi} dω}\right)^2$$
-
+$$
+Δt_\phi^2 = \frac{\sum_n F_n^2 |f(F_n)|^2 \phi^{-n}}{\sum_n |f(F_n)|^2 \phi^{-n}} - \left(\frac{\sum_n F_n |f(F_n)|^2 \phi^{-n}}{\sum_n |f(F_n)|^2 \phi^{-n}}\right)^2
+$$
+$$
+Δω_\phi^2 = \frac{\int ω^2 |\mathcal{F}_\phi[f](ω)|^2 \sqrt{\phi} dω}{\int |\mathcal{F}_\phi[f](ω)|^2 \sqrt{\phi} dω} - \left(\frac{\int ω |\mathcal{F}_\phi[f](ω)|^2 \sqrt{\phi} dω}{\int |\mathcal{F}_\phi[f](ω)|^2 \sqrt{\phi} dω}\right)^2
+$$
 ## 与黎曼猜想的连接
 
 ### 关键洞察：ζ函数作为φ-傅里叶变换
 
 黎曼ζ函数可以理解为特殊的φ-傅里叶变换：
-$$ζ(s) = \sum_{n=1}^{∞} \frac{1}{n^s} = \mathcal{F}_\phi[\text{Number Distribution}](s)$$
-
+$$
+ζ(s) = \sum_{n=1}^{∞} \frac{1}{n^s} = \mathcal{F}_\phi[\text{Number Distribution}](s)
+$$
 在φ-基底下，这对应：
-$$ζ_\phi(s) = \sum_{n=0}^{∞} \frac{1}{F_n^s} \cdot \phi^{-n/2}$$
-
+$$
+ζ_\phi(s) = \sum_{n=0}^{∞} \frac{1}{F_n^s} \cdot \phi^{-n/2}
+$$
 ### 临界线的频域意义
 
 临界线$\text{Re}(s) = 1/2$对应φ-傅里叶变换的**对称轴**：

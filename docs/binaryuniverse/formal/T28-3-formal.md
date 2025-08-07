@@ -8,10 +8,12 @@
 
 则存在**复杂性等价映射** $\Theta: \text{传统复杂性类} \rightarrow \mathcal{C}_{\text{φ轨道}}$ 使得：
 
-$$\Theta(\text{P}) = \mathcal{C}_{\text{Reality轨道}} \text{ 且 } \Theta(\text{NP}) = \mathcal{C}_{\text{四重状态联合}}$$
-
-$$\text{P} = \text{NP} \Leftrightarrow \forall Z \in \mathcal{Z}_{\text{Fib}}, \Delta S[\hat{\phi}^{-1}[Z]] = 0$$
-
+$$
+\Theta(\text{P}) = \mathcal{C}_{\text{Reality轨道}} \text{ 且 } \Theta(\text{NP}) = \mathcal{C}_{\text{四重状态联合}}
+$$
+$$
+\text{P} = \text{NP} \Leftrightarrow \forall Z \in \mathcal{Z}_{\text{Fib}}, \Delta S[\hat{\phi}^{-1}[Z]] = 0
+$$
 其中所有复杂性分析严格基于φ运算符序列的Zeckendorf不可逆性深度，满足无连续1约束。
 
 ## 核心算法规范
@@ -51,7 +53,7 @@ def analyze_phi_operator_sequence_complexity(
     current_state = computation_sequence[0]
     
     for step_idx, phi_op in enumerate(phi_operator_chain):
-        # 前向计算：φ̂ᵏ[Z] 需要 O(k·|Z|) 步骤
+        # 前向计算：φ̂ᵏ[Z] 需要 O(k·\|Z\|) 步骤
         forward_step_complexity = compute_forward_phi_complexity(
             current_state, phi_op.power_exponent
         )
@@ -80,7 +82,7 @@ def analyze_phi_operator_sequence_complexity(
         computation_sequence, phi_operator_chain
     )
     
-    # 验证熵增性质：S[φ̂ᵏ[Z]] = S[Z] + k·log(φ) + O(log|Z|)
+    # 验证熵增性质：S[φ̂ᵏ[Z]] = S[Z] + k·log(φ) + O(log\|Z\|)
     theoretical_entropy_increase = sum(
         op.power_exponent * math.log((1 + math.sqrt(5)) / 2) 
         for op in phi_operator_chain
@@ -109,15 +111,15 @@ def compute_forward_phi_complexity(
 ) -> int:
     """
     计算前向φ运算符的多项式复杂性
-    φ̂ᵏ[Z] 需要 O(k·|Z|) 步骤，其中|Z|是Zeckendorf编码长度
+    φ̂ᵏ[Z] 需要 O(k·\|Z\|) 步骤，其中\|Z\|是Zeckendorf编码长度
     """
     encoding_length = len(zeckendorf_input.bits)
     
     # 每次φ运算符应用涉及相邻位的重新排列
     # φ̂: [a₀, a₁, a₂, ...] → [a₁, a₀+a₁, a₁+a₂, a₂+a₃, ...]
-    single_phi_complexity = encoding_length  # O(|Z|)
+    single_phi_complexity = encoding_length  # O(\|Z\|)
     
-    # k次复合需要 k·O(|Z|) = O(k·|Z|)
+    # k次复合需要 k·O(\|Z\|) = O(k·\|Z\|)
     total_complexity = phi_power * single_phi_complexity
     
     return total_complexity
@@ -128,18 +130,18 @@ def analyze_phi_inverse_complexity(
 ) -> PhiInverseComplexityAnalysis:
     """
     分析φ运算符逆向搜索的指数复杂性
-    给定Y = φ̂ᵏ[Z]，求解Z = φ̂⁻ᵏ[Y]需要搜索F_{m+k}个候选
+    给定Y = φ̂ᵏ[Z]，求解Z = φ̂⁻ᵏ[Y]需要搜索F_(m+k)个候选
     """
     inverse_analysis = PhiInverseComplexityAnalysis()
     
     for seq_idx, (input_encoding, phi_op) in enumerate(
         zip(computation_sequence, phi_operator_chain)
     ):
-        # 计算候选数量：|候选| = F_{m+k}，其中m=|Z|，k=φ运算符幂次
+        # 计算候选数量：\|候选\| = F_(m+k)，其中m=\|Z\|，k=φ运算符幂次
         m = len(input_encoding.bits)
         k = phi_op.power_exponent
         
-        # F_{m+k} ≈ φ^{m+k}，因此搜索复杂性为指数级
+        # F_(m+k) ≈ φ^(m+k)，因此搜索复杂性为指数级
         fibonacci_candidate_count = compute_fibonacci_number(m + k)
         exponential_complexity = math.log(fibonacci_candidate_count) / math.log(
             (1 + math.sqrt(5)) / 2
@@ -162,7 +164,7 @@ def compute_phi_entropy_irreversibility(
 ) -> float:
     """
     计算φ运算符熵增的不可逆性
-    S[φ̂ᵏ[Z]] = S[Z] + k·log(φ) + O(log|Z|)
+    S[φ̂ᵏ[Z]] = S[Z] + k·log(φ) + O(log\|Z\|)
     """
     total_entropy_increase = 0.0
     phi_log = math.log((1 + math.sqrt(5)) / 2)  # log(φ)
@@ -176,7 +178,7 @@ def compute_phi_entropy_irreversibility(
         # φ运算符引起的熵增：k·log(φ)
         phi_entropy_increase = phi_op.power_exponent * phi_log
         
-        # 对数修正项：O(log|Z|)
+        # 对数修正项：O(log\|Z\|)
         log_correction = math.log(max(len(input_encoding.bits), 1))
         
         step_entropy_increase = phi_entropy_increase + log_correction
@@ -417,7 +419,7 @@ def construct_fibonacci_assignment_space(
 ) -> FibonacciAssignmentSpace:
     """
     构建满足性assignment的Fibonacci搜索空间
-    Π = {Z∈Z_Fib : |Z|≤p(|x|), Z满足Zeckendorf约束}
+    Π = {Z∈Z_Fib : \|Z\|≤p(\|x\|), Z满足Zeckendorf约束}
     """
     assignment_space = FibonacciAssignmentSpace()
     
@@ -460,7 +462,7 @@ def test_polynomial_entropy_minimization(
     """
     minimization_result = PolynomialEntropyMinimizationResult()
     
-    # 目标：使得Z_Φ ⊕ Z_assignment = φ̂^{-k}[[1]]
+    # 目标：使得Z_Φ ⊕ Z_assignment = φ̂^(-k)[[1]]
     target_encoding = ZeckendorfEncoding([1])  # "真"的Fibonacci表示
     
     # 尝试多项式时间熵最小化算法
@@ -1195,9 +1197,9 @@ def verify_phase_transition_universality(
 实现必须满足以下严格验证标准：
 
 ### 1. φ运算符序列复杂性验证
-- **前向多项式性**：φ^k[Z]确实在O(k·|Z|)时间内完成
-- **逆向指数性**：φ^{-k}[Z]的搜索空间确实为F_{|Z|+k} ≈ φ^{|Z|+k}
-- **熵增公式**：严格验证S[φ^k[Z]] = S[Z] + k·log(φ) + O(log|Z|)
+- **前向多项式性**：φ^k[Z]确实在O(k·\|Z\|)时间内完成
+- **逆向指数性**：φ^(-k)[Z]的搜索空间确实为F_(\|Z\|+k) ≈ φ^(\|Z\|+k)
+- **熵增公式**：严格验证S[φ^k[Z]] = S[Z] + k·log(φ) + O(log\|Z\|)
 
 ### 2. 四重状态计算轨道验证
 - **状态分类完备性**：所有计算步骤都能分类到四重状态之一

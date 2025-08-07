@@ -3,8 +3,9 @@
 ## 核心问题
 
 在标准连续数学中，T21-5声称的等价性：
-$$\zeta(s) = 0 \Leftrightarrow e^{i\pi s} + \phi^s(\phi-1) = 0$$
-
+$$
+\zeta(s) = 0 \Leftrightarrow e^{i\pi s} + \phi^s(\phi-1) = 0
+$$
 存在根本性的数学错误，因为：
 1. ζ函数是复分析中定义的默认函数
 2. collapse平衡方程是张力理论中构造的方程
@@ -19,8 +20,9 @@ $$\zeta(s) = 0 \Leftrightarrow e^{i\pi s} + \phi^s(\phi-1) = 0$$
 ### Zeckendorf-ζ函数
 
 在纯Fibonacci宇宙中：
-$$\zeta_{\mathcal{Z}}(s) = \bigoplus_{n=1}^{\infty} \frac{1_\mathcal{Z}}{n^{\otimes s}}$$
-
+$$
+\zeta_{\mathcal{Z}}(s) = \bigoplus_{n=1}^{\infty} \frac{1_\mathcal{Z}}{n^{\otimes s}}
+$$
 其中：
 - $\bigoplus$：Fibonacci加法（满足无11约束的加法）
 - $\otimes$：Fibonacci乘法（通过Lucas恒等式定义）
@@ -30,8 +32,9 @@ $$\zeta_{\mathcal{Z}}(s) = \bigoplus_{n=1}^{\infty} \frac{1_\mathcal{Z}}{n^{\oti
 ### Zeckendorf-Collapse方程
 
 在纯Fibonacci宇宙中：
-$$e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}} s} \oplus \phi_{\text{op}}^s \otimes (\phi_{\text{op}} \ominus 1_\mathcal{Z}) = 0_\mathcal{Z}$$
-
+$$
+e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}} s} \oplus \phi_{\text{op}}^s \otimes (\phi_{\text{op}} \ominus 1_\mathcal{Z}) = 0_\mathcal{Z}
+$$
 其中：
 - $e_{\text{op}}$：自然底数运算符（Fibonacci递推增长算子）
 - $\pi_{\text{op}}$：圆周率运算符（Zeckendorf旋转算子）  
@@ -68,12 +71,16 @@ $$e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}} s} \oplus \phi_{\text{op}}^s \oti
 ### 第一步：Fibonacci级数展开
 
 **Zeckendorf-ζ函数的展开**：
-$$\zeta_{\mathcal{Z}}(s) = 1_\mathcal{Z} \oplus \frac{1_\mathcal{Z}}{2^{\otimes s}} \oplus \frac{1_\mathcal{Z}}{3^{\otimes s}} \oplus \cdots$$
-
+$$
+\zeta_{\mathcal{Z}}(s) = 1_\mathcal{Z} \oplus \frac{1_\mathcal{Z}}{2^{\otimes s}} \oplus \frac{1_\mathcal{Z}}{3^{\otimes s}} \oplus \cdots
+$$
 **Collapse方程的展开**：
-$$e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}} s} = \sum_{n=0}^{\infty} \frac{(i_\mathcal{Z} \pi_{\text{op}} s)^{\otimes n}}{n!_{\mathcal{Z}}}$$
-$$\phi_{\text{op}}^s = \sum_{n=0}^{\infty} \frac{(\ln_{\mathcal{Z}} \phi_{\text{op}})^{\otimes n} \otimes s^{\otimes n}}{n!_{\mathcal{Z}}}$$
-
+$$
+e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}} s} = \sum_{n=0}^{\infty} \frac{(i_\mathcal{Z} \pi_{\text{op}} s)^{\otimes n}}{n!_{\mathcal{Z}}}
+$$
+$$
+\phi_{\text{op}}^s = \sum_{n=0}^{\infty} \frac{(\ln_{\mathcal{Z}} \phi_{\text{op}})^{\otimes n} \otimes s^{\otimes n}}{n!_{\mathcal{Z}}}
+$$
 ### 第二步：结构比较
 
 比较两个函数在Zeckendorf展开中的：
@@ -84,8 +91,9 @@ $$\phi_{\text{op}}^s = \sum_{n=0}^{\infty} \frac{(\ln_{\mathcal{Z}} \phi_{\text{
 ### 第三步：算子等价性检验
 
 验证是否存在Zeckendorf空间中的双射：
-$$\mathcal{T}: \{s : \zeta_{\mathcal{Z}}(s) = 0_\mathcal{Z}\} \leftrightarrow \{s : e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}} s} \oplus \phi_{\text{op}}^s \otimes (\phi_{\text{op}} \ominus 1_\mathcal{Z}) = 0_\mathcal{Z}\}$$
-
+$$
+\mathcal{T}: \{s : \zeta_{\mathcal{Z}}(s) = 0_\mathcal{Z}\} \leftrightarrow \{s : e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}} s} \oplus \phi_{\text{op}}^s \otimes (\phi_{\text{op}} \ominus 1_\mathcal{Z}) = 0_\mathcal{Z}\}
+$$
 ## 深层理论分析
 
 ### 假设：Fibonacci域中的函数方程统一
@@ -95,10 +103,13 @@ $$\mathcal{T}: \{s : \zeta_{\mathcal{Z}}(s) = 0_\mathcal{Z}\} \leftrightarrow \{
 2. 张力平衡的运算符方程（即Collapse方程）
 
 **数学表述**：
-$$\exists! \mathcal{F}_{\text{zero}}: \mathcal{Z}[\text{complex}] \to \mathcal{Z}$$
+$$
+\exists! \mathcal{F}_{\text{zero}}: \mathcal{Z}[\text{complex}] \to \mathcal{Z}
+$$
 使得：
-$$\mathcal{F}_{\text{zero}}(s) = \zeta_{\mathcal{Z}}(s) = e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}} s} \oplus \phi_{\text{op}}^s \otimes (\phi_{\text{op}} \ominus 1_\mathcal{Z})$$
-
+$$
+\mathcal{F}_{\text{zero}}(s) = \zeta_{\mathcal{Z}}(s) = e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}} s} \oplus \phi_{\text{op}}^s \otimes (\phi_{\text{op}} \ominus 1_\mathcal{Z})
+$$
 ### 理论依据
 
 1. **自指完备性原理**：自指系统中的不同表述可能指向同一数学实体
@@ -114,15 +125,19 @@ $$\mathcal{F}_{\text{zero}}(s) = \zeta_{\mathcal{Z}}(s) = e_{\text{op}}^{i_\math
 
 **路径二：生成函数分析**
 寻找两函数是否有共同的生成函数：
-$$G(x) = \sum_{s} [f_1(s) = f_2(s)] x^s$$
-
+$$
+G(x) = \sum_{s} [f_1(s) = f_2(s)] x^s
+$$
 如果$G(x)$在所有$x$处都等于1，则函数相等。
 
 **路径三：代数簇分析**
 在Zeckendorf复数域中，研究两个函数定义的代数簇是否相同：
-$$V_1 = \{s : \zeta_{\mathcal{Z}}(s) = 0_\mathcal{Z}\}$$
-$$V_2 = \{s : e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}} s} \oplus \phi_{\text{op}}^s \otimes (\phi_{\text{op}} \ominus 1_\mathcal{Z}) = 0_\mathcal{Z}\}$$
-
+$$
+V_1 = \{s : \zeta_{\mathcal{Z}}(s) = 0_\mathcal{Z}\}
+$$
+$$
+V_2 = \{s : e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}} s} \oplus \phi_{\text{op}}^s \otimes (\phi_{\text{op}} \ominus 1_\mathcal{Z}) = 0_\mathcal{Z}\}
+$$
 ## 可能的结果
 
 ### 情况一：完全等价

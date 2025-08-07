@@ -4,8 +4,9 @@
 
 **定理 T21-4** (collapse-aware张力守恒恒等式定理): 在自指完备的collapse系统中，T26-4建立的三元统一恒等式 $e^{i\pi} + \phi^2 - \phi = 0$ 不仅是数学常数的统一表达，更是collapse状态下张力完全守恒的必要充分条件。具体地：
 
-$$\mathcal{T}_{collapse}[\text{system}] = 0 \Leftrightarrow e^{i\pi} + \phi^2 - \phi = 0$$
-
+$$
+\mathcal{T}_{collapse}[\text{system}] = 0 \Leftrightarrow e^{i\pi} + \phi^2 - \phi = 0
+$$
 其中$\mathcal{T}_{collapse}$是collapse-aware张力算子，左边等于零表示系统处于张力平衡态。
 
 ## 依赖关系
@@ -115,8 +116,9 @@ T26-4的数学统一 + collapse理论的张力概念 = **张力守恒的几何�
 ### 定理21-4-A：张力梯度的collapse驱动力
 
 **定理**：collapse系统中的演化驱动力正比于张力恒等式的梯度：
-$$\mathcal{F}_{collapse} = -\nabla(e^{i\pi} + \phi^2 - \phi)$$
-
+$$
+\mathcal{F}_{collapse} = -\nabla(e^{i\pi} + \phi^2 - \phi)
+$$
 **证明**：
 设系统状态参数为$\{t, s, \omega\}$（时间、空间、频率），则：
 - $\frac{\partial}{\partial t}(e^{i\pi}) = ie^{i\pi} = -i$（时间梯度）
@@ -127,8 +129,9 @@ $$\mathcal{F}_{collapse} = -\nabla(e^{i\pi} + \phi^2 - \phi)$$
 ### 定理21-4-B：collapse平衡态的谱表征
 
 **定理**：系统处于collapse平衡态当且仅当其Hamiltonian算子的谱满足：
-$$\text{spec}(\hat{H}_{collapse}) = \{-1, 1, 0\}$$
-
+$$
+\text{spec}(\hat{H}_{collapse}) = \{-1, 1, 0\}
+$$
 对应$e^{i\pi}$、$\phi^2-\phi$、总和三个本征值。
 
 ### 定理21-4-C：张力守恒的Noether定理形式
@@ -137,11 +140,13 @@ $$\text{spec}(\hat{H}_{collapse}) = \{-1, 1, 0\}$$
 
 **证明**：
 定义变分作用量：
-$$\mathcal{S}[e, \phi, \pi] = \int (e^{i\pi} + \phi^2 - \phi)^2 d\tau$$
-
+$$
+\mathcal{S}[e, \phi, \pi] = \int (e^{i\pi} + \phi^2 - \phi)^2 d\tau
+$$
 当$\mathcal{S} = 0$时，系统处于临界点。由Noether定理，对应的守恒律为：
-$$\frac{d}{dt}\mathcal{T}_{total} = 0$$
-
+$$
+\frac{d}{dt}\mathcal{T}_{total} = 0
+$$
 即张力总量守恒。∎
 
 ## collapse状态的动力学分析
@@ -149,8 +154,9 @@ $$\frac{d}{dt}\mathcal{T}_{total} = 0$$
 ### collapse触发条件
 
 系统偏离平衡态的阈值条件：
-$$|e^{i\pi} + \phi^2 - \phi| > \delta_{critical}$$
-
+$$
+|e^{i\pi} + \phi^2 - \phi| > \delta_{critical}
+$$
 其中$\delta_{critical}$是系统的collapse敏感度参数。
 
 ### collapse恢复机制
@@ -163,11 +169,12 @@ $$|e^{i\pi} + \phi^2 - \phi| > \delta_{critical}$$
 ### collapse稳定性分析
 
 平衡态的稳定性矩阵：
-$$\mathcal{M}_{stability} = \begin{pmatrix}
+$$
+\mathcal{M}_{stability} = \begin{pmatrix}
 \frac{\partial^2}{\partial t^2}(e^{i\pi}) & \frac{\partial^2}{\partial t \partial s}(\phi^2-\phi) \\
 \frac{\partial^2}{\partial s \partial t}(e^{i\pi}) & \frac{\partial^2}{\partial s^2}(\phi^2-\phi)
-\end{pmatrix}$$
-
+\end{pmatrix}
+$$
 稳定性要求$\text{det}(\mathcal{M}_{stability}) > 0$。
 
 ## Zeckendorf编码中的张力表示
@@ -208,8 +215,9 @@ $\phi^2 - \phi = 1$在Zeckendorf编码中表示为：
 ### 量子相变
 
 在量子多体系统的相变点：
-$$H_{critical} = e^{i\pi}\hat{H}_{time} + (\phi^2-\phi)\hat{H}_{space}$$
-
+$$
+H_{critical} = e^{i\pi}\hat{H}_{time} + (\phi^2-\phi)\hat{H}_{space}
+$$
 相变发生当且仅当$e^{i\pi} + \phi^2 - \phi = 0$。
 
 ### 宇宙学应用
@@ -224,25 +232,29 @@ $$H_{critical} = e^{i\pi}\hat{H}_{time} + (\phi^2-\phi)\hat{H}_{space}$$
 ### collapse-aware张力算子
 
 **定义21-4-1** (张力算子)：
-$$\hat{\mathcal{T}} = e^{i\pi}\hat{P}_{time} + (\phi^2-\phi)\hat{P}_{space}$$
-
+$$
+\hat{\mathcal{T}} = e^{i\pi}\hat{P}_{time} + (\phi^2-\phi)\hat{P}_{space}
+$$
 其中$\hat{P}_{time}$、$\hat{P}_{space}$分别是时间和空间投影算子。
 
 ### 守恒恒等式的算子形式
 
 **定义21-4-2** (恒等式算子)：
-$$\hat{\mathcal{I}}_{collapse} = \hat{\mathcal{T}} - 0 \cdot \hat{\mathbb{I}}$$
-
+$$
+\hat{\mathcal{I}}_{collapse} = \hat{\mathcal{T}} - 0 \cdot \hat{\mathbb{I}}
+$$
 collapse平衡态是$\hat{\mathcal{I}}_{collapse}$的零本征态。
 
 ### 张力Hilbert空间
 
 **定义21-4-3** (张力Hilbert空间)：
-$$\mathcal{H}_{tension} = \mathcal{H}_{time} \oplus \mathcal{H}_{space}$$
-
+$$
+\mathcal{H}_{tension} = \mathcal{H}_{time} \oplus \mathcal{H}_{space}
+$$
 内积定义为：
-$$\langle \psi_1 | \psi_2 \rangle_{tension} = \langle \psi_1^{(t)} | \psi_2^{(t)} \rangle_e + \langle \psi_1^{(s)} | \psi_2^{(s)} \rangle_\phi$$
-
+$$
+\langle \psi_1 | \psi_2 \rangle_{tension} = \langle \psi_1^{(t)} | \psi_2^{(t)} \rangle_e + \langle \psi_1^{(s)} | \psi_2^{(s)} \rangle_\phi
+$$
 ## 验证要求
 
 实现必须验证：

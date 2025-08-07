@@ -8,8 +8,9 @@
 
 则存在**结构同构映射** $\Psi: \mathcal{H}_{\text{CFT}} \rightarrow \mathcal{RS}_{4}$ 使得：
 
-$$\Psi(\hat{\mathcal{O}}_{\Delta}) = \hat{\mathcal{S}}_{\alpha}^{(\Delta)} \text{ 且 } \Psi(\mathcal{G}_{\text{conf}}) = \mathcal{T}_{\text{RG}}[\hat{\phi}^n]$$
-
+$$
+\Psi(\hat{\mathcal{O}}_{\Delta}) = \hat{\mathcal{S}}_{\alpha}^{(\Delta)} \text{ 且 } \Psi(\mathcal{G}_{\text{conf}}) = \mathcal{T}_{\text{RG}}[\hat{\phi}^n]
+$$
 其中所有运算严格在Fibonacci体系中进行，满足四重状态的φ运算符封闭性。
 
 ## 核心算法规范

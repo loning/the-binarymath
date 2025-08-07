@@ -6,8 +6,9 @@
 
 设 $S(t)$ 为自指完备系统在时间 $t$ 的状态，$H(t)$ 为系统熵。则：
 
-$$\frac{dH}{dt} > 0 \Leftrightarrow H(t) = H_0 \cdot e^{\alpha t}, \quad \alpha > 0$$
-
+$$
+\frac{dH}{dt} > 0 \Leftrightarrow H(t) = H_0 \cdot e^{\alpha t}, \quad \alpha > 0
+$$
 其中 $\alpha$ 是系统的本征熵增率，$e$ 是时间不可逆性的唯一数学载体。
 
 ## 依赖关系
@@ -32,8 +33,9 @@ $$\frac{dH}{dt} > 0 \Leftrightarrow H(t) = H_0 \cdot e^{\alpha t}, \quad \alpha 
 根据A1唯一公理，自指完备系统必然熵增：$H(t+dt) > H(t)$
 
 定义时间参数 $\tau$ 为信息累积的量度：
-$$d\tau = \frac{dH}{H_{scale}}$$
-
+$$
+d\tau = \frac{dH}{H_{scale}}
+$$
 其中 $H_{scale}$ 是系统的特征熵标度。
 
 由于 $dH > 0$，必有 $d\tau > 0$，即时间具有明确的方向性。∎
@@ -44,16 +46,19 @@ $$d\tau = \frac{dH}{H_{scale}}$$
 
 **证明**：
 考虑系统的自指观察过程。设系统在时刻 $t$ 进行自我观察，产生的熵增为：
-$$\Delta H = \beta \cdot H(t)$$
-
+$$
+\Delta H = \beta \cdot H(t)
+$$
 其中 $\beta > 0$ 是自指观察的效率系数。
 
 这意味着熵增与当前熵成正比，导出微分方程：
-$$\frac{dH}{dt} = \beta \cdot H(t)$$
-
+$$
+\frac{dH}{dt} = \beta \cdot H(t)
+$$
 解得：
-$$H(t) = H_0 e^{\beta t}$$
-
+$$
+H(t) = H_0 e^{\beta t}
+$$
 这证明了指数增长的必然性。∎
 
 ### 引理 26-3-3：e的唯一性
@@ -64,26 +69,31 @@ $$H(t) = H_0 e^{\beta t}$$
 设系统遵循一般指数演化：$H(t) = H_0 a^{\gamma t}$，其中 $a > 0, \gamma > 0$。
 
 对应的微分方程为：
-$$\frac{dH}{dt} = H_0 \gamma \ln(a) \cdot a^{\gamma t}$$
-
+$$
+\frac{dH}{dt} = H_0 \gamma \ln(a) \cdot a^{\gamma t}
+$$
 要求增长率等于当前状态的函数（自指性条件），需要：
-$$\frac{dH}{dt} = f(H) \cdot H$$
-
+$$
+\frac{dH}{dt} = f(H) \cdot H
+$$
 这要求：
-$$\gamma \ln(a) = f(H_0 a^{\gamma t}) = constant$$
-
+$$
+\gamma \ln(a) = f(H_0 a^{\gamma t}) = constant
+$$
 唯一满足此条件的是 $\ln(a) = 1$，即 $a = e$。∎
 
 ### 主定理证明
 
 **第一步**：时间箭头与熵增的等价性
 由引理26-3-1，时间的存在等价于：
-$$\frac{dH}{dt} > 0$$
-
+$$
+\frac{dH}{dt} > 0
+$$
 **第二步**：指数形式的必然性
 由引理26-3-2，熵增必然遵循：
-$$H(t) = H_0 e^{\alpha t}$$
-
+$$
+H(t) = H_0 e^{\alpha t}
+$$
 其中 $\alpha > 0$ 确保 $dH/dt > 0$。
 
 **第三步**：e的唯一性
@@ -91,8 +101,9 @@ $$H(t) = H_0 e^{\alpha t}$$
 
 **第四步**：等价性的建立
 结合以上步骤：
-$$\frac{dH}{dt} > 0 \Leftrightarrow H(t) = H_0 e^{\alpha t}$$
-
+$$
+\frac{dH}{dt} > 0 \Leftrightarrow H(t) = H_0 e^{\alpha t}
+$$
 因此，$e$ 是时间不可逆性的数学本质。∎
 
 ## 深层理论结果
@@ -105,8 +116,9 @@ $$\frac{dH}{dt} > 0 \Leftrightarrow H(t) = H_0 e^{\alpha t}$$
 在No-11约束下，信息以Fibonacci数列量子化。设最小信息量子为 $\Delta H_{min} = \ln(F_n/F_{n-1}) = \ln(\phi)$
 
 对应的时间量子为：
-$$\Delta t_{min} = \frac{\Delta H_{min}}{\alpha} = \frac{\ln(\phi)}{\alpha}$$
-
+$$
+\Delta t_{min} = \frac{\Delta H_{min}}{\alpha} = \frac{\ln(\phi)}{\alpha}
+$$
 这建立了时间的离散化结构。∎
 
 ### 推论26-3-1：热力学时间箭头
@@ -115,8 +127,9 @@ $$\Delta t_{min} = \frac{\Delta H_{min}}{\alpha} = \frac{\ln(\phi)}{\alpha}$$
 
 **证明**：
 热力学第二定律 $dS \geq 0$ 在自指完备系统中变为：
-$$S(t) = S_0 e^{\alpha t}$$
-
+$$
+S(t) = S_0 e^{\alpha t}
+$$
 其中熵产生率由e的自指性质决定。∎
 
 ### 推论26-3-2：相对论时间膨胀
@@ -125,11 +138,13 @@ $$S(t) = S_0 e^{\alpha t}$$
 
 **证明**：
 在运动参考系中，自指观察的效率发生变化：
-$$\alpha' = \alpha \sqrt{1 - v^2/c^2}$$
-
+$$
+\alpha' = \alpha \sqrt{1 - v^2/c^2}
+$$
 导致时间演化：
-$$H'(t') = H_0 e^{\alpha' t'}$$
-
+$$
+H'(t') = H_0 e^{\alpha' t'}
+$$
 其中 $t' = \gamma t$，$\gamma = 1/\sqrt{1-v^2/c^2}$。这与Lorentz变换一致。∎
 
 ### 推论26-3-3：量子力学时间演化
@@ -146,25 +161,29 @@ $$H'(t') = H_0 e^{\alpha' t'}$$
 ### 核心微分方程
 
 **定义26-3-1** (自指完备时间演化方程):
-$$\frac{dS}{dt} = \Lambda(S) \cdot S$$
-
+$$
+\frac{dS}{dt} = \Lambda(S) \cdot S
+$$
 其中 $\Lambda(S)$ 是系统的自指效率函数。
 
 **定理26-3-B** (通解存在唯一性):
 上述方程的通解为：
-$$S(t) = S_0 \exp\left(\int_0^t \Lambda(S(\tau)) d\tau\right)$$
-
+$$
+S(t) = S_0 \exp\left(\int_0^t \Lambda(S(\tau)) d\tau\right)
+$$
 当 $\Lambda$ 为常数时，退化为 $S(t) = S_0 e^{\Lambda t}$。
 
 ### 不可逆性度量
 
 **定义26-3-2** (时间不可逆性强度):
-$$\mathcal{I}(t) = \frac{1}{H(t)}\frac{dH}{dt} = \frac{d}{dt}\ln H(t)$$
-
+$$
+\mathcal{I}(t) = \frac{1}{H(t)}\frac{dH}{dt} = \frac{d}{dt}\ln H(t)
+$$
 **定理26-3-C** (不可逆性守恒律):
 在e指数演化下：
-$$\mathcal{I}(t) = \alpha = constant$$
-
+$$
+\mathcal{I}(t) = \alpha = constant
+$$
 这表明时间不可逆性强度是守恒量。
 
 ## 物理应用与预测
@@ -172,22 +191,25 @@ $$\mathcal{I}(t) = \alpha = constant$$
 ### 宇宙学时间
 
 在宇宙学尺度上，宇宙熵的演化：
-$$S_{universe}(t) = S_{CMB} e^{H_0 t}$$
-
+$$
+S_{universe}(t) = S_{CMB} e^{H_0 t}
+$$
 其中 $H_0$ 是哈勃常数，$S_{CMB}$ 是宇宙微波背景的基准熵。
 
 ### 黑洞信息悖论
 
 黑洞蒸发过程中，霍金辐射的信息丢失问题可以通过e指数演化解决：
-$$S_{BH}(t) = S_{BH,0} e^{-\kappa t}$$
-
+$$
+S_{BH}(t) = S_{BH,0} e^{-\kappa t}
+$$
 其中 $\kappa > 0$ 确保信息的最终恢复。
 
 ### 生物时间
 
 生物系统的衰老过程反映了细胞自指能力的指数衰减：
-$$L(t) = L_{max} e^{-\lambda t}$$
-
+$$
+L(t) = L_{max} e^{-\lambda t}
+$$
 其中 $L(t)$ 是生命活力，$\lambda$ 是衰老率。
 
 ## 哲学意义
@@ -210,8 +232,9 @@ e指数演化看似决定论的，但在量子层面：
 ### 记忆与遗忘
 
 记忆的衰减遵循e指数规律：
-$$M(t) = M_0 e^{-\beta t}$$
-
+$$
+M(t) = M_0 e^{-\beta t}
+$$
 这解释了为什么遗忘曲线具有普遍的指数形式。
 
 ## Zeckendorf编码中的时间
@@ -219,13 +242,15 @@ $$M(t) = M_0 e^{-\beta t}$$
 ### 时间的二进制表示
 
 在No-11约束下，时间间隔使用Fibonacci数列表示：
-$$\Delta t = \sum_{i} a_i F_i, \quad a_i \in \{0,1\}, \quad a_i a_{i+1} = 0$$
-
+$$
+\Delta t = \sum_{i} a_i F_i, \quad a_i \in \{0,1\}, \quad a_i a_{i+1} = 0
+$$
 ### φ-时间量子
 
 最小时间量子与φ相关：
-$$t_{quantum} = \frac{\ln \phi}{\alpha}$$
-
+$$
+t_{quantum} = \frac{\ln \phi}{\alpha}
+$$
 这建立了时间、信息和黄金比例的深层联系。
 
 ## 验证要求
@@ -251,8 +276,9 @@ e指数增长可能导致数值溢出，需要：
 ### 量子涨落建模
 
 在量子层面，时间演化包含随机项：
-$$dH = \alpha H dt + \sigma H dW$$
-
+$$
+dH = \alpha H dt + \sigma H dW
+$$
 其中 $dW$ 是Wiener过程。
 
 ## 结论

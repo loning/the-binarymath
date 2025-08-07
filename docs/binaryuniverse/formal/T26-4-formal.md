@@ -12,10 +12,13 @@
 
 则存在唯一的统一映射 $\mathcal{U}: \mathbb{C} \to \{0\}$，满足：
 
-$$\forall z \in \mathbb{C}: \mathcal{U}(z) = e^{i\pi z} + \phi^2 - \phi = 0 \text{ 当且仅当 } z = 1$$
-
-其中统一恒等式为：$$e^{i\pi} + \phi^2 - \phi = 0$$
-
+$$
+\forall z \in \mathbb{C}: \mathcal{U}(z) = e^{i\pi z} + \phi^2 - \phi = 0 \text{ 当且仅当 } z = 1
+$$
+其中统一恒等式为：
+$$
+e^{i\pi} + \phi^2 - \phi = 0
+$$
 ## 核心算法规范
 
 ### 算法26-4-1：三元常数精密计算器

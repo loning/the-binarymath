@@ -15,8 +15,9 @@
 - $\mathcal{F}_{\text{ops}} = \{\frac{d_F}{dx_F}, \int_F, \sin_F, \cos_F, \exp_F, \log_F\}$：Fibonacci分析运算集
 
 则该体系满足完备性条件：
-$$\forall f \in \mathcal{F}_{\text{continuous}} \exists f_{\mathcal{Z}} \in \mathcal{F}_{\text{ops}}^* : \lim_{N \to \infty} \|f - f_{\mathcal{Z}}^{(N)}\|_{\phi} < \phi^{-N}$$
-
+$$
+\forall f \in \mathcal{F}_{\text{continuous}} \exists f_{\mathcal{Z}} \in \mathcal{F}_{\text{ops}}^* : \lim_{N \to \infty} \|f - f_{\mathcal{Z}}^{(N)}\|_{\phi} < \phi^{-N}
+$$
 ## 核心算法规范
 
 ### 算法27-1-1：Zeckendorf编码器

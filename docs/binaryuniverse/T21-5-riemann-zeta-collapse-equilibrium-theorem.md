@@ -10,8 +10,9 @@
 
 则两函数的等价性遵循**三元概率分布**：
 
-$$P(\zeta_{\mathcal{Z}}(s) \approx_\epsilon \mathcal{C}_{\mathcal{Z}}(s)) = \frac{2}{3} \cdot I_\phi(s) + \frac{1}{3} \cdot I_\pi(s) + 0 \cdot I_e(s)$$
-
+$$
+P(\zeta_{\mathcal{Z}}(s) \approx_\epsilon \mathcal{C}_{\mathcal{Z}}(s)) = \frac{2}{3} \cdot I_\phi(s) + \frac{1}{3} \cdot I_\pi(s) + 0 \cdot I_e(s)
+$$
 其中：
 - $I_\phi(s)$：φ空间结构指示函数
 - $I_\pi(s)$：π频域对称指示函数  
@@ -52,16 +53,18 @@ T27-2三元概率统一 + T27-1纯Zeckendorf数学 = **函数关系的概率化�
 **证明**：
 
 **第一步**：Zeckendorf-ζ函数的构造
-$$\zeta_{\mathcal{Z}}(s) = \bigoplus_{n=1}^{\infty} \frac{1_\mathcal{Z}}{n^{\otimes s}}$$
-
+$$
+\zeta_{\mathcal{Z}}(s) = \bigoplus_{n=1}^{\infty} \frac{1_\mathcal{Z}}{n^{\otimes s}}
+$$
 其中：
 - $\bigoplus$：T27-1定义的Fibonacci加法
 - $n^{\otimes s}$：T27-1定义的Fibonacci幂运算
 - $\frac{1_\mathcal{Z}}{a}$：Zeckendorf倒数，满足 $a \otimes \frac{1_\mathcal{Z}}{a} = 1_\mathcal{Z}$
 
 **第二步**：Zeckendorf-collapse函数的构造
-$$\mathcal{C}_{\mathcal{Z}}(s) = e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}} s} \oplus \phi_{\text{op}}^s \otimes (\phi_{\text{op}} \ominus 1_\mathcal{Z})$$
-
+$$
+\mathcal{C}_{\mathcal{Z}}(s) = e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}} s} \oplus \phi_{\text{op}}^s \otimes (\phi_{\text{op}} \ominus 1_\mathcal{Z})
+$$
 使用T27-1定义的运算符：
 - $e_{\text{op}}$：Fibonacci指数算子
 - $\pi_{\text{op}}$：Zeckendorf旋转算子
@@ -81,8 +84,9 @@ $$\mathcal{C}_{\mathcal{Z}}(s) = e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}} s}
 **证明**：
 
 **第一步**：变形欧拉恒等式在Zeckendorf空间的表示
-$$e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}}} \oplus \phi_{\text{op}}^{\otimes 2} \ominus \phi_{\text{op}} = 0_\mathcal{Z}$$
-
+$$
+e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}}} \oplus \phi_{\text{op}}^{\otimes 2} \ominus \phi_{\text{op}} = 0_\mathcal{Z}
+$$
 **第二步**：权重分析
 - **φ项**：$\phi_{\text{op}}^{\otimes 2} \ominus \phi_{\text{op}} = \phi_{\text{op}} \otimes (\phi_{\text{op}} \ominus 1_\mathcal{Z})$ (二次项)
 - **π项**：$e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}}}$ (一次项)
@@ -108,24 +112,27 @@ $$e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}}} \oplus \phi_{\text{op}}^{\otimes
 **证明**：
 
 **第一步**：φ空间结构指示函数
-$$I_\phi(s) = \begin{cases}
+$$
+I_\phi(s) = \begin{cases}
 1 & \text{if } |\phi_{\text{op}}^s \otimes (\phi_{\text{op}} \ominus 1_\mathcal{Z})| > |\mathcal{C}_{\mathcal{Z}}(s)|/2 \\
 0 & \text{otherwise}
-\end{cases}$$
-
+\end{cases}
+$$
 这个函数在φ项主导的区域取值1，对应2/3权重贡献。
 
 **第二步**：π频域对称指示函数
-$$I_\pi(s) = \begin{cases}
+$$
+I_\pi(s) = \begin{cases}
 1 & \text{if } |e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}} s}| > |\mathcal{C}_{\mathcal{Z}}(s)|/2 \\
 0 & \text{otherwise}
-\end{cases}$$
-
+\end{cases}
+$$
 这个函数在π项主导的区域（如临界线）取值1，对应1/3权重贡献。
 
 **第三步**：e连接指示函数
-$$I_e(s) = 0 \quad \forall s$$
-
+$$
+I_e(s) = 0 \quad \forall s
+$$
 e作为连接算子，不直接贡献等价性概率。
 
 **第四步**：完备性验证
@@ -141,8 +148,9 @@ e作为连接算子，不直接贡献等价性概率。
 
 **第一步**：总体等价性的理论预测
 根据T27-2，在混合区域（φ和π都有贡献）：
-$$P_{\text{总体}} = \frac{2}{3} \cdot \langle I_\phi \rangle + \frac{1}{3} \cdot \langle I_\pi \rangle$$
-
+$$
+P_{\text{总体}} = \frac{2}{3} \cdot \langle I_\phi \rangle + \frac{1}{3} \cdot \langle I_\pi \rangle
+$$
 其中$\langle I_\phi \rangle, \langle I_\pi \rangle$是指示函数的平均值。
 
 对于均匀分布的测试点：$\langle I_\phi \rangle \approx 1, \langle I_\pi \rangle \approx 0$
@@ -151,8 +159,9 @@ $$P_{\text{总体}} = \frac{2}{3} \cdot \langle I_\phi \rangle + \frac{1}{3} \cd
 
 **第二步**：临界线等价性的理论预测
 在临界线$\text{Re}(s) = 1/2$上，π频域对称性主导：
-$$P_{\text{临界线}} \approx \frac{1}{3} = 33.33\%$$
-
+$$
+P_{\text{临界线}} \approx \frac{1}{3} = 33.33\%
+$$
 **第三步**：实验结果对比
 - 理论预测：66.67% 总体，33.33% 临界线
 - 实验结果：66.7% 总体，33.33% 临界线
@@ -168,8 +177,9 @@ $$P_{\text{临界线}} \approx \frac{1}{3} = 33.33\%$$
 
 **第二步**：概率等价性的建立
 由引理21-5-2和21-5-3，两函数的等价性遵循三元概率分布：
-$$P(\zeta_{\mathcal{Z}}(s) \approx_\epsilon \mathcal{C}_{\mathcal{Z}}(s)) = \frac{2}{3} \cdot I_\phi(s) + \frac{1}{3} \cdot I_\pi(s)$$
-
+$$
+P(\zeta_{\mathcal{Z}}(s) \approx_\epsilon \mathcal{C}_{\mathcal{Z}}(s)) = \frac{2}{3} \cdot I_\phi(s) + \frac{1}{3} \cdot I_\pi(s)
+$$
 **第三步**：数值验证的理论符合性
 由引理21-5-4，计算验证完美支持理论预测。
 

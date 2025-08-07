@@ -6,16 +6,18 @@
 
 设 $\mathcal{M}_{\mathcal{Z}}: \mathcal{S} \to \mathcal{R}\mathcal{S}_{\mathcal{Z}}$ 为Zeckendorf-RealityShell映射，其中：
 
-$$\mathcal{M}_{\mathcal{Z}}(s) = \begin{cases}
+$$
+\mathcal{M}_{\mathcal{Z}}(s) = \begin{cases}
 \text{Reality}_{\mathcal{Z}} & \text{若 } P_{\text{equiv}}(s) = \frac{2}{3} \\
 \text{Boundary}_{\mathcal{Z}} & \text{若 } P_{\text{equiv}}(s) = \frac{1}{3} \text{ 且 } \text{Re}(s) = \frac{1}{2} \\
 \text{Critical}_{\mathcal{Z}} & \text{若 } P_{\text{equiv}}(s) = \frac{1}{3} \text{ 且 } \text{Re}(s) \neq \frac{1}{2} \\
 \text{Possibility}_{\mathcal{Z}} & \text{若 } P_{\text{equiv}}(s) = 0
-\end{cases}$$
-
+\end{cases}
+$$
 其中 $P_{\text{equiv}}(s)$ 是T21-5定义的等价概率：
-$$P_{\text{equiv}}(s) = \frac{2}{3} \cdot I_\phi(s) + \frac{1}{3} \cdot I_\pi(s) + 0 \cdot I_e(s)$$
-
+$$
+P_{\text{equiv}}(s) = \frac{2}{3} \cdot I_\phi(s) + \frac{1}{3} \cdot I_\pi(s) + 0 \cdot I_e(s)
+$$
 **核心映射关系**：
 - **Reality区域** ($P_{\text{equiv}}(s) = 2/3$)：φ主导，collapse系统稳定
 - **Boundary线** ($P_{\text{equiv}}(s) = 1/3$, $\text{Re}(s) = 1/2$)：π主导，Reality-Possibility边界
@@ -63,10 +65,15 @@ T21-5概率等价性 + 临界带几何结构 = **RealityShell的概率映射边�
 **第二步**：自然分层的形成
 定义三个自然分层：
 
-$$\mathcal{L}_1 = \{s \in \mathcal{S} : \text{Re}(s) > 2/3\} \quad (\text{φ主导层})$$
-$$\mathcal{L}_2 = \{s \in \mathcal{S} : 1/3 < \text{Re}(s) < 2/3\} \quad (\text{混合层})$$
-$$\mathcal{L}_3 = \{s \in \mathcal{S} : \text{Re}(s) < 1/3\} \quad (\text{π主导层})$$
-
+$$
+\mathcal{L}_1 = \{s \in \mathcal{S} : \text{Re}(s) > 2/3\} \quad (\text{φ主导层})
+$$
+$$
+\mathcal{L}_2 = \{s \in \mathcal{S} : 1/3 < \text{Re}(s) < 2/3\} \quad (\text{混合层})
+$$
+$$
+\mathcal{L}_3 = \{s \in \mathcal{S} : \text{Re}(s) < 1/3\} \quad (\text{π主导层})
+$$
 **第三步**：分层的概率特征
 - $\mathcal{L}_1$：高等价概率，系统趋向Reality
 - $\mathcal{L}_2$：中等等价概率，边界动态区域
@@ -175,8 +182,9 @@ RealityShell映射可视为临界带上的动态系统，其不动点、周期�
 ### 定理21-6-B：零点密度的RealityShell解释
 
 **定理**：ζ零点在临界线上的密度分布对应RealityShell边界上collapse事件的发生频率：
-$$\rho_{\text{zero}}(T) \sim \rho_{\text{collapse}}(T) \sim \frac{T}{2\pi} \log \frac{T}{2\pi e}$$
-
+$$
+\rho_{\text{zero}}(T) \sim \rho_{\text{collapse}}(T) \sim \frac{T}{2\pi} \log \frac{T}{2\pi e}
+$$
 ### 定理21-6-C：广义黎曼猜想的RealityShell推广
 
 **定理**：对于任意L函数，其非平凡零点的实部对应相应collapse系统的Reality-Possibility边界位置。

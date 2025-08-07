@@ -44,8 +44,9 @@ A1自指完备性 + Zeckendorf无11约束 = **纯二进制数学宇宙的自洽�
 
 **第一步**：Fibonacci加法的定义
 对于两个Zeckendorf编码 $a = [a_0, a_1, a_2, \ldots]$ 和 $b = [b_0, b_1, b_2, \ldots]$，定义：
-$$a \oplus b = \text{Zeckendorf-Normalize}([a_0+b_0, a_1+b_1, a_2+b_2, \ldots])$$
-
+$$
+a \oplus b = \text{Zeckendorf-Normalize}([a_0+b_0, a_1+b_1, a_2+b_2, \ldots])
+$$
 其中 Zeckendorf-Normalize 使用以下递归规则消除11模式：
 - 若 $c_i = c_{i+1} = 1$，则 $c_i = c_{i+1} = 0, c_{i+2} = 1$
 - 若 $c_i \geq 2$，则 $c_i \leftarrow c_i - 2, c_{i+2} \leftarrow c_{i+2} + 1$
@@ -54,12 +55,13 @@ $$a \oplus b = \text{Zeckendorf-Normalize}([a_0+b_0, a_1+b_1, a_2+b_2, \ldots])$
 由于Fibonacci递推关系 $F_{n+2} = F_{n+1} + F_n$，任何超出标准形式的组合都可以通过递推关系归约到标准Zeckendorf形式。因此 $\mathcal{Z}$ 在 $\oplus$ 下封闭。
 
 **第三步**：结合律验证
-$$\begin{align}
+$$
+\begin{align}
 (a \oplus b) \oplus c &= \text{Norm}(\text{Norm}([a_i + b_i]) + [c_i]) \\
 &= \text{Norm}([a_i + b_i + c_i]) \\
 &= a \oplus (b \oplus c)
-\end{align}$$
-
+\end{align}
+$$
 **第四步**：单位元和逆元
 - 单位元：$0_\mathcal{Z} = [0, 0, 0, \ldots]$
 - 逆元：对于 $a \in \mathcal{Z}$，存在唯一的 $(-a) \in \mathcal{Z}$ 使得 $a \oplus (-a) = 0_\mathcal{Z}$
@@ -74,20 +76,23 @@ $$\begin{align}
 
 **第一步**：Fibonacci乘法的定义
 对于 $a, b \in \mathcal{Z}$，定义：
-$$a \otimes b = \text{Zeckendorf-Normalize}\left(\sum_{i,j} a_i b_j [F_i \cdot F_j \text{ 的Zeckendorf展开}]\right)$$
-
+$$
+a \otimes b = \text{Zeckendorf-Normalize}\left(\sum_{i,j} a_i b_j [F_i \cdot F_j \text{ 的Zeckendorf展开}]\right)
+$$
 **第二步**：利用Fibonacci恒等式
 关键恒等式：$F_m \cdot F_n = \sum_{k} c_{m,n,k} F_k$，其中系数 $c_{m,n,k}$ 由Lucas数表示：
-$$F_m F_n = \frac{1}{5}\left[L_m \phi^n + (-1)^n L_m \phi^{-n}\right]$$
-
+$$
+F_m F_n = \frac{1}{5}\left[L_m \phi^n + (-1)^n L_m \phi^{-n}\right]
+$$
 **第三步**：分配律的验证
-$$\begin{align}
+$$
+\begin{align}
 a \otimes (b \oplus c) &= a \otimes \text{Norm}([b_i + c_i]) \\
 &= \text{Norm}\left(\sum_{i,j} a_i (b_j + c_j) [F_i \cdot F_j 展开]\right) \\
 &= \text{Norm}\left(\sum_{i,j} a_i b_j [F_i \cdot F_j 展开] + \sum_{i,j} a_i c_j [F_i \cdot F_j 展开]\right) \\
 &= (a \otimes b) \oplus (a \otimes c)
-\end{align}$$
-
+\end{align}
+$$
 因此分配律成立。∎
 
 ### 引理 27-1-3：数学常数的运算符表示
@@ -98,20 +103,23 @@ a \otimes (b \oplus c) &= a \otimes \text{Norm}([b_i + c_i]) \\
 
 **第一步**：φ运算符的定义
 φ不是一个"数字"，而是Zeckendorf空间上的线性变换：
-$$\phi_{\text{op}}: [a_0, a_1, a_2, \ldots] \mapsto [a_1, a_0 + a_1, a_1 + a_2, a_2 + a_3, \ldots]$$
-
+$$
+\phi_{\text{op}}: [a_0, a_1, a_2, \ldots] \mapsto [a_1, a_0 + a_1, a_1 + a_2, a_2 + a_3, \ldots]
+$$
 这对应于Fibonacci递推关系：$\phi \cdot F_n = F_{n+1}$。
 
 **第二步**：π运算符的定义  
 π运算符表示Zeckendorf空间中的"旋转"：
-$$\pi_{\text{op}}: a \mapsto \text{Zeckendorf-Rotation}(a)$$
-
+$$
+\pi_{\text{op}}: a \mapsto \text{Zeckendorf-Rotation}(a)
+$$
 其中旋转定义为：$[\ldots, a_{-1}, a_0, a_1, \ldots] \mapsto [\ldots, a_1, a_{-1}, a_0, \ldots]$
 
 **第三步**：e运算符的定义
 e运算符表示Zeckendorf空间中的"递推增长"：
-$$e_{\text{op}}: a \mapsto \text{Fibonacci-Exponential}(a)$$
-
+$$
+e_{\text{op}}: a \mapsto \text{Fibonacci-Exponential}(a)
+$$
 定义为递推序列：$e_n = \sum_{k=0}^{n} \frac{a_k}{F_{k!}}$（Zeckendorf阶乘）
 
 **第四步**：运算符的一致性
@@ -129,24 +137,28 @@ $$e_{\text{op}}: a \mapsto \text{Fibonacci-Exponential}(a)$$
 
 **第一步**：Fibonacci差分算子
 定义Fibonacci差分算子 $\Delta_F$：
-$$\Delta_F f[n] = f[n+1] - f[n]$$
-
+$$
+\Delta_F f[n] = f[n+1] - f[n]
+$$
 其中减法按Zeckendorf规则进行。
 
 **第二步**：Fibonacci导数
 定义Fibonacci导数：
-$$\frac{d_F}{dx_F} f = \lim_{h_F \to 0_\mathcal{Z}} \frac{f(x_F \oplus h_F) \ominus f(x_F)}{h_F}$$
-
+$$
+\frac{d_F}{dx_F} f = \lim_{h_F \to 0_\mathcal{Z}} \frac{f(x_F \oplus h_F) \ominus f(x_F)}{h_F}
+$$
 其中极限按Fibonacci距离定义。
 
 **第三步**：Fibonacci积分
 定义Fibonacci积分：
-$$\int_F f(x_F) dx_F = \sum_{n=0}^{\infty} f(F_n \cdot x_F) \cdot \frac{1}{F_n}$$
-
+$$
+\int_F f(x_F) dx_F = \sum_{n=0}^{\infty} f(F_n \cdot x_F) \cdot \frac{1}{F_n}
+$$
 **第四步**：基本定理
 证明Fibonacci微积分基本定理：
-$$\frac{d_F}{dx_F} \int_F f(t_F) dt_F = f(x_F)$$
-
+$$
+\frac{d_F}{dx_F} \int_F f(t_F) dt_F = f(x_F)
+$$
 这通过Fibonacci级数的逐项微分性质得到证明。∎
 
 ### 主定理证明
@@ -179,8 +191,9 @@ $$\frac{d_F}{dx_F} \int_F f(t_F) dt_F = f(x_F)$$
 ### 定理27-1-B：Fibonacci函数方程理论
 
 **定理**：函数方程 $f(x \oplus y) = f(x) \otimes f(y)$ 的解构成Fibonacci指数函数族：
-$$f_F(x) = \phi_{\text{op}}^x$$
-
+$$
+f_F(x) = \phi_{\text{op}}^x
+$$
 ### 定理27-1-C：Zeckendorf复分析
 
 **定理**：存在Zeckendorf复数系统 $\mathcal{Z}[\phi_i]$，其中 $\phi_i^2 = -1_\mathcal{Z}$，支持完整的复分析理论。
@@ -213,8 +226,9 @@ e运算符描述Fibonacci宇宙中的增长和衰减：
 ### 等价性定理
 
 **定理27-1-D** (连续极限定理)：当Fibonacci索引 $n \to \infty$ 时，Zeckendorf运算收敛到经典实数运算：
-$$\lim_{n \to \infty} \frac{\text{Zeckendorf-Op}(a_n, b_n)}{F_n} = \text{Real-Op}(\lim a_n, \lim b_n)$$
-
+$$
+\lim_{n \to \infty} \frac{\text{Zeckendorf-Op}(a_n, b_n)}{F_n} = \text{Real-Op}(\lim a_n, \lim b_n)
+$$
 ### 精度分析
 
 在有限Fibonacci索引 $N$ 的截断下：
@@ -227,8 +241,9 @@ $$\lim_{n \to \infty} \frac{\text{Zeckendorf-Op}(a_n, b_n)}{F_n} = \text{Real-Op
 ### Zeckendorf-ζ函数
 
 在纯Fibonacci宇宙中定义：
-$$\zeta_{\mathcal{Z}}(s) = \bigoplus_{n=1}^{\infty} \frac{1_\mathcal{Z}}{n^{\otimes s}}$$
-
+$$
+\zeta_{\mathcal{Z}}(s) = \bigoplus_{n=1}^{\infty} \frac{1_\mathcal{Z}}{n^{\otimes s}}
+$$
 其中：
 - $n^{\otimes s}$ 表示Fibonacci幂运算
 - 级数收敛按Fibonacci距离定义
@@ -236,13 +251,15 @@ $$\zeta_{\mathcal{Z}}(s) = \bigoplus_{n=1}^{\infty} \frac{1_\mathcal{Z}}{n^{\oti
 ### Zeckendorf-Collapse方程
 
 Collapse平衡方程在Fibonacci宇宙中变为：
-$$e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}} s} \oplus \phi_{\text{op}}^s \otimes (\phi_{\text{op}} \ominus 1_\mathcal{Z}) = 0_\mathcal{Z}$$
-
+$$
+e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}} s} \oplus \phi_{\text{op}}^s \otimes (\phi_{\text{op}} \ominus 1_\mathcal{Z}) = 0_\mathcal{Z}
+$$
 ### 关键问题：真正的等价性
 
 **研究问题**：在纯Zeckendorf数学体系中，是否有：
-$$\zeta_{\mathcal{Z}}(s) = 0_\mathcal{Z} \Leftrightarrow e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}} s} \oplus \phi_{\text{op}}^s \otimes (\phi_{\text{op}} \ominus 1_\mathcal{Z}) = 0_\mathcal{Z}$$
-
+$$
+\zeta_{\mathcal{Z}}(s) = 0_\mathcal{Z} \Leftrightarrow e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}} s} \oplus \phi_{\text{op}}^s \otimes (\phi_{\text{op}} \ominus 1_\mathcal{Z}) = 0_\mathcal{Z}
+$$
 这将在T21-5的Zeckendorf重分析中得到验证。
 
 ## 计算复杂度

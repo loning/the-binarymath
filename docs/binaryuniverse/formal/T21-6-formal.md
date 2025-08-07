@@ -12,16 +12,18 @@
 - $\mathcal{M}_{\mathcal{Z}}: \mathcal{S} \to \mathcal{R}\mathcal{S}_{\mathcal{Z}}$：RealityShell映射
 
 映射规则：
-$$\mathcal{M}_{\mathcal{Z}}(s) = \begin{cases}
+$$
+\mathcal{M}_{\mathcal{Z}}(s) = \begin{cases}
 \text{Reality}_{\mathcal{Z}} & \text{若 } P_{\text{equiv}}(s) = 2/3 \\
 \text{Boundary}_{\mathcal{Z}} & \text{若 } P_{\text{equiv}}(s) = 1/3 \text{ 且 } \text{Re}(s) = 1/2 \\
 \text{Critical}_{\mathcal{Z}} & \text{若 } P_{\text{equiv}}(s) = 1/3 \text{ 且 } \text{Re}(s) \neq 1/2 \\
 \text{Possibility}_{\mathcal{Z}} & \text{若 } P_{\text{equiv}}(s) = 0
-\end{cases}$$
-
+\end{cases}
+$$
 **拓扑结构**：映射诱导临界带的四区域分解：
-$$\mathcal{S} = \mathcal{L}_{\text{Reality}} \cup \mathcal{L}_{\text{Boundary}} \cup \mathcal{L}_{\text{Critical}} \cup \mathcal{L}_{\text{Possibility}}$$
-
+$$
+\mathcal{S} = \mathcal{L}_{\text{Reality}} \cup \mathcal{L}_{\text{Boundary}} \cup \mathcal{L}_{\text{Critical}} \cup \mathcal{L}_{\text{Possibility}}
+$$
 其中 $\mathcal{L}_{\text{Boundary}}$ 和 $\mathcal{L}_{\text{Critical}}$ 都对应 $P_{\text{equiv}}(s) = 1/3$，但由临界线位置区分。
 
 **黎曼猜想对应**：$\text{RH} \Leftrightarrow \text{所有ζ零点} \in \mathcal{M}_{\mathcal{Z}}^{-1}(\text{Boundary}_{\mathcal{Z}})$

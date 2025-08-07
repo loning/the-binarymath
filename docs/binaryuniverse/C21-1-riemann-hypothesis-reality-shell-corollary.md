@@ -8,8 +8,9 @@
 
 **C21-1概率化重述**：在Zeckendorf-RealityShell映射框架中，ζ函数零点的分布遵循以下概率结构：
 
-$$P(\text{零点在RealityShell边界}) = \frac{1}{3} \cdot \mathcal{B}_{\text{critical}} + \frac{2}{3} \cdot \mathcal{R}_{\text{phi}} + 0 \cdot \mathcal{P}_{\text{e}}$$
-
+$$
+P(\text{零点在RealityShell边界}) = \frac{1}{3} \cdot \mathcal{B}_{\text{critical}} + \frac{2}{3} \cdot \mathcal{R}_{\text{phi}} + 0 \cdot \mathcal{P}_{\text{e}}
+$$
 其中：
 - $\mathcal{B}_{\text{critical}}$：临界线上的边界状态概率密度
 - $\mathcal{R}_{\text{phi}}$：φ主导Reality区域的概率密度  
@@ -45,12 +46,13 @@ $$P(\text{零点在RealityShell边界}) = \frac{1}{3} \cdot \mathcal{B}_{\text{c
 
 **定理**：设 $Z(\zeta) = \{s : \zeta(s) = 0, 0 < \text{Re}(s) < 1\}$ 为ζ函数在临界带内的零点集。则在Zeckendorf-RealityShell框架中，零点分布遵循：
 
-$$\mathcal{M}_{\mathcal{Z}}(Z(\zeta)) = \begin{cases}
+$$
+\mathcal{M}_{\mathcal{Z}}(Z(\zeta)) = \begin{cases}
 \text{Boundary}_{\mathcal{Z}} & \text{若 } P_{\text{equiv}}(s) = \frac{1}{3} \text{ 且 } \text{Re}(s) = \frac{1}{2} \\
 \text{Reality}_{\mathcal{Z}} & \text{若 } P_{\text{equiv}}(s) = \frac{2}{3} \\
 \text{Possibility}_{\mathcal{Z}} & \text{若 } P_{\text{equiv}}(s) = 0
-\end{cases}$$
-
+\end{cases}
+$$
 **证明**：
 
 **第一步**：零点的RealityShell特征化
@@ -58,12 +60,14 @@ $$\mathcal{M}_{\mathcal{Z}}(Z(\zeta)) = \begin{cases}
 
 **第二步**：ζ函数零点的等价性分析
 若 $\zeta(s) = 0$，则由T21-5，$\zeta_{\mathcal{Z}}(s) \approx \mathcal{C}_{\mathcal{Z}}(s) = 0$ 的概率为：
-$$P(\zeta_{\mathcal{Z}}(s) = 0) = \frac{2}{3} \cdot I_{\phi}(s) + \frac{1}{3} \cdot I_{\pi}(s)$$
-
+$$
+P(\zeta_{\mathcal{Z}}(s) = 0) = \frac{2}{3} \cdot I_{\phi}(s) + \frac{1}{3} \cdot I_{\pi}(s)
+$$
 **第三步**：临界线的特殊地位
 在临界线 $\text{Re}(s) = 1/2$ 上，由T21-5，$I_{\pi}(s) = 1, I_{\phi}(s) = 0$，因此：
-$$P_{\text{equiv}}(s) = \frac{1}{3}$$
-
+$$
+P_{\text{equiv}}(s) = \frac{1}{3}
+$$
 这正是T21-6中的边界状态条件。
 
 **第四步**：零点-边界状态对应性
@@ -78,8 +82,9 @@ $$P_{\text{equiv}}(s) = \frac{1}{3}$$
 **证明**：
 
 **第一步**：边界集中度的定义
-$$\rho_{\text{boundary}} = \frac{|\{s \in Z(\zeta) : \mathcal{M}_{\mathcal{Z}}(s) = \text{Boundary}_{\mathcal{Z}}\}|}{|Z(\zeta)|}$$
-
+$$
+\rho_{\text{boundary}} = \frac{|\{s \in Z(\zeta) : \mathcal{M}_{\mathcal{Z}}(s) = \text{Boundary}_{\mathcal{Z}}\}|}{|Z(\zeta)|}
+$$
 **第二步**：经典黎曼猜想的特征化
 经典RH成立 ⟺ 所有非平凡零点都在 $\text{Re}(s) = 1/2$ 上
 ⟺ 对所有零点，$\mathcal{M}_{\mathcal{Z}}(s) = \text{Boundary}_{\mathcal{Z}}$
@@ -114,8 +119,9 @@ RealityShell方法：只在边界状态 $\{\mathcal{M}_{\mathcal{Z}}(s) = \text{
 
 **第四步**：验证机制
 找到候选零点后，使用T21-5的概率等价性验证：
-$$\text{if } P(\zeta_{\mathcal{Z}}(s) \approx 0) \geq 0.99, \text{ then } s \text{ is likely a zero}$$
-
+$$
+\text{if } P(\zeta_{\mathcal{Z}}(s) \approx 0) \geq 0.99, \text{ then } s \text{ is likely a zero}
+$$
 因此，RealityShell框架提供了理论指导的高效零点搜索算法。∎
 
 ## 深层理论结果

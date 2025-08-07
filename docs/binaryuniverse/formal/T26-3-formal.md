@@ -11,8 +11,9 @@
 
 则存在唯一的演化函数 $\mathcal{E}$，满足：
 
-$$\forall s \in S, t \in T: H(s,t) = \mathcal{E}(H(s,0), \alpha(s), t) = H(s,0) \cdot e^{\alpha(s) \cdot t}$$
-
+$$
+\forall s \in S, t \in T: H(s,t) = \mathcal{E}(H(s,0), \alpha(s), t) = H(s,0) \cdot e^{\alpha(s) \cdot t}
+$$
 其中 $\alpha(s) > 0$ 是系统 $s$ 的本征熵增率。
 
 ## 核心算法规范

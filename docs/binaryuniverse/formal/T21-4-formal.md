@@ -12,11 +12,13 @@
 
 则存在唯一的张力守恒映射 $\mathcal{G}: \mathbb{C} \times \mathbb{R} \to \{0,1\}$，满足：
 
-$$\forall \psi \in Ψ: \mathcal{C}(\psi) = 1 \Leftrightarrow \mathcal{G}(\mathcal{T}_{time}(\psi), \mathcal{T}_{space}(\psi)) = 1$$
-
+$$
+\forall \psi \in Ψ: \mathcal{C}(\psi) = 1 \Leftrightarrow \mathcal{G}(\mathcal{T}_{time}(\psi), \mathcal{T}_{space}(\psi)) = 1
+$$
 其中守恒条件为：
-$$\mathcal{G}(t, s) = 1 \Leftrightarrow t + s = 0 \text{ 且 } t = e^{i\pi} \text{ 且 } s = \phi^2 - \phi$$
-
+$$
+\mathcal{G}(t, s) = 1 \Leftrightarrow t + s = 0 \text{ 且 } t = e^{i\pi} \text{ 且 } s = \phi^2 - \phi
+$$
 ## 核心算法规范
 
 ### 算法21-4-1：collapse-aware张力分解器

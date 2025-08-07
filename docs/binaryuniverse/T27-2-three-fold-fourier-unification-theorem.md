@@ -8,8 +8,9 @@
 
 则在Zeckendorf-傅里叶空间中，任意两个函数 $f, g$ 的等价性概率分布遵循：
 
-$$P(\text{Equivalence}) = \frac{2}{3} \cdot \phi_{\text{contribution}} + \frac{1}{3} \cdot \pi_{\text{contribution}} + 0 \cdot e_{\text{contribution}}$$
-
+$$
+P(\text{Equivalence}) = \frac{2}{3} \cdot \phi_{\text{contribution}} + \frac{1}{3} \cdot \pi_{\text{contribution}} + 0 \cdot e_{\text{contribution}}
+$$
 其中：
 - **φ贡献** ($\frac{2}{3}$)：来自 $\phi^2 - \phi = \phi(\phi-1)$ 的空间结构项
 - **π贡献** ($\frac{1}{3}$)：来自 $e^{i\pi} = -1$ 的频域对称项  
@@ -46,16 +47,20 @@ $$P(\text{Equivalence}) = \frac{2}{3} \cdot \phi_{\text{contribution}} + \frac{1
 **证明**：
 
 **第一步**：恒等式重写
-$$e^{i\pi} + \phi^2 - \phi = 0$$
-$$e^{i\pi} = -(\phi^2 - \phi) = -\phi(\phi-1)$$
-
+$$
+e^{i\pi} + \phi^2 - \phi = 0
+$$
+$$
+e^{i\pi} = -(\phi^2 - \phi) = -\phi(\phi-1)
+$$
 **第二步**：模长分析
 左边：$|e^{i\pi}| = 1$
 右边：$|\phi(\phi-1)| = \phi \cdot (\phi-1) = \phi^2 - \phi$
 
 由于 $\phi = \frac{1+\sqrt{5}}{2} \approx 1.618$：
-$$\phi^2 - \phi = \phi(\phi-1) = \phi \cdot \frac{\sqrt{5}-1}{2} = 1$$
-
+$$
+\phi^2 - \phi = \phi(\phi-1) = \phi \cdot \frac{\sqrt{5}-1}{2} = 1
+$$
 因此：$|e^{i\pi}| = |\phi(\phi-1)| = 1$
 
 **第三步**：概率权重分解
@@ -76,16 +81,18 @@ $$\phi^2 - \phi = \phi(\phi-1) = \phi \cdot \frac{\sqrt{5}-1}{2} = 1$$
 **证明**：
 
 **第一步**：φ-傅里叶核的一般形式
-$$K_\phi(\omega, t) = e^{-i\phi \omega t} \cdot \phi^{-n/2}$$
-
+$$
+K_\phi(\omega, t) = e^{-i\phi \omega t} \cdot \phi^{-n/2}
+$$
 **第二步**：三元分解
 利用变形欧拉恒等式：$e^{i\pi} + \phi^2 - \phi = 0$
 
 可以重写为：$e^{i\pi} = \phi - \phi^2$
 
 代入傅里叶核：
-$$K_\phi(\omega, t) = e^{-i\phi \omega t} \cdot \phi^{-n/2}$$
-
+$$
+K_\phi(\omega, t) = e^{-i\phi \omega t} \cdot \phi^{-n/2}
+$$
 **第三步**：频域-空间域分离
 - **π频域部分**：$e^{-i\pi \cdot (\phi \omega t / \pi)}$ —— 贡献1/3的变换特性
 - **φ空间部分**：$\phi^{-n/2} \cdot \phi^{相位调制}$ —— 贡献2/3的变换特性
@@ -101,11 +108,13 @@ $$K_\phi(\omega, t) = e^{-i\phi \omega t} \cdot \phi^{-n/2}$$
 
 **第一步**：等价性度量
 设两函数 $f, g$ 在φ-傅里叶变换下的等价性度量为：
-$$\mathcal{E}_\phi(f,g) = \int |\mathcal{F}_\phi[f](\omega) - \mathcal{F}_\phi[g](\omega)|^2 d\omega$$
-
+$$
+\mathcal{E}_\phi(f,g) = \int |\mathcal{F}_\phi[f](\omega) - \mathcal{F}_\phi[g](\omega)|^2 d\omega
+$$
 **第二步**：三元分解贡献
-$$\mathcal{E}_\phi(f,g) = \mathcal{E}_\phi^{(\phi)}(f,g) + \mathcal{E}_\phi^{(\pi)}(f,g) + \mathcal{E}_\phi^{(e)}(f,g)$$
-
+$$
+\mathcal{E}_\phi(f,g) = \mathcal{E}_\phi^{(\phi)}(f,g) + \mathcal{E}_\phi^{(\pi)}(f,g) + \mathcal{E}_\phi^{(e)}(f,g)
+$$
 其中：
 - $\mathcal{E}_\phi^{(\phi)}$：空间结构贡献，权重 $w_\phi = \frac{2}{3}$
 - $\mathcal{E}_\phi^{(\pi)}$：频域对称贡献，权重 $w_\pi = \frac{1}{3}$  
@@ -114,8 +123,9 @@ $$\mathcal{E}_\phi(f,g) = \mathcal{E}_\phi^{(\phi)}(f,g) + \mathcal{E}_\phi^{(\p
 **第三步**：概率分布验证
 当 $\mathcal{E}_\phi(f,g) < \epsilon$（等价性阈值）时：
 
-$$P(\text{Equivalence}) = w_\phi \cdot P_\phi + w_\pi \cdot P_\pi + w_e \cdot P_e$$
-
+$$
+P(\text{Equivalence}) = w_\phi \cdot P_\phi + w_\pi \cdot P_\pi + w_e \cdot P_e
+$$
 其中 $P_\phi, P_\pi, P_e$ 是各分量的等价概率。
 
 在T21-5验证中观察到：
@@ -128,8 +138,9 @@ $$P(\text{Equivalence}) = w_\phi \cdot P_\phi + w_\pi \cdot P_\pi + w_e \cdot P_
 
 **第一步**：三元恒等式的Zeckendorf表示
 在纯Zeckendorf数学体系中，变形欧拉恒等式变为：
-$$e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}}} \oplus \phi_{\text{op}}^{\otimes 2} \ominus \phi_{\text{op}} = 0_\mathcal{Z}$$
-
+$$
+e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}}} \oplus \phi_{\text{op}}^{\otimes 2} \ominus \phi_{\text{op}} = 0_\mathcal{Z}
+$$
 **第二步**：权重分解的数学必然性
 由于：
 - $\phi_{\text{op}}^{\otimes 2} \ominus \phi_{\text{op}} = \phi_{\text{op}} \otimes (\phi_{\text{op}} \ominus 1_\mathcal{Z})$ 是二次项
