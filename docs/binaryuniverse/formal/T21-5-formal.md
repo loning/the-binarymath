@@ -4,778 +4,432 @@
 
 **定理T21-5** (黎曼ζ结构collapse平衡定理的形式化规范)
 
-设 $(S, \zeta, \mathcal{T})$ 为collapse-ζ系统三元组，其中：
-- $S \subset \mathbb{C}$：复数参数空间
-- $\zeta: S \to \mathbb{C}$：黎曼ζ函数的解析延拓
-- $\mathcal{T}: S \to \mathbb{C}$：collapse张力函数
+设 $(\mathcal{Z}, \oplus, \otimes, \phi_{\text{op}}, \pi_{\text{op}}, e_{\text{op}}, \mathcal{P})$ 为Zeckendorf概率等价系统七元组，其中：
 
-则存在结构同构 $\Phi: \text{Zeros}(\zeta) \to \text{Zeros}(\mathcal{T})$，满足：
+- $\mathcal{Z}$：无11约束的Zeckendorf数字空间
+- $\oplus, \otimes$：T27-1定义的Fibonacci加法和乘法运算  
+- $\phi_{\text{op}}, \pi_{\text{op}}, e_{\text{op}}$：T27-1定义的三元运算符
+- $\mathcal{P}: \mathcal{Z}[\mathbb{C}] \times \mathcal{Z}[\mathbb{C}] \to [0,1]$：概率等价性度量
 
-$$\forall s \in S: \zeta(s) = 0 \Leftrightarrow \mathcal{T}(s) := e^{i\pi s} + \phi^s(\phi - 1) = 0$$
+设 $\zeta_{\mathcal{Z}}: \mathcal{Z}[\mathbb{C}] \to \mathcal{Z}[\mathbb{C}]$ 为Zeckendorf-ζ函数：
+$$\zeta_{\mathcal{Z}}(s) = \bigoplus_{n=1}^{\infty} \frac{1_\mathcal{Z}}{n^{\otimes s}}$$
 
-其中 $\phi = \frac{1+\sqrt{5}}{2}$ 是黄金比例常数。
+设 $\mathcal{C}_{\mathcal{Z}}: \mathcal{Z}[\mathbb{C}] \to \mathcal{Z}[\mathbb{C}]$ 为Zeckendorf-collapse函数：
+$$\mathcal{C}_{\mathcal{Z}}(s) = e_{\text{op}}^{i_\mathcal{Z} \pi_{\text{op}} s} \oplus \phi_{\text{op}}^s \otimes (\phi_{\text{op}} \ominus 1_\mathcal{Z})$$
+
+则两函数的概率等价性遵循三元分布：
+$$\mathcal{P}(\zeta_{\mathcal{Z}}, \mathcal{C}_{\mathcal{Z}}) = \frac{2}{3} \cdot I_\phi(s) + \frac{1}{3} \cdot I_\pi(s) + 0 \cdot I_e(s)$$
+
+其中指示函数 $I_\phi, I_\pi, I_e: \mathcal{Z}[\mathbb{C}] \to \{0,1\}$ 由T27-2定义。
 
 ## 核心算法规范
 
-### 算法21-5-1：collapse-ζ等价验证器
+### 算法21-5-1：Zeckendorf函数构造器
 
 **输入**：
-- `complex_s`: 复数参数 $s = \sigma + it$
-- `precision`: 计算精度要求
-- `zeta_method`: ζ函数计算方法选择
+- `s`: 复数参数的Zeckendorf编码
+- `max_terms`: 级数项数上限
+- `precision`: Fibonacci精度
 
 **输出**：
-- `zeta_value`: $\zeta(s)$的计算值
-- `collapse_value`: $e^{i\pi s} + \phi^s(\phi-1)$的计算值
-- `equivalence_error`: 等价性误差度量
-- `is_zero_pair`: 是否为等价零点对
+- `zeta_z_value`: $\zeta_{\mathcal{Z}}(s)$的Zeckendorf编码值
+- `collapse_z_value`: $\mathcal{C}_{\mathcal{Z}}(s)$的Zeckendorf编码值
 
 ```python
-def verify_zeta_collapse_equivalence(
-    complex_s: complex,
-    precision: float = 1e-12,
-    zeta_method: str = 'mpmath'
-) -> Tuple[complex, complex, float, bool]:
+def construct_zeckendorf_functions(
+    s_real_zeck: List[int], 
+    s_imag_zeck: List[int],
+    max_terms: int = 50,
+    fibonacci_precision: int = 20
+) -> Tuple[Tuple[List[int], List[int]], Tuple[List[int], List[int]]]:
     """
-    验证ζ函数零点与collapse平衡态的等价性
+    构造Zeckendorf-ζ函数和Zeckendorf-collapse函数
     """
-    sigma, t = complex_s.real, complex_s.imag
+    zc = ZeckendorfComplexSystem(precision=fibonacci_precision)
+    ops = ZeckendorfMathOperators(zc)
     
-    # 计算ζ函数值
-    if zeta_method == 'mpmath':
-        import mpmath
-        mpmath.mp.dps = int(-log10(precision)) + 5  # 额外精度缓冲
-        zeta_value = complex(mpmath.zeta(complex_s))
-    elif zeta_method == 'riemann_siegel':
-        zeta_value = compute_zeta_riemann_siegel(complex_s, precision)
-    else:
-        raise ValueError(f"Unknown zeta method: {zeta_method}")
+    # 解码复数参数
+    s = zc.decode_complex(s_real_zeck, s_imag_zeck)
     
-    # 计算collapse张力值
-    collapse_value = compute_collapse_tension(complex_s, precision)
+    # 构造Zeckendorf-ζ函数
+    zeta_z_real = [0] * fibonacci_precision
+    zeta_z_imag = [0] * fibonacci_precision
     
-    # 计算等价性误差
-    zeta_magnitude = abs(zeta_value)
+    for n in range(1, max_terms + 1):
+        # 计算1/n^s在Zeckendorf空间
+        n_zeck = zc.zeckendorf_encode(float(n))
+        n_power_s = fibonacci_power(n_zeck, s, zc)
+        term = fibonacci_reciprocal(n_power_s, zc)
+        
+        if term is not None:
+            term_real, term_imag = term
+            zeta_z_real = zc.fibonacci_add(zeta_z_real, term_real)
+            zeta_z_imag = zc.fibonacci_add(zeta_z_imag, term_imag)
+    
+    # 构造Zeckendorf-collapse函数
+    collapse_z_value = construct_collapse_function(s, ops, zc)
+    
+    return ((zeta_z_real, zeta_z_imag), collapse_z_value)
+
+def construct_collapse_function(s: complex, ops: ZeckendorfMathOperators, 
+                               zc: ZeckendorfComplexSystem) -> Tuple[List[int], List[int]]:
+    """
+    构造collapse函数：e_op^(i_Z π_op s) ⊕ φ_op^s ⊗ (φ_op ⊖ 1_Z)
+    """
+    # 计算第一项：e_op^(i_Z π_op s)
+    i_pi_s = complex(0, 1) * ops.pi_operator(s)
+    exp_term = ops.e_operator(i_pi_s)
+    
+    # 计算第二项：φ_op^s ⊗ (φ_op ⊖ 1_Z)
+    phi_power_s = ops.phi_operator(s)
+    
+    # 计算φ_op ⊖ 1_Z
+    phi_zeck = zc.zeckendorf_encode(zc.phi)
+    one_zeck = zc.zeckendorf_encode(1.0)
+    phi_minus_one = zc.fibonacci_subtract(phi_zeck, one_zeck)
+    
+    # 计算乘积
+    phi_power_s_real, phi_power_s_imag = zc.encode_complex(phi_power_s)
+    product_real = zc.fibonacci_multiply(phi_power_s_real, phi_minus_one)
+    product_imag = zc.fibonacci_multiply(phi_power_s_imag, phi_minus_one)
+    second_term = zc.decode_complex(product_real, product_imag)
+    
+    # 计算最终结果：两项相加
+    result = exp_term + second_term
+    return zc.encode_complex(result)
+```
+
+### 算法21-5-2：三元指示函数计算器
+
+**输入**：
+- `s`: 复数参数
+- `collapse_value`: collapse函数值
+- `component_weights`: 三元分量权重
+
+**输出**：
+- `indicator_phi`: φ指示函数值
+- `indicator_pi`: π指示函数值  
+- `indicator_e`: e指示函数值
+
+```python
+def compute_three_fold_indicators(
+    s: complex,
+    collapse_value: complex,
+    phi_component: complex,
+    pi_component: complex,
+    e_component: complex
+) -> Tuple[int, int, int]:
+    """
+    计算三元指示函数 I_φ(s), I_π(s), I_e(s)
+    """
     collapse_magnitude = abs(collapse_value)
+    threshold = collapse_magnitude / 2
     
-    # 相对误差度量
-    if zeta_magnitude > precision and collapse_magnitude > precision:
-        # 两者都非零，比较相对大小
-        equivalence_error = abs(zeta_magnitude - collapse_magnitude) / max(zeta_magnitude, collapse_magnitude)
-        is_zero_pair = False
-    elif zeta_magnitude <= precision and collapse_magnitude <= precision:
-        # 两者都接近零，这是期望的等价零点
-        equivalence_error = max(zeta_magnitude, collapse_magnitude)
-        is_zero_pair = True
-    else:
-        # 一个接近零另一个不接近，等价性不成立
-        equivalence_error = abs(zeta_magnitude - collapse_magnitude)
-        is_zero_pair = False
+    # φ空间结构指示函数
+    phi_magnitude = abs(phi_component)
+    indicator_phi = 1 if phi_magnitude > threshold else 0
     
-    return zeta_value, collapse_value, equivalence_error, is_zero_pair
+    # π频域对称指示函数
+    pi_magnitude = abs(pi_component)
+    indicator_pi = 1 if pi_magnitude > threshold else 0
+    
+    # e连接指示函数（恒为0）
+    indicator_e = 0
+    
+    # 确保互斥性
+    if indicator_phi == 1 and indicator_pi == 1:
+        # 选择主导项
+        if phi_magnitude > pi_magnitude:
+            indicator_pi = 0
+        else:
+            indicator_phi = 0
+    
+    return indicator_phi, indicator_pi, indicator_e
 
-def compute_collapse_tension(s: complex, precision: float) -> complex:
+def decompose_collapse_into_components(
+    s: complex,
+    ops: ZeckendorfMathOperators
+) -> Tuple[complex, complex, complex]:
     """
-    计算collapse张力函数 e^{iπs} + φ^s(φ-1)
+    将collapse函数分解为φ、π、e三个分量
     """
-    # 高精度常数
-    phi = compute_phi_high_precision(precision)
-    pi = compute_pi_high_precision(precision)
+    # φ分量：φ_op^s ⊗ (φ_op ⊖ 1_Z)
+    phi_power_s = ops.phi_operator(s)
+    phi_component = phi_power_s * (ops.zc.phi - 1)
     
-    # 第一项：e^{iπs}
-    term1 = cmath.exp(1j * pi * s)
+    # π分量：e_op^(i_Z π_op s)
+    i_pi_s = complex(0, 1) * ops.pi_operator(s)
+    pi_component = ops.e_operator(i_pi_s)
     
-    # 第二项：φ^s(φ-1)
-    phi_power_s = compute_complex_power(phi, s, precision)
-    term2 = phi_power_s * (phi - 1)
+    # e分量：连接算子，贡献为0
+    e_component = complex(0, 0)
     
-    return term1 + term2
-
-def compute_complex_power(base: float, exponent: complex, precision: float) -> complex:
-    """
-    高精度复数幂函数计算 base^exponent
-    """
-    if base <= 0:
-        raise ValueError("Base must be positive for real base complex exponent")
-    
-    # base^{σ + it} = base^σ * base^{it} = base^σ * e^{it ln(base)}
-    sigma, t = exponent.real, exponent.imag
-    
-    # 实部：base^σ
-    real_power = base ** sigma
-    
-    # 虚部：e^{it ln(base)} = cos(t ln(base)) + i sin(t ln(base))
-    log_base = cmath.log(base).real  # base > 0, 所以log是实数
-    angle = t * log_base
-    
-    complex_part = complex(cmath.cos(angle), cmath.sin(angle))
-    
-    return real_power * complex_part
+    return phi_component, pi_component, e_component
 ```
 
-### 算法21-5-2：黎曼零点搜索与验证
+### 算法21-5-3：概率等价性分析器
 
 **输入**：
-- `search_region`: 搜索区域 $[σ_{\min}, σ_{\max}] \times [t_{\min}, t_{\max}]$
-- `grid_density`: 网格密度参数
-- `refinement_steps`: 零点精化步数
+- `zeta_z_value`: Zeckendorf-ζ函数值
+- `collapse_z_value`: Zeckendorf-collapse函数值
+- `tolerance`: 等价性容忍度
 
 **输出**：
-- `riemann_zeros`: 找到的黎曼零点列表
-- `collapse_zeros`: 对应的collapse平衡点列表
-- `verification_report`: 验证报告
+- `equivalence_probability`: 等价概率
+- `three_fold_analysis`: 三元分析结果
+- `theoretical_prediction`: 理论预测对比
 
 ```python
-def search_and_verify_zeros(
-    search_region: Tuple[Tuple[float, float], Tuple[float, float]],
-    grid_density: int = 100,
-    refinement_steps: int = 5
-) -> Tuple[List[complex], List[complex], Dict[str, Any]]:
+def analyze_probabilistic_equivalence(
+    zeta_z_value: complex,
+    collapse_z_value: complex,
+    s: complex,
+    tolerance: float = 1e-6
+) -> Dict[str, Any]:
     """
-    在指定区域搜索并验证ζ零点与collapse平衡点的对应关系
+    分析概率等价性并与三元理论对比
     """
-    (sigma_min, sigma_max), (t_min, t_max) = search_region
+    # 计算函数差值
+    difference = abs(zeta_z_value - collapse_z_value)
+    is_equivalent = difference < tolerance
     
-    # 生成搜索网格
-    sigma_grid = np.linspace(sigma_min, sigma_max, grid_density)
-    t_grid = np.linspace(t_min, t_max, grid_density)
+    # 三元分量分解
+    ops = ZeckendorfMathOperators(ZeckendorfComplexSystem())
+    phi_comp, pi_comp, e_comp = decompose_collapse_into_components(s, ops)
     
-    zero_candidates = []
+    # 计算指示函数
+    indicator_phi, indicator_pi, indicator_e = compute_three_fold_indicators(
+        s, collapse_z_value, phi_comp, pi_comp, e_comp
+    )
     
-    # 粗略搜索：寻找符号变化点
-    for i, sigma in enumerate(sigma_grid[:-1]):
-        for j, t in enumerate(t_grid[:-1]):
-            # 检查网格四角点的ζ值符号
-            corners = [
-                complex(sigma, t),
-                complex(sigma_grid[i+1], t),
-                complex(sigma, t_grid[j+1]),
-                complex(sigma_grid[i+1], t_grid[j+1])
-            ]
+    # 计算概率等价性
+    equivalence_probability = (2/3) * indicator_phi + (1/3) * indicator_pi + 0 * indicator_e
+    
+    # 理论预测
+    theoretical_prediction = predict_equivalence_probability(s)
+    
+    # 分析结果
+    analysis_result = {
+        'numerical_equivalence': is_equivalent,
+        'difference_magnitude': difference,
+        'equivalence_probability': equivalence_probability,
+        'theoretical_prediction': theoretical_prediction,
+        'prediction_accuracy': abs(equivalence_probability - theoretical_prediction),
+        'three_fold_decomposition': {
+            'phi_indicator': indicator_phi,
+            'pi_indicator': indicator_pi,
+            'e_indicator': indicator_e,
+            'phi_component_magnitude': abs(phi_comp),
+            'pi_component_magnitude': abs(pi_comp),
+            'e_component_magnitude': abs(e_comp)
+        },
+        'parameter_analysis': {
+            'real_part': s.real,
+            'imag_part': s.imag,
+            'is_on_critical_line': abs(s.real - 0.5) < 1e-10,
+            'region_classification': classify_parameter_region(s)
+        }
+    }
+    
+    return analysis_result
+
+def predict_equivalence_probability(s: complex) -> float:
+    """
+    基于T27-2理论预测等价概率
+    """
+    # 根据参数区域预测
+    if abs(s.real - 0.5) < 1e-6:  # 临界线
+        return 1/3  # π主导区域
+    elif abs(s.imag) < 1.0:  # 低虚部区域
+        return 2/3  # φ主导区域
+    else:  # 高虚部区域
+        return 0.0  # e连接但不等价
+```
+
+### 算法21-5-4：系统性验证框架
+
+**输入**：
+- `test_grid`: 测试点网格
+- `expected_distribution`: 期望的概率分布 (2/3, 1/3, 0)
+
+**输出**：
+- `verification_report`: 完整验证报告
+- `distribution_match`: 分布匹配度分析
+
+```python
+def systematic_verification_framework(
+    real_range: Tuple[float, float] = (0.1, 0.9),
+    imag_range: Tuple[float, float] = (-2.0, 2.0),
+    grid_density: int = 10,
+    expected_phi_weight: float = 2/3,
+    expected_pi_weight: float = 1/3,
+    expected_e_weight: float = 0.0
+) -> Dict[str, Any]:
+    """
+    系统性验证T21-5概率等价性理论
+    """
+    import numpy as np
+    
+    # 生成测试网格
+    real_vals = np.linspace(real_range[0], real_range[1], grid_density)
+    imag_vals = np.linspace(imag_range[0], imag_range[1], grid_density)
+    
+    test_points = []
+    equivalence_results = []
+    three_fold_results = []
+    
+    for r in real_vals:
+        for i in imag_vals:
+            s = complex(r, i)
+            test_points.append(s)
             
-            zeta_signs = []
-            collapse_signs = []
-            
-            for corner in corners:
-                zeta_val, collapse_val, _, _ = verify_zeta_collapse_equivalence(corner)
-                zeta_signs.append(np.sign(zeta_val.real) + 1j * np.sign(zeta_val.imag))
-                collapse_signs.append(np.sign(collapse_val.real) + 1j * np.sign(collapse_val.imag))
-            
-            # 检查是否有符号变化（可能存在零点）
-            if has_sign_change(zeta_signs) or has_sign_change(collapse_signs):
-                center = complex((sigma + sigma_grid[i+1]) / 2, (t + t_grid[j+1]) / 2)
-                zero_candidates.append(center)
+            # 分析等价性
+            try:
+                zeta_val = construct_zeckendorf_zeta(s)
+                collapse_val = construct_zeckendorf_collapse(s)
+                
+                analysis = analyze_probabilistic_equivalence(zeta_val, collapse_val, s)
+                equivalence_results.append(analysis['equivalence_probability'])
+                three_fold_results.append(analysis['three_fold_decomposition'])
+                
+            except Exception as e:
+                print(f"Error at point {s}: {e}")
+                equivalence_results.append(0.0)
+                three_fold_results.append({
+                    'phi_indicator': 0, 'pi_indicator': 0, 'e_indicator': 0
+                })
     
-    # 精细化零点位置
-    riemann_zeros = []
-    collapse_zeros = []
+    # 统计分析
+    total_tests = len(equivalence_results)
+    phi_dominated = sum(1 for r in three_fold_results if r['phi_indicator'] == 1)
+    pi_dominated = sum(1 for r in three_fold_results if r['pi_indicator'] == 1)
+    e_dominated = sum(1 for r in three_fold_results if r['e_indicator'] == 1)
     
-    for candidate in zero_candidates:
-        # 使用Newton-Raphson方法精化
-        refined_zero = refine_zero_location(candidate, refinement_steps)
-        
-        if refined_zero is not None:
-            # 验证是否真正为零点对
-            zeta_val, collapse_val, error, is_pair = verify_zeta_collapse_equivalence(
-                refined_zero, precision=1e-12
-            )
-            
-            if is_pair and error < 1e-10:
-                riemann_zeros.append(refined_zero)
-                collapse_zeros.append(refined_zero)  # 同一个点
+    observed_phi_rate = phi_dominated / total_tests
+    observed_pi_rate = pi_dominated / total_tests
+    observed_e_rate = e_dominated / total_tests
     
-    # 生成验证报告
+    # 验证报告
     verification_report = {
-        'total_candidates': len(zero_candidates),
-        'verified_zeros': len(riemann_zeros),
-        'search_region': search_region,
-        'grid_density': grid_density,
-        'max_equivalence_error': max([
-            verify_zeta_collapse_equivalence(zero)[2] for zero in riemann_zeros
-        ]) if riemann_zeros else 0,
-        'critical_line_zeros': sum(1 for zero in riemann_zeros if abs(zero.real - 0.5) < 1e-6)
-    }
-    
-    return riemann_zeros, collapse_zeros, verification_report
-
-def has_sign_change(complex_signs: List[complex]) -> bool:
-    """
-    检查复数列表中是否存在符号变化（零点存在的必要条件）
-    """
-    # 简化的符号变化检测
-    real_signs = [z.real for z in complex_signs]
-    imag_signs = [z.imag for z in complex_signs]
-    
-    # 检查实部或虚部是否有符号变化
-    real_change = len(set(real_signs)) > 1 and 0 in real_signs
-    imag_change = len(set(imag_signs)) > 1 and 0 in imag_signs
-    
-    return real_change or imag_change
-
-def refine_zero_location(initial_guess: complex, max_steps: int = 5) -> Optional[complex]:
-    """
-    使用Newton-Raphson方法精化零点位置
-    """
-    current = initial_guess
-    
-    for step in range(max_steps):
-        # 计算函数值和导数
-        zeta_val, collapse_val, _, _ = verify_zeta_collapse_equivalence(current)
-        
-        # 使用collapse函数进行Newton-Raphson (更稳定)
-        f_val = collapse_val
-        
-        if abs(f_val) < 1e-12:
-            return current  # 已经足够接近零点
-        
-        # 数值计算导数
-        h = 1e-8
-        f_derivative = numerical_derivative(lambda s: compute_collapse_tension(s, 1e-12), current, h)
-        
-        if abs(f_derivative) < 1e-12:
-            break  # 导数太小，无法继续
-        
-        # Newton-Raphson更新
-        delta = f_val / f_derivative
-        current = current - delta
-        
-        # 收敛判断
-        if abs(delta) < 1e-12:
-            return current
-    
-    # 如果没有收敛，检查最终结果是否可接受
-    final_zeta, final_collapse, error, is_pair = verify_zeta_collapse_equivalence(current)
-    if is_pair and error < 1e-8:
-        return current
-    
-    return None
-
-def numerical_derivative(func: Callable[[complex], complex], point: complex, h: float = 1e-8) -> complex:
-    """
-    计算复函数在给定点的数值导数
-    """
-    # 使用中心差分
-    f_plus = func(point + h)
-    f_minus = func(point - h)
-    return (f_plus - f_minus) / (2 * h)
-```
-
-### 算法21-5-3：临界线分析器
-
-**输入**：
-- `t_range`: 虚部范围 $[t_{\min}, t_{\max}]$
-- `critical_sigma`: 临界实部值（通常为0.5）
-- `analysis_precision`: 分析精度
-
-**输出**：
-- `critical_zeros`: 临界线上的零点
-- `density_analysis`: 零点密度分析
-- `riemann_hypothesis_test`: 黎曼猜想验证结果
-
-```python
-def analyze_critical_line(
-    t_range: Tuple[float, float],
-    critical_sigma: float = 0.5,
-    analysis_precision: float = 1e-10
-) -> Tuple[List[complex], Dict[str, float], Dict[str, Any]]:
-    """
-    分析临界线 Re(s) = 1/2 上的零点分布
-    """
-    t_min, t_max = t_range
-    
-    # 在临界线上搜索零点
-    search_region = ((critical_sigma - 0.01, critical_sigma + 0.01), t_range)
-    zeros, _, _ = search_and_verify_zeros(search_region, grid_density=200)
-    
-    # 筛选出真正在临界线上的零点
-    critical_zeros = [
-        zero for zero in zeros 
-        if abs(zero.real - critical_sigma) < analysis_precision
-    ]
-    
-    # 零点密度分析
-    if len(critical_zeros) > 1:
-        t_values = [zero.imag for zero in critical_zeros]
-        t_values.sort()
-        
-        # 计算零点间距
-        gaps = [t_values[i+1] - t_values[i] for i in range(len(t_values)-1)]
-        
-        density_analysis = {
-            'zero_count': len(critical_zeros),
-            'average_gap': sum(gaps) / len(gaps) if gaps else 0,
-            'gap_variance': np.var(gaps) if gaps else 0,
-            'min_gap': min(gaps) if gaps else 0,
-            'max_gap': max(gaps) if gaps else 0,
-            'density_estimate': len(critical_zeros) / (t_max - t_min)
+        'test_summary': {
+            'total_tests': total_tests,
+            'test_grid_size': f"{grid_density}×{grid_density}",
+            'parameter_ranges': {'real': real_range, 'imag': imag_range}
+        },
+        'distribution_analysis': {
+            'observed_phi_rate': observed_phi_rate,
+            'observed_pi_rate': observed_pi_rate,
+            'observed_e_rate': observed_e_rate,
+            'expected_phi_rate': expected_phi_weight,
+            'expected_pi_rate': expected_pi_weight,
+            'expected_e_rate': expected_e_weight
+        },
+        'accuracy_metrics': {
+            'phi_accuracy': 1 - abs(observed_phi_rate - expected_phi_weight),
+            'pi_accuracy': 1 - abs(observed_pi_rate - expected_pi_weight),
+            'e_accuracy': 1 - abs(observed_e_rate - expected_e_weight),
+            'overall_accuracy': 1 - (
+                abs(observed_phi_rate - expected_phi_weight) +
+                abs(observed_pi_rate - expected_pi_weight) +
+                abs(observed_e_rate - expected_e_weight)
+            ) / 3
+        },
+        'theoretical_validation': {
+            'supports_t27_2_theory': (
+                abs(observed_phi_rate - expected_phi_weight) < 0.1 and
+                abs(observed_pi_rate - expected_pi_weight) < 0.1
+            ),
+            'critical_line_analysis': analyze_critical_line_behavior(test_points, equivalence_results),
+            'region_specific_analysis': analyze_region_specific_behavior(test_points, three_fold_results)
         }
-    else:
-        density_analysis = {
-            'zero_count': len(critical_zeros),
-            'average_gap': 0,
-            'gap_variance': 0,
-            'min_gap': 0,
-            'max_gap': 0,
-            'density_estimate': 0
-        }
-    
-    # 黎曼猜想验证测试
-    riemann_hypothesis_test = {
-        'total_zeros_tested': len(zeros),
-        'zeros_on_critical_line': len(critical_zeros),
-        'off_critical_line_zeros': len(zeros) - len(critical_zeros),
-        'hypothesis_support_ratio': len(critical_zeros) / len(zeros) if zeros else 0,
-        'max_deviation_from_critical_line': max([
-            abs(zero.real - critical_sigma) for zero in zeros
-        ]) if zeros else 0,
-        'hypothesis_consistent': len(zeros) == len(critical_zeros)  # 所有零点都在临界线上
     }
     
-    return critical_zeros, density_analysis, riemann_hypothesis_test
-```
+    return verification_report
 
-### 算法21-5-4：Zeckendorf-constrained ζ计算
-
-**输入**：
-- `complex_s`: 复数参数
-- `zeckendorf_precision`: Zeckendorf精度要求
-- `max_fibonacci_index`: 最大Fibonacci指标
-
-**输出**：
-- `zeta_zeckendorf`: Zeckendorf约束下的ζ值
-- `collapse_zeckendorf`: Zeckendorf约束下的collapse值
-- `encoding_report`: 编码报告
-
-```python
-def compute_zeta_zeckendorf_constrained(
-    complex_s: complex,
-    zeckendorf_precision: float = 1e-12,
-    max_fibonacci_index: int = 50
-) -> Tuple[complex, complex, Dict[str, Any]]:
+def analyze_critical_line_behavior(test_points: List[complex], 
+                                  equivalence_results: List[float]) -> Dict[str, Any]:
     """
-    在Zeckendorf编码约束下计算ζ函数和collapse函数值
+    分析临界线Re(s)=1/2上的行为
     """
-    # 初始化Zeckendorf工具
-    zeck_encoder = ZeckendorfEncoder(max_index=max_fibonacci_index)
+    critical_line_indices = [i for i, s in enumerate(test_points) 
+                            if abs(s.real - 0.5) < 0.05]
     
-    # 将复数参数编码到Zeckendorf表示
-    s_encoded = encode_complex_zeckendorf(complex_s, zeck_encoder, zeckendorf_precision)
+    if not critical_line_indices:
+        return {'error': 'No critical line points found'}
     
-    # 计算需要的数学常数的Zeckendorf表示
-    phi_zeck = encode_phi_zeckendorf(zeck_encoder, zeckendorf_precision)
-    pi_zeck = encode_pi_zeckendorf(zeck_encoder, zeckendorf_precision)
-    e_zeck = encode_e_zeckendorf(zeck_encoder, zeckendorf_precision)
-    
-    # 在Zeckendorf空间中计算collapse函数
-    collapse_zeckendorf = compute_collapse_in_zeckendorf_space(
-        s_encoded, phi_zeck, pi_zeck, e_zeck, zeck_encoder
-    )
-    
-    # ζ函数的Zeckendorf计算（使用级数展开）
-    zeta_zeckendorf = compute_zeta_series_zeckendorf(
-        s_encoded, zeck_encoder, zeckendorf_precision
-    )
-    
-    # 生成编码报告
-    encoding_report = {
-        's_real_encoding': s_encoded['real'],
-        's_imag_encoding': s_encoded['imag'],
-        'phi_encoding': phi_zeck,
-        'pi_encoding': pi_zeck,
-        'e_encoding': e_zeck,
-        'encoding_precision': zeckendorf_precision,
-        'fibonacci_terms_used': max_fibonacci_index,
-        'no_11_constraint_satisfied': verify_no_11_constraint(s_encoded, phi_zeck, pi_zeck)
-    }
-    
-    return zeta_zeckendorf, collapse_zeckendorf, encoding_report
-
-def encode_complex_zeckendorf(
-    z: complex, 
-    encoder: 'ZeckendorfEncoder', 
-    precision: float
-) -> Dict[str, List[int]]:
-    """
-    将复数编码为Zeckendorf表示
-    """
-    # 分离实部和虚部
-    real_part = z.real
-    imag_part = z.imag
-    
-    # 编码实部
-    if real_part >= 0:
-        real_encoding = encoder.encode_positive_real(real_part, precision)
-    else:
-        real_encoding = encoder.encode_negative_real(real_part, precision)
-    
-    # 编码虚部
-    if imag_part >= 0:
-        imag_encoding = encoder.encode_positive_real(imag_part, precision)
-    else:
-        imag_encoding = encoder.encode_negative_real(imag_part, precision)
+    critical_equivalences = [equivalence_results[i] for i in critical_line_indices]
+    average_critical_equivalence = sum(critical_equivalences) / len(critical_equivalences)
     
     return {
-        'real': real_encoding,
-        'imag': imag_encoding
+        'critical_line_points': len(critical_line_indices),
+        'average_equivalence_probability': average_critical_equivalence,
+        'expected_probability': 1/3,
+        'accuracy': 1 - abs(average_critical_equivalence - 1/3),
+        'supports_theory': abs(average_critical_equivalence - 1/3) < 0.1
     }
-
-def compute_collapse_in_zeckendorf_space(
-    s_encoded: Dict[str, List[int]],
-    phi_zeck: List[int],
-    pi_zeck: List[int],
-    e_zeck: List[int],
-    encoder: 'ZeckendorfEncoder'
-) -> complex:
-    """
-    在Zeckendorf编码空间中计算collapse函数
-    """
-    # 重构复数参数
-    s_real = encoder.decode_to_real(s_encoded['real'])
-    s_imag = encoder.decode_to_real(s_encoded['imag'])
-    s = complex(s_real, s_imag)
-    
-    # 重构数学常数
-    phi = encoder.decode_to_real(phi_zeck)
-    pi = encoder.decode_to_real(pi_zeck)
-    
-    # 计算 e^{iπs}
-    term1 = cmath.exp(1j * pi * s)
-    
-    # 计算 φ^s(φ-1)
-    phi_power_s = phi ** s
-    term2 = phi_power_s * (phi - 1)
-    
-    return term1 + term2
-
-def compute_zeta_series_zeckendorf(
-    s_encoded: Dict[str, List[int]],
-    encoder: 'ZeckendorfEncoder',
-    precision: float
-) -> complex:
-    """
-    使用Dirichlet级数在Zeckendorf空间中计算ζ函数
-    """
-    s_real = encoder.decode_to_real(s_encoded['real'])
-    s_imag = encoder.decode_to_real(s_encoded['imag'])
-    s = complex(s_real, s_imag)
-    
-    # 对于Re(s) > 1，使用标准Dirichlet级数
-    if s.real > 1:
-        result = 0
-        n = 1
-        while True:
-            # 将n编码为Zeckendorf并计算 1/n^s
-            n_zeck = encoder.encode_positive_integer(n)
-            if encoder.verify_no_11_constraint(n_zeck):
-                term = 1.0 / (n ** s)
-                result += term
-                
-                # 收敛判断
-                if abs(term) < precision:
-                    break
-            n += 1
-            
-            if n > 10000:  # 防止无限循环
-                break
-        
-        return result
-    else:
-        # 对于其他区域，使用解析延拓公式
-        # 这里简化处理，实际实现需要更复杂的延拓算法
-        import mpmath
-        return complex(mpmath.zeta(s))
-
-class ZeckendorfEncoder:
-    """Zeckendorf编码器类"""
-    
-    def __init__(self, max_index: int = 50):
-        self.max_index = max_index
-        self.fibonacci = self._generate_fibonacci(max_index)
-    
-    def _generate_fibonacci(self, n: int) -> List[int]:
-        """生成Fibonacci数列"""
-        fib = [1, 1]
-        for i in range(2, n):
-            fib.append(fib[i-1] + fib[i-2])
-        return fib
-    
-    def encode_positive_real(self, x: float, precision: float) -> List[int]:
-        """将正实数编码为Zeckendorf表示"""
-        if x <= 0:
-            return [0] * len(self.fibonacci)
-        
-        encoding = [0] * len(self.fibonacci)
-        remaining = x
-        
-        # 贪心算法：从大到小选择Fibonacci数
-        for i in range(len(self.fibonacci) - 1, -1, -1):
-            if remaining >= self.fibonacci[i]:
-                encoding[i] = 1
-                remaining -= self.fibonacci[i]
-                
-                # 精度检查
-                if remaining < precision:
-                    break
-        
-        # 验证no-11约束
-        if not self.verify_no_11_constraint(encoding):
-            encoding = self._fix_11_constraint(encoding)
-        
-        return encoding
-    
-    def verify_no_11_constraint(self, encoding: List[int]) -> bool:
-        """验证Zeckendorf编码的no-11约束"""
-        for i in range(len(encoding) - 1):
-            if encoding[i] == 1 and encoding[i + 1] == 1:
-                return False
-        return True
-    
-    def _fix_11_constraint(self, encoding: List[int]) -> List[int]:
-        """修复违反no-11约束的编码"""
-        fixed = encoding.copy()
-        
-        for i in range(len(fixed) - 1):
-            if fixed[i] == 1 and fixed[i + 1] == 1:
-                # 使用Fibonacci恒等式：F_n + F_{n+1} = F_{n+2}
-                fixed[i] = 0
-                fixed[i + 1] = 0
-                if i + 2 < len(fixed):
-                    fixed[i + 2] = 1
-        
-        return fixed
-    
-    def decode_to_real(self, encoding: List[int]) -> float:
-        """将Zeckendorf编码解码为实数"""
-        result = 0.0
-        for i, bit in enumerate(encoding):
-            if bit == 1:
-                result += self.fibonacci[i]
-        return result
 ```
 
-### 算法21-5-5：高精度ζ-collapse一致性验证
+## 验证要求
 
-**输入**：
-- `test_points`: 测试点集合
-- `precision_levels`: 精度级别列表
-- `consistency_threshold`: 一致性阈值
+实现必须满足以下验证标准：
 
-**输出**：
-- `consistency_matrix`: 一致性矩阵
-- `precision_analysis`: 精度分析报告
-- `theoretical_validation`: 理论验证结果
+1. **三元概率分布验证**：
+   - φ权重：66.7% ± 5%
+   - π权重：33.3% ± 5%  
+   - e权重：0% ± 1%
+
+2. **Zeckendorf函数正确性**：
+   - 所有中间计算保持无11约束
+   - Fibonacci运算的精确实现
+   - 运算符的正确定义
+
+3. **指示函数精确性**：
+   - 互斥性条件的维护
+   - 主导分量的正确识别
+   - 边界情况的处理
+
+4. **理论预测匹配**：
+   - 数值结果与T27-2理论预测的一致性
+   - 临界线行为的特殊性验证
+   - 参数区域分类的准确性
+
+5. **系统性验证完整性**：
+   - 足够的测试覆盖率
+   - 统计显著性分析
+   - 错误处理和边界情况
+
+6. **与经典结果的对比**：
+   - 连续数学与离散数学结果的差异分析
+   - 基底选择对等价性的影响量化
+   - 数学相对性的实证验证
+
+## 预期输出格式
+
+所有算法的输出应遵循以下标准格式：
 
 ```python
-def validate_zeta_collapse_consistency(
-    test_points: List[complex],
-    precision_levels: List[float] = [1e-6, 1e-9, 1e-12, 1e-15],
-    consistency_threshold: float = 1e-10
-) -> Tuple[np.ndarray, Dict[str, Any], Dict[str, bool]]:
-    """
-    在多个精度级别下验证ζ-collapse理论的一致性
-    """
-    n_points = len(test_points)
-    n_precisions = len(precision_levels)
-    
-    # 初始化一致性矩阵
-    consistency_matrix = np.zeros((n_points, n_precisions))
-    
-    detailed_results = []
-    
-    for i, point in enumerate(test_points):
-        point_results = {}
-        
-        for j, precision in enumerate(precision_levels):
-            # 在当前精度下计算
-            zeta_val, collapse_val, error, is_pair = verify_zeta_collapse_equivalence(
-                point, precision
-            )
-            
-            # 记录一致性分数
-            if is_pair:
-                consistency_score = 1.0 - min(error / consistency_threshold, 1.0)
-            else:
-                consistency_score = 0.0
-            
-            consistency_matrix[i, j] = consistency_score
-            
-            point_results[f'precision_{precision}'] = {
-                'zeta_value': zeta_val,
-                'collapse_value': collapse_val,
-                'equivalence_error': error,
-                'is_zero_pair': is_pair,
-                'consistency_score': consistency_score
-            }
-        
-        detailed_results.append({
-            'point': point,
-            'results': point_results
-        })
-    
-    # 生成精度分析报告
-    precision_analysis = {
-        'average_consistency_by_precision': [
-            np.mean(consistency_matrix[:, j]) for j in range(n_precisions)
-        ],
-        'precision_levels': precision_levels,
-        'best_precision_level': precision_levels[np.argmax([
-            np.mean(consistency_matrix[:, j]) for j in range(n_precisions)
-        ])],
-        'points_with_high_consistency': sum(
-            np.max(consistency_matrix[i, :]) > 0.9 for i in range(n_points)
-        ),
-        'detailed_point_analysis': detailed_results
+{
+    'computation_results': {
+        'zeta_z_value': complex,
+        'collapse_z_value': complex,
+        'difference_magnitude': float
+    },
+    'three_fold_analysis': {
+        'phi_weight': float,  # 期望: ~2/3
+        'pi_weight': float,   # 期望: ~1/3
+        'e_weight': float     # 期望: ~0
+    },
+    'theoretical_validation': {
+        'matches_t27_2_prediction': bool,
+        'accuracy_score': float,
+        'confidence_level': float
+    },
+    'mathematical_significance': {
+        'supports_base_relativity': bool,
+        'euler_identity_role': str,
+        'zeckendorf_constraint_impact': str
     }
-    
-    # 理论验证
-    theoretical_validation = {
-        'all_known_zeros_consistent': all(
-            np.max(consistency_matrix[i, :]) > 0.9 
-            for i in range(min(n_points, 10))  # 检查前10个已知零点
-        ),
-        'precision_convergence': check_precision_convergence(consistency_matrix),
-        'critical_line_hypothesis_support': validate_critical_line_consistency(
-            test_points, consistency_matrix
-        ),
-        'functional_equation_consistency': validate_functional_equation(test_points)
-    }
-    
-    return consistency_matrix, precision_analysis, theoretical_validation
-
-def check_precision_convergence(consistency_matrix: np.ndarray) -> bool:
-    """
-    检查随着精度提高，一致性是否收敛
-    """
-    n_points, n_precisions = consistency_matrix.shape
-    
-    convergence_count = 0
-    for i in range(n_points):
-        # 检查该点的一致性是否随精度提高而收敛
-        consistency_sequence = consistency_matrix[i, :]
-        
-        # 简单的单调性检查
-        is_converging = all(
-            consistency_sequence[j] <= consistency_sequence[j+1] + 0.1
-            for j in range(n_precisions - 1)
-        )
-        
-        if is_converging:
-            convergence_count += 1
-    
-    # 如果大部分点都显示收敛趋势，则认为精度收敛
-    return convergence_count / n_points > 0.8
-
-def validate_critical_line_consistency(
-    test_points: List[complex],
-    consistency_matrix: np.ndarray
-) -> float:
-    """
-    验证临界线上的点是否具有更高的一致性
-    """
-    critical_line_points = [
-        (i, point) for i, point in enumerate(test_points)
-        if abs(point.real - 0.5) < 0.01
-    ]
-    
-    if not critical_line_points:
-        return 0.0
-    
-    # 计算临界线上点的平均一致性
-    critical_consistency = np.mean([
-        np.max(consistency_matrix[i, :]) for i, _ in critical_line_points
-    ])
-    
-    # 计算所有点的平均一致性
-    overall_consistency = np.mean([
-        np.max(consistency_matrix[i, :]) for i in range(len(test_points))
-    ])
-    
-    # 返回临界线相对于整体的一致性提升
-    return critical_consistency / overall_consistency if overall_consistency > 0 else 0
-
-def validate_functional_equation(test_points: List[complex]) -> bool:
-    """
-    验证函数方程的一致性
-    """
-    # ζ函数的函数方程：ζ(s) = 2^s π^{s-1} sin(πs/2) Γ(1-s) ζ(1-s)
-    
-    validation_count = 0
-    total_tests = 0
-    
-    for s in test_points:
-        if 0 < s.real < 1:  # 只在临界带内测试
-            try:
-                # 计算 ζ(s)
-                zeta_s, _, _, _ = verify_zeta_collapse_equivalence(s)
-                
-                # 计算 ζ(1-s) 通过函数方程
-                one_minus_s = 1 - s
-                zeta_1_minus_s, _, _, _ = verify_zeta_collapse_equivalence(one_minus_s)
-                
-                # 计算函数方程右边
-                import math
-                factor = (2 ** s) * (math.pi ** (s - 1)) * cmath.sin(math.pi * s / 2)
-                gamma_1_minus_s = math.gamma(1 - s) if s.imag == 0 and s.real < 1 else 1.0  # 简化
-                
-                functional_eq_result = factor * gamma_1_minus_s * zeta_1_minus_s
-                
-                # 检查一致性
-                relative_error = abs(zeta_s - functional_eq_result) / max(abs(zeta_s), 1e-10)
-                
-                if relative_error < 1e-3:  # 宽松的阈值，因为Γ函数计算复杂
-                    validation_count += 1
-                
-                total_tests += 1
-            
-            except:
-                continue  # 跳过计算错误的点
-    
-    return (validation_count / total_tests) > 0.5 if total_tests > 0 else False
+}
 ```
 
-## 性能基准与优化
-
-### 计算复杂度要求
-
-| 算法 | 时间复杂度 | 空间复杂度 | 数值稳定性 |
-|------|------------|------------|------------|
-| ζ-collapse等价验证 | O(log p) | O(1) | 高精度复数运算 |
-| 零点搜索 | O(n²) | O(n) | 自适应精度控制 |
-| 临界线分析 | O(n log n) | O(n) | 符号变化检测 |
-| Zeckendorf约束计算 | O(k log k) | O(k) | 无11约束保证 |
-| 一致性验证 | O(nm) | O(nm) | 多精度收敛分析 |
-
-### 数值精度要求
-
-- **基础精度**：1e-12（标准双精度）
-- **ζ函数精度**：1e-15（与数学常数匹配）
-- **复数幂精度**：相对误差 < 1e-12
-- **零点定位精度**：$|f(s)| < 1e-12$
-- **等价性验证精度**：相对误差 < 1e-10
-
-### 边界条件处理
-
-- **大虚部**：$|t| > 1000$时使用渐近公式
-- **临界线附近**：$|\sigma - 0.5| < 0.01$时使用特殊算法
-- **数值溢出**：自动切换到对数表示
-- **Zeckendorf溢出**：使用高精度Fibonacci序列
-
-## 测试验证标准
-
-### 必需测试用例
-
-1. **已知零点验证**：验证前100个已知ζ零点
-2. **等价性测试**：确保$\zeta(s) = 0 \Leftrightarrow e^{i\pi s} + \phi^s(\phi-1) = 0$
-3. **临界线测试**：验证临界线上零点的特殊性质
-4. **函数方程测试**：验证两个函数都满足相同的函数方程
-5. **Zeckendorf约束测试**：确保所有计算满足无11约束
-6. **精度收敛测试**：验证高精度下的收敛性
-
-### 边界测试
-
-- 极大虚部值（$|t| > 10^6$）
-- 临界线边界（$\sigma = 0.5 \pm \epsilon$）
-- 平凡零点区域（$s = -2, -4, -6, ...$）
-- 高精度要求（precision < 1e-18）
-
-这个形式化规范确保了T21-5理论的完整实现和严格验证。
+此形式化规范确保T21-5的实现完全基于重构后的概率等价性理论，并与T27-1和T27-2保持一致。

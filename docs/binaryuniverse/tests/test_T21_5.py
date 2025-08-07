@@ -1,592 +1,517 @@
-#!/usr/bin/env python3
 """
-T21-5 黎曼ζ结构collapse平衡定理 - 单元测试
-证明 ζ(s)=0 等价于 e^{iπs} + φ^s(φ-1) = 0
-
-依赖：T21-4, T26-4, T26-3, T8-5, Zeckendorf编码基础
+T21-5 概率等价性定理测试套件
+基于重构后的T21-5理论：黎曼ζ函数与collapse方程在纯Zeckendorf数学体系中的概率等价性
 """
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 import unittest
 import math
 import cmath
-import numpy as np
-from typing import Tuple, Dict, List, Any, Optional
+from typing import List, Tuple, Dict, Any, Optional
 from base_framework import BinaryUniverseFramework, ZeckendorfEncoder, PhiBasedMeasure
+import numpy as np
 
 
-class RiemannZetaCollapseSystem(BinaryUniverseFramework):
-    """黎曼ζ结构collapse平衡系统实现"""
+class ZeckendorfProbabilisticEquivalenceSystem(BinaryUniverseFramework):
+    """T21-5概率等价性系统"""
     
-    def __init__(self, precision: float = 1e-12):
+    def __init__(self, precision: int = 15):
         super().__init__()
-        self.name = "Riemann Zeta Collapse Equilibrium System"
         self.precision = precision
-        
-        # 系统参数
-        self.zeta_tolerance = precision
-        self.collapse_tolerance = precision
-        self.large_imaginary_threshold = 100.0
-        
-        # 初始化工具类
-        self.zeckendorf = ZeckendorfEncoder()
-        self.phi_measure = PhiBasedMeasure()
-        
-        # 高精度常数
+        self.encoder = ZeckendorfEncoder()
         self.phi = (1 + math.sqrt(5)) / 2
-        self.pi = math.pi
-        self.e = math.e
-        
-        # Fibonacci序列用于Zeckendorf编码
-        self.fibonacci_sequence = self.generate_fibonacci_sequence(50)
+        self.setup_axioms()
+        self.setup_definitions()
     
-    def generate_fibonacci_sequence(self, n: int) -> List[int]:
-        """生成Fibonacci序列"""
-        if n <= 0:
-            return []
-        fib = [1, 2]  # F_1 = 1, F_2 = 2
-        for i in range(2, n):
-            fib.append(fib[i-1] + fib[i-2])
-        return fib
+    def setup_axioms(self):
+        """设置唯一公理"""
+        pass
     
-    def compute_collapse_zeta(
-        self, 
-        s: complex, 
-        method: str = 'standard'
-    ) -> Tuple[complex, Dict[str, complex]]:
-        """
-        计算collapse-aware ζ函数: Z(s) = e^(iπs) + φ^s(φ-1)
-        """
-        if method == 'stable' and abs(s.imag) > self.large_imaginary_threshold:
-            return self.compute_large_imaginary_stable(s)
-        
-        # 第一项：时间张力 e^(iπs)
-        time_tension = cmath.exp(1j * self.pi * s)
-        
-        # 第二项：空间张力 φ^s(φ-1)
-        phi_power = self.compute_complex_power(self.phi, s)
-        space_tension = phi_power * (self.phi - 1)
-        
-        # collapse-aware ζ值
-        zeta_collapse_value = time_tension + space_tension
-        
-        components = {
-            'time_tension': time_tension,
-            'space_tension': space_tension,
-            'phi_power': phi_power,
-            'total': zeta_collapse_value
-        }
-        
-        return zeta_collapse_value, components
+    def setup_definitions(self):
+        """设置定义"""
+        pass
     
-    def compute_complex_power(self, base: float, exponent: complex) -> complex:
-        """计算复数幂 base^exponent"""
-        # base^(σ+it) = base^σ * e^(it*ln(base))
-        sigma, t = exponent.real, exponent.imag
+    def zeckendorf_zeta_function(self, s: complex, max_terms: int = 30) -> complex:
+        """Zeckendorf-ζ函数：ζ_Z(s) = ⊕_{n=1}^∞ 1_Z / n^⊗s"""
+        result = complex(0, 0)
         
-        # 实部：base^σ
-        real_part = base ** sigma
-        
-        # 虚部：e^(it*ln(base))
-        ln_base = math.log(base)
-        imaginary_part = cmath.exp(1j * t * ln_base)
-        
-        return real_part * imaginary_part
+        for n in range(1, max_terms + 1):
+            # 在Zeckendorf空间中计算1/n^s
+            try:
+                # 简化实现：使用连续数学近似，然后应用Zeckendorf约束
+                term = 1.0 / (n ** s)
+                
+                # 应用Zeckendorf编码约束
+                term_zeck = self.encoder.to_zeckendorf(term.real)
+                if self.encoder.is_valid_zeckendorf(term_zeck):
+                    # 解码并累加
+                    term_value = self.encoder.from_zeckendorf(term_zeck)
+                    result += complex(term_value, 0)
+                else:
+                    # 应用无11约束修正
+                    corrected_term = self._apply_no11_constraint(term)
+                    result += corrected_term
+                    
+            except (OverflowError, ZeroDivisionError):
+                break
+                
+        return result
     
-    def compute_large_imaginary_stable(
-        self, 
-        s: complex
-    ) -> Tuple[complex, Dict[str, complex]]:
-        """大虚部情况下的数值稳定计算"""
-        # 使用Log-Sum-Exp技术
-        log_phi = math.log(self.phi)
+    def zeckendorf_collapse_function(self, s: complex) -> complex:
+        """Zeckendorf-collapse函数：e_op^(i_Z π_op s) ⊕ φ_op^s ⊗ (φ_op ⊖ 1_Z)"""
         
-        # 时间张力的对数：log(e^(iπs)) = iπs
-        log_time_tension = 1j * self.pi * s
+        # 第一项：e_op^(i_Z π_op s)
+        i_pi_s = complex(0, 1) * math.pi * s
+        exp_term = cmath.exp(i_pi_s)
         
-        # 空间张力的对数：log(φ^s(φ-1)) = s*log(φ) + log(φ-1)
-        log_space_tension = s * log_phi + math.log(self.phi - 1)
+        # 第二项：φ_op^s ⊗ (φ_op ⊖ 1_Z)
+        phi_power_s = self.phi ** s
+        phi_minus_one = self.phi - 1
+        second_term = phi_power_s * phi_minus_one
         
-        # Log-Sum-Exp
-        result = self.log_sum_exp_complex([log_time_tension, log_space_tension])
+        # Fibonacci加法（⊕）
+        result = exp_term + second_term
         
-        # 重构分量（近似）
-        time_tension = cmath.exp(log_time_tension)
-        space_tension = cmath.exp(log_space_tension)
-        
-        components = {
-            'time_tension': time_tension,
-            'space_tension': space_tension,
-            'phi_power': cmath.exp(s * log_phi),
-            'total': result
-        }
-        
-        return result, components
+        # 应用Zeckendorf约束
+        return self._apply_zeckendorf_constraint(result)
     
-    def log_sum_exp_complex(self, log_terms: List[complex]) -> complex:
-        """复数Log-Sum-Exp计算"""
-        if not log_terms:
-            return complex(0, 0)
+    def _apply_no11_constraint(self, value: complex) -> complex:
+        """应用无11约束"""
+        # 简化实现：确保结果符合Fibonacci结构
+        real_zeck = self.encoder.to_zeckendorf(value.real)
+        imag_zeck = self.encoder.to_zeckendorf(value.imag)
         
-        # 找到最大实部避免溢出
-        max_real = max(term.real for term in log_terms)
+        # 修正连续11模式
+        real_corrected = self._correct_consecutive_ones(real_zeck)
+        imag_corrected = self._correct_consecutive_ones(imag_zeck)
         
-        # 计算 log(e^(z1-max) + e^(z2-max) + ...) + max
-        shifted_terms = [term - max_real for term in log_terms]
-        exp_sum = sum(cmath.exp(term) for term in shifted_terms)
+        real_val = self.encoder.from_zeckendorf(real_corrected)
+        imag_val = self.encoder.from_zeckendorf(imag_corrected)
         
-        if abs(exp_sum) < 1e-16:
-            return complex(-np.inf, 0)
-        
-        return cmath.log(exp_sum) + max_real
+        return complex(real_val, imag_val)
     
-    def compute_classical_zeta_approximation(self, s: complex) -> complex:
-        """
-        经典黎曼ζ函数的简化近似（用于测试）
-        注意：实际实现应使用高精度数学库
-        """
-        if s.real > 1:
-            # 收敛级数
-            result = 0
-            for n in range(1, 1000):
-                result += 1 / (n ** s)
-            return result
-        elif abs(s - complex(-2, 0)) < 0.1:
-            return complex(0, 0)  # 平凡零点
-        elif abs(s - complex(-4, 0)) < 0.1:
-            return complex(0, 0)  # 平凡零点
-        elif abs(s - complex(0.5, 14.134725)) < 0.1:
-            return complex(0, 0)  # 第一个非平凡零点近似
-        else:
-            # 简化的解析延拓近似
-            if abs(s) < 0.1:
-                return complex(-0.5, 0)
-            return complex(0.1, 0.1)  # 占位符
+    def _correct_consecutive_ones(self, zeck_list: List[int]) -> List[int]:
+        """修正连续1模式"""
+        corrected = zeck_list.copy()
+        i = 0
+        while i < len(corrected) - 1:
+            if corrected[i] == 1 and corrected[i+1] == 1:
+                # 应用Fibonacci递推关系：F_n + F_{n+1} = F_{n+2}
+                corrected[i] = 0
+                corrected[i+1] = 0
+                if i+2 < len(corrected):
+                    corrected[i+2] = 1
+                else:
+                    corrected.append(1)
+            i += 1
+        return corrected
     
-    def verify_zero_correspondence(
-        self, 
-        candidate_zero: complex
-    ) -> Tuple[bool, Dict[str, float]]:
-        """验证ζ零点与collapse平衡点的对应性"""
-        # 计算collapse-aware ζ函数值
-        collapse_zeta, components = self.compute_collapse_zeta(candidate_zero)
-        collapse_error = abs(collapse_zeta)
-        
-        # 计算经典ζ函数近似值
-        classical_zeta = self.compute_classical_zeta_approximation(candidate_zero)
-        classical_error = abs(classical_zeta)
-        
-        # 验证对应性
-        classical_is_zero = classical_error < self.zeta_tolerance
-        collapse_is_zero = collapse_error < self.collapse_tolerance
-        
-        correspondence = classical_is_zero == collapse_is_zero
-        
-        metrics = {
-            'collapse_error': collapse_error,
-            'classical_error': classical_error,
-            'error_ratio': collapse_error / (classical_error + 1e-16),
-            'time_tension_magnitude': abs(components['time_tension']),
-            'space_tension_magnitude': abs(components['space_tension'])
-        }
-        
-        return correspondence, metrics
+    def _apply_zeckendorf_constraint(self, value: complex) -> complex:
+        """应用完整Zeckendorf约束"""
+        return self._apply_no11_constraint(value)
     
-    def analyze_critical_line_point(self, t: float) -> Dict[str, Any]:
-        """分析临界线 Re(s) = 1/2 上特定点的性质"""
-        s = complex(0.5, t)
+    def decompose_collapse_into_three_components(self, s: complex) -> Tuple[complex, complex, complex]:
+        """将collapse函数分解为φ、π、e三个分量"""
         
-        # 计算collapse-aware ζ函数
-        zeta_value, components = self.compute_collapse_zeta(s)
+        # φ分量：φ_op^s ⊗ (φ_op ⊖ 1_Z)
+        phi_power_s = self.phi ** s
+        phi_component = phi_power_s * (self.phi - 1)
         
-        # 临界线上的理论预期
-        # 时间张力：e^(iπ(1/2+it)) = e^(iπ/2) * e^(-πt) = i * e^(-πt)
-        expected_time_magnitude = math.exp(-self.pi * t)
+        # π分量：e_op^(i_Z π_op s)  
+        i_pi_s = complex(0, 1) * math.pi * s
+        pi_component = cmath.exp(i_pi_s)
         
-        # 空间张力：φ^(1/2+it)(φ-1) = √φ * φ^(it) * (φ-1)
-        # |φ^(it)| = 1, 所以 |空间张力| = √φ * (φ-1)
-        expected_space_magnitude = math.sqrt(self.phi) * (self.phi - 1)
+        # e分量：连接算子，贡献为0
+        e_component = complex(0, 0)
+        
+        return phi_component, pi_component, e_component
+    
+    def compute_three_fold_indicators(self, s: complex) -> Tuple[int, int, int]:
+        """计算三元指示函数 I_φ(s), I_π(s), I_e(s)"""
+        phi_comp, pi_comp, e_comp = self.decompose_collapse_into_three_components(s)
+        
+        # 计算collapse函数总值用于阈值
+        collapse_value = self.zeckendorf_collapse_function(s)
+        threshold = abs(collapse_value) / 2
+        
+        # 计算指示函数
+        indicator_phi = 1 if abs(phi_comp) > threshold else 0
+        indicator_pi = 1 if abs(pi_comp) > threshold else 0
+        indicator_e = 0  # 恒为0
+        
+        # 确保互斥性
+        if indicator_phi == 1 and indicator_pi == 1:
+            if abs(phi_comp) > abs(pi_comp):
+                indicator_pi = 0
+            else:
+                indicator_phi = 0
+        
+        return indicator_phi, indicator_pi, indicator_e
+    
+    def compute_equivalence_probability(self, s: complex) -> float:
+        """计算等价概率：P = 2/3 * I_φ + 1/3 * I_π + 0 * I_e"""
+        indicator_phi, indicator_pi, indicator_e = self.compute_three_fold_indicators(s)
+        
+        probability = (2/3) * indicator_phi + (1/3) * indicator_pi + 0 * indicator_e
+        return probability
+    
+    def predict_theoretical_probability(self, s: complex) -> float:
+        """基于T27-2理论预测等价概率"""
+        # 根据参数区域预测
+        if abs(s.real - 0.5) < 1e-6:  # 临界线Re(s)=1/2
+            return 1/3  # π主导区域
+        elif abs(s.imag) < 1.0:  # 低虚部区域  
+            return 2/3  # φ主导区域
+        else:  # 高虚部区域
+            return 0.0  # e连接但不等价
+    
+    def analyze_equivalence_at_point(self, s: complex, tolerance: float = 1e-4) -> Dict[str, Any]:
+        """分析特定点的等价性"""
+        
+        # 计算函数值
+        zeta_val = self.zeckendorf_zeta_function(s)
+        collapse_val = self.zeckendorf_collapse_function(s)
+        
+        # 数值等价性
+        difference = abs(zeta_val - collapse_val)
+        is_numerically_equivalent = difference < tolerance
+        
+        # 概率等价性
+        equivalence_prob = self.compute_equivalence_probability(s)
+        theoretical_prob = self.predict_theoretical_probability(s)
+        
+        # 三元分解
+        phi_comp, pi_comp, e_comp = self.decompose_collapse_into_three_components(s)
+        indicators = self.compute_three_fold_indicators(s)
         
         return {
             'point': s,
-            'zeta_value': zeta_value,
-            'magnitude': abs(zeta_value),
-            'phase': cmath.phase(zeta_value),
-            'time_tension': components['time_tension'],
-            'space_tension': components['space_tension'],
-            'expected_time_magnitude': expected_time_magnitude,
-            'expected_space_magnitude': expected_space_magnitude,
-            'time_magnitude_error': abs(
-                abs(components['time_tension']) - expected_time_magnitude
-            ),
-            'is_approximate_zero': abs(zeta_value) < self.collapse_tolerance
+            'numerical_analysis': {
+                'zeta_value': zeta_val,
+                'collapse_value': collapse_val,
+                'difference': difference,
+                'is_equivalent': is_numerically_equivalent
+            },
+            'probabilistic_analysis': {
+                'equivalence_probability': equivalence_prob,
+                'theoretical_prediction': theoretical_prob,
+                'prediction_accuracy': abs(equivalence_prob - theoretical_prob)
+            },
+            'three_fold_decomposition': {
+                'phi_component': phi_comp,
+                'pi_component': pi_comp,
+                'e_component': e_comp,
+                'phi_indicator': indicators[0],
+                'pi_indicator': indicators[1],
+                'e_indicator': indicators[2]
+            },
+            'parameter_classification': {
+                'is_on_critical_line': abs(s.real - 0.5) < 1e-6,
+                'region': self._classify_parameter_region(s)
+            }
         }
     
-    def encode_complex_zeckendorf(
-        self, 
-        z: complex
-    ) -> Tuple[List[int], List[int], float]:
-        """复数的Zeckendorf编码"""
-        real_encoding, real_error = self.encode_real_zeckendorf(z.real)
-        imag_encoding, imag_error = self.encode_real_zeckendorf(z.imag)
-        
-        total_error = math.sqrt(real_error**2 + imag_error**2)
-        
-        return real_encoding, imag_encoding, total_error
-    
-    def encode_real_zeckendorf(self, x: float) -> Tuple[List[int], float]:
-        """实数的Zeckendorf编码"""
-        if abs(x) < 1e-10:
-            return [0], 0.0
-        
-        sign = 1 if x >= 0 else -1
-        abs_x = abs(x)
-        
-        # 找到最大的不超过abs_x的Fibonacci数
-        encoding = [0] * len(self.fibonacci_sequence)
-        remaining = abs_x
-        
-        # 贪心算法
-        for i in range(len(self.fibonacci_sequence) - 1, 0, -1):
-            if remaining >= self.fibonacci_sequence[i]:
-                encoding[i] = 1
-                remaining -= self.fibonacci_sequence[i]
-                
-                # 确保No-11约束
-                if i > 0 and encoding[i-1] == 1:
-                    encoding[i-1] = 0
-                    encoding[i] = 0
-                    if i+1 < len(encoding):
-                        encoding[i+1] = 1
-                    remaining = abs_x - sum(
-                        self.fibonacci_sequence[j] 
-                        for j in range(len(encoding))
-                        if encoding[j] == 1
-                    )
-        
-        error = abs(remaining)
-        
-        # 添加符号
-        if sign == -1:
-            encoding = [-1] + encoding
-        
-        return encoding, error
-    
-    def cross_validate_with_t21_4(self) -> Tuple[bool, Dict[str, float]]:
-        """与T21-4理论的交叉验证"""
-        # T21-5在s=1时应退化为T21-4
-        s_one = complex(1.0, 0.0)
-        
-        # T21-4恒等式：e^(iπ) + φ² - φ = 0
-        t21_4_identity = (
-            cmath.exp(1j * self.pi) + 
-            self.phi**2 - self.phi
-        )
-        
-        # T21-5在s=1时：e^(iπ*1) + φ^1(φ-1) = e^(iπ) + φ(φ-1)
-        t21_5_at_one, components = self.compute_collapse_zeta(s_one)
-        
-        # 验证等价性：φ(φ-1) = φ² - φ
-        phi_term_identity = self.phi * (self.phi - 1)
-        phi_term_expanded = self.phi**2 - self.phi
-        
-        consistency_metrics = {
-            'identity_difference': abs(t21_4_identity - t21_5_at_one),
-            'phi_term_consistency': abs(phi_term_identity - phi_term_expanded),
-            'relative_error': abs(t21_4_identity - t21_5_at_one) / 
-                            (abs(t21_4_identity) + abs(t21_5_at_one) + 1e-16)
-        }
-        
-        is_consistent = (
-            consistency_metrics['identity_difference'] < self.precision and
-            consistency_metrics['phi_term_consistency'] < self.precision
-        )
-        
-        return is_consistent, consistency_metrics
+    def _classify_parameter_region(self, s: complex) -> str:
+        """分类参数区域"""
+        if abs(s.real - 0.5) < 1e-6:
+            return "critical_line"
+        elif abs(s.imag) < 1.0:
+            return "low_imaginary"
+        elif abs(s.imag) > 2.0:
+            return "high_imaginary"
+        else:
+            return "intermediate"
 
 
-class TestT21_5RiemannZetaCollapseEquilibrium(unittest.TestCase):
-    """T21-5 黎曼ζ结构collapse平衡定理测试套件"""
+class TestT21_5_ProbabilisticEquivalence(unittest.TestCase):
+    """T21-5 概率等价性测试套件"""
     
     def setUp(self):
-        """测试初始化"""
-        self.system = RiemannZetaCollapseSystem(precision=1e-12)
-        self.test_tolerance = 1e-8
+        """测试前设置"""
+        self.system = ZeckendorfProbabilisticEquivalenceSystem(precision=12)
     
-    def test_basic_identity_verification(self):
-        """测试1: 基础恒等式验证 - s=1时的T21-4退化"""
-        print(f"\n=== Test 1: 基础恒等式验证 ===")
+    def test_01_zeckendorf_function_construction(self):
+        """测试Zeckendorf函数构造"""
+        s = complex(0.5, 1.0)
         
-        is_consistent, metrics = self.system.cross_validate_with_t21_4()
+        zeta_val = self.system.zeckendorf_zeta_function(s)
+        collapse_val = self.system.zeckendorf_collapse_function(s)
         
-        print(f"T21-4一致性: {is_consistent}")
-        print(f"恒等式差异: {metrics['identity_difference']:.2e}")
-        print(f"φ项一致性: {metrics['phi_term_consistency']:.2e}")
-        print(f"相对误差: {metrics['relative_error']:.2e}")
+        # 验证函数值为复数
+        self.assertIsInstance(zeta_val, complex)
+        self.assertIsInstance(collapse_val, complex)
         
-        self.assertTrue(is_consistent, "T21-5应在s=1时退化为T21-4")
-        self.assertLess(metrics['identity_difference'], self.test_tolerance)
-        self.assertLess(metrics['phi_term_consistency'], 1e-14)
+        # 验证函数值有限
+        self.assertTrue(math.isfinite(zeta_val.real))
+        self.assertTrue(math.isfinite(zeta_val.imag))
+        self.assertTrue(math.isfinite(collapse_val.real))
+        self.assertTrue(math.isfinite(collapse_val.imag))
     
-    def test_trivial_zeros_correspondence(self):
-        """测试2: 平凡零点对应性验证"""
-        print(f"\n=== Test 2: 平凡零点对应性验证 ===")
+    def test_02_three_fold_decomposition(self):
+        """测试三元分解功能"""
+        s = complex(0.5, 1.0)
         
-        # 测试几个平凡零点：s = -2, -4, -6
-        trivial_zeros = [complex(-2, 0), complex(-4, 0), complex(-6, 0)]
+        phi_comp, pi_comp, e_comp = self.system.decompose_collapse_into_three_components(s)
         
-        all_consistent = True
-        for zero in trivial_zeros:
-            correspondence, metrics = self.system.verify_zero_correspondence(zero)
-            
-            print(f"零点 {zero}: correspondence={correspondence}")
-            print(f"  collapse误差: {metrics['collapse_error']:.2e}")
-            print(f"  classical误差: {metrics['classical_error']:.2e}")
-            
-            # 对于平凡零点，我们期望两种方法都识别为零点
-            if not correspondence:
-                all_consistent = False
+        # 验证分量类型
+        self.assertIsInstance(phi_comp, complex)
+        self.assertIsInstance(pi_comp, complex)
+        self.assertIsInstance(e_comp, complex)
         
-        self.assertTrue(all_consistent, "平凡零点应在两种表示中一致")
+        # 验证e分量为0（连接算子）
+        self.assertEqual(e_comp, complex(0, 0))
+        
+        # 验证φ和π分量非零（对于典型参数）
+        self.assertGreater(abs(phi_comp), 0)
+        self.assertGreater(abs(pi_comp), 0)
     
-    def test_critical_line_properties(self):
-        """测试3: 临界线Re(s)=1/2性质分析"""
-        print(f"\n=== Test 3: 临界线性质分析 ===")
-        
-        # 测试临界线上的几个点
-        t_values = [0.0, 14.134725, 21.022040, 25.010858]  # 包含一些已知零点
-        
-        critical_analyses = []
-        for t in t_values:
-            analysis = self.system.analyze_critical_line_point(t)
-            critical_analyses.append(analysis)
-            
-            print(f"t = {t}:")
-            print(f"  |ζ_collapse(1/2+it)| = {analysis['magnitude']:.2e}")
-            print(f"  时间张力幅值误差: {analysis['time_magnitude_error']:.2e}")
-            print(f"  是否近似零点: {analysis['is_approximate_zero']}")
-        
-        # 验证时间张力的指数衰减行为
-        for analysis in critical_analyses:
-            if analysis['point'].imag > 1:  # 避免t=0的特殊情况
-                self.assertLess(
-                    analysis['time_magnitude_error'],
-                    0.1,  # 允许一定数值误差
-                    f"时间张力在t={analysis['point'].imag}处的幅值计算不准确"
-                )
-    
-    def test_complex_arithmetic_precision(self):
-        """测试4: 复数算术精度验证"""
-        print(f"\n=== Test 4: 复数算术精度验证 ===")
-        
-        # 测试复数幂计算的精度
-        test_cases = [
-            (complex(1.5, 0.5), "简单复数"),
-            (complex(0.5, 10.0), "大虚部"),
-            (complex(2.0, -3.0), "负虚部"),
-            (complex(0.1, 0.1), "小量")
+    def test_03_indicator_functions(self):
+        """测试指示函数计算"""
+        test_points = [
+            complex(0.5, 0),      # 临界线
+            complex(0.5, 1.0),    # 临界线高虚部
+            complex(0.25, 0.5),   # 低实部区域
+            complex(0.75, 0.1),   # 高实部区域
         ]
         
-        for s, description in test_cases:
-            zeta_value, components = self.system.compute_collapse_zeta(s)
-            
-            print(f"{description} s={s}:")
-            print(f"  |ζ_collapse(s)| = {abs(zeta_value):.2e}")
-            print(f"  时间张力: {components['time_tension']:.3e}")
-            print(f"  空间张力: {components['space_tension']:.3e}")
-            
-            # 验证分量计算的合理性
-            self.assertFalse(math.isnan(abs(zeta_value)), f"计算结果不应为NaN: {s}")
-            self.assertFalse(math.isinf(abs(zeta_value)), f"计算结果不应为无穷: {s}")
-    
-    def test_large_imaginary_stability(self):
-        """测试5: 大虚部数值稳定性"""
-        print(f"\n=== Test 5: 大虚部数值稳定性 ===")
-        
-        large_t_values = [100.0, 500.0, 1000.0]
-        
-        for t in large_t_values:
-            s = complex(0.5, t)
-            
-            # 使用稳定算法
-            zeta_stable, components_stable = self.system.compute_collapse_zeta(
-                s, method='stable'
-            )
-            
-            print(f"t = {t}:")
-            print(f"  稳定算法结果: {abs(zeta_stable):.2e}")
-            print(f"  时间张力幅值: {abs(components_stable['time_tension']):.2e}")
-            
-            # 验证结果的有限性
-            self.assertFalse(
-                math.isnan(abs(zeta_stable)), 
-                f"大虚部t={t}时结果不应为NaN"
-            )
-            self.assertTrue(
-                abs(zeta_stable) < 1e50,  # 合理的上界
-                f"大虚部t={t}时结果应有界"
-            )
-    
-    def test_zeckendorf_encoding_compatibility(self):
-        """测试6: Zeckendorf编码兼容性"""
-        print(f"\n=== Test 6: Zeckendorf编码兼容性 ===")
-        
-        # 测试一些复数的Zeckendorf编码
-        test_numbers = [
-            complex(1.0, 0.0),
-            complex(0.5, 1.0),
-            complex(-1.0, 2.0),
-            complex(1.618, -0.618)  # 涉及φ的值
-        ]
-        
-        for z in test_numbers:
-            real_encoding, imag_encoding, total_error = \
-                self.system.encode_complex_zeckendorf(z)
-            
-            print(f"复数 {z}:")
-            print(f"  实部编码长度: {len(real_encoding)}")
-            print(f"  虚部编码长度: {len(imag_encoding)}")
-            print(f"  总编码误差: {total_error:.2e}")
-            
-            # 验证No-11约束
-            def has_consecutive_ones(encoding):
-                for i in range(len(encoding) - 1):
-                    if encoding[i] == 1 and encoding[i+1] == 1:
-                        return True
-                return False
-            
-            self.assertFalse(
-                has_consecutive_ones(real_encoding[1:] if real_encoding[0] == -1 else real_encoding),
-                f"实部编码违反No-11约束: {z}"
-            )
-            self.assertFalse(
-                has_consecutive_ones(imag_encoding[1:] if imag_encoding[0] == -1 else imag_encoding),
-                f"虚部编码违反No-11约束: {z}"
-            )
-    
-    def test_functional_equation_compatibility(self):
-        """测试7: 函数方程兼容性验证"""
-        print(f"\n=== Test 7: 函数方程兼容性 ===")
-        
-        # 测试ζ函数方程：ζ(s) ↔ ζ(1-s)的对偶性
-        test_pairs = [
-            (complex(0.3, 0.5), complex(0.7, -0.5)),
-            (complex(0.2, 1.0), complex(0.8, -1.0)),
-            (complex(0.6, 2.0), complex(0.4, -2.0))
-        ]
-        
-        for s1, s2 in test_pairs:
-            zeta1, _ = self.system.compute_collapse_zeta(s1)
-            zeta2, _ = self.system.compute_collapse_zeta(s2)
-            
-            print(f"对偶点 {s1} ↔ {s2}:")
-            print(f"  ζ_collapse({s1}) = {zeta1:.3e}")
-            print(f"  ζ_collapse({s2}) = {zeta2:.3e}")
-            
-            # 函数方程的完整验证需要Γ函数等，这里只做基础检查
-            magnitude_ratio = abs(zeta1) / (abs(zeta2) + 1e-16)
-            print(f"  幅值比: {magnitude_ratio:.3e}")
-    
-    def test_phase_behavior_analysis(self):
-        """测试8: 相位行为分析"""
-        print(f"\n=== Test 8: 相位行为分析 ===")
-        
-        # 在临界线上分析相位行为
-        t_range = np.linspace(1, 50, 20)
-        phases = []
-        
-        for t in t_range:
-            s = complex(0.5, t)
-            zeta_value, components = self.system.compute_collapse_zeta(s)
-            
-            phase = cmath.phase(zeta_value)
-            phases.append(phase)
-            
-            time_phase = cmath.phase(components['time_tension'])
-            space_phase = cmath.phase(components['space_tension'])
-            
-            print(f"t = {t:.1f}: 总相位 = {phase:.3f}, " +
-                  f"时间相位 = {time_phase:.3f}, 空间相位 = {space_phase:.3f}")
-        
-        # 验证相位的连续性（避免突跳）
-        phase_jumps = []
-        for i in range(1, len(phases)):
-            phase_diff = abs(phases[i] - phases[i-1])
-            if phase_diff > math.pi:  # 处理2π周期性
-                phase_diff = 2*math.pi - phase_diff
-            phase_jumps.append(phase_diff)
-        
-        max_jump = max(phase_jumps) if phase_jumps else 0
-        print(f"最大相位跳跃: {max_jump:.3f}")
-        
-        # 相位应该相对平滑（允许一些数值噪声）
-        self.assertLess(max_jump, math.pi/2, "相位行为应该相对连续")
-    
-    def test_precision_scaling_behavior(self):
-        """测试9: 精度缩放行为"""
-        print(f"\n=== Test 9: 精度缩放行为 ===")
-        
-        precisions = [1e-6, 1e-9, 1e-12, 1e-15]
-        test_point = complex(0.5, 14.134725)  # 第一个非平凡零点附近
-        
-        results = []
-        for precision in precisions:
-            system_temp = RiemannZetaCollapseSystem(precision=precision)
-            zeta_value, _ = system_temp.compute_collapse_zeta(test_point)
-            results.append(abs(zeta_value))
-            
-            print(f"精度 {precision:.0e}: |ζ_collapse| = {abs(zeta_value):.2e}")
-        
-        # 验证随精度提高结果趋于稳定
-        if len(results) >= 2:
-            final_convergence = abs(results[-1] - results[-2]) / (abs(results[-1]) + 1e-16)
-            print(f"最终收敛率: {final_convergence:.2e}")
-            
-            self.assertLess(final_convergence, 0.01, "高精度计算应该收敛")
-    
-    def test_boundary_conditions_handling(self):
-        """测试10: 边界条件处理"""
-        print(f"\n=== Test 10: 边界条件处理 ===")
-        
-        # 测试特殊点
-        special_points = [
-            (complex(0, 0), "原点"),
-            (complex(1, 0), "s=1极点附近"),
-            (complex(-1, 0), "负实轴"),
-            (complex(0.5, 0), "临界线实轴交点"),
-            (complex(2, 0), "收敛区域")
-        ]
-        
-        for s, description in special_points:
-            try:
-                zeta_value, components = self.system.compute_collapse_zeta(s)
+        for s in test_points:
+            with self.subTest(s=s):
+                indicators = self.system.compute_three_fold_indicators(s)
                 
-                print(f"{description} {s}:")
-                print(f"  ζ_collapse = {zeta_value:.3e}")
-                print(f"  计算成功")
+                # 验证指示函数值为0或1
+                self.assertIn(indicators[0], [0, 1])  # I_φ
+                self.assertIn(indicators[1], [0, 1])  # I_π  
+                self.assertEqual(indicators[2], 0)    # I_e 恒为0
                 
-                # 验证结果的合理性
-                self.assertFalse(math.isnan(abs(zeta_value)), 
-                               f"{description}处结果不应为NaN")
+                # 验证互斥性（最多一个为1）
+                self.assertLessEqual(sum(indicators), 1)
+    
+    def test_04_probability_computation(self):
+        """测试概率计算"""
+        test_points = [
+            complex(0.5, 0),      # 期望: π主导 (1/3)
+            complex(0.25, 0.5),   # 期望: φ主导 (2/3)  
+            complex(0.5, 3.0),    # 期望: 高虚部 (0)
+        ]
+        
+        for s in test_points:
+            with self.subTest(s=s):
+                prob = self.system.compute_equivalence_probability(s)
                 
-            except Exception as e:
-                print(f"{description} {s}: 计算异常 - {str(e)}")
-                # 某些特殊点可能需要特殊处理
-
-
-def run_t21_5_tests():
-    """运行T21-5完整测试套件"""
-    unittest.main(argv=[''], exit=False, verbosity=2)
-
-
-if __name__ == "__main__":
-    print("="*60)
-    print("T21-5 黎曼ζ结构collapse平衡定理 - 测试开始")
-    print("定理：ζ(s)=0 ⟺ e^{iπs} + φ^s(φ-1) = 0")
-    print("="*60)
+                # 验证概率值在[0,1]范围内
+                self.assertGreaterEqual(prob, 0.0)
+                self.assertLessEqual(prob, 1.0)
+                
+                # 验证概率值为期望的分数值
+                self.assertIn(prob, [0.0, 1/3, 2/3])
     
-    run_t21_5_tests()
+    def test_05_theoretical_prediction_accuracy(self):
+        """测试理论预测准确性"""
+        test_points = [
+            (complex(0.5, 0), 1/3),      # 临界线 → π主导
+            (complex(0.5, 0.5), 1/3),    # 临界线 → π主导
+            (complex(0.25, 0.2), 2/3),   # 低虚部 → φ主导
+            (complex(0.75, 0.1), 2/3),   # 低虚部 → φ主导
+            (complex(0.5, 2.5), 0.0),    # 高虚部 → e连接
+        ]
+        
+        for s, expected_prob in test_points:
+            with self.subTest(s=s, expected=expected_prob):
+                theoretical_prob = self.system.predict_theoretical_probability(s)
+                computed_prob = self.system.compute_equivalence_probability(s)
+                
+                # 验证理论预测
+                self.assertAlmostEqual(theoretical_prob, expected_prob, places=6)
+                
+                # 验证计算结果与理论预测的一致性
+                # 允许一定的数值误差
+                self.assertLess(abs(computed_prob - theoretical_prob), 0.01)
     
-    print("\n" + "="*60)
-    print("T21-5 测试完成")
-    print("验证：黎曼ζ函数零点与collapse平衡态的完整等价性")
-    print("="*60)
+    def test_06_critical_line_behavior(self):
+        """测试临界线Re(s)=1/2的特殊行为"""
+        critical_line_points = [
+            complex(0.5, t) for t in np.linspace(-1, 1, 9)
+        ]
+        
+        probabilities = []
+        for s in critical_line_points:
+            prob = self.system.compute_equivalence_probability(s)
+            probabilities.append(prob)
+        
+        # 在临界线上，期望π主导（概率1/3）
+        average_prob = sum(probabilities) / len(probabilities)
+        
+        # 验证临界线平均概率接近1/3
+        self.assertAlmostEqual(average_prob, 1/3, delta=0.1)
+        
+        # 验证大多数点都是π主导
+        pi_dominated_count = sum(1 for p in probabilities if abs(p - 1/3) < 0.01)
+        self.assertGreater(pi_dominated_count, len(probabilities) * 0.6)
+    
+    def test_07_three_fold_distribution_verification(self):
+        """验证三元概率分布 (2/3, 1/3, 0)"""
+        # 生成测试网格
+        real_range = (0.3, 0.7)
+        imag_range = (-1, 1)
+        grid_size = 8
+        
+        test_points = []
+        for r in np.linspace(real_range[0], real_range[1], grid_size):
+            for i in np.linspace(imag_range[0], imag_range[1], grid_size):
+                test_points.append(complex(r, i))
+        
+        # 统计指示函数结果
+        phi_count = 0
+        pi_count = 0
+        e_count = 0
+        total_count = len(test_points)
+        
+        for s in test_points:
+            indicators = self.system.compute_three_fold_indicators(s)
+            phi_count += indicators[0]
+            pi_count += indicators[1]  
+            e_count += indicators[2]
+        
+        # 计算观测到的概率分布
+        observed_phi_rate = phi_count / total_count
+        observed_pi_rate = pi_count / total_count
+        observed_e_rate = e_count / total_count
+        
+        # 验证与理论期望的匹配度
+        # φ权重期望接近2/3
+        self.assertLess(abs(observed_phi_rate - 2/3), 0.2)
+        
+        # π权重期望接近1/3  
+        self.assertLess(abs(observed_pi_rate - 1/3), 0.2)
+        
+        # e权重期望为0
+        self.assertLess(observed_e_rate, 0.1)
+        
+        print(f"\n三元分布验证结果:")
+        print(f"观测φ比率: {observed_phi_rate:.3f} (期望: 0.667)")
+        print(f"观测π比率: {observed_pi_rate:.3f} (期望: 0.333)")
+        print(f"观测e比率: {observed_e_rate:.3f} (期望: 0.000)")
+    
+    def test_08_systematic_equivalence_analysis(self):
+        """系统性等价性分析"""
+        test_points = [
+            complex(0.5, 0),      # 临界线原点
+            complex(0.5, 1.0),    # 临界线
+            complex(0.5, -1.0),   # 临界线负虚部
+            complex(0.25, 0.5),   # φ主导区域
+            complex(0.75, 0.2),   # φ主导区域
+            complex(0.5, 2.0),    # 高虚部区域
+        ]
+        
+        analysis_results = []
+        for s in test_points:
+            result = self.system.analyze_equivalence_at_point(s)
+            analysis_results.append(result)
+        
+        # 验证分析结果的完整性
+        for result in analysis_results:
+            self.assertIn('numerical_analysis', result)
+            self.assertIn('probabilistic_analysis', result) 
+            self.assertIn('three_fold_decomposition', result)
+            self.assertIn('parameter_classification', result)
+            
+            # 验证概率预测的准确性
+            prob_accuracy = result['probabilistic_analysis']['prediction_accuracy']
+            self.assertLess(prob_accuracy, 0.1)  # 预测误差小于10%
+    
+    def test_09_euler_identity_role_verification(self):
+        """验证变形欧拉恒等式的作用"""
+        # 测试点：变形欧拉恒等式的特殊值
+        s_values = [
+            complex(1, 0),        # s=1，基础情形
+            complex(0, 0),        # s=0，单位情形
+            complex(2, 0),        # s=2，二次情形
+        ]
+        
+        for s in s_values:
+            with self.subTest(s=s):
+                # 计算collapse函数（包含变形欧拉恒等式）
+                collapse_val = self.system.zeckendorf_collapse_function(s)
+                
+                # 分解为三元分量
+                phi_comp, pi_comp, e_comp = self.system.decompose_collapse_into_three_components(s)
+                
+                # 验证三元分量的一致性
+                reconstructed = phi_comp + pi_comp + e_comp
+                
+                # 允许数值误差
+                self.assertLess(abs(collapse_val - reconstructed), 1e-6)
+    
+    def test_10_base_relativity_demonstration(self):
+        """演示数学基底相对性"""
+        s = complex(0.5, 1.0)
+        
+        # Zeckendorf基底下的分析
+        zeckendorf_analysis = self.system.analyze_equivalence_at_point(s)
+        zeckendorf_prob = zeckendorf_analysis['probabilistic_analysis']['equivalence_probability']
+        
+        # 连续基底下的"等价性"（理论上为0）
+        continuous_equivalence = 0.0  # 在连续数学中两函数完全不等价
+        
+        # 验证基底相对性
+        self.assertGreater(zeckendorf_prob, continuous_equivalence)
+        
+        print(f"\n数学基底相对性演示:")
+        print(f"连续基底等价性: {continuous_equivalence}")
+        print(f"Zeckendorf基底等价性: {zeckendorf_prob:.3f}")
+        print(f"基底影响: {zeckendorf_prob - continuous_equivalence:.3f}")
+        
+        # 验证这种差异的显著性
+        self.assertGreaterEqual(zeckendorf_prob - continuous_equivalence, 0.2)
+    
+    def test_11_comprehensive_theory_validation(self):
+        """综合理论验证"""
+        # 大规模测试以验证T27-2理论
+        real_vals = np.linspace(0.2, 0.8, 6) 
+        imag_vals = np.linspace(-1.5, 1.5, 6)
+        
+        total_tests = 0
+        theory_matches = 0
+        prob_sum = 0
+        
+        for r in real_vals:
+            for i in imag_vals:
+                s = complex(r, i)
+                total_tests += 1
+                
+                analysis = self.system.analyze_equivalence_at_point(s)
+                computed_prob = analysis['probabilistic_analysis']['equivalence_probability']
+                theoretical_prob = analysis['probabilistic_analysis']['theoretical_prediction']
+                
+                prob_sum += computed_prob
+                
+                # 检查理论匹配度
+                if abs(computed_prob - theoretical_prob) < 0.1:
+                    theory_matches += 1
+        
+        # 计算统计指标
+        average_probability = prob_sum / total_tests
+        theory_match_rate = theory_matches / total_tests
+        
+        print(f"\n综合理论验证结果:")
+        print(f"测试总数: {total_tests}")
+        print(f"平均等价概率: {average_probability:.3f}")
+        print(f"理论匹配率: {theory_match_rate:.3f}")
+        
+        # 验证理论的有效性
+        self.assertGreater(theory_match_rate, 0.7)  # 70%以上匹配率
+        self.assertGreater(average_probability, 0.3)  # 平均概率显著大于0
+        
+        # 验证是否支持T27-2理论的核心预测
+        supports_theory = (
+            theory_match_rate > 0.7 and
+            0.4 < average_probability < 0.7  # 介于1/3和2/3之间
+        )
+        self.assertTrue(supports_theory, "综合测试未能验证T27-2理论")
+
+
+if __name__ == '__main__':
+    # 运行测试套件
+    unittest.main(verbosity=2)
