@@ -29,8 +29,9 @@
 
 ### Zeckendorf投影算子
 **定义C16-1.1**: 投影到最近Zeckendorf点
-$$\Pi_\mathcal{Z}(x) = \arg\min_{z \in \mathcal{Z}} \|x - z\|$$
-
+$$
+\Pi_\mathcal{Z}(x) = \arg\min_{z \in \mathcal{Z}} \|x - z\|
+$$
 算法实现：
 1. 分解$|x|$为Fibonacci数和（贪心算法）
 2. 保持原始符号
@@ -38,9 +39,12 @@ $$\Pi_\mathcal{Z}(x) = \arg\min_{z \in \mathcal{Z}} \|x - z\|$$
 
 ### Fibonacci步长序列
 **定义C16-1.2**: 步长衰减律
-$$\alpha_n = \frac{F_{n-1}}{F_n}, \quad n \geq 2$$
-$$\alpha_1 = 1$$
-
+$$
+\alpha_n = \frac{F_{n-1}}{F_n}, \quad n \geq 2
+$$
+$$
+\alpha_1 = 1
+$$
 性质：
 - $\lim_{n \to \infty} \alpha_n = \varphi^{-1}$
 - $\alpha_{n+1} < \alpha_n$
@@ -51,30 +55,39 @@ $$\alpha_1 = 1$$
 ### 推论C16-1.1：梯度下降收敛性
 
 **陈述**: 对于L-Lipschitz连续可微函数$f$，Zeckendorf约束梯度下降
-$$x_{n+1} = \Pi_\mathcal{Z}[x_n - \alpha_n \nabla f(x_n)]$$
+$$
+x_{n+1} = \Pi_\mathcal{Z}[x_n - \alpha_n \nabla f(x_n)]
+$$
 满足：
-$$f(x_n) - f(x^*) \leq \frac{L\|x_0 - x^*\|^2}{2\sum_{k=1}^n \alpha_k}$$
-
+$$
+f(x_n) - f(x^*) \leq \frac{L\|x_0 - x^*\|^2}{2\sum_{k=1}^n \alpha_k}
+$$
 ### 推论C16-1.2：收敛速率
 
 **陈述**: 强凸情况下（$\mu > 0$），收敛速率
-$$\|x_n - x^*\| \leq \left(\frac{L - \mu}{L + \mu}\right)^n \|x_0 - x^*\| \cdot \varphi^{-\lfloor n/2 \rfloor}$$
-
+$$
+\|x_n - x^*\| \leq \left(\frac{L - \mu}{L + \mu}\right)^n \|x_0 - x^*\| \cdot \varphi^{-\lfloor n/2 \rfloor}
+$$
 ### 推论C16-1.3：梯度Fibonacci界
 
 **陈述**: 梯度范数满足
-$$\|\nabla f(x_n)\| \leq \frac{L \cdot \text{dist}(x_0, \mathcal{X}^*)}{F_n}$$
+$$
+\|\nabla f(x_n)\| \leq \frac{L \cdot \text{dist}(x_0, \mathcal{X}^*)}{F_n}
+$$
 其中$\mathcal{X}^*$是最优解集。
 
 ### 推论C16-1.4：熵增保证
 
 **陈述**: 搜索过程的累积熵
-$$H_{\text{total}}(n) = \sum_{k=1}^n H_k \geq \log F_n$$
-
+$$
+H_{\text{total}}(n) = \sum_{k=1}^n H_k \geq \log F_n
+$$
 ### 推论C16-1.5：振荡周期性
 
 **陈述**: 收敛路径的振荡满足
-$$x_{n+T} - x^* \approx \varphi^{-T}(x_n - x^*)$$
+$$
+x_{n+T} - x^* \approx \varphi^{-T}(x_n - x^*)
+$$
 其中$T = \lfloor \log_\varphi n \rfloor$
 
 ## 算法规范
@@ -145,20 +158,25 @@ function project_to_zeckendorf(x):
 ## 验证条件
 
 ### V1: 步长收敛验证
-$$\left|\alpha_n - \varphi^{-1}\right| < \frac{1}{F_n}$$
-
+$$
+\left|\alpha_n - \varphi^{-1}\right| < \frac{1}{F_n}
+$$
 ### V2: 目标函数下降
-$$f(x_{n+1}) \leq f(x_n) - \frac{\alpha_n}{2}\|\nabla f(x_n)\|^2 + \frac{L\alpha_n^2}{2}\|\nabla f(x_n)\|^2$$
-
+$$
+f(x_{n+1}) \leq f(x_n) - \frac{\alpha_n}{2}\|\nabla f(x_n)\|^2 + \frac{L\alpha_n^2}{2}\|\nabla f(x_n)\|^2
+$$
 ### V3: 梯度界验证
-$$\|\nabla f(x_n)\| \leq \frac{L \cdot C_0}{F_n}$$
-
+$$
+\|\nabla f(x_n)\| \leq \frac{L \cdot C_0}{F_n}
+$$
 ### V4: 熵增验证
-$$H_{n+1} - H_n \geq 0$$
-
+$$
+H_{n+1} - H_n \geq 0
+$$
 ### V5: Zeckendorf约束验证
-$$x_n = \sum_{k \in S_n} F_k, \quad |S_n \cap (S_n - 1)| = 0$$
-
+$$
+x_n = \sum_{k \in S_n} F_k, \quad |S_n \cap (S_n - 1)| = 0
+$$
 ## 复杂度分析
 
 ### 时间复杂度
@@ -178,14 +196,17 @@ $$x_n = \sum_{k \in S_n} F_k, \quad |S_n \cap (S_n - 1)| = 0$$
 ## 数值稳定性
 
 ### 条件数
-$$\kappa = \frac{L}{\mu} \cdot \varphi$$
-
+$$
+\kappa = \frac{L}{\mu} \cdot \varphi
+$$
 ### 舍入误差
-$$|x_n^{\text{computed}} - x_n^{\text{exact}}| = O(\epsilon_{\text{machine}} \cdot F_n)$$
-
+$$
+|x_n^{\text{computed}} - x_n^{\text{exact}}| = O(\epsilon_{\text{machine}} \cdot F_n)
+$$
 ### 投影误差
-$$\|\Pi_\mathcal{Z}(x) - x\| \leq F_{\lfloor \log_\varphi |x| \rfloor}$$
-
+$$
+\|\Pi_\mathcal{Z}(x) - x\| \leq F_{\lfloor \log_\varphi |x| \rfloor}
+$$
 ## 实现要求
 
 ### 数据结构
@@ -240,8 +261,9 @@ $$\|\Pi_\mathcal{Z}(x) - x\| \leq F_{\lfloor \log_\varphi |x| \rfloor}$$
 - 非凸: 收敛到驻点
 
 ### 最优性差距
-$$f(x_n) - f(x^*) \leq \frac{2L\|x_0 - x^*\|^2}{F_n}$$
-
+$$
+f(x_n) - f(x^*) \leq \frac{2L\|x_0 - x^*\|^2}{F_n}
+$$
 ---
 
 **形式化验证清单**:

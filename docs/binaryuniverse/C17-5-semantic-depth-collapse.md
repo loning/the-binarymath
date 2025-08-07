@@ -9,21 +9,27 @@
 **推论 C17-5** (语义深度Collapse推论): 在Zeckendorf编码的二进制宇宙中，系统的语义深度等于其collapse到不动点所需的最小步数，且满足对数压缩关系：
 
 1. **语义深度定义**:
-   $$
+   
+$$
    \text{Depth}_{\text{sem}}(S) = \min\{n \in \mathbb{N}: \text{Collapse}^n(S) = \text{Collapse}^{n+1}(S)\}
-   $$
+   
+$$
    语义深度是达到collapse不动点的最小迭代次数。
 
 2. **深度-复杂度对应**:
-   $$
+   
+$$
    \text{Depth}_{\text{sem}}(S) = \lceil \log_\phi(K(S)) \rceil
-   $$
+   
+$$
    其中$K(S)$是系统的Kolmogorov复杂度。
 
 3. **递归collapse收敛**:
-   $$
+   
+$$
    \forall S \in \mathcal{Z}_n: \exists d \leq F_{n+2}: \text{Collapse}^d(S) = S^*
-   $$
+   
+$$
    任何n位Zeckendorf状态在Fibonacci界限内收敛。
 
 ## 证明

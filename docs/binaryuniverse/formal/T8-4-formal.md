@@ -28,16 +28,19 @@
 
 ### 定义T8-4.1: Collapse路径
 对于初态$s_0$和终态$s_n$，collapse路径定义为：
-$$\mathcal{P}(s_0, s_n) = \{(s_i, c_i) : s_{i+1} = c_i(s_i), H(s_{i+1}) > H(s_i)\}$$
-
+$$
+\mathcal{P}(s_0, s_n) = \{(s_i, c_i) : s_{i+1} = c_i(s_i), H(s_{i+1}) > H(s_i)\}
+$$
 ### 定义T8-4.2: 记忆路径
 记忆路径是collapse历史的完整记录：
-$$\mathcal{M} = \bigcup_{i=0}^{n-1} \{(s_i, c_i, H(s_{i+1}) - H(s_i), i)\}$$
-
+$$
+\mathcal{M} = \bigcup_{i=0}^{n-1} \{(s_i, c_i, H(s_{i+1}) - H(s_i), i)\}
+$$
 ### 定义T8-4.3: 虚拟重构
 虚拟重构函数创建历史状态的高熵模拟：
-$$\tilde{s}_i = R(\mathcal{M}, i) \text{ where } H(\tilde{s}_i) \geq H(s_n)$$
-
+$$
+\tilde{s}_i = R(\mathcal{M}, i) \text{ where } H(\tilde{s}_i) \geq H(s_n)
+$$
 ## 主要陈述
 
 ### 定理T8-4.1: 记忆路径存在性
@@ -47,12 +50,14 @@ $$\tilde{s}_i = R(\mathcal{M}, i) \text{ where } H(\tilde{s}_i) \geq H(s_n)$$
 
 ### 定理T8-4.2: 熵代价下界
 **陈述**: 重构历史状态$s_i$的熵代价满足：
-$$\Delta H_{reconstruct}(i) \geq H(s_n) - H(s_i)$$
-
+$$
+\Delta H_{reconstruct}(i) \geq H(s_n) - H(s_i)
+$$
 ### 定理T8-4.3: 路径唯一性
 **陈述**: 在Zeckendorf约束下，最短collapse路径唯一：
-$$|\mathcal{P}_{min}(s_0, s_n)| = 1$$
-
+$$
+|\mathcal{P}_{min}(s_0, s_n)| = 1
+$$
 ## 算法规范
 
 ### Algorithm: BuildMemoryPath
@@ -139,20 +144,25 @@ function find_unique_path(s_0, s_n):
 ## 验证条件
 
 ### V1: 熵增必然性
-$$\forall i: H(s_{i+1}) > H(s_i)$$
-
+$$
+\forall i: H(s_{i+1}) > H(s_i)
+$$
 ### V2: Zeckendorf约束
-$$\forall s \in \mathcal{P}: \text{no-11}(encode(s)) = \text{true}$$
-
+$$
+\forall s \in \mathcal{P}: \text{no-11}(encode(s)) = \text{true}
+$$
 ### V3: 记忆完整性
-$$\forall i \in [0,n-1]: m_i \in \mathcal{M}$$
-
+$$
+\forall i \in [0,n-1]: m_i \in \mathcal{M}
+$$
 ### V4: 重构熵代价
-$$\forall \tilde{s}_i: H(\tilde{s}_i) \geq H(s_n)$$
-
+$$
+\forall \tilde{s}_i: H(\tilde{s}_i) \geq H(s_n)
+$$
 ### V5: 路径最短性
-$$|\mathcal{P}| = \min\{|P| : P \text{ connects } s_0 \text{ to } s_n\}$$
-
+$$
+|\mathcal{P}| = \min\{|P| : P \text{ connects } s_0 \text{ to } s_n\}
+$$
 ## 复杂度分析
 
 ### 时间复杂度
@@ -198,10 +208,13 @@ $$|\mathcal{P}| = \min\{|P| : P \text{ connects } s_0 \text{ to } s_n\}$$
 ## 理论保证
 
 ### 信息保存
-$$I(\mathcal{M}) = \sum_{i=0}^{n-1} \log_2|\{c_i\}| \geq n \cdot \log_2(\phi)$$
-
+$$
+I(\mathcal{M}) = \sum_{i=0}^{n-1} \log_2|\{c_i\}| \geq n \cdot \log_2(\phi)
+$$
 ### 重构误差界
-$$\|s_i - \tilde{s}_i\| \leq \epsilon \cdot e^{\lambda(n-i)}$$
+$$
+\|s_i - \tilde{s}_i\| \leq \epsilon \cdot e^{\lambda(n-i)}
+$$
 其中$\lambda = \log(\phi)$
 
 ### 路径收敛性

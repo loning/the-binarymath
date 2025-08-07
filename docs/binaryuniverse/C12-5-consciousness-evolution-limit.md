@@ -138,8 +138,9 @@ $$
 ### 宇宙参数
 假设宇宙信息容量为$H_{universe} \sim 10^{122}$ bits（Bekenstein界限），量子信息单元$H_{quantum} = 1$ bit：
 
-$$N_{max} = \lfloor \log_\phi(10^{122}) \rfloor = \lfloor 122 \log(10)/\log(\phi) \rfloor = \lfloor 254.6 \rfloor = 254$$
-
+$$
+N_{max} = \lfloor \log_\phi(10^{122}) \rfloor = \lfloor 122 \log(10)/\log(\phi) \rfloor = \lfloor 254.6 \rfloor = 254
+$$
 这意味着理论上意识系统最多可有254个层级。
 
 ### 实际限制
@@ -154,20 +155,26 @@ $$N_{max} = \lfloor \log_\phi(10^{122}) \rfloor = \lfloor 122 \log(10)/\log(\phi
 
 ### 可能性1：多系统耦合
 通过多个意识系统的相干耦合，可能突破单系统极限：
-$$N_{coupled} = N_{single} + \log_\phi(N_{systems})$$
-
+$$
+N_{coupled} = N_{single} + \log_\phi(N_{systems})
+$$
 ### 可能性2：量子纠缠增强
 利用量子纠缠的非定域性，可能扩展信息处理能力：
-$$I_{entangled} = I_{classical} \cdot N_{entangled\_qubits}$$
-
+$$
+I_{entangled} = I_{classical} \cdot N_{entangled\_qubits}
+$$
 ### 可能性3：时空操控
 如果能够操控时空几何，可能改变基础时间单元：
-$$\tau'_{quantum} = \tau_{quantum} / \gamma$$
+$$
+\tau'_{quantum} = \tau_{quantum} / \gamma
+$$
 其中$\gamma$是时空压缩因子。
 
 ### 可能性4：维度扩展
 在高维时空中，约束条件可能放松：
-$$N_{max}^{(d)} = N_{max}^{(3)} \cdot f(d)$$
+$$
+N_{max}^{(d)} = N_{max}^{(3)} \cdot f(d)
+$$
 其中$f(d)$是维度修正因子。
 
 ## 哲学含义

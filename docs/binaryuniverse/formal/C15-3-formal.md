@@ -28,21 +28,25 @@
 
 ### 策略Zeckendorf编码
 **定义C15-3.1**: 策略的最小Zeckendorf表示
-$$\mathcal{Z}: \mathcal{S} \to \mathbb{F}$$
-$$\mathcal{Z}(C) = F_2 = 1, \quad \mathcal{Z}(D) = F_3 = 2$$
-
+$$
+\mathcal{Z}: \mathcal{S} \to \mathbb{F}
+$$
+$$
+\mathcal{Z}(C) = F_2 = 1, \quad \mathcal{Z}(D) = F_3 = 2
+$$
 满足无连续11约束且最小化编码长度。
 
 ### 囚徒困境φ-优化
 **定义C15-3.2**: φ-优化的支付矩阵
-$$A = \begin{pmatrix}
+$$
+A = \begin{pmatrix}
 1 & 0 \\
 \varphi & \varphi^{-2}
 \end{pmatrix} = \begin{pmatrix}
 1 & 0 \\
 1.618 & 0.382
-\end{pmatrix}$$
-
+\end{pmatrix}
+$$
 满足囚徒困境条件：$T > R > P > S$
 
 ## 主要陈述
@@ -50,19 +54,23 @@ $$A = \begin{pmatrix}
 ### 推论C15-3.1：合作涌现阈值
 
 **陈述**: 合作稳定涌现的临界频率
-$$x_c^* = \varphi^{-1} = \frac{\sqrt{5} - 1}{2} \approx 0.618$$
-
+$$
+x_c^* = \varphi^{-1} = \frac{\sqrt{5} - 1}{2} \approx 0.618
+$$
 **稳定性条件**:
-$$x_c \geq x_c^* \Rightarrow \frac{d x_c}{dt} \geq 0$$
-
+$$
+x_c \geq x_c^* \Rightarrow \frac{d x_c}{dt} \geq 0
+$$
 ### 推论C15-3.2：熵增驱动机制
 
 **陈述**: 合作增加系统总熵
-$$\Delta H_{coop} = H(x_c > x_c^*) - H(x_c = 0) > 0$$
-
+$$
+\Delta H_{coop} = H(x_c > x_c^*) - H(x_c = 0) > 0
+$$
 **熵计算**:
-$$H_{total} = H_{mix}(x_c) + x_c \cdot H_{interact}(n)$$
-
+$$
+H_{total} = H_{mix}(x_c) + x_c \cdot H_{interact}(n)
+$$
 其中：
 - $H_{mix} = -x_c\log x_c - (1-x_c)\log(1-x_c)$
 - $H_{interact}(n) = \log n$
@@ -70,24 +78,29 @@ $$H_{total} = H_{mix}(x_c) + x_c \cdot H_{interact}(n)$$
 ### 推论C15-3.3：合作簇分形结构
 
 **陈述**: 合作簇大小分布
-$$P(s) = C \cdot s^{-\tau}, \quad \tau = 1 + \varphi$$
-
+$$
+P(s) = C \cdot s^{-\tau}, \quad \tau = 1 + \varphi
+$$
 **归一化常数**:
-$$C = \frac{1}{\sum_{k=2}^{\infty} F_k^{-(1+\varphi)}}$$
-
+$$
+C = \frac{1}{\sum_{k=2}^{\infty} F_k^{-(1+\varphi)}}
+$$
 ### 推论C15-3.4：最优互惠强度
 
 **陈述**: 直接互惠的黄金比例
-$$w^* = \varphi^{-2} = \frac{3 - \sqrt{5}}{2} \approx 0.382$$
-
+$$
+w^* = \varphi^{-2} = \frac{3 - \sqrt{5}}{2} \approx 0.382
+$$
 **优化原理**:
-$$w^* = \arg\max_w \left[I(A_t; A_{t+1}) - \lambda \cdot C(w)\right]$$
-
+$$
+w^* = \arg\max_w \left[I(A_t; A_{t+1}) - \lambda \cdot C(w)\right]
+$$
 ### 推论C15-3.5：合作网络拓扑
 
 **陈述**: 合作网络的度分布
-$$P(k) \sim k^{-\gamma}, \quad \gamma = 2\varphi - 1$$
-
+$$
+P(k) \sim k^{-\gamma}, \quad \gamma = 2\varphi - 1
+$$
 ## 算法规范
 
 ### Algorithm: CooperationEmergence
@@ -148,21 +161,26 @@ function generate_cooperation_clusters(x_c, N):
 ## 验证条件
 
 ### V1: 合作阈值验证
-$$|x_c^* - \varphi^{-1}| < \epsilon$$
-
+$$
+|x_c^* - \varphi^{-1}| < \epsilon
+$$
 ### V2: 熵增验证
 对于$x_c > x_c^*$:
-$$\frac{dH}{dt} > 0$$
-
+$$
+\frac{dH}{dt} > 0
+$$
 ### V3: 簇分布验证
-$$\left|\frac{\log P(s)}{\log s} + \tau\right| < \delta$$
-
+$$
+\left|\frac{\log P(s)}{\log s} + \tau\right| < \delta
+$$
 ### V4: 互惠强度验证
-$$|w^* - \varphi^{-2}| < \epsilon$$
-
+$$
+|w^* - \varphi^{-2}| < \epsilon
+$$
 ### V5: 收益比验证
-$$\left|\frac{T}{R} - \varphi\right| < \epsilon, \quad \left|\frac{R}{P} - \varphi^2\right| < \epsilon$$
-
+$$
+\left|\frac{T}{R} - \varphi\right| < \epsilon, \quad \left|\frac{R}{P} - \varphi^2\right| < \epsilon
+$$
 ## 复杂度分析
 
 ### 时间复杂度
@@ -179,11 +197,13 @@ $$\left|\frac{T}{R} - \varphi\right| < \epsilon, \quad \left|\frac{R}{P} - \varp
 
 ### 条件数
 演化方程的条件数：
-$$\kappa \leq \varphi^2$$
-
+$$
+\kappa \leq \varphi^2
+$$
 ### 舍入误差
-$$|x_c^{computed} - x_c^{exact}| = O(\epsilon_{machine} \cdot t)$$
-
+$$
+|x_c^{computed} - x_c^{exact}| = O(\epsilon_{machine} \cdot t)
+$$
 ## 实现要求
 
 ### 数据结构

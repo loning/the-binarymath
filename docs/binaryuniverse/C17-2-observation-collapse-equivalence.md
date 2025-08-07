@@ -9,21 +9,27 @@
 **推论 C17-2** (观察Collapse等价推论): 在Zeckendorf编码的二进制宇宙中，观察操作与collapse操作在数学上等价：
 
 1. **观察即Collapse**:
-   $$
+   
+$$
    \text{Obs}(S, \mathcal{O}) = \text{Collapse}(S \otimes \mathcal{O})
-   $$
+   
+$$
    观察操作等价于系统与观察者联合态的collapse。
 
 2. **Collapse的观察者解释**:
-   $$
+   
+$$
    \text{Collapse}(S) = \lim_{n \to \infty} \text{Obs}_n(S, \mathcal{O}_{\text{minimal}})
-   $$
+   
+$$
    任何collapse都可理解为最小观察者的极限观察。
 
 3. **熵增等价性**:
-   $$
+   
+$$
    \Delta H_{\text{Obs}} = \Delta H_{\text{Collapse}} = \log_2(\phi) \cdot \text{depth}
-   $$
+   
+$$
    观察和collapse产生相同的熵增模式。
 
 ## 证明

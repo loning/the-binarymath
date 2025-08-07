@@ -22,8 +22,9 @@
 在Zeckendorf编码系统中，每个状态的结构张力来源于：
 
 **定义T8-6.1**: 状态$s$的结构张力定义为：
-$$\mathcal{T}(s) = \sum_{i=1}^{L} F_i \cdot b_i \cdot (1 - b_{i+1})$$
-
+$$
+\mathcal{T}(s) = \sum_{i=1}^{L} F_i \cdot b_i \cdot (1 - b_{i+1})
+$$
 其中：
 - $F_i$是第$i$个Fibonacci数
 - $b_i \in \{0,1\}$是Zeckendorf表示的第$i$位
@@ -48,18 +49,21 @@ $$\mathcal{T}(s) = \sum_{i=1}^{L} F_i \cdot b_i \cdot (1 - b_{i+1})$$
 **重构张力**: $\mathcal{T}(\tilde{s}_i) = \mathcal{T}(s_i) + \Delta \mathcal{T}_{compensation}$
 
 其中补偿张力满足：
-$$\Delta \mathcal{T}_{compensation} = \mathcal{T}(s_n) - \mathcal{T}(s_i) + \mathcal{T}_{entropy\_cost}$$
-
+$$
+\Delta \mathcal{T}_{compensation} = \mathcal{T}(s_n) - \mathcal{T}(s_i) + \mathcal{T}_{entropy\_cost}
+$$
 ### 第四步：张力守恒定律的证明
 
 **总张力计算**:
 
 重构前系统总张力：
-$$\mathcal{T}_{before} = \mathcal{T}(s_n) + \sum_{j=0}^{n-1} \mathcal{T}_{memory}(m_j)$$
-
+$$
+\mathcal{T}_{before} = \mathcal{T}(s_n) + \sum_{j=0}^{n-1} \mathcal{T}_{memory}(m_j)
+$$
 重构后系统总张力：
-$$\mathcal{T}_{after} = \mathcal{T}(\tilde{s}_i) + \mathcal{T}_{residual}(s_n) + \sum_{j=0}^{n-1} \mathcal{T}_{memory}(m_j)$$
-
+$$
+\mathcal{T}_{after} = \mathcal{T}(\tilde{s}_i) + \mathcal{T}_{residual}(s_n) + \sum_{j=0}^{n-1} \mathcal{T}_{memory}(m_j)
+$$
 其中：
 - $\mathcal{T}_{residual}(s_n)$是重构后系统的剩余张力
 - $\mathcal{T}_{memory}(m_j)$是记忆路径中保存的张力
@@ -67,16 +71,24 @@ $$\mathcal{T}_{after} = \mathcal{T}(\tilde{s}_i) + \mathcal{T}_{residual}(s_n) +
 **关键证明步骤**：
 
 1. 虚拟重构过程：
-   $$\mathcal{T}(\tilde{s}_i) = \mathcal{T}(s_i) + [H(\tilde{s}_i) - H(s_i)] \cdot \phi$$
-
-2. 剩余张力计算：
-   $$\mathcal{T}_{residual}(s_n) = \mathcal{T}(s_n) - [H(\tilde{s}_i) - H(s_i)] \cdot \phi$$
-
-3. 总张力守恒：
-   $$\mathcal{T}_{after} = \mathcal{T}(s_i) + [H(\tilde{s}_i) - H(s_i)] \cdot \phi + \mathcal{T}(s_n) - [H(\tilde{s}_i) - H(s_i)] \cdot \phi + \sum \mathcal{T}_{memory}$$
    
-   $$= \mathcal{T}(s_i) + \mathcal{T}(s_n) + \sum \mathcal{T}_{memory} = \mathcal{T}_{before}$$
-
+$$
+\mathcal{T}(\tilde{s}_i) = \mathcal{T}(s_i) + [H(\tilde{s}_i) - H(s_i)] \cdot \phi
+$$
+2. 剩余张力计算：
+   
+$$
+\mathcal{T}_{residual}(s_n) = \mathcal{T}(s_n) - [H(\tilde{s}_i) - H(s_i)] \cdot \phi
+$$
+3. 总张力守恒：
+   
+$$
+\mathcal{T}_{after} = \mathcal{T}(s_i) + [H(\tilde{s}_i) - H(s_i)] \cdot \phi + \mathcal{T}(s_n) - [H(\tilde{s}_i) - H(s_i)] \cdot \phi + \sum \mathcal{T}_{memory}
+$$
+   
+$$
+= \mathcal{T}(s_i) + \mathcal{T}(s_n) + \sum \mathcal{T}_{memory} = \mathcal{T}_{before}
+$$
 ### 第五步：Zeckendorf特殊性质下的张力特征
 
 在Zeckendorf编码约束下，张力分布具有特殊模式：
@@ -86,26 +98,31 @@ $$\mathcal{T}_{after} = \mathcal{T}(\tilde{s}_i) + \mathcal{T}_{residual}(s_n) +
 3. **no-11效应**: 连续位被禁止导致张力"跳跃"分布
 
 **张力密度分布**:
-$$\rho_{\mathcal{T}}(k) = \frac{F_k}{\sum_{i=1}^{L} F_i} \cdot \left(1 - \frac{1}{\phi^{k-1}}\right)$$
-
+$$
+\rho_{\mathcal{T}}(k) = \frac{F_k}{\sum_{i=1}^{L} F_i} \cdot \left(1 - \frac{1}{\phi^{k-1}}\right)
+$$
 ## 推论
 
 ### 推论T8-6.1：最小张力原理
 Zeckendorf表示是给定值的最小张力编码：
-$$\mathcal{T}_{zeck}(n) = \min_{\{b_i\}} \sum_{i} F_i \cdot b_i \text{ subject to no-11}$$
-
+$$
+\mathcal{T}_{zeck}(n) = \min_{\{b_i\}} \sum_{i} F_i \cdot b_i \text{ subject to no-11}
+$$
 ### 推论T8-6.2：张力熵关系
 张力与熵之间存在精确关系：
-$$\frac{d\mathcal{T}}{dH} = \phi \cdot \log(\phi) \approx 0.481$$
-
+$$
+\frac{d\mathcal{T}}{dH} = \phi \cdot \log(\phi) \approx 0.481
+$$
 ### 推论T8-6.3：倒流张力界限
 虚拟重构的张力成本有界：
-$$\Delta \mathcal{T}_{cost} \leq \phi^2 \cdot (H_{final} - H_{initial})$$
-
+$$
+\Delta \mathcal{T}_{cost} \leq \phi^2 \cdot (H_{final} - H_{initial})
+$$
 ### 推论T8-6.4：张力相变点
 当重构跨度超过临界值时，发生张力相变：
-$$\Delta t_{critical} = \frac{\ln(\phi)}{\langle \dot{H} \rangle}$$
-
+$$
+\Delta t_{critical} = \frac{\ln(\phi)}{\langle \dot{H} \rangle}
+$$
 ## 物理意义
 
 1. **信息几何**: 结构张力反映了信息在Zeckendorf空间中的几何曲率
@@ -174,7 +191,7 @@ class StructuralTensionSystem:
 
 ## 实验验证预言
 
-1. **张力守恒测试**: 虚拟重构过程中总张力误差<10^-10
+1. **张力守恒测试**: 虚拟重构过程中总张力误差$<10^{-10}$
 2. **张力转移模式**: 重构时张力按Fibonacci比例重新分配
 3. **临界跨度效应**: 超过临界时间跨度时张力成本急剧增加
 4. **no-11约束影响**: 违反约束导致张力"爆炸"式增长

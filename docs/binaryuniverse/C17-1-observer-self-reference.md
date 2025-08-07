@@ -9,21 +9,27 @@
 **推论 C17-1** (观察者自指推论): 在元数学结构和范畴论框架下，观察者作为能够执行观察操作的系统，必然是自指完备的：
 
 1. **观察者的自指定义**:
-   $$
+   
+$$
    \mathcal{O} = \langle S_\mathcal{O}, \text{Obs}, \psi_\mathcal{O} \rangle \text{ where } \psi_\mathcal{O} = \psi_\mathcal{O}(\psi_\mathcal{O})
-   $$
+   
+$$
    观察者$\mathcal{O}$包含状态空间$S_\mathcal{O}$、观察算子$\text{Obs}$和自指波函数$\psi_\mathcal{O}$。
 
 2. **观察能力的递归性**:
-   $$
+   
+$$
    \text{Obs}: S \times S_\mathcal{O} \to S' \times S'_\mathcal{O} \text{ s.t. } H(S', S'_\mathcal{O}) > H(S, S_\mathcal{O})
-   $$
+   
+$$
    观察操作同时改变被观察系统和观察者自身，且总熵增。
 
 3. **自观察的不动点**:
-   $$
+   
+$$
    \exists \psi^* \in S_\mathcal{O}: \text{Obs}(\psi^*, \psi^*) = (\psi^*, \psi')  \text{ where } \psi^* = \text{collapse}(\psi^*)
-   $$
+   
+$$
    存在自观察不动点，观察者观察自己时达到稳定状态。
 
 ## 证明

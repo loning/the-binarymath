@@ -26,52 +26,60 @@
 
 ### 定义C12-4.1: 层级跃迁
 层级跃迁$(L_i, L_j)$定义为：
-$$\text{Transition}_{i \to j} = (L_i, s_i) \mapsto (L_j, s_j)$$
-
+$$
+\text{Transition}_{i \to j} = (L_i, s_i) \mapsto (L_j, s_j)
+$$
 其中$(s_i, s_j) \in \mathcal{S}_i \times \mathcal{S}_j$是状态对。
 
 ### 定义C12-4.2: 跃迁类型
 跃迁类型函数$\tau: \mathcal{T} \to \{\uparrow, \leftrightarrow, \downarrow\}$：
-$$\tau(L_i, L_j) = \begin{cases}
+$$
+\tau(L_i, L_j) = \begin{cases}
 \uparrow & \text{if } j > i \text{ (向上跃迁)} \\
 \leftrightarrow & \text{if } j = i \text{ (同层跃迁)} \\
 \downarrow & \text{if } j < i \text{ (向下跃迁)}
-\end{cases}$$
-
+\end{cases}
+$$
 ### 定义C12-4.3: Fibonacci约束
 有效跃迁必须满足Fibonacci约束：
-$$\text{ValidTransition}(L_i, L_j) \Leftrightarrow \delta_{Fib}(|j-i|) = 1$$
-
+$$
+\text{ValidTransition}(L_i, L_j) \Leftrightarrow \delta_{Fib}(|j-i|) = 1
+$$
 其中：
-$$\delta_{Fib}(n) = \begin{cases}
+$$
+\delta_{Fib}(n) = \begin{cases}
 1 & \text{if } n \in \mathcal{F} \\
 0 & \text{otherwise}
-\end{cases}$$
-
+\end{cases}
+$$
 ### 定义C12-4.4: 跃迁信息代价
 跃迁信息代价函数：
-$$I_{i \to j} = \begin{cases}
+$$
+I_{i \to j} = \begin{cases}
 \phi^{j-i} \cdot \mathcal{H}_i(s_i) & \text{if } j > i \\
 \mathcal{H}_i(s_i) / \phi^{i-j} & \text{if } j < i \\
 \alpha \cdot \mathcal{H}_i(s_i) & \text{if } j = i
-\end{cases}$$
-
+\end{cases}
+$$
 其中$\alpha \in [0.1, 0.3]$是同层跃迁系数，$I_{i \to j}$以bits为单位。
 
 ## 主要陈述
 
 ### 定理C12-4.1: 跃迁熵增定律
 **陈述**: 所有有效跃迁必须满足系统总熵增：
-$$\forall (L_i, L_j) \in \mathcal{T}_{valid}: \Delta H_{system} = \mathcal{H}_j(s_j) + I_{i \to j} - \mathcal{H}_i(s_i) \geq 0$$
-
+$$
+\forall (L_i, L_j) \in \mathcal{T}_{valid}: \Delta H_{system} = \mathcal{H}_j(s_j) + I_{i \to j} - \mathcal{H}_i(s_i) \geq 0
+$$
 ### 定理C12-4.2: Fibonacci跳跃唯一性
 **陈述**: 在no-11约束下，最优跃迁路径唯一遵循Fibonacci模式：
-$$\forall L_i, L_j: \text{OptimalPath}(L_i \to L_j) = \text{MinimalFibonacciDecomposition}(|j-i|)$$
-
+$$
+\forall L_i, L_j: \text{OptimalPath}(L_i \to L_j) = \text{MinimalFibonacciDecomposition}(|j-i|)
+$$
 ### 定理C12-4.3: 跃迁概率分布
 **陈述**: 跃迁概率遵循修正的信息Boltzmann-Fibonacci分布：
-$$P(L_i \to L_j | \text{context}) = \frac{1}{Z} \exp\left(-\frac{I_{i \to j}}{k_{info} T_{eff}}\right) \cdot \delta_{Fib}(|j-i|) \cdot B_{\tau}(i,j)$$
-
+$$
+P(L_i \to L_j | \text{context}) = \frac{1}{Z} \exp\left(-\frac{I_{i \to j}}{k_{info} T_{eff}}\right) \cdot \delta_{Fib}(|j-i|) \cdot B_{\tau}(i,j)
+$$
 其中：
 - $Z = \sum_{k} \exp(-I_{i \to k}/(k_{info} T_{eff})) \cdot \delta_{Fib}(|k-i|) \cdot B_{\tau}(i,k)$
 - $k_{info}$是信息温度常数
@@ -79,12 +87,14 @@ $$P(L_i \to L_j | \text{context}) = \frac{1}{Z} \exp\left(-\frac{I_{i \to j}}{k_
 
 ### 定理C12-4.4: 跃迁不可逆性
 **陈述**: 向上跃迁概率严格大于向下跃迁：
-$$\forall i < j: P(L_i \to L_j) > \phi^{j-i} \cdot P(L_j \to L_i)$$
-
+$$
+\forall i < j: P(L_i \to L_j) > \phi^{j-i} \cdot P(L_j \to L_i)
+$$
 ### 定理C12-4.5: 临界跃迁存在性
 **陈述**: 存在临界信息量$I_c$使得：
-$$I_{available} > I_c \Rightarrow \exists k_1, k_2, ..., k_m: \text{SimultaneousTransition}(L_{k_1}, L_{k_2}, ..., L_{k_m})$$
-
+$$
+I_{available} > I_c \Rightarrow \exists k_1, k_2, ..., k_m: \text{SimultaneousTransition}(L_{k_1}, L_{k_2}, ..., L_{k_m})
+$$
 其中$I_c = \phi^2 \cdot \langle H \rangle \cdot \log(|\mathcal{L}|)$。
 
 ## 算法规范
@@ -235,23 +245,29 @@ function detect_critical_transitions(energy_seq, factor):
 ## 验证条件
 
 ### V1: 熵增必然性
-$$\forall \text{有效跃迁}: \Delta H_{system} \geq 0$$
-
+$$
+\forall \text{有效跃迁}: \Delta H_{system} \geq 0
+$$
 ### V2: Fibonacci约束
-$$\forall (L_i, L_j) \in \mathcal{T}_{valid}: |j-i| \in \mathcal{F}$$
-
+$$
+\forall (L_i, L_j) \in \mathcal{T}_{valid}: |j-i| \in \mathcal{F}
+$$
 ### V3: 概率归一化
-$$\sum_{j} P(L_i \to L_j) = 1, \quad \forall i$$
-
+$$
+\sum_{j} P(L_i \to L_j) = 1, \quad \forall i
+$$
 ### V4: 信息守恒
-$$I_{initial} + I_{input} = I_{final} + I_{dissipated}$$
-
+$$
+I_{initial} + I_{input} = I_{final} + I_{dissipated}
+$$
 ### V5: 不可逆性偏置
-$$\sum_{j>i} P(L_i \to L_j) > \sum_{j<i} P(L_i \to L_j)$$
-
+$$
+\sum_{j>i} P(L_i \to L_j) > \sum_{j<i} P(L_i \to L_j)
+$$
 ### V6: 临界阈值一致性
-$$E_c = \phi^2 \cdot \langle H \rangle \cdot \log(|\mathcal{L}|)$$
-
+$$
+E_c = \phi^2 \cdot \langle H \rangle \cdot \log(|\mathcal{L}|)
+$$
 ## 复杂度分析
 
 ### 时间复杂度
@@ -309,18 +325,22 @@ $$E_c = \phi^2 \cdot \langle H \rangle \cdot \log(|\mathcal{L}|)$$
 
 ### 存在性定理
 对于任意两个层级$L_i, L_j$，存在有效跃迁路径当且仅当：
-$$|j-i| \text{ 可以表示为Fibonacci数之和}$$
-
+$$
+|j-i| \text{ 可以表示为Fibonacci数之和}
+$$
 ### 唯一性定理
 最优跃迁路径(最小能量代价)是唯一的，对应$|j-i|$的贪心Fibonacci分解。
 
 ### 收敛性定理
 在有限温度下，跃迁动力学收敛到稳态分布：
-$$\lim_{t \to \infty} P_i(t) = P_i^{eq} \propto \exp(-E_i / (k_B T))$$
-
+$$
+\lim_{t \to \infty} P_i(t) = P_i^{eq} \propto \exp(-E_i / (k_B T))
+$$
 ### 稳定性定理
 小扰动不会改变跃迁模式的定性行为：
-$$\|\delta P\| \leq C \|\delta E\|$$
+$$
+\|\delta P\| \leq C \|\delta E\|
+$$
 其中C是稳定性常数。
 
 ## 边界条件处理

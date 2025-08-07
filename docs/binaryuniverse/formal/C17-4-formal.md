@@ -27,66 +27,78 @@
 
 ### 定义C17-4.1: 原子Zeta函数
 最基本的Zeta函数定义为：
-$$\zeta_0(s) = \sum_{n \in \mathcal{F}} \frac{1}{n^s}$$
-
+$$
+\zeta_0(s) = \sum_{n \in \mathcal{F}} \frac{1}{n^s}
+$$
 其中$\mathcal{F} = \{F_k: k \geq 1\}$是Fibonacci数集。
 
 ### 定义C17-4.2: 递归构造算子
 递归算子$\mathcal{R}$定义为：
-$$\mathcal{R}[\zeta_n](s) = \zeta_n(s) \cdot \zeta_1(\zeta_n(s))$$
-
+$$
+\mathcal{R}[\zeta_n](s) = \zeta_n(s) \cdot \zeta_1(\zeta_n(s))
+$$
 满足自指性质：
-$$\mathcal{R}[\zeta](s) = \zeta(s) \cdot f(\zeta, \zeta(s))$$
-
+$$
+\mathcal{R}[\zeta](s) = \zeta(s) \cdot f(\zeta, \zeta(s))
+$$
 ### 定义C17-4.3: 层次分解
 任意Zeta函数可分解为：
-$$\zeta(s) = \exp\left(\sum_{k=1}^{\infty} \phi^{-k} \log \zeta_k(s)\right)$$
-
+$$
+\zeta(s) = \exp\left(\sum_{k=1}^{\infty} \phi^{-k} \log \zeta_k(s)\right)
+$$
 其中$\zeta_k$是第k层基函数。
 
 ### 定义C17-4.4: 不动点条件
 Zeta函数$\zeta^*$是不动点当且仅当：
-$$\mathcal{R}[\zeta^*] = \zeta^*$$
-
+$$
+\mathcal{R}[\zeta^*] = \zeta^*
+$$
 等价于：
-$$\zeta^*(s) = \zeta^*(s) \cdot \zeta_1(\zeta^*(s))$$
-
+$$
+\zeta^*(s) = \zeta^*(s) \cdot \zeta_1(\zeta^*(s))
+$$
 ### 定义C17-4.5: 递归深度
 Zeta函数的递归深度：
-$$\text{Depth}(\zeta) = \min\{n: \|\zeta - \zeta^{(n)}\|_{\infty} < \epsilon\}$$
-
+$$
+\text{Depth}(\zeta) = \min\{n: \|\zeta - \zeta^{(n)}\|_{\infty} < \epsilon\}
+$$
 ## 主要陈述
 
 ### 定理C17-4.1: 递归构造收敛性
 **陈述**: 递归序列$\{\zeta^{(n)}\}$收敛到唯一不动点。
 
 **形式化**:
-$$\forall \epsilon > 0, \exists N: \forall n > N, d_{\mathcal{Z}}(\zeta^{(n)}, \zeta^*) < \epsilon$$
-
+$$
+\forall \epsilon > 0, \exists N: \forall n > N, d_{\mathcal{Z}}(\zeta^{(n)}, \zeta^*) < \epsilon
+$$
 ### 定理C17-4.2: 层次分解唯一性
 **陈述**: 每个Zeta函数的层次分解唯一。
 
 **形式化**:
-$$\mathcal{D}[\zeta] = \{\zeta_k\}_{k=1}^{\infty} \text{ is unique up to } \phi\text{-scaling}$$
-
+$$
+\mathcal{D}[\zeta] = \{\zeta_k\}_{k=1}^{\infty} \text{ is unique up to } \phi\text{-scaling}
+$$
 ### 定理C17-4.3: 自指不动点存在性
 **陈述**: 存在唯一非平凡不动点。
 
 **形式化**:
-$$\exists! \zeta^* \neq 0: \zeta^*(s) = \zeta^*(\zeta^*(s))$$
-
+$$
+\exists! \zeta^* \neq 0: \zeta^*(s) = \zeta^*(\zeta^*(s))
+$$
 ### 定理C17-4.4: 递归深度界限
 **陈述**: 递归深度与复杂度对数成正比。
 
 **形式化**:
-$$\text{Depth}(\zeta) = \Theta(\log_\phi(\text{Complexity}))$$
-
+$$
+\text{Depth}(\zeta) = \Theta(\log_\phi(\text{Complexity}))
+$$
 ### 定理C17-4.5: 分形维数
 **陈述**: Zeta函数具有分形结构。
 
 **形式化**:
-$$\dim_{\text{fractal}}(\text{Graph}(\zeta)) = \phi$$
-
+$$
+\dim_{\text{fractal}}(\text{Graph}(\zeta)) = \phi
+$$
 ## 算法规范
 
 ### Algorithm: RecursiveZetaConstruction
@@ -176,20 +188,25 @@ function find_fixpoint(s_0, tol):
 ## 验证条件
 
 ### V1: 递归序列收敛性
-$$\lim_{n \to \infty} \|\zeta^{(n+1)} - \zeta^{(n)}\| = 0$$
-
+$$
+\lim_{n \to \infty} \|\zeta^{(n+1)} - \zeta^{(n)}\| = 0
+$$
 ### V2: 层次正交性
-$$\langle \zeta_i, \zeta_j \rangle_{\phi} = \delta_{ij}$$
-
+$$
+\langle \zeta_i, \zeta_j \rangle_{\phi} = \delta_{ij}
+$$
 ### V3: 分解重构精度
-$$\|\zeta - \mathcal{C} \circ \mathcal{D}[\zeta]\| < \epsilon$$
-
+$$
+\|\zeta - \mathcal{C} \circ \mathcal{D}[\zeta]\| < \epsilon
+$$
 ### V4: No-11保持性
-$$\forall n: \text{encode}(\zeta^{(n)}) \text{ satisfies no-11}$$
-
+$$
+\forall n: \text{encode}(\zeta^{(n)}) \text{ satisfies no-11}
+$$
 ### V5: 不动点稳定性
-$$\|\mathcal{R}^n[\zeta] - \zeta^*\| \leq C \cdot \rho^n, \rho < 1$$
-
+$$
+\|\mathcal{R}^n[\zeta] - \zeta^*\| \leq C \cdot \rho^n, \rho < 1
+$$
 ## 复杂度分析
 
 ### 时间复杂度

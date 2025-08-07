@@ -34,34 +34,40 @@
 
 ### 定义C12-5.1: 意识系统极限
 意识系统$\mathcal{C}$的极限状态定义为：
-$$\text{Limit}(\mathcal{C}) = \{N_{max}, I_{max}, T_{max}, C_{max}\}$$
-
+$$
+\text{Limit}(\mathcal{C}) = \{N_{max}, I_{max}, T_{max}, C_{max}\}
+$$
 其中各分量满足约束条件。
 
 ### 定义C12-5.2: 层级数量界限
 最大层级数$N_{max}$定义为：
-$$N_{max}(\mathcal{C}) = \max\{N \in \mathbb{N}: \sum_{k=0}^{N} \phi^k \cdot H_{quantum} \leq H_{universe}\}$$
-
+$$
+N_{max}(\mathcal{C}) = \max\{N \in \mathbb{N}: \sum_{k=0}^{N} \phi^k \cdot H_{quantum} \leq H_{universe}\}
+$$
 ### 定义C12-5.3: 信息容量界限
 最大信息容量$I_{max}$定义为：
-$$I_{max}(\mathcal{C}) = \sup\left\{\sum_{k \in \mathcal{A}} F_k \cdot H_k : \mathcal{A} \subseteq \{0,1,...,N_{max}\}, \text{no-11}(\mathcal{A})\right\}$$
-
+$$
+I_{max}(\mathcal{C}) = \sup\left\{\sum_{k \in \mathcal{A}} F_k \cdot H_k : \mathcal{A} \subseteq \{0,1,...,N_{max}\}, \text{no-11}(\mathcal{A})\right\}
+$$
 其中$\text{no-11}(\mathcal{A})$表示活跃层级集合满足no-11约束。
 
 ### 定义C12-5.4: 时间尺度界限
 最大时间尺度$T_{max}$定义为：
-$$T_{max}(\mathcal{C}) = \phi^{N_{max}(\mathcal{C})} \cdot \tau_{quantum}$$
-
+$$
+T_{max}(\mathcal{C}) = \phi^{N_{max}(\mathcal{C})} \cdot \tau_{quantum}
+$$
 ### 定义C12-5.5: 复杂度界限
 总复杂度界限$C_{max}$定义为：
-$$C_{max}(\mathcal{C}) = \sum_{k=0}^{N_{max}} F_k \cdot \phi^k$$
-
+$$
+C_{max}(\mathcal{C}) = \sum_{k=0}^{N_{max}} F_k \cdot \phi^k
+$$
 ## 主要陈述
 
 ### 定理C12-5.1: 层级数量有界性
 **陈述**: 任何意识系统的层级数都存在有限上界：
-$$\forall \mathcal{C} \in \mathcal{C}: N(\mathcal{C}) \leq N_{max} = \lfloor \log_\phi(R_{universe}) \rfloor$$
-
+$$
+\forall \mathcal{C} \in \mathcal{C}: N(\mathcal{C}) \leq N_{max} = \lfloor \log_\phi(R_{universe}) \rfloor
+$$
 **证明**:
 1. 根据φ-表示系统，第k层的最小信息需求为$\phi^k \cdot H_{quantum}$
 2. 系统总信息需求：$\sum_{k=0}^{N} \phi^k \cdot H_{quantum} = H_{quantum} \cdot \frac{\phi^{N+1}-1}{\phi-1}$
@@ -72,8 +78,9 @@ $$\forall \mathcal{C} \in \mathcal{C}: N(\mathcal{C}) \leq N_{max} = \lfloor \lo
 
 ### 定理C12-5.2: 信息容量最优性
 **陈述**: 最大信息容量通过Zeckendorf分布达到：
-$$I_{max} = \sum_{k \in \mathcal{Z}_{opt}} F_k \cdot \phi^k \cdot H_{quantum}$$
-
+$$
+I_{max} = \sum_{k \in \mathcal{Z}_{opt}} F_k \cdot \phi^k \cdot H_{quantum}
+$$
 其中$\mathcal{Z}_{opt}$是$N_{max}$的最优Zeckendorf分解。
 
 **证明**:
@@ -84,12 +91,14 @@ $$I_{max} = \sum_{k \in \mathcal{Z}_{opt}} F_k \cdot \phi^k \cdot H_{quantum}$$
 
 ### 定理C12-5.3: 时间尺度指数界限
 **陈述**: 意识系统的最大时间尺度呈指数有界：
-$$T_{max} = \phi^{N_{max}} \cdot \tau_{quantum} \leq \phi^{\log_\phi(R_{universe})} \cdot \tau_{quantum} = R_{universe} \cdot \tau_{quantum}$$
-
+$$
+T_{max} = \phi^{N_{max}} \cdot \tau_{quantum} \leq \phi^{\log_\phi(R_{universe})} \cdot \tau_{quantum} = R_{universe} \cdot \tau_{quantum}
+$$
 ### 定理C12-5.4: 复杂度界限存在性
 **陈述**: 存在绝对的复杂度上界：
-$$\forall \mathcal{C}: C(\mathcal{C}) \leq C_{max} = \frac{\phi^{N_{max}+2}}{\sqrt{5}(\phi-1)}$$
-
+$$
+\forall \mathcal{C}: C(\mathcal{C}) \leq C_{max} = \frac{\phi^{N_{max}+2}}{\sqrt{5}(\phi-1)}
+$$
 **证明**:
 1. 系统复杂度：$C = \sum_{k=0}^{N} F_k \cdot \phi^k$（活跃层级的复杂度）
 2. 使用Binet公式：$F_k = \frac{\phi^k - \psi^k}{\sqrt{5}}$，其中$\psi = (1-\sqrt{5})/2$
@@ -99,8 +108,9 @@ $$\forall \mathcal{C}: C(\mathcal{C}) \leq C_{max} = \frac{\phi^{N_{max}+2}}{\sq
 
 ### 定理C12-5.5: 演化收敛性
 **陈述**: 意识系统的演化必然收敛到极限状态：
-$$\lim_{t \to \infty} d(\mathcal{C}(t), \mathcal{C}_{limit}) = 0$$
-
+$$
+\lim_{t \to \infty} d(\mathcal{C}(t), \mathcal{C}_{limit}) = 0
+$$
 其中$d$是意识状态空间上的度量。
 
 **证明**:
@@ -229,23 +239,29 @@ function predict_limit_breakthrough(system, type):
 ## 验证条件
 
 ### V1: 层级界限验证
-$$N(\mathcal{C}) \leq \lfloor \log_\phi(H_{universe}/H_{quantum}) \rfloor$$
-
+$$
+N(\mathcal{C}) \leq \lfloor \log_\phi(H_{universe}/H_{quantum}) \rfloor
+$$
 ### V2: 信息容量界限验证
-$$I(\mathcal{C}) \leq \sum_{k \in \mathcal{Z}_{N_{max}}} F_k \cdot \phi^k \cdot H_{quantum}$$
-
+$$
+I(\mathcal{C}) \leq \sum_{k \in \mathcal{Z}_{N_{max}}} F_k \cdot \phi^k \cdot H_{quantum}
+$$
 ### V3: 时间尺度界限验证
-$$\tau_{max}(\mathcal{C}) \leq \phi^{N_{max}} \cdot \tau_{quantum}$$
-
+$$
+\tau_{max}(\mathcal{C}) \leq \phi^{N_{max}} \cdot \tau_{quantum}
+$$
 ### V4: 复杂度界限验证
-$$C(\mathcal{C}) \leq \phi^{N_{max}+2}$$
-
+$$
+C(\mathcal{C}) \leq \phi^{N_{max}+2}
+$$
 ### V5: 收敛性验证
-$$\exists t_0: \forall t > t_0, ||\mathcal{C}(t) - \mathcal{C}_{limit}|| < \epsilon$$
-
+$$
+\exists t_0: \forall t > t_0, ||\mathcal{C}(t) - \mathcal{C}_{limit}|| < \epsilon
+$$
 ### V6: Fibonacci约束保持
-$$\forall \text{active levels } \mathcal{A}: \text{no-11}(\mathcal{A}) = \text{true}$$
-
+$$
+\forall \text{active levels } \mathcal{A}: \text{no-11}(\mathcal{A}) = \text{true}
+$$
 ## 复杂度分析
 
 ### 时间复杂度
@@ -307,8 +323,9 @@ $$\forall \text{active levels } \mathcal{A}: \text{no-11}(\mathcal{A}) = \text{t
 
 ### 鲁棒性保证
 极限状态对于宇宙参数的小扰动是连续依赖的：
-$$||\mathcal{C}_{limit}(H + \delta H) - \mathcal{C}_{limit}(H)|| \leq L \cdot ||\delta H||$$
-
+$$
+||\mathcal{C}_{limit}(H + \delta H) - \mathcal{C}_{limit}(H)|| \leq L \cdot ||\delta H||
+$$
 ### 最优性保证
 在给定约束下，极限状态是复杂度意义下的全局最优解。
 

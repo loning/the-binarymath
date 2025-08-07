@@ -27,22 +27,27 @@
 
 ### 定义T8-5.1: 有效虚拟时间反向路径
 路径$\mathcal{P}$是有效虚拟时间反向路径当且仅当：
-$$\text{Valid}(\mathcal{P}, \mathcal{M}) \equiv \text{C1} \land \text{C2} \land \text{C3} \land \text{C4}$$
-
+$$
+\text{Valid}(\mathcal{P}, \mathcal{M}) \equiv \text{C1} \land \text{C2} \land \text{C3} \land \text{C4}
+$$
 其中四个条件为：
 
 ### 定义T8-5.2: 条件C1 - 熵单调性
-$$\text{C1}(\mathcal{P}) \equiv \forall i \in [0, n-1]: H(s_i) > H(s_{i+1})$$
-
+$$
+\text{C1}(\mathcal{P}) \equiv \forall i \in [0, n-1]: H(s_i) > H(s_{i+1})
+$$
 ### 定义T8-5.3: 条件C2 - 记忆一致性
-$$\text{C2}(\mathcal{P}, \mathcal{M}) \equiv \forall s_i \in \mathcal{P}: \exists m_j \in \mathcal{M}, s_i = m_j.state$$
-
+$$
+\text{C2}(\mathcal{P}, \mathcal{M}) \equiv \forall s_i \in \mathcal{P}: \exists m_j \in \mathcal{M}, s_i = m_j.state
+$$
 ### 定义T8-5.4: 条件C3 - Zeckendorf约束
-$$\text{C3}(\mathcal{P}) \equiv \forall s_i \in \mathcal{P}: \text{verify\_no\_11}(encode(s_i)) = \text{true}$$
-
+$$
+\text{C3}(\mathcal{P}) \equiv \forall s_i \in \mathcal{P}: \text{verify\_no\_11}(encode(s_i)) = \text{true}
+$$
 ### 定义T8-5.5: 条件C4 - 重构代价
-$$\text{C4}(\mathcal{P}) \equiv \sum_{i=0}^{n-1} \Delta H_{cost}(s_i, s_{i+1}) \geq H(s_0) - H(s_n)$$
-
+$$
+\text{C4}(\mathcal{P}) \equiv \sum_{i=0}^{n-1} \Delta H_{cost}(s_i, s_{i+1}) \geq H(s_0) - H(s_n)
+$$
 ## 主要陈述
 
 ### 定理T8-5.1: 判定完备性
@@ -53,7 +58,9 @@ $$\text{C4}(\mathcal{P}) \equiv \sum_{i=0}^{n-1} \Delta H_{cost}(s_i, s_{i+1}) \
 
 ### 定理T8-5.3: 判定复杂度
 **陈述**: 判定算法的时间复杂度满足：
-$$T(\mathcal{D}) \in O(n \cdot L \cdot \log |\mathcal{M}|)$$
+$$
+T(\mathcal{D}) \in O(n \cdot L \cdot \log |\mathcal{M}|)
+$$
 其中$n$是路径长度，$L$是状态串长度。
 
 ## 算法规范
@@ -170,20 +177,25 @@ function check_reconstruction_cost(P):
 ## 验证条件
 
 ### V1: 判定终止性
-$$\forall \mathcal{P}, \mathcal{M}: \exists t \in \mathbb{N}, \mathcal{D}(\mathcal{P}, \mathcal{M}) \text{ terminates in } t \text{ steps}$$
-
+$$
+\forall \mathcal{P}, \mathcal{M}: \exists t \in \mathbb{N}, \mathcal{D}(\mathcal{P}, \mathcal{M}) \text{ terminates in } t \text{ steps}
+$$
 ### V2: 判定声音性
-$$\mathcal{D}(\mathcal{P}, \mathcal{M}) = 1 \Rightarrow \text{Valid}(\mathcal{P}, \mathcal{M})$$
-
+$$
+\mathcal{D}(\mathcal{P}, \mathcal{M}) = 1 \Rightarrow \text{Valid}(\mathcal{P}, \mathcal{M})
+$$
 ### V3: 判定完全性
-$$\text{Valid}(\mathcal{P}, \mathcal{M}) \Rightarrow \mathcal{D}(\mathcal{P}, \mathcal{M}) = 1$$
-
+$$
+\text{Valid}(\mathcal{P}, \mathcal{M}) \Rightarrow \mathcal{D}(\mathcal{P}, \mathcal{M}) = 1
+$$
 ### V4: 熵单调性保证
-$$\mathcal{D}(\mathcal{P}, \mathcal{M}) = 1 \Rightarrow \forall i: H(s_i) > H(s_{i+1})$$
-
+$$
+\mathcal{D}(\mathcal{P}, \mathcal{M}) = 1 \Rightarrow \forall i: H(s_i) > H(s_{i+1})
+$$
 ### V5: Zeckendorf一致性
-$$\mathcal{D}(\mathcal{P}, \mathcal{M}) = 1 \Rightarrow \forall s \in \mathcal{P}: \text{no-11}(encode(s))$$
-
+$$
+\mathcal{D}(\mathcal{P}, \mathcal{M}) = 1 \Rightarrow \forall s \in \mathcal{P}: \text{no-11}(encode(s))
+$$
 ## 复杂度分析
 
 ### 时间复杂度详细分析
@@ -232,8 +244,9 @@ function optimized_decide(P, M):
 - Fibonacci数精确性: 精确整数运算
 
 ### 误差传播控制
-$$|\Delta H_{computed} - \Delta H_{true}| \leq \epsilon \cdot \sqrt{n}$$
-
+$$
+|\Delta H_{computed} - \Delta H_{true}| \leq \epsilon \cdot \sqrt{n}
+$$
 ### 边界条件处理
 1. **空路径**: 视为有效
 2. **单点路径**: 始终有效
@@ -264,18 +277,23 @@ $$|\Delta H_{computed} - \Delta H_{true}| \leq \epsilon \cdot \sqrt{n}$$
 ## 理论保证
 
 ### 判定边界定理
-$$P(\text{path is valid}) \leq \phi^{-n} \cdot \left(\frac{|\mathcal{M}|}{|\mathcal{S}|}\right)^n$$
-
+$$
+P(\text{path is valid}) \leq \phi^{-n} \cdot \left(\frac{|\mathcal{M}|}{|\mathcal{S}|}\right)^n
+$$
 ### 错误率上界
 设判定错误率为$\epsilon$，则：
-$$\epsilon \leq 2^{-k} \cdot (1 + O(\delta))$$
+$$
+\epsilon \leq 2^{-k} \cdot (1 + O(\delta))
+$$
 其中$k$是验证轮数，$\delta$是数值误差。
 
 ### 收敛性保证
 对于任意输入，算法在$O(n \cdot L)$步内必定收敛到确定结果。
 
 ### 一致性定理
-$$\forall \mathcal{P}_1 \sim \mathcal{P}_2: \mathcal{D}(\mathcal{P}_1, \mathcal{M}) = \mathcal{D}(\mathcal{P}_2, \mathcal{M})$$
+$$
+\forall \mathcal{P}_1 \sim \mathcal{P}_2: \mathcal{D}(\mathcal{P}_1, \mathcal{M}) = \mathcal{D}(\mathcal{P}_2, \mathcal{M})
+$$
 其中$\mathcal{P}_1 \sim \mathcal{P}_2$表示路径等价。
 
 ## 实现约束

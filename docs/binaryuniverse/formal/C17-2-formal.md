@@ -28,8 +28,9 @@
 
 ### 定义C17-2.1: 观察Collapse等价
 观察操作与collapse操作满足：
-$$\text{Obs}(S, \mathcal{O}) = (\pi_S \circ \text{Collapse})(S \otimes \mathcal{O}), (\pi_\mathcal{O} \circ \text{Collapse})(S \otimes \mathcal{O})$$
-
+$$
+\text{Obs}(S, \mathcal{O}) = (\pi_S \circ \text{Collapse})(S \otimes \mathcal{O}), (\pi_\mathcal{O} \circ \text{Collapse})(S \otimes \mathcal{O})
+$$
 其中：
 1. $S \otimes \mathcal{O}$是联合态
 2. $\text{Collapse}$作用于联合态
@@ -37,8 +38,9 @@ $$\text{Obs}(S, \mathcal{O}) = (\pi_S \circ \text{Collapse})(S \otimes \mathcal{
 
 ### 定义C17-2.2: 最小观察者
 最小观察者定义为：
-$$\mathcal{O}_{\min} = [1, 0] \in \mathcal{Z}_2$$
-
+$$
+\mathcal{O}_{\min} = [1, 0] \in \mathcal{Z}_2
+$$
 满足：
 1. 最小非平凡Zeckendorf编码
 2. 满足no-11约束
@@ -46,51 +48,60 @@ $$\mathcal{O}_{\min} = [1, 0] \in \mathcal{Z}_2$$
 
 ### 定义C17-2.3: 迭代观察序列
 迭代观察序列定义为：
-$$S_0 = S, \quad S_{n+1} = \pi_S(\text{Obs}(S_n, \mathcal{O}_{\min}))$$
-
+$$
+S_0 = S, \quad S_{n+1} = \pi_S(\text{Obs}(S_n, \mathcal{O}_{\min}))
+$$
 收敛条件：
-$$\exists N: \forall n > N, d(S_n, S_N) < \epsilon$$
-
+$$
+\exists N: \forall n > N, d(S_n, S_N) < \epsilon
+$$
 ### 定义C17-2.4: 熵增等价
 观察和collapse的熵增满足：
-$$\Delta H_{\text{Obs}}(S, \mathcal{O}) = \Delta H_{\text{Collapse}}(S \otimes \mathcal{O}) = \log_2(\phi) \cdot \text{depth}(S \otimes \mathcal{O})$$
-
+$$
+\Delta H_{\text{Obs}}(S, \mathcal{O}) = \Delta H_{\text{Collapse}}(S \otimes \mathcal{O}) = \log_2(\phi) \cdot \text{depth}(S \otimes \mathcal{O})
+$$
 ### 定义C17-2.5: 观察不动点
 状态$S^*$是观察不动点若：
-$$\forall \mathcal{O}: \pi_S(\text{Obs}(S^*, \mathcal{O})) = S^*$$
-
+$$
+\forall \mathcal{O}: \pi_S(\text{Obs}(S^*, \mathcal{O})) = S^*
+$$
 ## 主要陈述
 
 ### 定理C17-2.1: 观察的Collapse表示
 **陈述**: 任何观察操作都可表示为collapse操作。
 
 **形式化**:
-$$\forall S, \mathcal{O}: \text{Obs}(S, \mathcal{O}) = \text{Decompose}(\text{Collapse}(S \otimes \mathcal{O}))$$
-
+$$
+\forall S, \mathcal{O}: \text{Obs}(S, \mathcal{O}) = \text{Decompose}(\text{Collapse}(S \otimes \mathcal{O}))
+$$
 ### 定理C17-2.2: Collapse的观察分解
 **陈述**: 任何collapse都是观察序列的极限。
 
 **形式化**:
-$$\text{Collapse}(S) = \lim_{n \to \infty} S_n \text{ where } S_{n+1} = \pi_S(\text{Obs}(S_n, \mathcal{O}_{\min}))$$
-
+$$
+\text{Collapse}(S) = \lim_{n \to \infty} S_n \text{ where } S_{n+1} = \pi_S(\text{Obs}(S_n, \mathcal{O}_{\min}))
+$$
 ### 定理C17-2.3: 熵增统一定律
 **陈述**: 观察和collapse产生相同的熵增。
 
 **形式化**:
-$$\Delta H_{\text{Obs}} = \Delta H_{\text{Collapse}} = \log_2(\phi) \cdot \min(\text{depth}(S), \text{depth}(\mathcal{O}))$$
-
+$$
+\Delta H_{\text{Obs}} = \Delta H_{\text{Collapse}} = \log_2(\phi) \cdot \min(\text{depth}(S), \text{depth}(\mathcal{O}))
+$$
 ### 定理C17-2.4: 不动点存在性
 **陈述**: 每个有限Zeckendorf系统存在观察不动点。
 
 **形式化**:
-$$\forall S \in \mathcal{Z}_n: \exists S^* \in \mathcal{Z}_n, \forall \mathcal{O}: \pi_S(\text{Obs}(S^*, \mathcal{O})) = S^*$$
-
+$$
+\forall S \in \mathcal{Z}_n: \exists S^* \in \mathcal{Z}_n, \forall \mathcal{O}: \pi_S(\text{Obs}(S^*, \mathcal{O})) = S^*
+$$
 ### 定理C17-2.5: 观察序列收敛性
 **陈述**: 迭代观察序列在有限步内收敛。
 
 **形式化**:
-$$\forall S \in \mathcal{Z}_n: \exists N \leq F_{n+2}, \forall m > N: S_m = S_N$$
-
+$$
+\forall S \in \mathcal{Z}_n: \exists N \leq F_{n+2}, \forall m > N: S_m = S_N
+$$
 ## 算法规范
 
 ### Algorithm: ObservationAsCollapse
@@ -168,20 +179,25 @@ function verify_entropy_equiv(state):
 ## 验证条件
 
 ### V1: 观察Collapse等价性
-$$\forall S, \mathcal{O}: d(\text{Obs}(S, \mathcal{O}), \text{Collapse}(S \otimes \mathcal{O})) < \epsilon$$
-
+$$
+\forall S, \mathcal{O}: d(\text{Obs}(S, \mathcal{O}), \text{Collapse}(S \otimes \mathcal{O})) < \epsilon
+$$
 ### V2: 熵增一致性
-$$|\Delta H_{\text{Obs}} - \Delta H_{\text{Collapse}}| < \epsilon$$
-
+$$
+|\Delta H_{\text{Obs}} - \Delta H_{\text{Collapse}}| < \epsilon
+$$
 ### V3: No-11约束保持
-$$\forall S' \in \text{Result}: \text{no11}(S') = \text{True}$$
-
+$$
+\forall S' \in \text{Result}: \text{no11}(S') = \text{True}
+$$
 ### V4: 迭代收敛性
-$$\forall S: \exists N < \infty, S_N = S_{N+1}$$
-
+$$
+\forall S: \exists N < \infty, S_N = S_{N+1}
+$$
 ### V5: 不动点稳定性
-$$\forall S^*: \text{Obs}(S^*, \mathcal{O}) = (S^*, \mathcal{O}')$$
-
+$$
+\forall S^*: \text{Obs}(S^*, \mathcal{O}) = (S^*, \mathcal{O}')
+$$
 ## 复杂度分析
 
 ### 时间复杂度

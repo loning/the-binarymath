@@ -21,17 +21,25 @@
 路径 $\mathcal{P}$ 是有效虚拟时间反向路径当且仅当满足：
 
 1. **熵单调性条件**: 
-   $$\forall i < j: H(s_i) > H(s_j) \Rightarrow \text{熵递减（虚拟）}$$
-
+   
+$$
+\forall i < j: H(s_i) > H(s_j) \Rightarrow \text{熵递减（虚拟）}
+$$
 2. **记忆一致性条件**:
-   $$\forall s_i \in \mathcal{P}: \exists m_k \in \mathcal{M}, s_i = m_k.\text{state}$$
-
+   
+$$
+\forall s_i \in \mathcal{P}: \exists m_k \in \mathcal{M}, s_i = m_k.\text{state}
+$$
 3. **Zeckendorf约束条件**:
-   $$\forall s_i: \text{verify\_no\_11}(encode(s_i)) = \text{true}$$
-
+   
+$$
+\forall s_i: \text{verify\_no\_11}(encode(s_i)) = \text{true}
+$$
 4. **重构代价条件**:
-   $$\sum_{i=0}^{n-1} \Delta H_{reconstruct}(s_i, s_{i+1}) \geq H(s_0) - H(s_n)$$
-
+   
+$$
+\sum_{i=0}^{n-1} \Delta H_{reconstruct}(s_i, s_{i+1}) \geq H(s_0) - H(s_n)
+$$
 ### 第二步：判定算法构造
 
 定义判定函数 $\mathcal{D}: \mathcal{P} \times \mathcal{M} \to \{0, 1\}$：
@@ -90,12 +98,14 @@ function decide_reverse_path(P, M):
 
 ### 推论T8-5.1：判定界限
 有效虚拟时间反向路径的比例上界：
-$$\frac{|\text{valid paths}|}{|\text{all paths}|} \leq \phi^{-n}$$
-
+$$
+\frac{|\text{valid paths}|}{|\text{all paths}|} \leq \phi^{-n}
+$$
 ### 推论T8-5.2：最优判定策略
 存在剪枝策略使平均判定复杂度降至：
-$$O(n \cdot \log L)$$
-
+$$
+O(n \cdot \log L)
+$$
 ### 推论T8-5.3：不可判定边界
 当路径长度 $n > F_L$ 时，判定问题变为NP-hard。
 

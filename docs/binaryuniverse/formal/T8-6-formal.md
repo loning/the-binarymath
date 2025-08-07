@@ -28,8 +28,9 @@
 
 ### 定义T8-6.1: 局部结构张力
 对于Zeckendorf状态$s$，位置$i$的局部张力为：
-$$\mathcal{T}_i(s) = F_i \cdot b_i \cdot \xi_i(s)$$
-
+$$
+\mathcal{T}_i(s) = F_i \cdot b_i \cdot \xi_i(s)
+$$
 其中：
 - $b_i \in \{0,1\}$是第$i$位的二进制值
 - $\xi_i(s) = (1 - b_{i+1}) \cdot (1 + \delta_{constraint})$是约束因子
@@ -37,36 +38,45 @@ $$\mathcal{T}_i(s) = F_i \cdot b_i \cdot \xi_i(s)$$
 
 ### 定义T8-6.2: 总结构张力
 状态$s$的总结构张力为：
-$$\mathcal{T}(s) = \sum_{i=1}^{L} \mathcal{T}_i(s) = \sum_{i=1}^{L} F_i \cdot b_i \cdot \xi_i(s)$$
-
+$$
+\mathcal{T}(s) = \sum_{i=1}^{L} \mathcal{T}_i(s) = \sum_{i=1}^{L} F_i \cdot b_i \cdot \xi_i(s)
+$$
 ### 定义T8-6.3: 张力守恒条件
 重构过程$\mathcal{R}$满足张力守恒当且仅当：
-$$|\mathcal{T}_{after}(\mathcal{R}) - \mathcal{T}_{before}(\mathcal{R})| \leq \epsilon_{conservation}$$
-
+$$
+|\mathcal{T}_{after}(\mathcal{R}) - \mathcal{T}_{before}(\mathcal{R})| \leq \epsilon_{conservation}
+$$
 其中：
-$$\mathcal{T}_{before}(\mathcal{R}) = \mathcal{T}(s_{initial}) + \mathcal{T}_{memory}(\mathcal{M})$$
-$$\mathcal{T}_{after}(\mathcal{R}) = \mathcal{T}(s_{virtual}) + \mathcal{T}_{residual}(\mathcal{R}) + \mathcal{T}_{memory}(\mathcal{M})$$
-
+$$
+\mathcal{T}_{before}(\mathcal{R}) = \mathcal{T}(s_{initial}) + \mathcal{T}_{memory}(\mathcal{M})
+$$
+$$
+\mathcal{T}_{after}(\mathcal{R}) = \mathcal{T}(s_{virtual}) + \mathcal{T}_{residual}(\mathcal{R}) + \mathcal{T}_{memory}(\mathcal{M})
+$$
 ### 定义T8-6.4: 倒流补偿张力
 虚拟重构产生的补偿张力为：
-$$\mathcal{T}_{compensation}(\mathcal{R}) = \phi \cdot \Delta H \cdot \ln(\phi)$$
-
+$$
+\mathcal{T}_{compensation}(\mathcal{R}) = \phi \cdot \Delta H \cdot \ln(\phi)
+$$
 其中$\Delta H = H(s_{virtual}) - H(s_{historical})$
 
 ## 主要陈述
 
 ### 定理T8-6.1: 张力守恒性
 **陈述**: $\forall \mathcal{R} \in \text{ValidReconstructions}$：
-$$\mathcal{T}_{total}^{before} = \mathcal{T}_{total}^{after}$$
-
+$$
+\mathcal{T}_{total}^{before} = \mathcal{T}_{total}^{after}
+$$
 ### 定理T8-6.2: 张力最小性
 **陈述**: Zeckendorf编码给出最小张力表示：
-$$\mathcal{T}_{zeck}(n) = \min_{\{b_i\}} \sum_{i=1}^{L} F_i \cdot b_i \text{ s.t. } \text{no-11}(b_i)$$
-
+$$
+\mathcal{T}_{zeck}(n) = \min_{\{b_i\}} \sum_{i=1}^{L} F_i \cdot b_i \text{ s.t. } \text{no-11}(b_i)
+$$
 ### 定理T8-6.3: 张力-熵关系
 **陈述**: 结构张力与熵的关系为：
-$$\frac{d\mathcal{T}}{dH} = \phi \cdot \ln(\phi) \approx 0.481$$
-
+$$
+\frac{d\mathcal{T}}{dH} = \phi \cdot \ln(\phi) \approx 0.481
+$$
 ## 算法规范
 
 ### Algorithm: ComputeStructuralTension
@@ -183,20 +193,25 @@ function analyze_tension_transfer(R):
 ## 验证条件
 
 ### V1: 张力计算精度
-$$|\mathcal{T}_{computed}(s) - \mathcal{T}_{exact}(s)| \leq \epsilon_{precision} \cdot \mathcal{T}_{exact}(s)$$
-
+$$
+|\mathcal{T}_{computed}(s) - \mathcal{T}_{exact}(s)| \leq \epsilon_{precision} \cdot \mathcal{T}_{exact}(s)
+$$
 ### V2: 守恒性验证
-$$\forall \mathcal{R}: |\mathcal{T}_{after}(\mathcal{R}) - \mathcal{T}_{before}(\mathcal{R})| \leq \epsilon_{conservation}$$
-
+$$
+\forall \mathcal{R}: |\mathcal{T}_{after}(\mathcal{R}) - \mathcal{T}_{before}(\mathcal{R})| \leq \epsilon_{conservation}
+$$
 ### V3: Fibonacci一致性
-$$\mathcal{T}(s) \geq \sum_{i: b_i=1} F_i \cdot (1 - \frac{1}{\phi^i})$$
-
+$$
+\mathcal{T}(s) \geq \sum_{i: b_i=1} F_i \cdot (1 - \frac{1}{\phi^i})
+$$
 ### V4: no-11约束保持
-$$\text{no-11}(s) \Rightarrow \mathcal{T}(s) = \sum_{valid\_positions} F_i$$
-
+$$
+\text{no-11}(s) \Rightarrow \mathcal{T}(s) = \sum_{valid\_positions} F_i
+$$
 ### V5: 单调性保证
-$$H(s_1) > H(s_2) \Rightarrow \mathcal{T}(s_1) \geq \mathcal{T}(s_2) \cdot \phi^{-\Delta H}$$
-
+$$
+H(s_1) > H(s_2) \Rightarrow \mathcal{T}(s_1) \geq \mathcal{T}(s_2) \cdot \phi^{-\Delta H}
+$$
 ## 复杂度分析
 
 ### 时间复杂度
@@ -245,14 +260,16 @@ function optimized_tension_computation():
 - 守恒验证精度: $\epsilon_{conservation} < 10^{-10}$
 
 ### 数值稳定性保证
-$$\text{cond}(\mathcal{T}) = \frac{\|\mathcal{T}\| \cdot \|\mathcal{T}^{-1}\|}{\|\mathcal{T}\|} \leq C \cdot \phi^L$$
-
+$$
+\text{cond}(\mathcal{T}) = \frac{\|\mathcal{T}\| \cdot \|\mathcal{T}^{-1}\|}{\|\mathcal{T}\|} \leq C \cdot \phi^L
+$$
 其中$C$是系统常数。
 
 ### 误差传播控制
 对于$k$步重构过程：
-$$|\Delta \mathcal{T}_{total}| \leq k \cdot \epsilon_{step} \cdot \sqrt{1 + \phi^2}$$
-
+$$
+|\Delta \mathcal{T}_{total}| \leq k \cdot \epsilon_{step} \cdot \sqrt{1 + \phi^2}
+$$
 ## 边界条件处理
 
 ### 特殊情况
@@ -306,20 +323,24 @@ function robust_tension_computation(state):
 ## 理论保证
 
 ### 守恒性定理
-$$\mathcal{T}_{total}(\mathcal{R}) = \text{const} \pm \epsilon_{numerical}$$
-
+$$
+\mathcal{T}_{total}(\mathcal{R}) = \text{const} \pm \epsilon_{numerical}
+$$
 ### 最小性定理
 Zeckendorf编码给出最小张力：
-$$\forall \text{encoding}(n): \mathcal{T}_{zeck}(n) \leq \mathcal{T}_{other}(n)$$
-
+$$
+\forall \text{encoding}(n): \mathcal{T}_{zeck}(n) \leq \mathcal{T}_{other}(n)
+$$
 ### 连续性定理
 张力函数关于状态变化连续：
-$$|\mathcal{T}(s_1) - \mathcal{T}(s_2)| \leq L_{Lipschitz} \cdot |s_1 - s_2|$$
-
+$$
+|\mathcal{T}(s_1) - \mathcal{T}(s_2)| \leq L_{Lipschitz} \cdot |s_1 - s_2|
+$$
 ### 有界性定理
 张力函数有界：
-$$0 \leq \mathcal{T}(s) \leq \sum_{i=1}^{L} F_i = F_{L+2} - 1$$
-
+$$
+0 \leq \mathcal{T}(s) \leq \sum_{i=1}^{L} F_i = F_{L+2} - 1
+$$
 ## 扩展接口
 
 ### 并行计算接口

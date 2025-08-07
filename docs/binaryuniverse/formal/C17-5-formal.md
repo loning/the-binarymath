@@ -30,72 +30,85 @@
 
 ### 定义C17-5.1: 语义深度
 状态S的语义深度定义为：
-$$\text{Depth}_{\text{sem}}(S) = \min\{n \in \mathbb{N}: \text{Collapse}^n(S) \in \mathcal{F}_n\}$$
-
+$$
+\text{Depth}_{\text{sem}}(S) = \min\{n \in \mathbb{N}: \text{Collapse}^n(S) \in \mathcal{F}_n\}
+$$
 满足：
 1. $\text{Depth}_{\text{sem}}(S) \geq 0$
 2. $\text{Depth}_{\text{sem}}(S^*) = 0$ 当$S^* \in \mathcal{F}_n$
 
 ### 定义C17-5.2: Collapse收敛性
 Collapse序列的收敛：
-$$\lim_{n \to \infty} \text{Collapse}^n(S) = S^* \in \mathcal{F}_n$$
-
+$$
+\lim_{n \to \infty} \text{Collapse}^n(S) = S^* \in \mathcal{F}_n
+$$
 收敛速度：
-$$\|\text{Collapse}^{n+1}(S) - S^*\| \leq \phi^{-1} \|\text{Collapse}^n(S) - S^*\|$$
-
+$$
+\|\text{Collapse}^{n+1}(S) - S^*\| \leq \phi^{-1} \|\text{Collapse}^n(S) - S^*\|
+$$
 ### 定义C17-5.3: 语义熵
 语义熵定义为：
-$$H_{\text{sem}}(S) = \text{Depth}_{\text{sem}}(S) \cdot \log_2(\phi)$$
-
+$$
+H_{\text{sem}}(S) = \text{Depth}_{\text{sem}}(S) \cdot \log_2(\phi)
+$$
 满足：
 - 非负性: $H_{\text{sem}}(S) \geq 0$
 - 次可加性: $H_{\text{sem}}(S_1 \oplus S_2) \leq H_{\text{sem}}(S_1) + H_{\text{sem}}(S_2)$
 
 ### 定义C17-5.4: 层次分解
 状态的语义层次分解：
-$$S = \bigoplus_{k=0}^{d} \Pi_k(S)$$
-
+$$
+S = \bigoplus_{k=0}^{d} \Pi_k(S)
+$$
 其中$d = \text{Depth}_{\text{sem}}(S)$，且：
-$$\text{Depth}_{\text{sem}}(\Pi_k(S)) = k$$
-
+$$
+\text{Depth}_{\text{sem}}(\Pi_k(S)) = k
+$$
 ### 定义C17-5.5: 深度-复杂度关系
-$$\text{Depth}_{\text{sem}}(S) = \lceil \log_\phi(K(S)) \rceil$$
-
+$$
+\text{Depth}_{\text{sem}}(S) = \lceil \log_\phi(K(S)) \rceil
+$$
 其中误差界：
-$$|\text{Depth}_{\text{sem}}(S) - \log_\phi(K(S))| < 1$$
-
+$$
+|\text{Depth}_{\text{sem}}(S) - \log_\phi(K(S))| < 1
+$$
 ## 主要陈述
 
 ### 定理C17-5.1: 语义深度良定义性
 **陈述**: 每个有限状态都有唯一确定的语义深度。
 
 **形式化**:
-$$\forall S \in \mathcal{S}_n: \exists! d \in \mathbb{N}, d \leq F_{n+2}: \text{Depth}_{\text{sem}}(S) = d$$
-
+$$
+\forall S \in \mathcal{S}_n: \exists! d \in \mathbb{N}, d \leq F_{n+2}: \text{Depth}_{\text{sem}}(S) = d
+$$
 ### 定理C17-5.2: Fibonacci深度界限
 **陈述**: 语义深度受Fibonacci数列约束。
 
 **形式化**:
-$$\forall S \in \mathcal{S}_n: \text{Depth}_{\text{sem}}(S) \leq \lfloor \log_\phi(F_{n+2}) \rfloor = n + O(1)$$
-
+$$
+\forall S \in \mathcal{S}_n: \text{Depth}_{\text{sem}}(S) \leq \lfloor \log_\phi(F_{n+2}) \rfloor = n + O(1)
+$$
 ### 定理C17-5.3: 对数压缩定理
 **陈述**: 语义深度实现指数到对数的压缩。
 
 **形式化**:
-$$K(S) = O(\phi^{\text{Depth}_{\text{sem}}(S)})$$
-
+$$
+K(S) = O(\phi^{\text{Depth}_{\text{sem}}(S)})
+$$
 ### 定理C17-5.4: 层次正交性
 **陈述**: 不同深度层近似正交。
 
 **形式化**:
-$$\langle \Pi_i(S), \Pi_j(S) \rangle \approx \delta_{ij} \|\Pi_i(S)\|^2$$
-
+$$
+\langle \Pi_i(S), \Pi_j(S) \rangle \approx \delta_{ij} \|\Pi_i(S)\|^2
+$$
 ### 定理C17-5.5: 语义熵守恒
 **陈述**: Collapse过程保持总语义熵。
 
 **形式化**:
-$$\sum_{k=0}^{d} H_{\text{sem}}(\Pi_k(S)) = H_{\text{sem}}(S)$$
-
+$$
+\sum_{k=0}^{d} H_{\text{sem}}(\Pi_k(S)) = H_{\text{sem}}(S)
+$$
 ## 算法规范
 
 ### Algorithm: ComputeSemanticDepth
@@ -175,20 +188,25 @@ function decompose(S):
 ## 验证条件
 
 ### V1: 深度有限性
-$$\forall S \in \mathcal{S}_n: \text{Depth}_{\text{sem}}(S) < \infty$$
-
+$$
+\forall S \in \mathcal{S}_n: \text{Depth}_{\text{sem}}(S) < \infty
+$$
 ### V2: 单调性
-$$\text{Depth}_{\text{sem}}(\text{Collapse}(S)) \leq \text{Depth}_{\text{sem}}(S)$$
-
+$$
+\text{Depth}_{\text{sem}}(\text{Collapse}(S)) \leq \text{Depth}_{\text{sem}}(S)
+$$
 ### V3: 对数关系精度
-$$\left|\frac{\text{Depth}_{\text{sem}}(S)}{\log_\phi(K(S))} - 1\right| < 0.2$$
-
+$$
+\left|\frac{\text{Depth}_{\text{sem}}(S)}{\log_\phi(K(S))} - 1\right| < 0.2
+$$
 ### V4: No-11保持
-$$\forall S: \text{no11}(S) \Rightarrow \text{no11}(\text{Collapse}(S))$$
-
+$$
+\forall S: \text{no11}(S) \Rightarrow \text{no11}(\text{Collapse}(S))
+$$
 ### V5: 收敛速度
-$$\|\text{Collapse}^n(S) - S^*\| \leq C \cdot \phi^{-n}$$
-
+$$
+\|\text{Collapse}^n(S) - S^*\| \leq C \cdot \phi^{-n}
+$$
 ## 复杂度分析
 
 ### 时间复杂度

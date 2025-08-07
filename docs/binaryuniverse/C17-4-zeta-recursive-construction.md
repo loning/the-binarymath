@@ -9,21 +9,27 @@
 **推论 C17-4** (Zeta递归构造推论): 在Zeckendorf编码的二进制宇宙中，Zeta函数可以通过递归自指结构构造，每层递归编码问题的一个层次：
 
 1. **递归构造原理**:
-   $$
+   
+$$
    \zeta_n(s) = \zeta_{n-1}(s) \cdot \zeta_1(\zeta_{n-1}(s))
-   $$
+   
+$$
    Zeta函数通过自己作用于自己来构造更高层次。
 
 2. **层次分解定理**:
-   $$
+   
+$$
    \zeta_{\text{problem}}(s) = \prod_{k=1}^{\text{depth}} \zeta_k(s)^{\phi^{-k}}
-   $$
+   
+$$
    复杂问题的Zeta函数是各层次Zeta函数的φ加权乘积。
 
 3. **不动点收敛性**:
-   $$
+   
+$$
    \lim_{n \to \infty} \zeta^{(n)}(s) = \zeta^*(s) \text{ where } \zeta^*(s) = \zeta^*(\zeta^*(s))
-   $$
+   
+$$
    递归构造收敛到自指不动点。
 
 ## 证明

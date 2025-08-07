@@ -21,23 +21,27 @@
 ### 第一步：时间的本质
 
 由唯一公理A1，自指完备系统必然熵增：
-$$H(t+1) > H(t)$$
-
+$$
+H(t+1) > H(t)
+$$
 这定义了时间箭头的方向。时间反向意味着：
-$$H(t-1) < H(t)$$
-
+$$
+H(t-1) < H(t)
+$$
 这与公理矛盾，因此真实的时间反向不可能。
 
 ### 第二步：记忆路径的构造
 
 定义collapse路径：
-$$\mathcal{P} = (s_0 \xrightarrow{c_1} s_1 \xrightarrow{c_2} ... \xrightarrow{c_n} s_n)$$
-
+$$
+\mathcal{P} = (s_0 \xrightarrow{c_1} s_1 \xrightarrow{c_2} ... \xrightarrow{c_n} s_n)
+$$
 其中 $c_i$ 是collapse操作。
 
 构造记忆路径 $\mathcal{M}$：
-$$\mathcal{M} = \{(s_i, c_i, \Delta H_i) : i = 0, 1, ..., n\}$$
-
+$$
+\mathcal{M} = \{(s_i, c_i, \Delta H_i) : i = 0, 1, ..., n\}
+$$
 其中 $\Delta H_i = H(s_{i+1}) - H(s_i) > 0$（由A1保证）。
 
 ### 第三步：Zeckendorf编码的约束
@@ -47,14 +51,17 @@ $$\mathcal{M} = \{(s_i, c_i, \Delta H_i) : i = 0, 1, ..., n\}$$
 - 则 $s_{i+1}$ 必须满足 no-11 约束
 
 这限制了可能的路径数量。设长度为 $L$ 的Zeckendorf串，可能状态数为：
-$$N_L = F_{L+2}$$
+$$
+N_L = F_{L+2}
+$$
 其中 $F_k$ 是第k个Fibonacci数。
 
 ### 第四步：虚拟重构机制
 
 定义重构函数 $R: \mathcal{M} \times \mathbb{N} \to \mathcal{S}$：
-$$R(\mathcal{M}, i) = s_i$$
-
+$$
+R(\mathcal{M}, i) = s_i
+$$
 重构过程：
 1. 从当前状态 $s_n$ 开始
 2. 读取记忆 $\mathcal{M}$ 中的 $(s_i, c_i, \Delta H_i)$
@@ -65,14 +72,17 @@ $$R(\mathcal{M}, i) = s_i$$
 ### 第五步：熵代价分析
 
 重构状态 $s_i$ 的熵代价：
-$$\Delta H_{reconstruct} = H(\tilde{s}_i) - H(s_i)$$
-
+$$
+\Delta H_{reconstruct} = H(\tilde{s}_i) - H(s_i)
+$$
 由于必须保持总熵增（A1），有：
-$$H(\tilde{s}_i) \geq H(s_n) \geq H(s_i)$$
-
+$$
+H(\tilde{s}_i) \geq H(s_n) \geq H(s_i)
+$$
 因此：
-$$\Delta H_{reconstruct} \geq H(s_n) - H(s_i)$$
-
+$$
+\Delta H_{reconstruct} \geq H(s_n) - H(s_i)
+$$
 ### 第六步：路径唯一性
 
 在Zeckendorf约束下，给定初态 $s_0$ 和终态 $s_n$，满足no-11约束的最短路径是唯一的。
@@ -87,17 +97,21 @@ $$\Delta H_{reconstruct} \geq H(s_n) - H(s_i)$$
 
 ### 推论T8-4.1：记忆容量界限
 记忆路径的信息容量满足：
-$$I(\mathcal{M}) = \sum_{i=0}^{n-1} \log_2(F_{L_i+2}) \approx n \cdot L \cdot \log_2(\phi)$$
-
+$$
+I(\mathcal{M}) = \sum_{i=0}^{n-1} \log_2(F_{L_i+2}) \approx n \cdot L \cdot \log_2(\phi)
+$$
 ### 推论T8-4.2：重构精度与熵代价的权衡
 重构精度 $\epsilon$ 与熵代价 $\Delta H$ 满足：
-$$\epsilon \cdot \Delta H \geq k \cdot \log_2(\phi)$$
+$$
+\epsilon \cdot \Delta H \geq k \cdot \log_2(\phi)
+$$
 其中 $k$ 是系统复杂度常数。
 
 ### 推论T8-4.3：路径分支点
 在collapse路径上，分支点（可选择不同后继的状态）恰好对应于：
-$$s_i = F_m + F_{m-2k}, \quad k \geq 1$$
-
+$$
+s_i = F_m + F_{m-2k}, \quad k \geq 1
+$$
 ## 物理意义
 
 1. **时间的单向性**：真实的时间反向不存在，只有高熵代价的"模拟"

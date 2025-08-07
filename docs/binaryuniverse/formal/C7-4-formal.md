@@ -27,30 +27,36 @@
 
 ### 定义C7-4.1: Zeckendorf熵容量
 对于长度为L的二进制串，其Zeckendorf编码下的熵容量为：
-$$C_L^{Zeck} = L \cdot \log_2(\phi) - \frac{1}{2}\log_2(5) \approx 0.694 \cdot L$$
-
+$$
+C_L^{Zeck} = L \cdot \log_2(\phi) - \frac{1}{2}\log_2(5) \approx 0.694 \cdot L
+$$
 ### 定义C7-4.2: 组件熵增速率
 组件i的最大熵增速率为：
-$$r_i^{max} = \frac{C_i - H_i(t)}{\tau_i}$$
-
+$$
+r_i^{max} = \frac{C_i - H_i(t)}{\tau_i}
+$$
 ### 定义C7-4.3: 系统瓶颈
 系统瓶颈组件定义为：
-$$j^* = \arg\max_i \rho_i(t) = \arg\max_i \frac{H_i(t)}{C_i}$$
-
+$$
+j^* = \arg\max_i \rho_i(t) = \arg\max_i \frac{H_i(t)}{C_i}
+$$
 ## 主要陈述
 
 ### 推论C7-4.1: 熵增速率上界
 **陈述**: 系统熵增速率受最小组件速率限制：
-$$\frac{dH_{system}}{dt} \leq \min_{i \in [1,n]} \left(\frac{C_i}{\tau_i}\right)$$
-
+$$
+\frac{dH_{system}}{dt} \leq \min_{i \in [1,n]} \left(\frac{C_i}{\tau_i}\right)
+$$
 ### 推论C7-4.2: 瓶颈饱和定理
 **陈述**: 当瓶颈饱和度$\rho_{j^*} > \phi^{-1}$时：
-$$\frac{dH_{system}}{dt} < \phi^{-2} \cdot \frac{C_{j^*}}{\tau_{j^*}}$$
-
+$$
+\frac{dH_{system}}{dt} < \phi^{-2} \cdot \frac{C_{j^*}}{\tau_{j^*}}
+$$
 ### 推论C7-4.3: Fibonacci跳跃
 **陈述**: 组件状态变化呈现Fibonacci量子化：
-$$\Delta s_i \in \{F_{k+2} - F_k : k \geq 0\} = \{F_{k+1} : k \geq 0\}$$
-
+$$
+\Delta s_i \in \{F_{k+2} - F_k : k \geq 0\} = \{F_{k+1} : k \geq 0\}
+$$
 ## 算法规范
 
 ### Algorithm: BottleneckIdentification
@@ -103,21 +109,27 @@ function simulate_entropy_flow(state, dt):
 ## 验证条件
 
 ### V1: 熵增必然性
-$$\forall t: H_{system}(t+\Delta t) \geq H_{system}(t)$$
-
+$$
+\forall t: H_{system}(t+\Delta t) \geq H_{system}(t)
+$$
 ### V2: 瓶颈限制
-$$\forall t: \frac{dH_{system}}{dt} \leq \min_i(C_i/\tau_i)$$
-
+$$
+\forall t: \frac{dH_{system}}{dt} \leq \min_i(C_i/\tau_i)
+$$
 ### V3: Zeckendorf约束
-$$\forall i, t: s_i(t) \in \mathcal{Z}$$
+$$
+\forall i, t: s_i(t) \in \mathcal{Z}
+$$
 （无连续11模式）
 
 ### V4: 饱和度界限
-$$\forall i, t: 0 \leq \rho_i(t) \leq 1$$
-
+$$
+\forall i, t: 0 \leq \rho_i(t) \leq 1
+$$
 ### V5: Fibonacci跳跃
-$$\forall i: \Delta s_i \in \{F_k : k \geq 0\}$$
-
+$$
+\forall i: \Delta s_i \in \{F_k : k \geq 0\}
+$$
 ## 复杂度分析
 
 ### 时间复杂度
@@ -164,8 +176,9 @@ $$\forall i: \Delta s_i \in \{F_k : k \geq 0\}$$
 
 ### 收敛性
 系统最终收敛到最大熵状态，收敛时间：
-$$T_{conv} = O\left(\frac{\max_i(C_i)}{\min_i(C_i/\tau_i)}\right)$$
-
+$$
+T_{conv} = O\left(\frac{\max_i(C_i)}{\min_i(C_i/\tau_i)}\right)
+$$
 ### 瓶颈突破
 突破瓶颈的必要条件：
 1. 结构重组: 改变组件连接

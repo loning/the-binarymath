@@ -30,8 +30,9 @@
 
 ### 定义C17-1.1: 观察者系统
 观察者系统定义为三元组：
-$$\mathcal{O} = \langle S_\mathcal{O}, \text{Obs}, \psi_\mathcal{O} \rangle$$
-
+$$
+\mathcal{O} = \langle S_\mathcal{O}, \text{Obs}, \psi_\mathcal{O} \rangle
+$$
 满足：
 1. **状态空间**: $S_\mathcal{O} \subseteq \mathcal{Z}_n$ (Zeckendorf编码)
 2. **观察算子**: $\text{Obs}: S \times S_\mathcal{O} \to S' \times S'_\mathcal{O}$
@@ -39,31 +40,38 @@ $$\mathcal{O} = \langle S_\mathcal{O}, \text{Obs}, \psi_\mathcal{O} \rangle$$
 
 ### 定义C17-1.2: 自指波函数
 自指波函数$\psi_\mathcal{O}$满足不动点方程：
-$$\psi_\mathcal{O} = \mathcal{F}(\psi_\mathcal{O})$$
-
+$$
+\psi_\mathcal{O} = \mathcal{F}(\psi_\mathcal{O})
+$$
 其中$\mathcal{F}$是自指算子，在Zeckendorf编码下：
-$$\mathcal{F}([a_1, a_2, ...]) = [a_1, 0, a_2, 0, 0, a_3, ...]$$
+$$
+\mathcal{F}([a_1, a_2, ...]) = [a_1, 0, a_2, 0, 0, a_3, ...]
+$$
 （Fibonacci间隔模式）
 
 ### 定义C17-1.3: 观察操作
 观察操作$\text{Obs}$定义为：
-$$\text{Obs}(s, \psi_\mathcal{O}) = (\text{collapse}(s, \psi_\mathcal{O}), \text{backact}(\psi_\mathcal{O}, s))$$
-
+$$
+\text{Obs}(s, \psi_\mathcal{O}) = (\text{collapse}(s, \psi_\mathcal{O}), \text{backact}(\psi_\mathcal{O}, s))
+$$
 其中：
 - $\text{collapse}: S \times S_\mathcal{O} \to S'$: 坍缩函数
 - $\text{backact}: S_\mathcal{O} \times S \to S'_\mathcal{O}$: 反作用函数
 
 ### 定义C17-1.4: 熵增条件
 观察必须满足熵增：
-$$H(S') + H(S'_\mathcal{O}) > H(S) + H(S_\mathcal{O})$$
-
+$$
+H(S') + H(S'_\mathcal{O}) > H(S) + H(S_\mathcal{O})
+$$
 最小熵增：
-$$\Delta H_{\min} = \log_2(\phi)$$
-
+$$
+\Delta H_{\min} = \log_2(\phi)
+$$
 ### 定义C17-1.5: 自观察不动点
 自观察不动点$\psi^*$满足：
-$$\text{Obs}(\psi^*, \psi^*) = (\psi^*, \psi^{*'})$$
-
+$$
+\text{Obs}(\psi^*, \psi^*) = (\psi^*, \psi^{*'})
+$$
 其中$\psi^* = \text{collapse}(\psi^*)$
 
 ## 主要陈述
@@ -72,32 +80,37 @@ $$\text{Obs}(\psi^*, \psi^*) = (\psi^*, \psi^{*'})$$
 **陈述**: 任何能够执行完备观察的系统必然具有自指结构。
 
 **形式化**: 
-$$\forall \mathcal{O} \in \text{CompleteObservers}: \exists \psi_\mathcal{O} \in S_\mathcal{O}, \psi_\mathcal{O} = \psi_\mathcal{O}(\psi_\mathcal{O})$$
-
+$$
+\forall \mathcal{O} \in \text{CompleteObservers}: \exists \psi_\mathcal{O} \in S_\mathcal{O}, \psi_\mathcal{O} = \psi_\mathcal{O}(\psi_\mathcal{O})
+$$
 ### 定理C17-1.2: 观察熵增定律
 **陈述**: 观察操作必然导致总熵增加。
 
 **形式化**:
-$$\forall s \in S, \forall \psi_\mathcal{O} \in S_\mathcal{O}: H(\text{Obs}(s, \psi_\mathcal{O})) > H(s, \psi_\mathcal{O})$$
-
+$$
+\forall s \in S, \forall \psi_\mathcal{O} \in S_\mathcal{O}: H(\text{Obs}(s, \psi_\mathcal{O})) > H(s, \psi_\mathcal{O})
+$$
 ### 定理C17-1.3: 自观察不动点存在性
 **陈述**: 每个观察者系统存在至少一个自观察不动点。
 
 **形式化**:
-$$\forall \mathcal{O}: \exists \psi^* \in S_\mathcal{O}, \text{Obs}(\psi^*, \psi^*) = (\psi^*, f(\psi^*))$$
-
+$$
+\forall \mathcal{O}: \exists \psi^* \in S_\mathcal{O}, \text{Obs}(\psi^*, \psi^*) = (\psi^*, f(\psi^*))
+$$
 ### 定理C17-1.4: 观察精度界限
 **陈述**: 观察精度受观察者复杂度限制。
 
 **形式化**:
-$$H(S) > H(S_\mathcal{O}) \Rightarrow \text{Accuracy}(\text{Obs}(S)) < 1 - \frac{1}{\phi^{H(S) - H(S_\mathcal{O})}}$$
-
+$$
+H(S) > H(S_\mathcal{O}) \Rightarrow \text{Accuracy}(\text{Obs}(S)) < 1 - \frac{1}{\phi^{H(S) - H(S_\mathcal{O})}}
+$$
 ### 定理C17-1.5: 观察者层级定理
 **陈述**: 观察者可形成严格层级，层级数受Fibonacci数列限制。
 
 **形式化**:
-$$|\{\mathcal{O}_i : \mathcal{O}_i \subset \mathcal{O}_{i+1}\}| \leq F_{n+2}$$
-
+$$
+|\{\mathcal{O}_i : \mathcal{O}_i \subset \mathcal{O}_{i+1}\}| \leq F_{n+2}
+$$
 ## 算法规范
 
 ### Algorithm: InitializeObserver
@@ -182,20 +195,25 @@ function find_fixpoint(O):
 ## 验证条件
 
 ### V1: 自指性验证
-$$\forall \mathcal{O}: \text{verify}(\psi_\mathcal{O} = \psi_\mathcal{O}(\psi_\mathcal{O}))$$
-
+$$
+\forall \mathcal{O}: \text{verify}(\psi_\mathcal{O} = \psi_\mathcal{O}(\psi_\mathcal{O}))
+$$
 ### V2: 熵增验证
-$$\forall \text{obs} \in \text{Observations}: \Delta H(\text{obs}) \geq \log_2(\phi) - \epsilon$$
-
+$$
+\forall \text{obs} \in \text{Observations}: \Delta H(\text{obs}) \geq \log_2(\phi) - \epsilon
+$$
 ### V3: No-11约束验证
-$$\forall s \in S_\mathcal{O}: \text{no11}(s) = \text{True}$$
-
+$$
+\forall s \in S_\mathcal{O}: \text{no11}(s) = \text{True}
+$$
 ### V4: 不动点存在性验证
-$$\forall \mathcal{O}: |\text{Fixpoints}(\mathcal{O})| \geq 1$$
-
+$$
+\forall \mathcal{O}: |\text{Fixpoints}(\mathcal{O})| \geq 1
+$$
 ### V5: 层级有界性验证
-$$\text{HierarchyDepth}(\mathcal{O}) \leq F_{n+2}$$
-
+$$
+\text{HierarchyDepth}(\mathcal{O}) \leq F_{n+2}
+$$
 ## 复杂度分析
 
 ### 时间复杂度

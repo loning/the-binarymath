@@ -9,21 +9,27 @@
 **推论 C17-3** (NP-P-Zeta转换推论): 在Zeckendorf编码的二进制宇宙中，NP问题可通过构造适当的ζ函数和观察操作转换为P问题：
 
 1. **复杂度的观察降维**:
-   $$
+   
+$$
    \text{NP}(S) \xrightarrow{\text{Obs}_\zeta} \text{P}(S')
-   $$
+   
+$$
    其中$\text{Obs}_\zeta$是由ζ函数引导的观察操作。
 
 2. **Zeta函数的递归构造**:
-   $$
+   
+$$
    \zeta(s) = \sum_{n=1}^{\infty} \frac{1}{n^s} \leftrightarrow \text{Collapse}_n(S)
-   $$
+   
+$$
    Zeta函数编码了递归collapse的深度结构。
 
 3. **语义深度与计算复杂度**:
-   $$
+   
+$$
    \text{Depth}_{\text{semantic}}(S) = \log_\phi(\text{Complexity}_{\text{NP}}(S))
-   $$
+   
+$$
    语义深度的对数关系将指数复杂度降为多项式。
 
 ## 证明

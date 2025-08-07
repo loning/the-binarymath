@@ -29,8 +29,9 @@
 
 ### 定义C17-3.1: NP问题的观察者表示
 NP问题P定义为观察者系统：
-$$\mathcal{O}_P = \langle V_P, \text{Cert}_P, \text{Verify}_P \rangle$$
-
+$$
+\mathcal{O}_P = \langle V_P, \text{Cert}_P, \text{Verify}_P \rangle
+$$
 其中：
 1. $V_P$: 验证器状态空间
 2. $\text{Cert}_P \subseteq \mathcal{Z}_n$: 证书空间(Zeckendorf编码)
@@ -38,62 +39,74 @@ $$\mathcal{O}_P = \langle V_P, \text{Cert}_P, \text{Verify}_P \rangle$$
 
 ### 定义C17-3.2: 问题Zeta函数
 对NP问题P，定义Zeta函数：
-$$\zeta_P(s) = \sum_{c \in \text{Cert}_P} \frac{\text{Valid}(c)}{|c|^s}$$
-
+$$
+\zeta_P(s) = \sum_{c \in \text{Cert}_P} \frac{\text{Valid}(c)}{|c|^s}
+$$
 其中：
 - $\text{Valid}(c) = 1$ 若c是有效证书
 - $|c|$是证书的Zeckendorf范数
 
 ### 定义C17-3.3: Zeta引导观察
 Zeta引导的观察操作：
-$$\text{Obs}_\zeta(S, s) = \text{Collapse}(S) + \alpha \cdot \nabla_s \zeta_P(s)$$
-
+$$
+\text{Obs}_\zeta(S, s) = \text{Collapse}(S) + \alpha \cdot \nabla_s \zeta_P(s)
+$$
 其中$\alpha$是学习率，$\nabla_s$是关于s的梯度。
 
 ### 定义C17-3.4: 语义深度
 状态S的语义深度：
-$$\text{Depth}(S) = \min\{t \in \mathbb{N}: \text{Collapse}^t(S) \in \text{Fixpoints}\}$$
-
+$$
+\text{Depth}(S) = \min\{t \in \mathbb{N}: \text{Collapse}^t(S) \in \text{Fixpoints}\}
+$$
 满足对数关系：
-$$\text{Depth}(S) = \lceil \log_\phi(|\text{StateSpace}(S)|) \rceil$$
-
+$$
+\text{Depth}(S) = \lceil \log_\phi(|\text{StateSpace}(S)|) \rceil
+$$
 ### 定义C17-3.5: 复杂度转换
 NP到P的转换映射：
-$$\mathcal{T}: \mathcal{NP} \to \mathcal{P}$$
-$$\mathcal{T}(P_{\text{NP}}) = \text{Obs}_{\zeta_P}^{\text{Depth}(P)}(P_{\text{NP}})$$
-
+$$
+\mathcal{T}: \mathcal{NP} \to \mathcal{P}
+$$
+$$
+\mathcal{T}(P_{\text{NP}}) = \text{Obs}_{\zeta_P}^{\text{Depth}(P)}(P_{\text{NP}})
+$$
 ## 主要陈述
 
 ### 定理C17-3.1: 观察者-验证者对应
 **陈述**: 每个NP问题对应唯一的自指观察者系统。
 
 **形式化**:
-$$\forall P \in \mathcal{NP}: \exists! \mathcal{O}_P, \psi_{\mathcal{O}_P} = \psi_{\mathcal{O}_P}(\psi_{\mathcal{O}_P})$$
-
+$$
+\forall P \in \mathcal{NP}: \exists! \mathcal{O}_P, \psi_{\mathcal{O}_P} = \psi_{\mathcal{O}_P}(\psi_{\mathcal{O}_P})
+$$
 ### 定理C17-3.2: Zeta极点编码解
 **陈述**: 问题的解对应Zeta函数的极点。
 
 **形式化**:
-$$c \in \text{Solutions}(P) \Leftrightarrow \exists s_c: \text{Res}(\zeta_P, s_c) \neq 0$$
-
+$$
+c \in \text{Solutions}(P) \Leftrightarrow \exists s_c: \text{Res}(\zeta_P, s_c) \neq 0
+$$
 ### 定理C17-3.3: 语义压缩定理
 **陈述**: 语义深度将指数复杂度压缩为多项式。
 
 **形式化**:
-$$\text{Complexity}(P) = O(2^n) \Rightarrow \text{Depth}(P) = O(n/\log_2(\phi)) = O(n)$$
-
+$$
+\text{Complexity}(P) = O(2^n) \Rightarrow \text{Depth}(P) = O(n/\log_2(\phi)) = O(n)
+$$
 ### 定理C17-3.4: Zeckendorf加速
 **陈述**: no-11约束减少搜索空间为Fibonacci界。
 
 **形式化**:
-$$|\text{SearchSpace}_{\text{Zeck}}| = F_{n+2} \ll 2^n$$
-
+$$
+|\text{SearchSpace}_{\text{Zeck}}| = F_{n+2} \ll 2^n
+$$
 ### 定理C17-3.5: 收敛保证
 **陈述**: Zeta引导观察在多项式步内收敛。
 
 **形式化**:
-$$\exists \text{poly}(n): \forall P \in \mathcal{NP}, \text{Obs}_\zeta^{\text{poly}(n)}(P) \in \text{Solutions}$$
-
+$$
+\exists \text{poly}(n): \forall P \in \mathcal{NP}, \text{Obs}_\zeta^{\text{poly}(n)}(P) \in \text{Solutions}
+$$
 ## 算法规范
 
 ### Algorithm: ConstructProblemZeta
@@ -175,20 +188,25 @@ function compress(P):
 ## 验证条件
 
 ### V1: 观察者自指性
-$$\forall P \in \mathcal{NP}: \text{verify}(\psi_{\mathcal{O}_P} = \psi_{\mathcal{O}_P}(\psi_{\mathcal{O}_P}))$$
-
+$$
+\forall P \in \mathcal{NP}: \text{verify}(\psi_{\mathcal{O}_P} = \psi_{\mathcal{O}_P}(\psi_{\mathcal{O}_P}))
+$$
 ### V2: Zeta极点对应
-$$\forall c \in \text{Solutions}: |\text{Res}(\zeta_P, s_c)| > \epsilon$$
-
+$$
+\forall c \in \text{Solutions}: |\text{Res}(\zeta_P, s_c)| > \epsilon
+$$
 ### V3: 深度界限
-$$\text{Depth}(P) \leq 1.44n + O(1)$$
-
+$$
+\text{Depth}(P) \leq 1.44n + O(1)
+$$
 ### V4: No-11保持
-$$\forall S \in \text{Trajectory}: \text{no11}(S) = \text{True}$$
-
+$$
+\forall S \in \text{Trajectory}: \text{no11}(S) = \text{True}
+$$
 ### V5: 多项式收敛
-$$\exists k: \text{Steps} \leq n^k$$
-
+$$
+\exists k: \text{Steps} \leq n^k
+$$
 ## 复杂度分析
 
 ### 时间复杂度
