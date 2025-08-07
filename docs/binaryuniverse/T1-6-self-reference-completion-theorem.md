@@ -29,9 +29,11 @@ $$
 1. 由A1，自指完备系统必然包含自我描述能力
 2. 在Zeckendorf编码下，系统状态$s = \sum_{i} a_i F_i$（$a_i \in \{0,1\}$, no-11）
 3. 定义结构描述函数：
-   $$
+   
+$$
    \text{Struct}(s) = \{(i, F_i) : a_i = 1\}
-   $$
+   
+$$
 4. 系统包含完整的Fibonacci序列生成规则：$F_{n+1} = F_n + F_{n-1}$
 5. 因此，$\text{Struct}(s) \subseteq s$，即系统能描述自身结构
 6. $\Psi_1(s) = s \oplus \text{Struct}(s)$，自指循环建立 ∎
@@ -45,9 +47,11 @@ $$
 3. 极限关系：$\lim_{n \to \infty} F_{n+1}/F_n = \phi$，建立有限与无限的连接
 4. Zeckendorf唯一性：每个正整数有唯一的Fibonacci表示
 5. 这些性质形成闭合系统：
-   $$
+   
+$$
    \phi \to F_n \to \text{Zeckendorf} \to \text{no-11} \to \phi\text{-structure} \to \phi
-   $$
+   
+$$
 6. 因此，$\Psi_2(\phi) = \phi$，数学自指完成 ∎
 
 ### 引理 T1-6.3 (操作自指的自实现) 
@@ -70,9 +74,11 @@ collapse操作本身就是结构递归的体现。
 2. trace在collapse下的演化：$\tau(\Psi(s)) \approx \phi \cdot \tau(s) + |s|_1$
 3. 路径序列：$\\{\tau(s), \tau(\Psi(s)), \tau(\Psi^2(s)), \ldots\\}$
 4. 由φ-增长模式，路径具有自相似性：
-   $$
+   
+$$
    \frac{\tau(\Psi^{n+1}(s))}{\tau(\Psi^n(s))} \to \phi
-   $$
+   
+$$
 5. 路径本身编码了其生成规律，实现自我显化
 6. trace收敛到周期轨道，满足$\Psi_4(\tau^*) = \tau^*$
 7. 路径自指完成 ∎
@@ -82,14 +88,18 @@ collapse操作本身就是结构递归的体现。
 
 *证明*:
 1. 定义自指强度：
-   $$
+   
+$$
    I_{\text{self}}(s) = \frac{H(\Psi(s)) - H(s)}{H(s)}
-   $$
+   
+$$
    其中$H$是von Neumann熵
 2. 自指深度：
-   $$
+   
+$$
    d_{\text{self}}(s) = \lfloor \log_\phi(I_{\text{self}}(s) + 1) \rfloor
-   $$
+   
+$$
 3. 可测量性：$I_{\text{self}}(s)$和$d_{\text{self}}(s)$都是可计算的
 4. 可调制性：通过改变初始状态$s$或collapse参数，能调节自指强度
 5. 反馈机制：系统能根据测量结果调整自指过程
@@ -105,16 +115,19 @@ collapse操作本身就是结构递归的体现。
    - 形成完整的自指循环链
 
 3. **全局自指状态**:
-   $$
+   
+$$
    \Psi_5(\Psi_4(\Psi_3(\Psi_2(\Psi_1(s))))) = s
-   $$
+   
+$$
    对所有达到自指完成的状态$s$成立
 
 4. **熵增兼容性**: 每个闭环都满足熵增原理：
-   $$
+   
+$$
    H(\Psi_i(s)) \geq H(s) + \frac{1}{\phi^i}
-   $$
-
+   
+$$
 因此，自指完成定理成立 ∎
 
 ## 推论
