@@ -222,3 +222,132 @@ def generate_verification_report(results: Dict[str, bool]) -> str:
         report += f"- {status} {file}\\n"
         
     return report
+
+
+# 为兼容性添加的类
+class BinaryUniverseFramework(BinaryUniverseSystem):
+    """二进制宇宙框架类（为兼容性保留）"""
+    pass
+
+
+class ZeckendorfEncoder:
+    """Zeckendorf编码器"""
+    
+    def __init__(self):
+        # Fibonacci数列：F_1=1, F_2=2, F_3=3, F_4=5, F_5=8, F_6=13, ...
+        self.fibonacci_cache = [1, 2]  # 从F_1=1, F_2=2开始
+        
+    def get_fibonacci(self, n: int) -> int:
+        """获取第n个Fibonacci数 (n >= 1)"""
+        if n < 1:
+            return 0
+        if n == 1:
+            return 1
+        if n == 2:
+            return 2
+            
+        # 扩展缓存到需要的位置
+        while len(self.fibonacci_cache) < n:
+            next_fib = self.fibonacci_cache[-1] + self.fibonacci_cache[-2]
+            self.fibonacci_cache.append(next_fib)
+            
+        return self.fibonacci_cache[n-1]  # 数组索引从0开始，但Fibonacci编号从1开始
+        
+    def to_zeckendorf(self, n: int) -> List[int]:
+        """将整数转换为Zeckendorf表示"""
+        if n <= 0:
+            return [0]
+            
+        # 找到最大的不超过n的Fibonacci数的索引
+        max_index = 1
+        while self.get_fibonacci(max_index + 1) <= n:
+            max_index += 1
+        
+        # 构建Zeckendorf表示（从最高位到最低位）
+        result = []
+        remaining = n
+        
+        for i in range(max_index, 0, -1):
+            fib_val = self.get_fibonacci(i)
+            if fib_val <= remaining:
+                result.append(1)
+                remaining -= fib_val
+            else:
+                result.append(0)
+                
+        return result
+        
+    def from_zeckendorf(self, zeck_repr: List[int]) -> int:
+        """从Zeckendorf表示转换为整数"""
+        result = 0
+        for i, bit in enumerate(zeck_repr):
+            if bit == 1:
+                # zeck_repr[0]对应最高位Fibonacci数
+                fib_index = len(zeck_repr) - i
+                result += self.get_fibonacci(fib_index)
+        return result
+        
+    def is_valid_zeckendorf(self, zeck_repr: List[int]) -> bool:
+        """检查是否是有效的Zeckendorf表示（无连续1）"""
+        for i in range(len(zeck_repr) - 1):
+            if zeck_repr[i] == 1 and zeck_repr[i+1] == 1:
+                return False
+        return True
+    
+    def generate_valid_sequences(self, length: int) -> List[List[int]]:
+        """生成指定长度的有效Zeckendorf序列"""
+        if length <= 0:
+            return [[]]
+        if length == 1:
+            return [[0], [1]]
+            
+        sequences = []
+        # 递归生成：如果当前位是0，下一位可以是0或1；如果当前位是1，下一位只能是0
+        for first_bit in [0, 1]:
+            if first_bit == 0:
+                # 第一位是0，剩余位可以是任意有效序列
+                for rest in self.generate_valid_sequences(length - 1):
+                    sequences.append([0] + rest)
+            else:
+                # 第一位是1，第二位必须是0
+                if length == 1:
+                    sequences.append([1])
+                else:
+                    for rest in self.generate_valid_sequences(length - 2):
+                        sequences.append([1, 0] + rest)
+        
+        return sequences
+
+
+class PhiBasedMeasure:
+    """基于φ的测量工具"""
+    
+    def __init__(self):
+        self.phi = (1 + math.sqrt(5)) / 2  # 黄金比例
+        
+    def phi_distance(self, a: float, b: float) -> float:
+        """计算φ-距离"""
+        return abs(a - b) / self.phi
+        
+    def phi_norm(self, value: float) -> float:
+        """计算φ-范数"""
+        return abs(value) ** (1 / self.phi)
+        
+    def optimal_phi_ratio(self, total: float) -> Tuple[float, float]:
+        """计算最优φ分割"""
+        larger = total / self.phi
+        smaller = total - larger
+        return larger, smaller
+
+
+@dataclass 
+class ValidationResult:
+    """验证结果"""
+    passed: bool
+    score: float
+    details: Dict[str, Any]
+    errors: List[str] = None
+    
+    def __post_init__(self):
+        if self.errors is None:
+            self.errors = []
