@@ -245,12 +245,14 @@
 - [`C6-2-social-collapse.md`](C6-2-social-collapse.md) - 推论C6-2：社会崩塌推论
 - [`C6-3-language-evolution.md`](C6-3-language-evolution.md) - 推论C6-3：语言演化推论
 
-### 第12章：哲学深化
+### 第12章：哲学深化与系统理论
 
-#### 12.1 哲学推论系列（新增）
+#### 12.1 哲学推论系列（完成）
 - [`C7-1-ontological-status.md`](C7-1-ontological-status.md) - 推论C7-1：本体论地位推论
 - [`C7-2-epistemological-limits.md`](C7-2-epistemological-limits.md) - 推论C7-2：认识论边界推论
 - [`C7-3-constructive-truth.md`](C7-3-constructive-truth.md) - 推论C7-3：构造性真理推论
+- [`C7-4-bottleneck-principle.md`](C7-4-bottleneck-principle.md) - 推论C7-4：木桶原理系统瓶颈推论（新增完成）
+- [`C7-5-divine-structure-corollary.md`](C7-5-divine-structure-corollary.md) - 推论C7-5：神性结构推论（新增完成）
 
 ### 第13章：物理统一
 
