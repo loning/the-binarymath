@@ -98,7 +98,8 @@ $$
 因此总作用量满足：
 $$
 \frac{d}{dt}\frac{\partial S_{\text{total}}}{\partial \dot{q}} - \frac{\partial S_{\text{total}}}{\partial q} = \frac{1}{\phi}\sum_n \Lambda_n
-$$∎
+$$
+∎
 
 ### 第三部分：观察者作用量的计算
 

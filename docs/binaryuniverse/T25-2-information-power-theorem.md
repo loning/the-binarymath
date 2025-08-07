@@ -66,7 +66,8 @@ $$
 定义信息处理速率$I_{\text{rate}} = n/\tau$：
 $$
 P_{\text{info}}^{\text{min}} = \phi k_B T \log_2(\phi) \cdot I_{\text{rate}}
-$$∎
+$$
+∎
 
 ### 第二部分：最小处理时间的确定
 
@@ -95,7 +96,8 @@ $$
 考虑到φ的特殊性质$\phi^2 = \phi + 1$，优化时间常数：
 $$
 \tau_{\text{min}} = \frac{\hbar}{\phi k_B T} = \frac{2\hbar}{2\phi k_B T} \cdot \frac{\phi}{1} = \frac{\hbar}{\phi k_B T}
-$$∎
+$$
+∎
 
 ### 第三部分：功率下限的不可违背性
 
