@@ -807,9 +807,16 @@ class TestT28_2_AdSCFTRealityShellCorrespondence(unittest.TestCase):
                       f"β={point.beta_function_value:.6f}, 熵={point.entropy:.6f}")
                 
                 # 验证C定理：严格熵单调递减 (按形式化规范要求)
-                entropy_tolerance = 0.001  # 严格容忍度，符合形式化规范
+                # 修复：使用与形式化规范一致的严格容忍度 1e-12
+                entropy_tolerance = self.system.tolerance  # 1e-12，严格符合形式化规范T28-2-formal.md:177
                 self.assertLessEqual(point.entropy, prev_entropy + entropy_tolerance,
                                    f"C定理违反：步骤{j}熵从{prev_entropy:.6f}增加到{point.entropy:.6f}")
+                
+                # 额外验证：确保严格单调性（除了数值误差）
+                if j > 0 and point.entropy > prev_entropy:
+                    entropy_increase = point.entropy - prev_entropy
+                    self.assertLess(entropy_increase, entropy_tolerance,
+                                  f"C定理严重违反：步骤{j}熵增量{entropy_increase:.12f}超过严格容忍度{entropy_tolerance:.12f}")
                 prev_entropy = point.entropy
             
             # 验证轨道收敛到不动点
