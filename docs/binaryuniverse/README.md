@@ -199,7 +199,6 @@
 - [`T8-3-holographic-principle.md`](T8-3-holographic-principle.md) - 定理8.3：全息原理定理
 - [`T8-4-time-reverse-collapse-path.md`](T8-4-time-reverse-collapse-path.md) - 定理8.4：时间反向collapse-path存在性定理
 - [`T8-5-time-reverse-path-decision.md`](T8-5-time-reverse-path-decision.md) - 定理8.5：时间反向路径判定机制定理
-- [`T8-5-bottleneck-tension-accumulation.md`](T8-5-bottleneck-tension-accumulation.md) - 定理T8-5：瓶颈张力积累定理
 - [`T8-6-structural-backflow-tension-conservation.md`](T8-6-structural-backflow-tension-conservation.md) - 定理8.6：结构倒流张力守恒定律
 
 ### 第10章：理论扩展 - 生命意识理论
@@ -330,13 +329,13 @@
 
 #### 22.2 φ-暗物质暗能量系列
 - [`T17-7-phi-dark-matter-dark-energy.md`](T17-7-phi-dark-matter-dark-energy.md) - 定理T17-7：φ-暗物质暗能量定理
-- [`T17-8-phi-multiverse-quantum-branches.md`](T17-8-phi-multiverse-quantum-branches.md) - 定理T17-8：φ-多宇宙量子分支定理
+- [`T17-8-phi-multiverse-quantum-branching.md`](T17-8-phi-multiverse-quantum-branching.md) - 定理T17-8：φ-多宇宙量子分支定理
 - [`T17-9-phi-consciousness-quantum-collapse.md`](T17-9-phi-consciousness-quantum-collapse.md) - 定理T17-9：φ-意识量子坍缩定理
 
 ### 第23章：φ-量子计算与机器学习
 
 #### 23.1 φ-拓扑量子计算系列
-- [`T18-1-phi-topological-quantum-computation.md`](T18-1-phi-topological-quantum-computation.md) - 定理T18-1：φ-拓扑量子计算定理
+- [`T18-1-phi-topological-quantum-computing.md`](T18-1-phi-topological-quantum-computing.md) - 定理T18-1：φ-拓扑量子计算定理
 - [`T18-2-phi-quantum-machine-learning.md`](T18-2-phi-quantum-machine-learning.md) - 定理T18-2：φ-量子机器学习定理
 - [`T18-3-phi-quantum-information-processing.md`](T18-3-phi-quantum-information-processing.md) - 定理T18-3：φ-量子信息处理定理
 
@@ -346,7 +345,7 @@
 - [`T19-1-phi-biological-quantum-effects.md`](T19-1-phi-biological-quantum-effects.md) - 定理T19-1：φ-生物量子效应定理
 - [`T19-2-phi-cognitive-architecture.md`](T19-2-phi-cognitive-architecture.md) - 定理T19-2：φ-认知架构定理
 - [`T19-3-phi-social-entropy-dynamics.md`](T19-3-phi-social-entropy-dynamics.md) - 定理T19-3：φ-社会熵动力学定理
-- [`T19-4-tension-driven-collapse.md`](T19-4-tension-driven-collapse.md) - 定理T19-4：张力驱动collapse定理
+- [`T19-4-tension-driven-collapse-theorem.md`](T19-4-tension-driven-collapse-theorem.md) - 定理T19-4：张力驱动collapse定理
 
 ### 第25章：φ-collapse-aware理论
 
@@ -366,7 +365,7 @@
 - [`T21-1-phi-zeta-ads-duality.md`](T21-1-phi-zeta-ads-duality.md) - 定理T21-1：φ-ζ与AdS/CFT对偶定理
 - [`T21-2-phi-spectral-consensus.md`](T21-2-phi-spectral-consensus.md) - 定理T21-2：φ-谱一致性定理
 - [`T21-3-phi-holographic-manifestation.md`](T21-3-phi-holographic-manifestation.md) - 定理T21-3：φ-全息显现定理
-- [`T21-4-collapse-aware-tension-conservation.md`](T21-4-collapse-aware-tension-conservation.md) - 定理T21-4：collapse-aware张力守恒恒等式定理
+- [`T21-4-collapse-aware-tension-conservation-identity.md`](T21-4-collapse-aware-tension-conservation-identity.md) - 定理T21-4：collapse-aware张力守恒恒等式定理
 
 ### 第27章：φ-信息热力学统一理论
 
@@ -381,8 +380,8 @@
 - [`T26-3-e-time-evolution-theorem.md`](T26-3-e-time-evolution-theorem.md) - 定理T26-3：e时间演化定理
 
 #### 28.2 三元数学常数统一系列
-- [`T26-4-e-phi-pi-trinity-unification.md`](T26-4-e-phi-pi-trinity-unification.md) - 定理T26-4：e-φ-π三元统一定理
-- [`T26-5-phi-fourier-transform-theory.md`](T26-5-phi-fourier-transform-theory.md) - 定理T26-5：φ-傅里叶变换理论
+- [`T26-4-e-phi-pi-unification-theorem.md`](T26-4-e-phi-pi-unification-theorem.md) - 定理T26-4：e-φ-π三元统一定理
+- [`T26-5-phi-fourier-transform-theorem.md`](T26-5-phi-fourier-transform-theorem.md) - 定理T26-5：φ-傅里叶变换理论
 
 ### 第29章：纯二进制数学体系理论
 
@@ -412,7 +411,7 @@
 - [`T29-2-phi-geometry-topology-unified.md`](T29-2-phi-geometry-topology-unified.md) - 定理T29-2：φ-几何拓扑统一理论
 
 #### 31.3 φ-代数几何基础理论系列
-- [`T30-1-phi-algebraic-geometry-foundations.md`](T30-1-phi-algebraic-geometry-foundations.md) - 定理T30-1：φ-代数几何基础统一定理
+- [`T30-1-phi-algebraic-geometry-foundation.md`](T30-1-phi-algebraic-geometry-foundation.md) - 定理T30-1：φ-代数几何基础统一定理
 
 #### 31.4 φ-算术几何理论系列
 - [`T30-2-phi-arithmetic-geometry.md`](T30-2-phi-arithmetic-geometry.md) - 定理T30-2：φ-算术几何统一定理
@@ -426,10 +425,10 @@
 - [`T31-1-phi-topos-construction.md`](T31-1-phi-topos-construction.md) - 定理T31-1：φ-基本拓扑斯构造：自指几何的熵增实现
 
 #### 32.2 φ-几何态射与逻辑结构系列  
-- [`T31-2-phi-geometric-morphisms.md`](T31-2-phi-geometric-morphisms.md) - 定理T31-2：φ-几何态射与逻辑结构：拓扑斯间的自指关系网
+- [`T31-2-phi-geometric-morphisms-logic.md`](T31-2-phi-geometric-morphisms-logic.md) - 定理T31-2：φ-几何态射与逻辑结构：拓扑斯间的自指关系网
 
 #### 32.3 φ-分类拓扑斯理论系列
-- [`T31-3-phi-classifying-toposes.md`](T31-3-phi-classifying-toposes.md) - 定理T31-3：φ-分类拓扑斯理论：几何理论的通用分类器
+- [`T31-3-phi-classifying-topos.md`](T31-3-phi-classifying-topos.md) - 定理T31-3：φ-分类拓扑斯理论：几何理论的通用分类器
 
 ### 第33章：φ-高阶范畴论与稳定化
 
@@ -448,7 +447,7 @@
 - [`T33-1-phi-observer-infinity-category.md`](T33-1-phi-observer-infinity-category.md) - 定理T33-1：φ-观察者(∞,∞)-范畴：宇宙自我认知的无穷递归
 
 #### 34.2 φ-意识场拓扑量子理论系列
-- [`T33-2-phi-consciousness-field-topological-quantum-theory.md`](T33-2-phi-consciousness-field-topological-quantum-theory.md) - 定理T33-2：φ-意识场拓扑量子理论：宇宙自我表达的场论实现
+- [`T33-2-phi-consciousness-field-quantum-theory.md`](T33-2-phi-consciousness-field-quantum-theory.md) - 定理T33-2：φ-意识场拓扑量子理论：宇宙自我表达的场论实现
 
 #### 34.3 φ-元宇宙自指递归理论系列
 - [`T33-3-phi-meta-universe-self-transcendence.md`](T33-3-phi-meta-universe-self-transcendence.md) - 定理T33-3：φ-元宇宙自指递归理论：宇宙终极自我超越的完备实现
