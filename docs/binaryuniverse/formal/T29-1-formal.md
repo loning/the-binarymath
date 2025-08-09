@@ -403,17 +403,17 @@ def solve_pell_equation_phi(
     # 生成所有解：使用递推关系
     solutions = [(x1_zeck, y1_zeck)]
     
-    # Pell方程的递推：x_{n+1} = x1*x_n + D*y1*y_n, y_{n+1} = x1*y_n + y1*x_n
+    # Pell方程的递推：x_\{n+1\} = x1*x_n + D*y1*y_n, y_\{n+1\} = x1*y_n + y1*x_n
     x_n, y_n = x1_zeck, y1_zeck
     
     for n in range(2, depth + 1):
-        # x_{n+1} = x1*x_n + D*y1*y_n
+        # x_\{n+1\} = x1*x_n + D*y1*y_n
         x1_xn, _, _ = fibonacci_multiplication(x1_zeck, x_n)
         D_y1_yn, _, _ = fibonacci_multiplication(D_zeck, 
                                                fibonacci_multiplication(y1_zeck, y_n)[0])
         x_n_plus_1, _, _ = fibonacci_addition(x1_xn, D_y1_yn)
         
-        # y_{n+1} = x1*y_n + y1*x_n
+        # y_\{n+1\} = x1*y_n + y1*x_n
         x1_yn, _, _ = fibonacci_multiplication(x1_zeck, y_n)
         y1_xn, _, _ = fibonacci_multiplication(y1_zeck, x_n)
         y_n_plus_1, _, _ = fibonacci_addition(x1_yn, y1_xn)
@@ -800,7 +800,7 @@ def compute_phi_zeta_function(
     
     from T27_1_formal import fibonacci_division, encode_to_zeckendorf
     
-    # φ-ζ函数：∑_{n=1}^∞ 1 / Z(n)^s
+    # φ-ζ函数：∑_\{n=1\}^∞ 1 / Z(n)^s
     result = 0.0 + 0.0j
     
     PHI = (1 + 5**0.5) / 2
@@ -1047,7 +1047,7 @@ def analyze_phi_critical_strip(
 #### φ-ζ零点定位器收敛性
 
 - **搜索网格密度**：Δs < 0.01确保零点不遗漏
-- **Newton-Raphson收敛**：|z_{n+1} - z_n| < threshold在50步内
+- **Newton-Raphson收敛**：|z_\{n+1\} - z_n| < threshold在50步内
 - **函数方程一致性**：ζ_φ(s) = φ^(s-1/2) Γ_φ((1-s)/2) ζ_φ(1-s)误差 < 1e-10
 
 ### 与T27-1理论一致性检查

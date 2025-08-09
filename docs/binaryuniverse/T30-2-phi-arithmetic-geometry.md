@@ -22,7 +22,7 @@ Zφ ≡ {∑(i=0,n) aᵢφⁱ | aᵢ ∈ Z(10,101), no-11 constraint}
 其中Z(10,101)表示Zeckendorf二进制表示的整数集。
 
 **定理 1.1** (φ-整数环的熵增性 Entropy Increase of φ-Integer Ring)
-对于任意φ-整数运算序列{zₙ}：
+对于任意φ-整数运算序列\{zₙ\}：
 ```
 S[Zφ(n+1)] > S[Zφ(n)]
 ```
@@ -244,7 +244,7 @@ T30-2 = T30-2(T30-2)
 ### 8.2 熵增验证 Entropy Increase Verification
 
 **定理 8.2** (全局熵增 Global Entropy Increase)
-在T30-2的任意运算序列{Oₙ}下：
+在T30-2的任意运算序列\{Oₙ\}下：
 ```
 S[T30-2(n+1)] > S[T30-2(n)]
 ```

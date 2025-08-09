@@ -3,8 +3,9 @@
 ## Foundational Axiom System
 
 ### Primary Axiom (Inherited from T30-1)
-$$\forall S : \text{SelfReferential}(S) \land \text{Complete}(S) \Rightarrow \forall t : H(S_{t+1}) > H(S_t)$$
-
+$$
+\forall S : \text{SelfReferential}(S) \land \text{Complete}(S) \Rightarrow \forall t : H(S_{t+1}) > H(S_t)
+$$
 **Axiom A1** (Self-Referential Entropy Increase): Every self-referential complete system exhibits strict entropy increase.
 
 **Axiom A2** (Zeckendorf Uniqueness): Every natural number has unique Zeckendorf representation with no-11 constraint.
@@ -81,8 +82,9 @@ PhiLFunction := {
 ## Rigorous Arithmetic Definitions
 
 ### Definition 1.1 (φ-Integer Ring Operations - Complete)
-$$\mathbb{Z}_φ := \{∑_{i=0}^n a_i φ^i : a_i ∈ \{0,1\}, \text{ZeckendorfValid}((a_n,...,a_0))\}$$
-
+$$
+\mathbb{Z}_φ := \{∑_{i=0}^n a_i φ^i : a_i ∈ \{0,1\}, \text{ZeckendorfValid}((a_n,...,a_0))\}
+$$
 **Addition Algorithm:**
 ```
 procedure phi_addition(x: ZInt, y: ZInt) -> ZInt:
@@ -321,8 +323,9 @@ procedure compute_phi_canonical_height(P: Point, curve: PhiEllipticCurve) -> Rea
 
 ### Theorem 2.1 (φ-Integer Ring Entropy Increase - Constructive)
 For any φ-integer operation sequence $\{z_n\}$ where $z_{n+1} = f_φ(z_n)$:
-$$H[\mathbb{Z}_φ(n+1)] > H[\mathbb{Z}_φ(n)]$$
-
+$$
+H[\mathbb{Z}_φ(n+1)] > H[\mathbb{Z}_φ(n)]
+$$
 **Constructive Proof Algorithm:**
 ```
 procedure verify_entropy_increase(operation_sequence: List[Operation]) -> Bool:

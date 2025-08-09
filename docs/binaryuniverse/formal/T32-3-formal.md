@@ -11,8 +11,9 @@
 ### Definition 1.1 φ-Motivic(∞,1)-Category
 **Definition**: A φ-Motivic(∞,1)-category $\mathcal{M}_\phi$ is a 4-tuple:
 
-$$\mathcal{M}_\phi = (\mathcal{C}_\phi, \mathcal{A}¹_\phi, \mathcal{T}_{Nis}, \mathbf{Six}_\phi)$$
-
+$$
+\mathcal{M}_\phi = (\mathcal{C}_\phi, \mathcal{A}¹_\phi, \mathcal{T}_{Nis}, \mathbf{Six}_\phi)
+$$
 Where:
 - $\mathcal{C}_\phi$: (∞,1)-category of φ-algebraic geometric objects
 - $\mathcal{A}¹_\phi$: φ-A¹-homotopy structure  
@@ -24,15 +25,17 @@ Where:
 ### Definition 1.2 φ-A¹-Homotopy Equivalence
 **Definition**: For φ-schemes $X_\phi, Y_\phi$, they are φ-A¹-homotopy equivalent if:
 
-$$X_\phi \sim_{A¹,\phi} Y_\phi \Leftrightarrow \text{Map}_{\mathcal{M}_\phi}(Z, X) \simeq \text{Map}_{\mathcal{M}_\phi}(Z, Y)$$
-
+$$
+X_\phi \sim_{A¹,\phi} Y_\phi \Leftrightarrow \text{Map}_{\mathcal{M}_\phi}(Z, X) \simeq \text{Map}_{\mathcal{M}_\phi}(Z, Y)
+$$
 for all A¹-invariant φ-schemes Z, with all maps preserving Zeckendorf structure.
 
 ### Definition 1.3 φ-Nisnevich Site ∞-Upgrade
 **Definition**: The φ-Nisnevich topology on ∞-categories:
 
-$$\mathcal{T}_{Nis,\phi} = (\text{Sm}_\phi, \tau_{Nis,\phi})$$
-
+$$
+\mathcal{T}_{Nis,\phi} = (\text{Sm}_\phi, \tau_{Nis,\phi})
+$$
 Where covering families satisfy:
 1. **φ-étale property**: Local isomorphisms preserve Zeckendorf structure
 2. **Residue field isomorphisms**: $k(x) \cong k(y)$ for closed points
@@ -41,8 +44,9 @@ Where covering families satisfy:
 ### Definition 1.4 φ-Six Functor System
 **Definition**: For morphism $f: X_\phi \to Y_\phi$ of φ-schemes:
 
-$$\mathbf{Six}_\phi(f) = (f^*, f_*, f^!, f_!, \otimes, \mathcal{H}om)$$
-
+$$
+\mathbf{Six}_\phi(f) = (f^*, f_*, f^!, f_!, \otimes, \mathcal{H}om)
+$$
 Satisfying:
 1. **Adjunctions**: $f^* \dashv f_*$, $f_! \dashv f^!$
 2. **Projection formula**: $f_!(E \otimes f^*F) \simeq f_!E \otimes F$
@@ -145,8 +149,9 @@ ALGORITHM SixFunctors(f: X_φ → Y_φ):
 ### Theorem 1.1 Motivic Category Necessity
 **Statement**: For any self-referentially complete φ-stable (∞,1)-category system $\mathcal{S}_\phi$, when its Bott periodicity and K-theory stability reach saturation, there exists a unique φ-Motivic (∞,1)-category $\mathcal{M}_\phi$ such that:
 
-$$\mathcal{S}_\phi = \text{Periodic}(\mathcal{S}_\phi) \Rightarrow \mathcal{M}_\phi = \text{MotivicCompletion}(\mathcal{S}_\phi)$$
-
+$$
+\mathcal{S}_\phi = \text{Periodic}(\mathcal{S}_\phi) \Rightarrow \mathcal{M}_\phi = \text{MotivicCompletion}(\mathcal{S}_\phi)
+$$
 **Constructive Proof**:
 ```
 PROOF MotivicNecessity:
@@ -178,8 +183,9 @@ PROOF MotivicNecessity:
 ### Theorem 1.2 φ-A¹-Homotopy Invariance
 **Statement**: φ-A¹-homotopy equivalence preserves all Motivic invariants:
 
-$$X_\phi \sim_{A¹,\phi} Y_\phi \Rightarrow H^i_{mot,\phi}(X, \mathcal{F}) \cong H^i_{mot,\phi}(Y, \mathcal{F})$$
-
+$$
+X_\phi \sim_{A¹,\phi} Y_\phi \Rightarrow H^i_{mot,\phi}(X, \mathcal{F}) \cong H^i_{mot,\phi}(Y, \mathcal{F})
+$$
 **Constructive Proof**:
 ```
 PROOF A1HomotopyInvariance:
@@ -208,8 +214,9 @@ PROOF A1HomotopyInvariance:
 ### Theorem 1.3 φ-Six Functor Compatibility
 **Statement**: φ-six functor formalism is fully compatible in Motivic (∞,1)-categories:
 
-$$\mathbf{Six}_\phi: \mathbf{Corr}_\phi \to \mathbf{Cat}_{(∞,1)}^{closed}$$
-
+$$
+\mathbf{Six}_\phi: \mathbf{Corr}_\phi \to \mathbf{Cat}_{(∞,1)}^{closed}
+$$
 **Constructive Proof**:
 ```
 PROOF SixFunctorCompatibility:

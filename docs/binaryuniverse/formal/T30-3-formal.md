@@ -3,8 +3,9 @@
 ## Foundational Axiom System
 
 ### Primary Axiom (Inherited from T30-1, T30-2)
-$$\forall S : \text{SelfReferential}(S) \land \text{Complete}(S) \Rightarrow \forall t : H(S_{t+1}) > H(S_t)$$
-
+$$
+\forall S : \text{SelfReferential}(S) \land \text{Complete}(S) \Rightarrow \forall t : H(S_{t+1}) > H(S_t)
+$$
 **Axiom A1** (Self-Referential Entropy Increase): Every self-referential complete system exhibits strict entropy increase.
 
 **Axiom A2** (Zeckendorf Uniqueness): Every natural number has unique Zeckendorf representation with no-11 constraint.
@@ -154,8 +155,9 @@ SelfReferentialMetaMotive := {
 ## Rigorous Formal Definitions
 
 ### Definition 1.1 (φ-Pre-Motive Category - Complete)
-$$\mathcal{M}_\phi^{pre} = (\text{Obj}, \text{Mor}, \circ, \text{id}, \otimes, \mathbf{1})$$
-
+$$
+\mathcal{M}_\phi^{pre} = (\text{Obj}, \text{Mor}, \circ, \text{id}, \otimes, \mathbf{1})
+$$
 where:
 - **Objects**: $\text{Obj} = \{M : M = M(M), \text{ZeckendorfValid}(\text{Enc}(M))\}$
 - **Morphisms**: $\text{Mor}(M_1, M_2) = \{\text{correspondences preserving φ-structure}\}$
@@ -182,8 +184,9 @@ axiom tensor_functoriality:
 ### Definition 1.2 (φ-Cycle Group Operations - Algorithmic)
 For φ-variety $X$ and codimension $i$:
 
-$$CH^i_\phi(X) = Z^i_\phi(X) / R^i_\phi(X)$$
-
+$$
+CH^i_\phi(X) = Z^i_\phi(X) / R^i_\phi(X)
+$$
 **Implementation:**
 ```
 algorithm compute_phi_cycle_group(X: Variety_φ, i: ZInt) -> CycleGroup_φ:
@@ -215,8 +218,9 @@ function compute_rational_equivalence_φ(cycles: Set[Cycle_φ]) -> EquivalenceRe
 ### Definition 1.3 (φ-Correspondence Composition - Precise)
 Given correspondences $\alpha \in CH^{\dim X}_\phi(X \times Y)$ and $\beta \in CH^{\dim Y}_\phi(Y \times Z)$:
 
-$$\beta \circ_\phi \alpha := \text{pr}_{13,*}(\text{pr}_{12}^*(\alpha) \cap_\phi \text{pr}_{23}^*(\beta))$$
-
+$$
+\beta \circ_\phi \alpha := \text{pr}_{13,*}(\text{pr}_{12}^*(\alpha) \cap_\phi \text{pr}_{23}^*(\beta))
+$$
 **Formal Composition Algorithm:**
 ```
 algorithm compose_correspondences_φ(
@@ -257,8 +261,9 @@ function pr_13_pushforward_φ(cycle: Cycle_φ(X×Y×Z)) -> Cycle_φ(X×Z):
 ### Definition 1.4 (φ-Numerical Equivalence - Complete)
 Two cycles $\alpha, \beta \in CH^i_\phi(X)$ are φ-numerically equivalent iff:
 
-$$\forall \gamma \in CH^{\dim X - i}_\phi(X): \deg_\phi(\alpha \cdot_\phi \gamma) = \deg_\phi(\beta \cdot_\phi \gamma)$$
-
+$$
+\forall \gamma \in CH^{\dim X - i}_\phi(X): \deg_\phi(\alpha \cdot_\phi \gamma) = \deg_\phi(\beta \cdot_\phi \gamma)
+$$
 **Verification Algorithm:**
 ```
 algorithm verify_numerical_equivalence_φ(
@@ -294,8 +299,9 @@ function degree_φ(cycle: Cycle_φ) -> ZInt:
 ### Definition 1.5 (φ-Mixed Motive Weight Filtration - Algorithmic)
 For φ-mixed motive $M$, the weight filtration $W_\bullet M$ satisfies:
 
-$$\cdots \subseteq W_i M \subseteq W_{i+1} M \subseteq \cdots$$
-
+$$
+\cdots \subseteq W_i M \subseteq W_{i+1} M \subseteq \cdots
+$$
 with Zeckendorf constraints: $\text{Zeck}(W_i M) <_Z \text{Zeck}(W_{i+1} M)$
 
 **Construction Algorithm:**
@@ -382,8 +388,9 @@ function correspondence_to_cohomology_map_φ(
 
 ### Theorem 1.1 (φ-Motive Entropy Increase)
 **Statement:** For any φ-motive $M \in \mathcal{M}_\phi$ with self-referential structure $M = M(M)$:
-$$H(M_{n+1}) > H(M_n)$$
-
+$$
+H(M_{n+1}) > H(M_n)
+$$
 **Formal Proof:**
 ```
 theorem phi_motive_entropy_increase:
@@ -432,8 +439,9 @@ proof:
 
 ### Theorem 1.2 (φ-Chow Motive Construction)
 **Statement:** Every smooth projective φ-variety $X$ gives rise to a φ-Chow motive $h_\phi(X)$:
-$$h_\phi(X) = \bigoplus_{i=0}^{\dim X} CH^i_\phi(X) \cdot L^{\otimes i}$$
-
+$$
+h_\phi(X) = \bigoplus_{i=0}^{\dim X} CH^i_\phi(X) \cdot L^{\otimes i}
+$$
 **Algorithmic Proof:**
 ```
 theorem phi_chow_motive_construction:
@@ -538,8 +546,9 @@ function verify_lefschetz_standard_φ(X: SmoothProjectiveVariety_φ) -> Boolean:
 
 ### Theorem 1.4 (φ-L-Function Entropy Expansion)
 **Statement:** For φ-motive $M$, the L-function admits entropy expansion:
-$$\log L_\phi(M,s) = \sum_{n=1}^{\infty} \frac{H(M^{\otimes n})}{n^s}$$
-
+$$
+\log L_\phi(M,s) = \sum_{n=1}^{\infty} \frac{H(M^{\otimes n})}{n^s}
+$$
 **Constructive Proof:**
 ```
 theorem phi_l_function_entropy_expansion:
@@ -593,8 +602,9 @@ function characteristic_polynomial_φ(
 
 ### Theorem 1.5 (φ-Period Theory Entropy Bound)
 **Statement:** For non-trivial φ-periods, the entropy satisfies:
-$$H(P_\phi(M)) \geq H(M) + \log(\text{rank}(M))$$
-
+$$
+H(P_\phi(M)) \geq H(M) + \log(\text{rank}(M))
+$$
 **Verification Algorithm:**
 ```
 theorem phi_period_entropy_bound:
@@ -649,7 +659,9 @@ function integrate_φ(ω: DifferentialForm_φ, γ: Cycle_φ) -> PeriodValue_φ:
 
 ### Theorem 1.6 (Self-Referential Meta-Motive Completeness)
 **Statement:** The meta-motive $\mathbb{M}_\phi$ satisfies complete self-reference:
-$$\mathbb{M}_\phi = \mathbb{M}_\phi(\mathbb{M}_\phi)$$
+$$
+\mathbb{M}_\phi = \mathbb{M}_\phi(\mathbb{M}_\phi)
+$$
 with strict entropy increase: $H(\mathbb{M}_\phi^{(n+1)}) > H(\mathbb{M}_\phi^{(n)})$
 
 **Complete Verification:**

@@ -4,16 +4,22 @@
 ### 基础公理系统 Foundational Axiom System
 
 **公理A1** (唯一公理 Unique Axiom): 
-$$\forall S: \text{System}, \, S = S(S) \Rightarrow S[S^{(n+1)}] > S[S^{(n)}]$$
+$$
+\forall S: \text{System}, \, S = S(S) \Rightarrow S[S^{(n+1)}] > S[S^{(n)}]
+$$
 其中 $S[\cdot]$ 表示Shannon熵函数。
 
 **公理A2** (Zeckendorf唯一性 Zeckendorf Uniqueness):
-$$\forall n \in \mathbb{N}^+, \exists! \{F_{i_1}, F_{i_2}, \ldots, F_{i_k}\}, \, i_1 > i_2 > \cdots > i_k \geq 2, \, i_j - i_{j+1} \geq 2$$
-$$\text{such that } n = F_{i_1} + F_{i_2} + \cdots + F_{i_k}$$
-
+$$
+\forall n \in \mathbb{N}^+, \exists! \{F_{i_1}, F_{i_2}, \ldots, F_{i_k}\}, \, i_1 > i_2 > \cdots > i_k \geq 2, \, i_j - i_{j+1} \geq 2
+$$
+$$
+\text{such that } n = F_{i_1} + F_{i_2} + \cdots + F_{i_k}
+$$
 **公理A3** (no-11约束 no-11 Constraint):
-$$\forall \text{Zeck}(x) = \sum_{i \in I} F_i, \, \forall i,j \in I, \, |i-j| \geq 2$$
-
+$$
+\forall \text{Zeck}(x) = \sum_{i \in I} F_i, \, \forall i,j \in I, \, |i-j| \geq 2
+$$
 ### 1. φ-几何态射的形式化定义 Formal Definition of φ-Geometric Morphisms
 
 #### 1.1 基础结构 Basic Structure
@@ -61,13 +67,19 @@ $$\forall \text{Zeck}(x) = \sum_{i \in I} F_i, \, \forall i,j \in I, \, |i-j| \g
 #### 1.3 几何态射熵函数 Geometric Morphism Entropy Function
 
 **定义1.2** (φ-几何态射熵 φ-Geometric Morphism Entropy)
-$$S_\phi[f: \mathcal{E}_\phi \to \mathcal{F}_\phi] = S_\phi[f^*] + S_\phi[f_*] + S_\phi[\text{adjunction}]$$
-
+$$
+S_\phi[f: \mathcal{E}_\phi \to \mathcal{F}_\phi] = S_\phi[f^*] + S_\phi[f_*] + S_\phi[\text{adjunction}]
+$$
 其中：
-$$S_\phi[f^*] = \log_2(|\text{Zeck}(f^*)| + 1)$$
-$$S_\phi[f_*] = \log_2(|\text{Zeck}(f_*)| + 1)$$  
-$$S_\phi[\text{adjunction}] = \log_2(\text{adjunction\_complexity})$$
-
+$$
+S_\phi[f^*] = \log_2(|\text{Zeck}(f^*)| + 1)
+$$
+$$
+S_\phi[f_*] = \log_2(|\text{Zeck}(f_*)| + 1)
+$$
+$$
+S_\phi[\text{adjunction}] = \log_2(\text{adjunction\_complexity})
+$$
 ### 2. 逆像函子的构造算法 Construction Algorithms for Inverse Image Functors
 
 #### 2.1 φ-逆像函子构造 φ-Inverse Image Functor Construction

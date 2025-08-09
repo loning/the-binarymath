@@ -4,16 +4,22 @@
 ### 基础公理系统 Foundational Axiom System
 
 **公理A1** (唯一公理 Unique Axiom): 
-$$\forall S: \text{System}, \, S = S(S) \Rightarrow S[S^{(n+1)}] > S[S^{(n)}]$$
+$$
+\forall S: \text{System}, \, S = S(S) \Rightarrow S[S^{(n+1)}] > S[S^{(n)}]
+$$
 其中 $S[\cdot]$ 表示Shannon熵函数。
 
 **公理A2** (Zeckendorf唯一性 Zeckendorf Uniqueness):
-$$\forall n \in \mathbb{N}^+, \exists! \{F_{i_1}, F_{i_2}, \ldots, F_{i_k}\}, \, i_1 > i_2 > \cdots > i_k \geq 2, \, i_j - i_{j+1} \geq 2$$
-$$\text{such that } n = F_{i_1} + F_{i_2} + \cdots + F_{i_k}$$
-
+$$
+\forall n \in \mathbb{N}^+, \exists! \{F_{i_1}, F_{i_2}, \ldots, F_{i_k}\}, \, i_1 > i_2 > \cdots > i_k \geq 2, \, i_j - i_{j+1} \geq 2
+$$
+$$
+\text{such that } n = F_{i_1} + F_{i_2} + \cdots + F_{i_k}
+$$
 **公理A3** (no-11约束 no-11 Constraint):
-$$\forall \text{Zeck}(x) = \sum_{i \in I} F_i, \, \forall i,j \in I, \, |i-j| \geq 2$$
-
+$$
+\forall \text{Zeck}(x) = \sum_{i \in I} F_i, \, \forall i,j \in I, \, |i-j| \geq 2
+$$
 ### 1. φ-范畴的形式化定义 Formal Definition of φ-Category
 
 #### 1.1 基础结构 Basic Structure
@@ -34,8 +40,9 @@ $$\forall \text{Zeck}(x) = \sum_{i \in I} F_i, \, \forall i,j \in I, \, |i-j| \g
 #### 1.2 φ-张量积定义 Definition of φ-Tensor Product
 
 **定义1.2** (φ-张量积算子 φ-Tensor Product Operator)
-$$\otimes_\phi: \mathcal{Z}_{no11} \times \mathcal{Z}_{no11} \to \mathcal{Z}_{no11}$$
-
+$$
+\otimes_\phi: \mathcal{Z}_{no11} \times \mathcal{Z}_{no11} \to \mathcal{Z}_{no11}
+$$
 **算法1.1** (φ-张量积计算 φ-Tensor Product Computation)
 ```
 输入：a = Σ F_i, b = Σ F_j （Zeckendorf表示）
@@ -54,12 +61,16 @@ $$\otimes_\phi: \mathcal{Z}_{no11} \times \mathcal{Z}_{no11} \to \mathcal{Z}_{no
 #### 1.3 熵函数定义 Entropy Function Definition
 
 **定义1.3** (φ-对象熵 φ-Object Entropy)
-$$S_\phi: \text{Obj}(\mathcal{C}_\phi) \to \mathbb{R}_+$$
-$$S_\phi[X] = \log_2(|\{i: F_i \in \text{Zeck}(X)\}| + 1)$$
-
+$$
+S_\phi: \text{Obj}(\mathcal{C}_\phi) \to \mathbb{R}_+
+$$
+$$
+S_\phi[X] = \log_2(|\{i: F_i \in \text{Zeck}(X)\}| + 1)
+$$
 **定义1.4** (φ-态射熵 φ-Morphism Entropy)  
-$$S_\phi[f: X \to Y] = S_\phi[X] + S_\phi[Y] + \log_2(|\text{Zeck}(f)|)$$
-
+$$
+S_\phi[f: X \to Y] = S_\phi[X] + S_\phi[Y] + \log_2(|\text{Zeck}(f)|)
+$$
 ### 2. φ-有限极限的构造算法 Construction Algorithms for φ-Finite Limits
 
 #### 2.1 φ-积构造 φ-Product Construction
@@ -124,8 +135,9 @@ $$S_\phi[f: X \to Y] = S_\phi[X] + S_\phi[Y] + \log_2(|\text{Zeck}(f)|)$$
 
 **定义2.2** (φ-等化子 φ-Equalizer)
 平行对$f, g: X \rightrightarrows Y$的φ-等化子是$(E, e: E \to X)$满足：
-$$f \circ e = g \circ e$$
-
+$$
+f \circ e = g \circ e
+$$
 **算法2.2** (φ-等化子构造算法 φ-Equalizer Construction Algorithm)
 ```
 输入：平行态射 f, g: X ⟹ Y
@@ -156,8 +168,9 @@ $$f \circ e = g \circ e$$
 
 **定义2.3** (φ-拉回 φ-Pullback)
 态射$f: X \to Z, g: Y \to Z$的φ-拉回是$(P, p_1: P \to X, p_2: P \to Y)$满足：
-$$f \circ p_1 = g \circ p_2$$
-
+$$
+f \circ p_1 = g \circ p_2
+$$
 **算法2.3** (φ-拉回构造算法 φ-Pullback Construction Algorithm)
 ```
 输入：态射 f: X → Z, g: Y → Z

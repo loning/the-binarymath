@@ -3,19 +3,23 @@
 ## Foundational Axiom System
 
 ### Axiom A1 (Self-Referential Entropy Increase)
-$$\forall S : \text{SelfReferential}(S) \land \text{Complete}(S) \Rightarrow \forall t : H(S_{t+1}) > H(S_t)$$
-
+$$
+\forall S : \text{SelfReferential}(S) \land \text{Complete}(S) \Rightarrow \forall t : H(S_{t+1}) > H(S_t)
+$$
 where $H$ denotes entropy measure and $\text{SelfReferential}(S) \equiv S = S(S)$.
 
 ### Axiom A2 (Zeckendorf Uniqueness) 
-$$\forall n \in \mathbb{N} : \exists! (b_k)_{k \geq 1} : n = \sum_{k=1}^{\infty} b_k F_k \land \neg \exists k : b_k = b_{k+1} = 1$$
-
+$$
+\forall n \in \mathbb{N} : \exists! (b_k)_{k \geq 1} : n = \sum_{k=1}^{\infty} b_k F_k \land \neg \exists k : b_k = b_{k+1} = 1
+$$
 ### Axiom A3 (Fibonacci Recursion)
-$$\forall k \geq 3 : F_k = F_{k-1} + F_{k-2} \land F_1 = F_2 = 1$$
-
+$$
+\forall k \geq 3 : F_k = F_{k-1} + F_{k-2} \land F_1 = F_2 = 1
+$$
 ### Axiom A4 (φ-Constraint Principle)
-$$\forall x \in \mathcal{AG}_φ : \text{ZeckendorfValid}(\text{Repr}(x))$$
-
+$$
+\forall x \in \mathcal{AG}_φ : \text{ZeckendorfValid}(\text{Repr}(x))
+$$
 ## Type System and Formal Structures
 
 ### Type 1: Zeckendorf Integers
@@ -43,16 +47,18 @@ Variety_φ := {
 ## Rigorous Formal Definitions
 
 ### Definition 1.1 (φ-Affine Space)
-$$\mathbb{A}^n_φ := \{(a_1,...,a_n) \in (\mathbb{Z}_φ)^n : \forall i, \text{ZeckendorfValid}(a_i)\}$$
-
+$$
+\mathbb{A}^n_φ := \{(a_1,...,a_n) \in (\mathbb{Z}_φ)^n : \forall i, \text{ZeckendorfValid}(a_i)\}
+$$
 **Formal Properties:**
 - **Closure**: $\forall P, Q \in \mathbb{A}^n_φ : P +_φ Q \in \mathbb{A}^n_φ$
 - **Identity**: $\exists 0_φ \in \mathbb{A}^n_φ : \forall P : P +_φ 0_φ = P$
 - **Fibonacci Structure**: $+_φ$ satisfies Fibonacci addition rules
 
 ### Definition 1.2 (Zeckendorf Polynomial Ring)
-$$R_φ[x_1,...,x_n] := \left\{ \sum_{I \in \mathcal{M}_n} a_I x^I : a_I \in \mathbb{Z}_φ, |\{I : a_I \neq 0\}| < \infty \right\}$$
-
+$$
+R_φ[x_1,...,x_n] := \left\{ \sum_{I \in \mathcal{M}_n} a_I x^I : a_I \in \mathbb{Z}_φ, |\{I : a_I \neq 0\}| < \infty \right\}
+$$
 where $\mathcal{M}_n = \{(i_1,...,i_n) \in (\mathbb{N}_0)^n : \forall j, \text{ZeckendorfValid}(i_j)\}$
 
 **Ring Operations:**
@@ -62,8 +68,9 @@ where $\mathcal{M}_n = \{(i_1,...,i_n) \in (\mathbb{N}_0)^n : \forall j, \text{Z
 
 ### Definition 1.3 (φ-Affine Variety - Precise)
 Given ideal $I \subseteq R_φ[x_1,...,x_n]$:
-$$V_φ(I) := \{P \in \mathbb{A}^n_φ : \forall f \in I, f(P) =_φ 0\}$$
-
+$$
+V_φ(I) := \{P \in \mathbb{A}^n_φ : \forall f \in I, f(P) =_φ 0\}
+$$
 where $=_φ$ denotes equality in $\mathbb{Z}_φ$.
 
 ### Definition 1.4 (φ-Ideal - Complete)
@@ -72,7 +79,10 @@ $I \subseteq R_φ$ is a φ-ideal iff:
 1. **Additive Closure**: $\forall a, b \in I : a +_φ b \in I$
 2. **Absorption**: $\forall r \in R_φ, a \in I : r \cdot_φ a \in I$
 3. **Fibonacci Closure**: $\forall (a_k)_{k \geq 1} \subseteq I$ with $a_{k+2} = a_{k+1} +_φ φ \cdot_φ a_k$:
-   $$\exists N : \forall k > N : a_k \in I$$
+   
+$$
+\exists N : \forall k > N : a_k \in I
+$$
 4. **Zeckendorf Consistency**: $\forall a \in I : \text{ZeckendorfValid}(\text{Coeffs}(a))$
 
 ### Definition 1.5 (φ-Module - Formal)
@@ -98,8 +108,9 @@ A map $f: V_φ \to W_φ$ between φ-varieties is a φ-morphism iff:
 
 ### Theorem 1.1 (φ-Nullstellensatz - Strong Form)
 For any φ-ideal $I \subseteq R_φ[x_1,...,x_n]$:
-$$I(V_φ(I)) = \sqrt[\phi]{I} := \{f \in R_φ : \exists k \in \mathbb{N}, F_k \cdot f^{F_k} \in I\}$$
-
+$$
+I(V_φ(I)) = \sqrt[\phi]{I} := \{f \in R_φ : \exists k \in \mathbb{N}, F_k \cdot f^{F_k} \in I\}
+$$
 **Proof:**
 *Step 1* (Forward Inclusion): Let $f \in I(V_φ(I))$, so $f$ vanishes on $V_φ(I)$.
 
@@ -110,11 +121,13 @@ $$I(V_φ(I)) = \sqrt[\phi]{I} := \{f \in R_φ : \exists k \in \mathbb{N}, F_k \c
 *Step 1.3*: Specifically, consider the φ-localization $R_φ[x_1,...,x_n, \frac{1}{f}]$. If this contains no common zeros with $I$, then by φ-compactness (derived from Axiom A2), we have $1 \in (I, f)$.
 
 *Step 1.4*: This implies $\exists g_i \in I, h \in R_φ[x_1,...,x_n]$ such that:
-$$1 = \sum_{i} g_i h_i + f \cdot h$$
-
+$$
+1 = \sum_{i} g_i h_i + f \cdot h
+$$
 *Step 1.5*: Multiplying by $f^{F_k-1}$ and using Fibonacci identities:
-$$f^{F_k} = \sum_{i} g_i (h_i f^{F_k-1}) + f^{F_k} h \in I$$
-
+$$
+f^{F_k} = \sum_{i} g_i (h_i f^{F_k-1}) + f^{F_k} h \in I
+$$
 *Step 2* (Reverse Inclusion): Let $f \in \sqrt[\phi]{I}$, so $\exists F_k : f^{F_k} \in I$.
 
 *Step 2.1*: For any $P \in V_φ(I)$, we have $g(P) = 0$ for all $g \in I$.
@@ -125,7 +138,9 @@ $$f^{F_k} = \sum_{i} g_i (h_i f^{F_k-1}) + f^{F_k} h \in I$$
 
 ### Theorem 1.2 (φ-Primary Decomposition - Constructive)
 Every φ-ideal $I \subseteq R_φ$ admits a unique minimal primary decomposition:
-$$I = \bigcap_{i=1}^k Q_i$$
+$$
+I = \bigcap_{i=1}^k Q_i
+$$
 where each $Q_i$ is $P_i$-primary for distinct φ-prime ideals $P_i$.
 
 **Proof:**
@@ -134,7 +149,9 @@ where each $Q_i$ is $P_i$-primary for distinct φ-prime ideals $P_i$.
 *Step 1.1*: By induction on the entropy level of $I$. If $H(I) = 0$ (minimal entropy), then $I$ is prime, hence primary.
 
 *Step 1.2*: If $H(I) > 0$, by Axiom A1, there exists a decomposition into lower-entropy components. Specifically, consider the entropy-decreasing filtration:
-$$I = I_0 \supseteq I_1 \supseteq ... \supseteq I_k = 0$$
+$$
+I = I_0 \supseteq I_1 \supseteq ... \supseteq I_k = 0
+$$
 where each $I_j/I_{j+1}$ has minimal entropy.
 
 *Step 1.3*: Each quotient corresponds to a φ-prime ideal by the entropy minimality principle, yielding the primary decomposition through φ-saturation.
@@ -151,8 +168,9 @@ where each $I_j/I_{j+1}$ has minimal entropy.
 
 ### Theorem 1.3 (φ-Riemann-Roch - Complete)
 For a φ-curve $C_φ$ of genus $g$ and divisor $D$:
-$$\ell_φ(D) - \ell_φ(K_φ - D) = \deg_φ(D) + 1 - g + \sum_{k=1}^g F_k \cdot \tau_k(D)$$
-
+$$
+\ell_φ(D) - \ell_φ(K_φ - D) = \deg_φ(D) + 1 - g + \sum_{k=1}^g F_k \cdot \tau_k(D)
+$$
 where:
 - $\ell_φ(D) = \dim_φ H^0(C_φ, \mathcal{O}_{C_φ}(D))$ (using Fibonacci dimension)
 - $K_φ$ is the canonical divisor with φ-constraints
@@ -164,8 +182,9 @@ where:
 *Step 2*: Use φ-Euler characteristic: $\chi_φ(\mathcal{O}_{C_φ}(D)) = \ell_φ(D) - \ell_φ(K_φ - D)$
 
 *Step 3*: Calculate $\chi_φ$ using entropy increase principle:
-$$\chi_φ(\mathcal{O}_{C_φ}(D)) = \deg_φ(D) + \chi_φ(\mathcal{O}_{C_φ}) + \sum_{k=1}^g F_k \cdot \tau_k(D)$$
-
+$$
+\chi_φ(\mathcal{O}_{C_φ}(D)) = \deg_φ(D) + \chi_φ(\mathcal{O}_{C_φ}) + \sum_{k=1}^g F_k \cdot \tau_k(D)
+$$
 *Step 4*: For genus $g$ φ-curve: $\chi_φ(\mathcal{O}_{C_φ}) = 1 - g$ (by φ-Gauss-Bonnet)
 
 *Step 5*: The Fibonacci correction terms $\sum F_k \cdot \tau_k(D)$ arise from the entropy contributions at each recursion level, computed via φ-cohomology.
@@ -174,8 +193,9 @@ $$\chi_φ(\mathcal{O}_{C_φ}(D)) = \deg_φ(D) + \chi_φ(\mathcal{O}_{C_φ}) + \s
 
 ### Theorem 1.4 (φ-Bézout - Precise)
 For φ-projective curves $C_1, C_2 \subset \mathbb{P}^2_φ$ of degrees $d_1, d_2$:
-$$|C_1 \cap C_2|_φ = d_1 \cdot_φ d_2 \cdot φ^{-\tau(d_1,d_2)}$$
-
+$$
+|C_1 \cap C_2|_φ = d_1 \cdot_φ d_2 \cdot φ^{-\tau(d_1,d_2)}
+$$
 where $\tau(d_1,d_2) = \gcd_φ(Z(d_1), Z(d_2))$ is the Fibonacci GCD of Zeckendorf representations.
 
 **Proof:**
@@ -188,7 +208,9 @@ where $\tau(d_1,d_2) = \gcd_φ(Z(d_1), Z(d_2))$ is the Fibonacci GCD of Zeckendo
 
 ### Theorem 1.5 (φ-Module Structure - Constructive)
 Every finitely generated φ-module $M$ over $R_φ$ has a unique decomposition:
-$$M \cong R_φ^{r_φ} \oplus \bigoplus_{i=1}^{s_φ} R_φ/(f_i)$$
+$$
+M \cong R_φ^{r_φ} \oplus \bigoplus_{i=1}^{s_φ} R_φ/(f_i)
+$$
 where:
 - $r_φ$ is the φ-rank (free part)
 - $f_i$ are invariant factors satisfying $f_{i+2} \mid_φ (f_{i+1} \cdot_φ f_i \cdot φ)$
@@ -349,8 +371,9 @@ function φ_ideal_sum(I₁, I₂: Ideal_φ) -> Ideal_φ:
 
 ### Lemma 2.1 (Entropy-Variety Stratification)
 Each entropy level $H_k$ in the system $\psi = \psi(\psi)$ corresponds uniquely to a variety stratum:
-$$\text{Strat}_k(V_φ) = \{P \in V_φ : \text{EntropyLevel}(P) = F_k\}$$
-
+$$
+\text{Strat}_k(V_φ) = \{P \in V_φ : \text{EntropyLevel}(P) = F_k\}
+$$
 **Proof:**
 *Step 1*: By Axiom A1, entropy increases in discrete Fibonacci steps.
 *Step 2*: Each point $P \in V_φ$ has associated complexity measured by its Zeckendorf representation length.
@@ -361,7 +384,9 @@ $$\text{Strat}_k(V_φ) = \{P \in V_φ : \text{EntropyLevel}(P) = F_k\}$$
 
 ### Lemma 2.2 (φ-Dimension Formula)
 For φ-variety $V_φ \subseteq \mathbb{A}^n_φ$:
-$$\dim_φ(V_φ) = n - \text{height}_φ(\text{defining\_ideal}(V_φ))$$
+$$
+\dim_φ(V_φ) = n - \text{height}_φ(\text{defining\_ideal}(V_φ))
+$$
 where $\text{height}_φ$ uses Fibonacci chain length.
 
 **Proof:**
@@ -373,14 +398,18 @@ where $\text{height}_φ$ uses Fibonacci chain length.
 
 ### Lemma 2.3 (φ-Regularity Criterion)
 A φ-variety $V_φ$ is φ-regular at point $P$ iff:
-$$\dim_φ(\mathfrak{m}_P/\mathfrak{m}_P^2) = \dim_φ(V_φ)$$
+$$
+\dim_φ(\mathfrak{m}_P/\mathfrak{m}_P^2) = \dim_φ(V_φ)
+$$
 where all operations respect Zeckendorf constraints.
 
 ## Higher-Dimensional Generalizations
 
 ### Definition 2.1 (φ-Projective Space)
 The $n$-dimensional φ-projective space is:
-$$\mathbb{P}^n_φ := (\mathbb{A}^{n+1}_φ \setminus \{0_φ\}) / \sim_φ$$
+$$
+\mathbb{P}^n_φ := (\mathbb{A}^{n+1}_φ \setminus \{0_φ\}) / \sim_φ
+$$
 where $(x_0:...:x_n) \sim_φ (y_0:...:y_n)$ iff $\exists \lambda \in \mathbb{Z}_φ^*: y_i = λ \cdot φ^{w_i} \cdot x_i$ for weight function $w_i$.
 
 ### Definition 2.2 (φ-Coherent Sheaves)
@@ -391,25 +420,31 @@ A sheaf $\mathcal{F}$ on φ-variety $V_φ$ is φ-coherent iff:
 
 ### Theorem 2.1 (φ-GAGA Correspondence)
 For φ-projective variety $V_φ$, the categories of φ-coherent algebraic and φ-analytic sheaves are equivalent:
-$$\text{Coh}_{\text{alg}}(V_φ) \simeq \text{Coh}_{\text{an}}(V_φ)$$
-
+$$
+\text{Coh}_{\text{alg}}(V_φ) \simeq \text{Coh}_{\text{an}}(V_φ)
+$$
 ## Applications to Classical Problems
 
 ### Application 1: φ-BSD Conjecture Framework
 For φ-elliptic curve $E_φ: y^2 = x^3 + ax + b$ with $a,b \in \mathbb{Z}_φ$:
 
 **φ-L-function Definition:**
-$$L_φ(E,s) = \prod_{p \text{ φ-prime}} \frac{1}{1 - a_{p,φ} p^{-s} + p^{1-2s} \cdot φ^{-c_p}}$$
+$$
+L_φ(E,s) = \prod_{p \text{ φ-prime}} \frac{1}{1 - a_{p,φ} p^{-s} + p^{1-2s} \cdot φ^{-c_p}}
+$$
 where $a_{p,φ}$ are φ-modified Frobenius traces and $c_p$ are Fibonacci correction terms.
 
 **φ-BSD Conjecture:**
-$$\text{ord}_{s=1} L_φ(E,s) = \text{rank}_φ(E(\mathbb{Q}_φ))$$
-
+$$
+\text{ord}_{s=1} L_φ(E,s) = \text{rank}_φ(E(\mathbb{Q}_φ))
+$$
 **Computational Advantage:** The Fibonacci constraints create periodicity that simplifies analytic continuation.
 
 ### Application 2: φ-Mirror Symmetry
 For φ-Calabi-Yau 3-fold $Y_φ$ with mirror $\tilde{Y}_φ$:
-$$H^{1,1}(Y_φ) \cong H^{2,1}(\tilde{Y}_φ)^{\text{φ-dual}}$$
+$$
+H^{1,1}(Y_φ) \cong H^{2,1}(\tilde{Y}_φ)^{\text{φ-dual}}
+$$
 where φ-duality incorporates Fibonacci modular forms.
 
 ## Consistency Verification Framework
@@ -564,8 +599,9 @@ theorem phi_bezout_bound:
 ## Signature and Completion Status
 
 ### Theory Signature
-$$\mathcal{AG}_φ = \varinjlim_{n \to \infty} \left[ \bigotimes_{k=1}^n \mathcal{V}_{F_k} \right]^{\psi=\psi(\psi)}$$
-
+$$
+\mathcal{AG}_φ = \varinjlim_{n \to \infty} \left[ \bigotimes_{k=1}^n \mathcal{V}_{F_k} \right]^{\psi=\psi(\psi)}
+$$
 This signature encodes φ-algebraic geometry as the directed colimit of Fibonacci-indexed tensor products of variety categories, stabilized under the self-referential operator $\psi = \psi(\psi)$.
 
 ### Verification Status: COMPLETE ✓
