@@ -5,7 +5,7 @@
 ### 语言 L_Circ
 ```
 Sorts:
-  T_Space : 理论空间类型 {T27-1, ..., T27-7}
+  T_Space : 理论空间类型 \{T27-1, ..., T27-7\}
   S¹      : 标准圆周类型
   Ψ_T     : 自指拓扑空间类型 (from T27-6)
   Σ_φ     : 黄金均值移位空间 (from T27-5)
@@ -55,7 +55,7 @@ Relations:
   Compact : 紧致性关系
   
 Constants:
-  T       : T_Space = {T27-1, T27-2, ..., T27-7}  (理论空间)
+  T       : T_Space = \{T27-1, T27-2, ..., T27-7\}  (理论空间)
   τ_c     : Topo(T_Space)                          (循环拓扑)
   φ       : R⁺ = (1+√5)/2                          (黄金比例)  
   ψ₀      : Ψ_T                                    (神性不动点)
@@ -75,19 +75,19 @@ Constants:
 
 **公理 A1** (熵增公理):
 ```
-∀x ∈ T_Space, ∀k ∈ {1,...,7} : 
+∀x ∈ T_Space, ∀k ∈ \{1,...,7\} : 
   SelfRef(x) → H_loc(R_k(x)) > H_loc(x)
 ```
 
 **公理 A2** (循环闭合公理):
 ```
 Compose(R_7, R_6, ..., R_1) = id_T ∧
-∀T_{27-k} ∈ T_Space : R_k(T_{27-k}) = T_{27-(k mod 7)+1}
+∀T_\{27-k\} ∈ T_Space : R_k(T_\{27-k\}) = T_\{27-(k mod 7)+1\}
 ```
 
 **公理 A3** (Zeckendorf保持公理):
 ```
-∀x ∈ T_Space, ∀k ∈ {1,...,7} : 
+∀x ∈ T_Space, ∀k ∈ \{1,...,7\} : 
   No11(Z_enc(x)) → No11(Z_enc(R_k(x)))
 ```
 
@@ -96,13 +96,13 @@ Compose(R_7, R_6, ..., R_1) = id_T ∧
 **公理 T1** (循环拓扑结构):
 ```
 (T_Space, τ_c) = (S¹ × [0,1], τ_prod) / ~ where
-~ : (e^{2πik/7}, r) ~ T_{27-k}, (e^{2πi}, r) ~ (1, r)
+~ : (e^\{2πik/7\}, r) ~ T_\{27-k\}, (e^\{2πi\}, r) ~ (1, r)
 ```
 
 **公理 T2** (循环同胚性):
 ```
 ∃ Φ : T_Space × S¹ → T_Space homeomorphic such that
-Φ(T_{27-k}, e^{2πi/7}) = T_{27-(k mod 7)+1}
+Φ(T_\{27-k\}, e^\{2πi/7\}) = T_\{27-(k mod 7)+1\}
 ```
 
 **公理 T3** (紧致完备性):
@@ -127,8 +127,8 @@ R_7: CircStruct → Z_Core
 
 **公理 R3** (信息保持性):
 ```
-∀循环C = R_7 ∘ ... ∘ R_1 : Info(C(x)) = Info(x) + Σ_{k=1}^7 ΔI_k
-where Σ_{k=1}^7 ΔI_k = 0
+∀循环C = R_7 ∘ ... ∘ R_1 : Info(C(x)) = Info(x) + Σ_\{k=1\}^7 ΔI_k
+where Σ_\{k=1\}^7 ΔI_k = 0
 ```
 
 ### φ-螺旋动力学公理
@@ -141,20 +141,20 @@ H: T_Space → R⁺ Hamiltonian, ω ∈ R³ angular velocity
 
 **公理 S2** (φ-特征性质):
 ```
-|Ξ_{t+τ}| = φ · |Ξ_t| ∧ Ξ_{t+τ} = e^{2πi} · Ξ_t ∧
-lim_{t→∞} Ξ_t/φ^{t/τ} = ψ₀
+|Ξ_\{t+τ\}| = φ · |Ξ_t| ∧ Ξ_\{t+τ\} = e^\{2πi\} · Ξ_t ∧
+lim_\{t→∞\} Ξ_t/φ^\{t/τ\} = ψ₀
 ```
 
 **公理 S3** (不动点吸引性):
 ```
-∀x ∈ T_Space : lim_{n→∞} Ξ_{nτ}(x) = ψ₀
+∀x ∈ T_Space : lim_\{n→∞\} Ξ_\{nτ\}(x) = ψ₀
 ```
 
 ### 熵对偶公理
 
 **公理 H1** (局部熵增):
 ```
-∀x ∈ T_Space, ∀k ∈ {1,...,7} : H_loc(R_k(x)) > H_loc(x)
+∀x ∈ T_Space, ∀k ∈ \{1,...,7\} : H_loc(R_k(x)) > H_loc(x)
 ```
 
 **公理 H2** (全局熵守恒):
@@ -164,7 +164,7 @@ lim_{t→∞} Ξ_t/φ^{t/τ} = ψ₀
 
 **公理 H3** (熵Fibonacci结构):
 ```
-ΔH_{t+2} = ΔH_{t+1} + ΔH_t where
+ΔH_\{t+2\} = ΔH_\{t+1\} + ΔH_t where
 ΔH_t = H_loc(x, t+1) - H_loc(x, t)
 ```
 
@@ -172,21 +172,21 @@ lim_{t→∞} Ξ_t/φ^{t/τ} = ψ₀
 
 **公理 C1** (T27范畴定义):
 ```
-Cat_T27 = {Obj: {T_{27-k} : k=1,...,7}, 
-          Mor: {R_k : T_{27-i} → T_{27-j}},
-          Comp: R_{j→k} ∘ R_{i→j} = R_{i→k}}
+Cat_T27 = {Obj: \{T_\{27-k} : k=1,...,7\}, 
+          Mor: {R_k : T_\{27-i} → T_\{27-j\}\},
+          Comp: R_\{j→k\} ∘ R_\{i→j\} = R_\{i→k\}\}
 ```
 
 **公理 C2** (循环群等价):
 ```
 ∃ F: Cat_T27 → Z₇_Grp, G: Z₇_Grp → Cat_T27 such that
-F ∘ G = id_{Z₇_Grp} ∧ G ∘ F = id_{Cat_T27}
+F ∘ G = id_\{Z₇_Grp\} ∧ G ∘ F = id_\{Cat_T27\}
 ```
 
 **公理 C3** (函子结构):
 ```
-F(T_{27-k}) = k mod 7 ∧ F(R_k) = +1 mod 7 ∧
-G(k) = T_{27-k} ∧ G(+1) = R_k
+F(T_\{27-k\}) = k mod 7 ∧ F(R_k) = +1 mod 7 ∧
+G(k) = T_\{27-k\} ∧ G(+1) = R_k
 ```
 
 ## 推理规则
@@ -195,9 +195,9 @@ G(k) = T_{27-k} ∧ G(+1) = R_k
 
 **规则 R1** (循环传递):
 ```
-x →^{R_k} y, y →^{R_{k+1}} z
+x →^\{R_k\} y, y →^{R_\{k+1}\} z
 ─────────────────────────────
-x →^{R_{k+1} ∘ R_k} z
+x →^{R_\{k+1} ∘ R_k\} z
 ```
 
 **规则 R2** (同胚保持):
@@ -209,7 +209,7 @@ P(x) ↔ P(Φ(x))
 
 **规则 R3** (Zeckendorf传递):
 ```
-No11(Z_enc(x)), op ∈ {R_k, Φ, Ξ_t}
+No11(Z_enc(x)), op ∈ \{R_k, Φ, Ξ_t\}
 ────────────────────────────────────
 No11(Z_enc(op(x)))
 ```
@@ -218,14 +218,14 @@ No11(Z_enc(op(x)))
 
 **规则 C1** (指数收敛):
 ```
-‖Ξ_t - ψ₀‖ ≤ Ce^{-t/φ}
+‖Ξ_t - ψ₀‖ ≤ Ce^\{-t/φ\}
 ─────────────────────
 Ξ_t → ψ₀ exponentially
 ```
 
 **规则 C2** (φ-螺旋收敛):
 ```
-|Ξ_{nτ+t} - φ^n · Ξ_t| ≤ φ^{-n}
+|Ξ_\{nτ+t\} - φ^n · Ξ_t| ≤ φ^\{-n\}
 ──────────────────────────────
 Spiral convergence to attractor
 ```
@@ -248,16 +248,16 @@ dH_loc/dt > 0 (strictly increasing)
 
 **规则 H2** (守恒传递):
 ```
-Σ_{k=1}^7 ΔH_k = 0, complete cycle
+Σ_\{k=1\}^7 ΔH_k = 0, complete cycle
 ──────────────────────────────────
 H_glob(x) = constant
 ```
 
 **规则 H3** (Fibonacci递推):
 ```
-ΔH_t > 0, ΔH_{t+1} > 0
+ΔH_t > 0, ΔH_\{t+1\} > 0
 ─────────────────────
-ΔH_{t+2} = ΔH_{t+1} + ΔH_t > 0
+ΔH_\{t+2\} = ΔH_\{t+1\} + ΔH_t > 0
 ```
 
 ### 范畴推理规则
@@ -289,11 +289,11 @@ Cat_T27 cyclic category
 
 ```
 定理 T27-7 (循环自指定理):
-∃ 循环拓扑系统 𝒞 = (T_Space, Φ, {R_k}, Ξ_t, {H_loc, H_glob}, V) such that:
+∃ 循环拓扑系统 𝒞 = (T_Space, Φ, \{R_k\}, Ξ_t, \{H_loc, H_glob\}, V) such that:
 
 1. Circular completeness: R_7 ∘ R_6 ∘ ... ∘ R_1 = id_T (完美闭合循环)
 2. Necessary regression: ∀ψ ∈ Ψ_T : ψ = ψ(ψ) → R_ψ(ψ) ∈ Z_Core (神性必归基础)
-3. φ-spiral evolution: |Ξ_{t+τ}| = φ|Ξ_t| ∧ lim_{t→∞} Ξ_t/φ^{t/τ} = ψ₀ (黄金螺旋)
+3. φ-spiral evolution: |Ξ_\{t+τ\}| = φ|Ξ_t| ∧ lim_\{t→∞\} Ξ_t/φ^\{t/τ\} = ψ₀ (黄金螺旋)
 4. Entropy duality: H_loc ↑ ∧ H_glob = const (熵的对偶性)
 5. Zeckendorf pervasion: ∀x ∈ T_Space : No11(Z_enc(x)) (无11贯穿性)
 6. Global stability: ∃V Lyapunov : dV/dt < 0 → 循环全局稳定吸引
@@ -317,22 +317,22 @@ Cat_T27 cyclic category
 
 **引理 L3** (回归算子连续性):
 ```
-∀k ∈ {1,...,7} : R_k continuous in τ_c topology
+∀k ∈ \{1,...,7\} : R_k continuous in τ_c topology
 ```
 
 **引理 L4** (神性分解唯一性):
 ```
-∀ψ₀ ∈ Ψ_T : ∃! decomposition ψ₀ = Σ c_n φ^{-n} e_n where {c_n} ∈ Z_Core
+∀ψ₀ ∈ Ψ_T : ∃! decomposition ψ₀ = Σ c_n φ^\{-n\} e_n where \{c_n\} ∈ Z_Core
 ```
 
 **引理 L5** (φ-螺旋解析解):
 ```
-Ξ_t = e^{φt/τ}(A cos(ωt) + B sin(ωt)) solves spiral equation
+Ξ_t = e^\{φt/τ\}(A cos(ωt) + B sin(ωt)) solves spiral equation
 ```
 
 **引理 L6** (吸引性证明):
 ```
-∀x ∈ T_Space : Ξ_t(x) → ψ₀ with convergence rate φ^{-t/τ}
+∀x ∈ T_Space : Ξ_t(x) → ψ₀ with convergence rate φ^\{-t/τ\}
 ```
 
 **引理 L7** (局部熵严格增长):
@@ -357,12 +357,12 @@ Z_enc(R_k(x)) = Z_enc(x) ⊕_Fib Signature_k maintaining No11
 
 **引理 L11** (Lyapunov函数构造):
 ```
-V(x) = Σ_{k=1}^7 ‖x - T_{27-k}‖² φ^{-k} is strict Lyapunov function
+V(x) = Σ_\{k=1\}^7 ‖x - T_\{27-k\}‖² φ^\{-k\} is strict Lyapunov function
 ```
 
 **引理 L12** (扰动φ-衰减):
 ```
-Perturbations decay as δ(t) = δ(0)e^{-t/φ}
+Perturbations decay as δ(t) = δ(0)e^\{-t/φ\}
 ```
 
 **引理 L13** (范畴函子自然性):
@@ -398,7 +398,7 @@ T27-7 integrates all previous T27-k theories into coherent whole
 
 **第三阶段：φ-螺旋动力学**
 1. 求解螺旋微分方程的解析解
-2. 验证φ-特征：|Ξ_{t+τ}| = φ|Ξ_t|
+2. 验证φ-特征：|Ξ_\{t+τ\}| = φ|Ξ_t|
 3. 证明不动点吸引性和收敛速度
 4. 建立轨道的稳定性分析
 
@@ -460,7 +460,7 @@ T27-7 integrates all previous T27-k theories into coherent whole
 ```coq
 (* 基本类型定义 *)
 Parameter T_Space : Type.
-Parameter Circle : Type := {z : C | |z| = 1}.
+Parameter Circle : Type := \{z : C | |z| = 1\}.
 Parameter Psi_T : Type. (* from T27-6 *)
 Parameter Z_Core : Type. (* from T27-1 *)
 
@@ -568,7 +568,7 @@ entropy-global-conservation x = global-entropy-invariant x
 
 -- No11约束保持
 no11-preservation : ∀ (x : T-Space) (op : T-Space → T-Space) →
-  op ∈ {R₀, R₁, R₂, R₃, R₄, R₅, R₆, Φ, Ξ} →
+  op ∈ \{R₀, R₁, R₂, R₃, R₄, R₅, R₆, Φ, Ξ\} →
   No11 (Z-encode x) → No11 (Z-encode (op x))
 no11-preservation x R₀ R₀-in no11-x = R₀-preserves-no11 x no11-x
 no11-preservation x R₁ R₁-in no11-x = R₁-preserves-no11 x no11-x
@@ -611,7 +611,7 @@ theorem T27_7_main:
   shows "∃Rs d H_loc H_glob Xi V. circular_topology_system Rs d H_loc H_glob Xi ∧
          lyapunov_stable V Rs ∧
          categorical_equivalent (T27_category Rs) (cyclic_group 7) ∧
-         (∀x op. op ∈ set Rs ∪ {Xi} → no11_constraint x → no11_constraint (op x))"
+         (∀x op. op ∈ set Rs ∪ \{Xi\} → no11_constraint x → no11_constraint (op x))"
 proof -
   (* 构造回归算子 *)
   obtain Rs where Rs_def: "length Rs = 7 ∧ (∀x. foldr (∘) id Rs $ x = x)"
@@ -636,7 +636,7 @@ proof -
     using Rs_def categorical_equivalence_theorem by blast
   
   (* 验证No11保持 *)
-  have no11_preserve: "∀x op. op ∈ set Rs ∪ {Xi} → no11_constraint x → no11_constraint (op x)"
+  have no11_preserve: "∀x op. op ∈ set Rs ∪ \{Xi\} → no11_constraint x → no11_constraint (op x)"
     using zeckendorf_preservation_theorem Rs_def Xi_spiral by blast
   
   (* 组合所有性质 *)
@@ -721,37 +721,37 @@ class T27_7_ComplexitySpec:
     @staticmethod
     def circular_topology_construction_complexity(N: int) -> str:
         """循环拓扑构造复杂度"""
-        return f"O({N}² log {N}) for quotient topology construction"
+        return f"O(\{N\}² log \{N\}) for quotient topology construction"
     
     @staticmethod
     def regression_operators_complexity(N: int) -> str:
         """回归算子复杂度"""
-        return f"O(7 × {N}³) for 7-step operator composition"
+        return f"O(7 × \{N\}³) for 7-step operator composition"
     
     @staticmethod
     def phi_spiral_integration_complexity(N: int, T: int) -> str:
         """φ-螺旋积分复杂度"""
-        return f"O({T} × {N}²) for time T spiral evolution"
+        return f"O(\{T\} × \{N\}²) for time T spiral evolution"
     
     @staticmethod
     def entropy_dual_computation_complexity(N: int) -> str:
         """熵对偶计算复杂度"""
-        return f"O({N} × F_{N}) where F_N is {N}th Fibonacci number"
+        return f"O(\{N\} × F_\{N\}) where F_N is \{N\}th Fibonacci number"
     
     @staticmethod
     def lyapunov_analysis_complexity(N: int) -> str:
         """Lyapunov分析复杂度"""
-        return f"O({N}⁴) for eigenvalue analysis of linearized system"
+        return f"O(\{N\}⁴) for eigenvalue analysis of linearized system"
     
     @staticmethod
     def categorical_verification_complexity(N: int) -> str:
         """范畴验证复杂度"""
-        return f"O(7! × {N}) = O(5040 × {N}) for functor verification"
+        return f"O(7! × \{N\}) = O(5040 × \{N\}) for functor verification"
     
     @staticmethod
     def complete_cycle_verification_complexity(N: int) -> str:
         """完整循环验证复杂度"""
-        return f"O(7^{N}) for complete cycle path verification"
+        return f"O(7^\{N\}) for complete cycle path verification"
 ```
 
 ### 数值实现
@@ -774,7 +774,7 @@ class T27_7_NumericalImplementation:
         self.omega = self.spec.omega
         
     def construct_circular_topology_space(self) -> Dict:
-        """构造循环拓扑空间 T = {T27-1, ..., T27-7}"""
+        """构造循环拓扑空间 T = \{T27-1, ..., T27-7\}"""
         N = self.spec.N
         
         # 理论空间点集
@@ -784,27 +784,27 @@ class T27_7_NumericalImplementation:
             angle = 2 * math.pi * k / 7
             point = {
                 'index': k + 1,
-                'name': f'T27-{k+1}',
+                'name': f'T27-\{k+1}',
                 'position': np.exp(1j * angle),
                 'zeckendorf_encoding': self._generate_theory_zeckendorf(k+1),
                 'properties': self._extract_theory_properties(k+1)
-            }
+            \}
             theory_points.append(point)
         
         # 循环拓扑结构
-        topology = {
+        topology = \{
             'points': theory_points,
             'metric': self._circular_metric,
             'neighborhoods': self._construct_neighborhoods(theory_points),
             'open_sets': self._generate_open_sets(theory_points),
             'compactness_verified': True,  # S¹ × [0,1] / ~ 是紧致的
             'hausdorff_verified': True     # 商拓扑保持Hausdorff性
-        }
+        \}
         
         return topology
     
     def construct_regression_operators(self) -> Dict:
-        """构造7个回归算子 R_k: T_{27-k} → T_{27-(k mod 7)+1}"""
+        """构造7个回归算子 R_k: T_\{27-k\} → T_\{27-(k mod 7)+1\}"""
         
         def R_1_zeckendorf_to_fourier(z_state):
             """R_1: Pure Zeckendorf → Three-fold Fourier"""
@@ -858,12 +858,12 @@ class T27_7_NumericalImplementation:
             R_7_circular_to_zeckendorf
         ]
         
-        return {
+        return \{
             'operators': regression_operators,
             'composition_verified': self._verify_cycle_closure(regression_operators),
             'continuity_verified': self._verify_operators_continuity(regression_operators),
             'information_preservation': self._verify_information_preservation(regression_operators)
-        }
+        \}
     
     def construct_phi_spiral_flow(self) -> Dict:
         """构造φ-螺旋流 Ξ_t: T_Space → T_Space"""
@@ -882,7 +882,7 @@ class T27_7_NumericalImplementation:
         
         # 验证φ-特征性质
         def verify_phi_characteristic():
-            """验证 |Ξ_{t+τ}| = φ|Ξ_t|"""
+            """验证 |Ξ_\{t+τ\}| = φ|Ξ_t|"""
             test_states = [np.random.normal(0, 0.1, self.spec.N) for _ in range(5)]
             verification_results = []
             
@@ -898,7 +898,7 @@ class T27_7_NumericalImplementation:
         
         # 验证不动点吸引性
         def verify_attractor_convergence():
-            """验证 lim_{t→∞} Ξ_t/φ^{t/τ} = ψ₀"""
+            """验证 lim_\{t→∞\} Ξ_t/φ^\{t/τ\} = ψ₀"""
             test_initial = np.random.normal(0, 0.1, self.spec.N)
             convergence_verified = True
             
@@ -917,14 +917,14 @@ class T27_7_NumericalImplementation:
             
             return convergence_verified
         
-        return {
+        return \{
             'spiral_flow': Xi_t,
             'differential_equation': spiral_ode,
             'phi_characteristic_verified': verify_phi_characteristic(),
             'attractor_convergence_verified': verify_attractor_convergence(),
             'period': self.tau,
             'growth_rate': self.phi
-        }
+        \}
     
     def compute_entropy_duality(self) -> Dict:
         """计算熵的局部增长与全局守恒对偶"""
@@ -987,7 +987,7 @@ class T27_7_NumericalImplementation:
         
         # 验证Fibonacci熵结构
         def verify_fibonacci_entropy_structure():
-            """验证 ΔH_{t+2} = ΔH_{t+1} + ΔH_t"""
+            """验证 ΔH_\{t+2\} = ΔH_\{t+1\} + ΔH_t"""
             entropy_increments = []
             
             # 生成熵增序列
@@ -1016,14 +1016,14 @@ class T27_7_NumericalImplementation:
             
             return fibonacci_structure_verified
         
-        return {
+        return \{
             'H_local': H_local,
             'H_global': H_global,
             'local_increase_verified': verify_local_entropy_increase(),
             'global_conservation_verified': verify_global_entropy_conservation(),
             'fibonacci_structure_verified': verify_fibonacci_entropy_structure(),
             'entropy_duality_confirmed': True
-        }
+        \}
     
     def verify_zeckendorf_encoding_preservation(self) -> Dict:
         """验证Zeckendorf编码在所有操作下的No11约束保持"""
@@ -1052,7 +1052,7 @@ class T27_7_NumericalImplementation:
                     # 验证输出仍满足No11
                     if not self._verify_no11_constraint(output_encoding):
                         all_operations_preserve = False
-                        print(f"R_{k+1} violates No11 constraint")
+                        print(f"R_\{k+1\} violates No11 constraint")
                         break
                 
                 if not all_operations_preserve:
@@ -1076,20 +1076,20 @@ class T27_7_NumericalImplementation:
             
             return all_operations_preserve
         
-        return {
+        return \{
             'regression_operators_preserve_no11': True,  # 假设通过详细验证
             'spiral_flow_preserves_no11': True,
             'topology_operations_preserve_no11': True,
             'all_operations_preserve_no11': verify_all_operations_preserve_no11(),
             'zeckendorf_arithmetic_consistent': self._verify_fibonacci_arithmetic_consistency(),
             'universal_no11_preservation_verified': True
-        }
+        \}
     
     def construct_lyapunov_stability_analysis(self) -> Dict:
         """构造Lyapunov函数并分析全局稳定性"""
         
         def construct_lyapunov_function():
-            """构造 V(x) = Σ_{k=1}^7 ‖x - T_{27-k}‖² φ^{-k}"""
+            """构造 V(x) = Σ_\{k=1\}^7 ‖x - T_\{27-k\}‖² φ^\{-k\}"""
             theory_points = self.construct_circular_topology_space()['points']
             
             def V(x):
@@ -1175,7 +1175,7 @@ class T27_7_NumericalImplementation:
                 current_perturbation = norm(evolved_state - equilibrium)
                 perturbation_magnitudes.append(current_perturbation)
             
-            # 验证指数衰减 δ(t) = δ(0)e^{-t/φ}
+            # 验证指数衰减 δ(t) = δ(0)e^\{-t/φ\}
             initial_perturbation = perturbation_magnitudes[0]
             for i, t in enumerate(np.linspace(0, 5 * self.tau, 50)):
                 expected_magnitude = initial_perturbation * math.exp(-t / self.phi)
@@ -1188,35 +1188,35 @@ class T27_7_NumericalImplementation:
             
             return phi_decay_verified
         
-        return {
+        return \{
             'lyapunov_function': construct_lyapunov_function(),
             'lyapunov_decrease_verified': verify_lyapunov_decrease(),
             'global_stability_verified': True,
             'attraction_basin_radius': compute_attraction_basin(),
             'phi_decay_rate_verified': verify_phi_decay_rate(),
             'cycle_attractor_stable': True
-        }
+        \}
     
     def verify_categorical_equivalence(self) -> Dict:
         """验证T27范畴与7元循环群的等价性"""
         
         def construct_T27_category():
             """构造T27范畴"""
-            objects = [f'T27-{k}' for k in range(1, 8)]
-            morphisms = {}
+            objects = [f'T27-\{k\}' for k in range(1, 8)]
+            morphisms = \{\}
             
             # 构造态射：每个R_k: T27-k → T27-((k mod 7) + 1)
             for i in range(7):
                 source = objects[i]
                 target = objects[(i + 1) % 7]  # 循环索引
-                morphism_name = f'R_{i+1}'
+                morphism_name = f'R_\{i+1\}'
                 morphisms[morphism_name] = (source, target)
             
             # 复合态射
-            compositions = {}
+            compositions = \{\}
             for i in range(7):
                 for j in range(1, 7):  # 组合长度
-                    comp_name = f'R_{(i+j-1) % 7 + 1}_circ_..._circ_R_{i+1}'
+                    comp_name = f'R_\{(i+j-1) % 7 + 1\}_circ_..._circ_R_\{i+1\}'
                     source = objects[i]
                     target = objects[(i + j) % 7]
                     compositions[comp_name] = (source, target)
@@ -1225,25 +1225,25 @@ class T27_7_NumericalImplementation:
                 'objects': objects,
                 'morphisms': morphisms,
                 'compositions': compositions,
-                'identity_morphisms': {obj: f'id_{obj}' for obj in objects}
-            }
+                'identity_morphisms': \{obj: f'id_\{obj}' for obj in objects\}
+            \}
         
         def construct_Z7_cyclic_group():
             """构造7元循环群"""
-            elements = list(range(7))  # {0, 1, 2, 3, 4, 5, 6}
+            elements = list(range(7))  # \{0, 1, 2, 3, 4, 5, 6\}
             
             # 群运算表
-            operation_table = {}
+            operation_table = \{\}
             for a in elements:
                 for b in elements:
                     operation_table[(a, b)] = (a + b) % 7
             
-            return {
+            return \{
                 'elements': elements,
                 'operation': operation_table,
                 'identity': 0,
                 'generator': 1
-            }
+            \}
         
         def construct_equivalence_functors():
             """构造等价函子 F: Cat_T27 → Z₇ 和 G: Z₇ → Cat_T27"""
@@ -1268,21 +1268,21 @@ class T27_7_NumericalImplementation:
             # G: Z₇_Grp → Cat_T27
             def G_elements(z7_elem):
                 """群元素到T27对象"""
-                return f'T27-{z7_elem + 1}'
+                return f'T27-\{z7_elem + 1\}'
             
             def G_operation(z7_op):
                 """群运算到T27态射"""
                 if z7_op == 0:
                     return 'identity'
                 else:
-                    return f'R_{z7_op}'
+                    return f'R_\{z7_op\}'
             
-            return {
+            return \{
                 'F_objects': F_objects,
                 'F_morphisms': F_morphisms,
                 'G_elements': G_elements,
                 'G_operations': G_operation
-            }
+            \}
         
         def verify_functor_properties():
             """验证函子的自然同构性质"""
@@ -1290,7 +1290,7 @@ class T27_7_NumericalImplementation:
             Z7_grp = construct_Z7_cyclic_group()
             functors = construct_equivalence_functors()
             
-            # 验证 F ∘ G ≅ id_{Z₇}
+            # 验证 F ∘ G ≅ id_\{Z₇\}
             FG_identity_verified = True
             for elem in Z7_grp['elements']:
                 T27_obj = functors['G_elements'](elem)
@@ -1299,23 +1299,23 @@ class T27_7_NumericalImplementation:
                     FG_identity_verified = False
                     break
             
-            # 验证 G ∘ F ≅ id_{Cat_T27}
+            # 验证 G ∘ F ≅ id_\{Cat_T27\}
             GF_identity_verified = True
             for obj in T27_cat['objects']:
                 Z7_elem = functors['F_objects'](obj)
                 back_to_T27 = functors['G_elements'](Z7_elem)
-                expected_obj = f'T27-{Z7_elem + 1}'
+                expected_obj = f'T27-\{Z7_elem + 1\}'
                 if back_to_T27 != expected_obj or expected_obj != obj:
                     GF_identity_verified = False
                     break
             
-            return {
+            return \{
                 'F_functor_well_defined': True,
                 'G_functor_well_defined': True,
                 'FG_natural_isomorphism': FG_identity_verified,
                 'GF_natural_isomorphism': GF_identity_verified,
                 'equivalence_verified': FG_identity_verified and GF_identity_verified
-            }
+            \}
         
         def verify_cycle_necessity():
             """验证7-循环的必然性"""
@@ -1339,26 +1339,26 @@ class T27_7_NumericalImplementation:
             cycle_closes = (current_obj == T27_cat['objects'][0])
             cycle_length_correct = (len(morphism_cycle) == 7)
             
-            return {
+            return \{
                 'cycle_closes': cycle_closes,
                 'cycle_length': len(morphism_cycle),
                 'cycle_length_correct': cycle_length_correct,
                 'cycle_necessity_verified': cycle_closes and cycle_length_correct
-            }
+            \}
         
-        return {
+        return \{
             'T27_category': construct_T27_category(),
             'Z7_cyclic_group': construct_Z7_cyclic_group(),
             'equivalence_functors': construct_equivalence_functors(),
             'functor_properties_verified': verify_functor_properties(),
             'cycle_necessity_verified': verify_cycle_necessity(),
             'categorical_equivalence_confirmed': True
-        }
+        \}
     
     def verify_complete_integration(self) -> Dict:
         """验证T27-7与前序所有理论的完整积分"""
         
-        integration_results = {
+        integration_results = \{
             'T27_1_zeckendorf_base_integration': self._verify_zeckendorf_foundation(),
             'T27_2_fourier_unity_integration': self._verify_fourier_structure_integration(),
             'T27_3_real_limit_integration': self._verify_real_limit_methods(),
@@ -1367,7 +1367,7 @@ class T27_7_NumericalImplementation:
             'T27_6_divine_structure_integration': self._verify_divine_structure_usage(),
             'A1_entropy_axiom_consistency': self._verify_entropy_axiom_strict_compliance(),
             'overall_integration_verified': True
-        }
+        \}
         
         # 检查所有积分是否成功
         all_integrations_successful = all(integration_results.values())
@@ -1403,19 +1403,19 @@ class T27_7_NumericalImplementation:
     def _extract_theory_properties(self, theory_index):
         """提取理论的特征性质"""
         properties = {
-            1: {'type': 'Pure Zeckendorf', 'foundation': True},
-            2: {'type': 'Three-fold Fourier', 'unification': True},
-            3: {'type': 'Real Limit Transition', 'continuity': True},
-            4: {'type': 'Spectral Structure', 'emergence': True},
-            5: {'type': 'Golden Mean Fixed Point', 'stability': True},
-            6: {'type': 'Divine Structure', 'self_reference': True},
-            7: {'type': 'Circular Self-Reference', 'completion': True}
-        }
-        return properties.get(theory_index, {})
+            1: \{'type': 'Pure Zeckendorf', 'foundation': True},
+            2: \{'type': 'Three-fold Fourier', 'unification': True\},
+            3: \{'type': 'Real Limit Transition', 'continuity': True\},
+            4: \{'type': 'Spectral Structure', 'emergence': True\},
+            5: \{'type': 'Golden Mean Fixed Point', 'stability': True\},
+            6: \{'type': 'Divine Structure', 'self_reference': True\},
+            7: \{'type': 'Circular Self-Reference', 'completion': True\}
+        \}
+        return properties.get(theory_index, \{\})
     
     def _construct_neighborhoods(self, theory_points):
         """构造拓扑邻域系统"""
-        neighborhoods = {}
+        neighborhoods = \{\}
         for point in theory_points:
             name = point['name']
             # 基于角度的邻域
@@ -1435,16 +1435,16 @@ class T27_7_NumericalImplementation:
         
         # 单点集作为开集的基础
         for point in theory_points:
-            open_sets.append({point['name']})
+            open_sets.append(\{point['name']\})
         
         # 联合操作生成更大的开集
         for i in range(len(theory_points)):
             for j in range(i+1, len(theory_points)):
-                union_set = {theory_points[i]['name'], theory_points[j]['name']}
+                union_set = \{theory_points[i]['name'], theory_points[j]['name']\}
                 open_sets.append(union_set)
         
         # 全集也是开集
-        all_theories = {point['name'] for point in theory_points}
+        all_theories = \{point['name'] for point in theory_points\}
         open_sets.append(all_theories)
         
         return open_sets
@@ -1536,11 +1536,11 @@ class T27_7_NumericalImplementation:
         """构造神性结构"""
         # 基于T27-6的神性结构
         # 自指结构 ψ = ψ(ψ)
-        divine_structure = {
+        divine_structure = \{
             'self_referential_core': fixed_point,
             'recursive_depth': len(fixed_point),
             'self_application': np.convolve(fixed_point, fixed_point, mode='same')
-        }
+        \}
         return divine_structure
     
     def _divine_to_circular_closure(self, divine_structure):
@@ -1549,11 +1549,11 @@ class T27_7_NumericalImplementation:
         application = divine_structure['self_application']
         
         # 形成循环结构
-        circular_form = {
+        circular_form = \{
             'core': core,
             'circular_embedding': np.exp(1j * 2 * np.pi * np.arange(len(core)) / 7),
             'closure_verified': True
-        }
+        \}
         return circular_form
     
     def _circular_to_zeckendorf_regression(self, circular_form):
@@ -1743,7 +1743,7 @@ class T27_7_NumericalImplementation:
 
 1. **□ 循环完备性**: R_7 ∘ R_6 ∘ ... ∘ R_1 = id_T 精确闭合
 2. **□ 必然回归性**: ∀ψ₀ ∈ Ψ_T : ψ₀ = ψ₀(ψ₀) → R_ψ(ψ₀) ∈ Z_Core 且 No11  
-3. **□ φ-螺旋演化**: |Ξ_{t+τ}| = φ|Ξ_t| 且 lim_{t→∞} Ξ_t/φ^{t/τ} = ψ₀
+3. **□ φ-螺旋演化**: |Ξ_\{t+τ\}| = φ|Ξ_t| 且 lim_\{t→∞\} Ξ_t/φ^\{t/τ\} = ψ₀
 4. **□ 熵对偶机制**: H_loc ↑ (严格递增) ∧ H_glob = const (精确守恒)
 5. **□ Zeckendorf贯穿**: 所有操作保持无11约束
 6. **□ 全局稳定性**: Lyapunov函数V严格递减，φ-指数收敛
@@ -1766,11 +1766,11 @@ def comprehensive_T27_7_verification(N_max: int = 100) -> Dict:
         'verification_timestamp': time.time(),
         'precision_level': N_max,
         'all_properties_verified': True,
-        'detailed_results': {},
-        'performance_metrics': {}
-    }
+        'detailed_results': \{},
+        'performance_metrics': \{\}
+    \}
     
-    print(f"开始T27-7循环自指定理验证 (精度级别: {N_max})")
+    print(f"开始T27-7循环自指定理验证 (精度级别: \{N_max\})")
     print("="*60)
     
     # 1. 循环拓扑构造验证
@@ -1779,7 +1779,7 @@ def comprehensive_T27_7_verification(N_max: int = 100) -> Dict:
     topology_space = implementation.construct_circular_topology_space()
     topology_time = time.time() - start_time
     
-    verification_report['detailed_results']['circular_topology'] = {
+    verification_report['detailed_results']['circular_topology'] = \{
         'construction_successful': topology_space is not None,
         'compactness_verified': topology_space['compactness_verified'],
         'hausdorff_verified': topology_space['hausdorff_verified'],
@@ -1787,7 +1787,7 @@ def comprehensive_T27_7_verification(N_max: int = 100) -> Dict:
         'metric_well_defined': callable(topology_space['metric']),
         'neighborhoods_constructed': len(topology_space['neighborhoods']) == 7,
         'construction_time': topology_time
-    }
+    \}
     
     # 2. 回归算子验证
     print("2. 验证回归算子族...")
@@ -1795,13 +1795,13 @@ def comprehensive_T27_7_verification(N_max: int = 100) -> Dict:
     regression_system = implementation.construct_regression_operators()
     regression_time = time.time() - start_time
     
-    verification_report['detailed_results']['regression_operators'] = {
+    verification_report['detailed_results']['regression_operators'] = \{
         'operators_constructed': len(regression_system['operators']) == 7,
         'cycle_closure_verified': regression_system['composition_verified'],
         'continuity_verified': regression_system['continuity_verified'],
         'information_preservation': regression_system['information_preservation'],
         'construction_time': regression_time
-    }
+    \}
     
     # 3. φ-螺旋流验证
     print("3. 验证φ-螺旋动力学...")
@@ -1809,14 +1809,14 @@ def comprehensive_T27_7_verification(N_max: int = 100) -> Dict:
     spiral_system = implementation.construct_phi_spiral_flow()
     spiral_time = time.time() - start_time
     
-    verification_report['detailed_results']['phi_spiral_flow'] = {
+    verification_report['detailed_results']['phi_spiral_flow'] = \{
         'spiral_flow_constructed': callable(spiral_system['spiral_flow']),
         'phi_characteristic_verified': spiral_system['phi_characteristic_verified'],
         'attractor_convergence_verified': spiral_system['attractor_convergence_verified'],
         'period_correct': abs(spiral_system['period'] - precision_spec.tau) < 1e-10,
         'growth_rate_correct': abs(spiral_system['growth_rate'] - precision_spec.phi) < 1e-10,
         'construction_time': spiral_time
-    }
+    \}
     
     # 4. 熵对偶机制验证
     print("4. 验证熵对偶机制...")
@@ -1824,13 +1824,13 @@ def comprehensive_T27_7_verification(N_max: int = 100) -> Dict:
     entropy_system = implementation.compute_entropy_duality()
     entropy_time = time.time() - start_time
     
-    verification_report['detailed_results']['entropy_duality'] = {
+    verification_report['detailed_results']['entropy_duality'] = \{
         'local_increase_verified': entropy_system['local_increase_verified'],
         'global_conservation_verified': entropy_system['global_conservation_verified'],
         'fibonacci_structure_verified': entropy_system['fibonacci_structure_verified'],
         'duality_confirmed': entropy_system['entropy_duality_confirmed'],
         'computation_time': entropy_time
-    }
+    \}
     
     # 5. Zeckendorf编码保持验证
     print("5. 验证Zeckendorf编码保持...")
@@ -1838,14 +1838,14 @@ def comprehensive_T27_7_verification(N_max: int = 100) -> Dict:
     zeckendorf_system = implementation.verify_zeckendorf_encoding_preservation()
     zeckendorf_time = time.time() - start_time
     
-    verification_report['detailed_results']['zeckendorf_preservation'] = {
+    verification_report['detailed_results']['zeckendorf_preservation'] = \{
         'regression_operators_preserve_no11': zeckendorf_system['regression_operators_preserve_no11'],
         'spiral_flow_preserves_no11': zeckendorf_system['spiral_flow_preserves_no11'],
         'all_operations_preserve_no11': zeckendorf_system['all_operations_preserve_no11'],
         'arithmetic_consistent': zeckendorf_system['zeckendorf_arithmetic_consistent'],
         'universal_preservation_verified': zeckendorf_system['universal_no11_preservation_verified'],
         'verification_time': zeckendorf_time
-    }
+    \}
     
     # 6. Lyapunov稳定性分析
     print("6. 验证全局稳定性...")
@@ -1853,7 +1853,7 @@ def comprehensive_T27_7_verification(N_max: int = 100) -> Dict:
     stability_system = implementation.construct_lyapunov_stability_analysis()
     stability_time = time.time() - start_time
     
-    verification_report['detailed_results']['global_stability'] = {
+    verification_report['detailed_results']['global_stability'] = \{
         'lyapunov_function_constructed': callable(stability_system['lyapunov_function']),
         'lyapunov_decrease_verified': stability_system['lyapunov_decrease_verified'],
         'global_stability_verified': stability_system['global_stability_verified'],
@@ -1861,7 +1861,7 @@ def comprehensive_T27_7_verification(N_max: int = 100) -> Dict:
         'phi_decay_verified': stability_system['phi_decay_rate_verified'],
         'cycle_attractor_stable': stability_system['cycle_attractor_stable'],
         'analysis_time': stability_time
-    }
+    \}
     
     # 7. 范畴等价性验证
     print("7. 验证范畴等价性...")
@@ -1869,7 +1869,7 @@ def comprehensive_T27_7_verification(N_max: int = 100) -> Dict:
     categorical_system = implementation.verify_categorical_equivalence()
     categorical_time = time.time() - start_time
     
-    verification_report['detailed_results']['categorical_equivalence'] = {
+    verification_report['detailed_results']['categorical_equivalence'] = \{
         'T27_category_constructed': len(categorical_system['T27_category']['objects']) == 7,
         'Z7_group_constructed': len(categorical_system['Z7_cyclic_group']['elements']) == 7,
         'equivalence_functors_defined': 'equivalence_functors' in categorical_system,
@@ -1877,7 +1877,7 @@ def comprehensive_T27_7_verification(N_max: int = 100) -> Dict:
         'cycle_necessity_verified': categorical_system['cycle_necessity_verified']['cycle_necessity_verified'],
         'equivalence_confirmed': categorical_system['categorical_equivalence_confirmed'],
         'verification_time': categorical_time
-    }
+    \}
     
     # 8. 完整积分验证
     print("8. 验证完整积分...")
@@ -1885,7 +1885,7 @@ def comprehensive_T27_7_verification(N_max: int = 100) -> Dict:
     integration_system = implementation.verify_complete_integration()
     integration_time = time.time() - start_time
     
-    verification_report['detailed_results']['complete_integration'] = {
+    verification_report['detailed_results']['complete_integration'] = \{
         'zeckendorf_base_integrated': integration_system['T27_1_zeckendorf_base_integration'],
         'fourier_unity_integrated': integration_system['T27_2_fourier_unity_integration'],
         'real_limit_integrated': integration_system['T27_3_real_limit_integration'],
@@ -1896,13 +1896,13 @@ def comprehensive_T27_7_verification(N_max: int = 100) -> Dict:
         'overall_integration_verified': integration_system['overall_integration_verified'],
         'complete_integration_successful': integration_system['complete_integration_successful'],
         'integration_time': integration_time
-    }
+    \}
     
     # 计算总验证时间
     total_time = (topology_time + regression_time + spiral_time + entropy_time + 
                  zeckendorf_time + stability_time + categorical_time + integration_time)
     
-    verification_report['performance_metrics'] = {
+    verification_report['performance_metrics'] = \{
         'total_verification_time': total_time,
         'topology_construction_time': topology_time,
         'regression_verification_time': regression_time,
@@ -1913,7 +1913,7 @@ def comprehensive_T27_7_verification(N_max: int = 100) -> Dict:
         'categorical_verification_time': categorical_time,
         'integration_verification_time': integration_time,
         'average_time_per_verification': total_time / 8
-    }
+    \}
     
     # 检查所有核心性质
     core_properties_verified = [
@@ -1939,18 +1939,18 @@ def comprehensive_T27_7_verification(N_max: int = 100) -> Dict:
     # 生成验证总结
     print("\n" + "="*60)
     if all_verified:
-        print(f"✅ T27-7循环自指定理完全验证通过！(N={N_max})")
-        print(f"   所有{len(core_properties_verified)}个核心性质都得到严格验证")
+        print(f"✅ T27-7循环自指定理完全验证通过！(N=\{N_max\})")
+        print(f"   所有\{len(core_properties_verified)\}个核心性质都得到严格验证")
         print(f"   🔄 循环完备闭合: R_7 ∘ ... ∘ R_1 = id")
         print(f"   ⏪ 神性必然回归: ψ₀ → Z_Core")  
-        print(f"   🌀 φ-螺旋演化: |Ξ_{t+τ}| = φ|Ξ_t|")
+        print(f"   🌀 φ-螺旋演化: |Ξ_\{t+τ\}| = φ|Ξ_t|")
         print(f"   ⚖️  熵对偶统一: H_loc↑ ∧ H_glob=const")
         print(f"   🔢 Zeckendorf贯穿: 无11约束全保持")
         print(f"   🎯 全局稳定性: Lyapunov确认")
         print(f"   🏛️  范畴等价: T27 ≃ Z₇")
         print(f"   🔗 理论积分: 完整T27系列统一")
-        print(f"   ⏱️  验证耗时: {total_time:.2f}秒")
-        print(f"   🎯 成功率: {verification_report['success_rate']*100:.1f}%")
+        print(f"   ⏱️  验证耗时: \{total_time:.2f\}秒")
+        print(f"   🎯 成功率: \{verification_report['success_rate']*100:.1f\}%")
     else:
         failed_properties = []
         if not verification_report['detailed_results']['regression_operators']['cycle_closure_verified']:
@@ -1968,9 +1968,9 @@ def comprehensive_T27_7_verification(N_max: int = 100) -> Dict:
         if not verification_report['detailed_results']['categorical_equivalence']['equivalence_confirmed']:
             failed_properties.append("范畴等价")
         
-        print(f"❌ T27-7验证部分失败 ({verification_report['properties_passed']}/{verification_report['properties_total']})")
-        print(f"   失败的性质: {', '.join(failed_properties)}")
-        print(f"   成功率: {verification_report['success_rate']*100:.1f}%")
+        print(f"❌ T27-7验证部分失败 (\{verification_report['properties_passed']\}/\{verification_report['properties_total']\})")
+        print(f"   失败的性质: \{', '.join(failed_properties)\}")
+        print(f"   成功率: \{verification_report['success_rate']*100:.1f\}%")
         print(f"   需要进一步检查和修正")
     
     print("="*60)
@@ -1987,17 +1987,17 @@ if __name__ == "__main__":
     result = comprehensive_T27_7_verification(N_max=50)
     
     print("\n🎯 验证完成！")
-    print(f"状态: {result['verification_status']}")
-    print(f"成功率: {result['success_rate']*100:.1f}%")
-    print(f"总耗时: {result['performance_metrics']['total_verification_time']:.2f}秒")
+    print(f"状态: \{result['verification_status']\}")
+    print(f"成功率: \{result['success_rate']*100:.1f\}%")
+    print(f"总耗时: \{result['performance_metrics']['total_verification_time']:.2f\}秒")
     
     # 保存验证报告
-    verification_filename = f"T27_7_verification_report_{int(time.time())}.json"
+    verification_filename = f"T27_7_verification_report_\{int(time.time())\}.json"
     with open(verification_filename, 'w', encoding='utf-8') as f:
         import json
         json.dump(result, f, indent=2, ensure_ascii=False, default=str)
     
-    print(f"📋 验证报告已保存: {verification_filename}")
+    print(f"📋 验证报告已保存: \{verification_filename\}")
 ```
 
 ## 与其他定理的接口
@@ -2025,12 +2025,12 @@ if __name__ == "__main__":
 def verify_T27_7_interfaces() -> Dict:
     """验证T27-7与整个理论体系的接口一致性"""
     
-    interface_verification = {
+    interface_verification = \{
         'input_interfaces_verified': True,
         'output_interfaces_prepared': True,
         'T27_cycle_completed': True,
         'integration_successful': True
-    }
+    \}
     
     return interface_verification
 ```

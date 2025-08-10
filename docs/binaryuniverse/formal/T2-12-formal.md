@@ -284,7 +284,7 @@ End ComputationalInterface.
 ### 2. 正交化验证
 - [ ] Gram-Schmidt收敛性
 - [ ] 正交性：⟨eᵢ,eⱼ⟩ = δᵢⱼ
-- [ ] 完备性：span{eₙ} = H
+- [ ] 完备性：span\{eₙ\} = H
 - [ ] no-11约束保持
 
 ### 3. 演化算子验证
